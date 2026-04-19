@@ -11,6 +11,28 @@
 
 ## 快速开始
 
+### WSL + Windows 浏览器（推荐）
+
+如果项目在 WSL 中运行，但用 Windows 的 Edge/Chrome 打开前端页面，请按以下方式启动：
+
+```bash
+# 终端 1：后端
+cd backend
+source ../.venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+# 终端 2：前端
+cd frontend
+npm install
+npm run dev -- --host 0.0.0.0 --port 5173
+```
+
+然后在 Windows 浏览器访问：
+
+- `http://127.0.0.1:5173`
+- 或 `http://localhost:5173`
+
 ### 1. 后端虚拟环境
 
 ```powershell
@@ -66,3 +88,15 @@ cd data_pipeline
 - PostGIS 实库接入与 Alembic 迁移
 - 更大规模真实数据清洗
 - 地图精细化导航与验收演示素材
+
+## 常见通信问题排查
+
+如果前端页面可以打开，但请求后端失败（浏览器控制台显示 CORS）：
+
+1. 确认后端正在监听 `0.0.0.0:8000`。
+2. 确认前端地址是 `http://localhost:5173` 或 `http://127.0.0.1:5173`。
+3. 如需自定义来源，设置环境变量：
+
+```bash
+TRAVEL_CORS_ORIGINS="http://localhost:5173,http://127.0.0.1:5173,http://<your-host>:5173"
+```
