@@ -95,13 +95,35 @@ export const useTravelStore = defineStore("travel", {
         this.diarySearchResults.loading = false;
       }
     },
-    async selectDiary(item: any) {
+    _syncDiaryInCollections(diary: any) {
+      const listIndex = this.diaries.items.findIndex((entry) => entry.id === diary.id);
+      if (listIndex >= 0) {
+        this.diaries.items[listIndex] = diary;
+      }
+      const searchIndex = this.diarySearchResults.items.findIndex((entry) => entry.id === diary.id);
+      if (searchIndex >= 0) {
+        this.diarySearchResults.items[searchIndex] = diary;
+      }
+    },
+    async selectDiary(item: any, countView = true) {
       try {
         const { data } = await api.get(`/diaries/${item.id}`);
         this.diaries.selected = data;
+        if (countView) {
+          const viewResponse = await api.post(`/diaries/${item.id}/view`);
+          this.diaries.selected = viewResponse.data.diary;
+          this._syncDiaryInCollections(viewResponse.data.diary);
+        }
       } catch (error) {
         this.diaries.error = "加载日记详情失败。";
       }
+    },
+    async rateDiary(diaryId: number, score: number) {
+      const { data } = await api.post(`/diaries/${diaryId}/rate`, { score });
+      this.diaries.selected = data.diary;
+      this._syncDiaryInCollections(data.diary);
+      this.diaries.lastUpdated = new Date().toLocaleString("zh-CN");
+      return data;
     }
   }
 });

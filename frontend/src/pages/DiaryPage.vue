@@ -84,8 +84,13 @@
         <p>{{ selected.content }}</p>
         <div class="hero-actions">
           <button class="primary-btn" @click="compress">压缩正文演示</button>
+          <button class="primary-btn" @click="decompress" :disabled="!compressionPayload">解压回放</button>
+          <button class="primary-btn" @click="addView">手动+1浏览</button>
+          <button class="primary-btn" @click="rateDiary(4.0)">评分 4.0</button>
+          <button class="primary-btn" @click="rateDiary(5.0)">评分 5.0</button>
         </div>
         <pre v-if="compressionResult">{{ compressionResult }}</pre>
+        <pre v-if="decompressedContent">解压结果:\n{{ decompressedContent }}</pre>
       </div>
     </section>
   </section>
@@ -108,6 +113,8 @@ const searching = computed(() => store.diarySearchResults.loading);
 const destinations = computed(() => store.destinations.items);
 const query = ref("故宫");
 const compressionResult = ref("");
+const compressionPayload = ref<{ encoded: string; codes: Record<string, string> } | null>(null);
+const decompressedContent = ref("");
 const showComposer = ref(false);
 const publishing = ref(false);
 const draft = reactive({
@@ -125,7 +132,33 @@ const search = async () => {
 const compress = async () => {
   if (!selected.value) return;
   const { data } = await api.post("/diaries/compress", { content: selected.value.content });
+  compressionPayload.value = { encoded: data.encoded, codes: data.codes };
+  decompressedContent.value = "";
   compressionResult.value = JSON.stringify(data, null, 2);
+};
+
+const decompress = async () => {
+  if (!compressionPayload.value) return;
+  const { data } = await api.post("/diaries/decompress", compressionPayload.value);
+  decompressedContent.value = data.content;
+};
+
+const addView = async () => {
+  if (!selected.value) return;
+  await store.selectDiary(selected.value, true);
+};
+
+const rateDiary = async (score: number) => {
+  if (!selected.value) return;
+  if (!auth.isLoggedIn) {
+    auth.openAuthModal("login");
+    return;
+  }
+  try {
+    await store.rateDiary(selected.value.id, score);
+  } catch (ratingError: any) {
+    store.diaries.error = ratingError?.response?.data?.detail || "评分失败，请稍后再试。";
+  }
 };
 
 const openComposer = async () => {

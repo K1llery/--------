@@ -21,5 +21,9 @@
 - `GET /api/facilities/nearby`
 - `GET /api/foods`
 - `GET /api/diaries`
+- `GET /api/diaries/{diary_id}`
 - `POST /api/diaries/search`
+- `POST /api/diaries/{diary_id}/view`
+- `POST /api/diaries/{diary_id}/rate`
 - `POST /api/diaries/compress`
+- `POST /api/diaries/decompress`
