@@ -60,17 +60,23 @@ class Graph:
             return max(edge.distance * (1 + edge.congestion * 0.12) - scenic_bonus, 8.0)
         return edge.distance
 
-    def shortest_path(self, start: str, end: str, strategy: str = "distance", transport_mode: str = "walk") -> tuple[list[str], float]:
+    def _dijkstra(
+        self,
+        start: str,
+        strategy: str = "distance",
+        transport_mode: str = "walk",
+        end: str | None = None,
+    ) -> tuple[dict[str, float], dict[str, str | None]]:
         queue: list[tuple[float, str]] = [(0.0, start)]
         dist = {start: 0.0}
         parent: dict[str, str | None] = {start: None}
 
         while queue:
             current_cost, node = heapq.heappop(queue)
-            if node == end:
-                break
             if current_cost > dist.get(node, float("inf")):
                 continue
+            if end is not None and node == end:
+                break
             for edge in self.adj.get(node, []):
                 if not self._mode_allowed(edge, transport_mode):
                     continue
@@ -80,8 +86,11 @@ class Graph:
                     dist[edge.target] = next_cost
                     parent[edge.target] = node
                     heapq.heappush(queue, (next_cost, edge.target))
+        return dist, parent
 
-        if end not in parent:
+    def shortest_path(self, start: str, end: str, strategy: str = "distance", transport_mode: str = "walk") -> tuple[list[str], float]:
+        dist, parent = self._dijkstra(start, strategy=strategy, transport_mode=transport_mode, end=end)
+        if end not in dist:
             return [], float("inf")
         path = []
         cursor: str | None = end
@@ -90,6 +99,10 @@ class Graph:
             cursor = parent[cursor]
         path.reverse()
         return path, dist[end]
+
+    def shortest_distances(self, start: str, strategy: str = "distance", transport_mode: str = "walk") -> dict[str, float]:
+        dist, _ = self._dijkstra(start, strategy=strategy, transport_mode=transport_mode)
+        return dist
 
     def a_star(self, start: str, end: str, transport_mode: str = "walk") -> tuple[list[str], float]:
         def heuristic(node: str) -> float:

@@ -129,15 +129,30 @@ class RoutePlanningService:
 
     def plan_multi(self, scene_name: str, start_code: str, target_codes: list[str], strategy: str, transport_mode: str) -> dict:
         graph = self._scene_graph(scene_name)
-        if len(target_codes) <= 8:
-            ordered_stops, _ = held_karp(graph, start_code, target_codes, strategy, transport_mode)
+        normalized_targets = [code for code in dict.fromkeys(target_codes) if code != start_code]
+
+        if not normalized_targets:
+            ordered_stops = [start_code]
+            full_path = [start_code]
+            optimization_label = "无目标点"
+        elif len(normalized_targets) <= 8:
+            ordered_stops, _ = held_karp(graph, start_code, normalized_targets, strategy, transport_mode)
             optimization_label = "精确闭环求解"
+            full_path = self._expand_segments(graph, ordered_stops, strategy, transport_mode)
         else:
-            ordered_stops, _ = nearest_neighbor_two_opt(graph, start_code, target_codes, strategy, transport_mode)
+            ordered_stops, _ = nearest_neighbor_two_opt(graph, start_code, normalized_targets, strategy, transport_mode)
             optimization_label = "快速闭环近似"
-        full_path = self._expand_segments(graph, ordered_stops, strategy, transport_mode)
+            full_path = self._expand_segments(graph, ordered_stops, strategy, transport_mode)
+
         metrics = graph.path_metrics(full_path, transport_mode)
         names = self._name_map(scene_name)
+
+        explanation = (
+            f"{self._strategy_explanation(strategy)} 未提供额外目标点，返回起点信息。"
+            if optimization_label == "无目标点"
+            else f"{self._strategy_explanation(strategy)} 当前采用{optimization_label}组织多点闭环。"
+        )
+
         return {
             "path_codes": full_path,
             "path_names": [names.get(code, code) for code in full_path],
@@ -148,5 +163,5 @@ class RoutePlanningService:
             "strategy": strategy,
             "strategy_label": self._strategy_label(strategy),
             "optimization_label": optimization_label,
-            "explanation": f"{self._strategy_explanation(strategy)} 当前采用{optimization_label}组织多点闭环。",
+            "explanation": explanation,
         }

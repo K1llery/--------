@@ -46,6 +46,9 @@ class DatasetRepository:
     def diaries(self) -> list[dict[str, Any]]:
         return self._load_json("diaries.json")
 
+    def diary_ratings(self) -> list[dict[str, Any]]:
+        return self._load_json("diary_ratings.json")
+
     def users(self) -> list[dict[str, Any]]:
         return self._load_json("users.json")
 
@@ -60,6 +63,9 @@ class DatasetRepository:
 
     def save_diaries(self, payload: list[dict[str, Any]]) -> None:
         self._write_json("diaries.json", payload)
+
+    def save_diary_ratings(self, payload: list[dict[str, Any]]) -> None:
+        self._write_json("diary_ratings.json", payload)
 
 
 @lru_cache

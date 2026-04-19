@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import heapq
 from dataclasses import dataclass
+from itertools import count
 from typing import Callable, Iterable, Sequence, TypeVar
 
 T = TypeVar("T")
@@ -23,16 +24,19 @@ class TopKSelector:
         if k <= 0:
             return []
 
-        heap: list[tuple[float, T]] = []
+        heap: list[tuple[float, int, T]] = []
+        serial = count()
         for item in items:
             score = self.scorer(item)
+            entry = (score, next(serial), item)
             if len(heap) < k:
-                heapq.heappush(heap, (score, item))
+                heapq.heappush(heap, entry)
                 continue
             if score > heap[0][0]:
-                heapq.heapreplace(heap, (score, item))
+                heapq.heapreplace(heap, entry)
 
-        return [item for _, item in sorted(heap, key=lambda pair: pair[0], reverse=True)]
+        ranked = sorted(heap, key=lambda pair: (pair[0], -pair[1]), reverse=True)
+        return [item for _, _, item in ranked]
 
 
 def quickselect_top_k(items: Sequence[T], k: int, scorer: Callable[[T], float]) -> list[T]:
@@ -41,14 +45,14 @@ def quickselect_top_k(items: Sequence[T], k: int, scorer: Callable[[T], float]) 
     if k >= len(items):
         return sorted(items, key=scorer, reverse=True)
 
-    working = list(items)
+    working = [(scorer(item), item) for item in items]
 
     def partition(left: int, right: int, pivot_index: int) -> int:
-        pivot_score = scorer(working[pivot_index])
+        pivot_score = working[pivot_index][0]
         working[pivot_index], working[right] = working[right], working[pivot_index]
         store_index = left
         for idx in range(left, right):
-            if scorer(working[idx]) > pivot_score:
+            if working[idx][0] > pivot_score:
                 working[store_index], working[idx] = working[idx], working[store_index]
                 store_index += 1
         working[right], working[store_index] = working[store_index], working[right]
@@ -66,4 +70,4 @@ def quickselect_top_k(items: Sequence[T], k: int, scorer: Callable[[T], float]) 
         else:
             right = pivot_index - 1
 
-    return sorted(working[:k], key=scorer, reverse=True)
+    return [item for _, item in sorted(working[:k], key=lambda pair: pair[0], reverse=True)]

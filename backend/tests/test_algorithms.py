@@ -1,7 +1,13 @@
 from app.algorithms.compression import HuffmanCodec
 from app.algorithms.graph import Graph
 from app.algorithms.search import HashIndex, InvertedIndex, TrieIndex
+from app.algorithms.tsp import held_karp, nearest_neighbor_two_opt
 from app.algorithms.topk import TopKSelector, quickselect_top_k
+from app.repositories.data_loader import get_repository
+from app.services.diary_service import CompressionService
+from app.services.facility_service import NearbyFacilityService
+from app.services.routing_service import RoutePlanningService
+from app.services.search_service import SearchService
 
 
 def test_topk_selector_works():
@@ -15,6 +21,26 @@ def test_quickselect_top_k_works():
     items = [{"name": "a", "score": 1}, {"name": "b", "score": 3}, {"name": "c", "score": 2}]
     result = quickselect_top_k(items, 2, lambda item: item["score"])
     assert [item["name"] for item in result] == ["b", "c"]
+
+
+def test_topk_selector_ties_do_not_raise_type_error():
+    items = [{"name": "a", "score": 5}, {"name": "b", "score": 5}, {"name": "c", "score": 4}]
+    selector = TopKSelector(lambda item: item["score"])
+    result = selector.select(items, 2)
+    assert {item["name"] for item in result} == {"a", "b"}
+
+
+def test_quickselect_calls_scorer_once_per_item():
+    items = [{"name": str(i), "score": i} for i in range(20)]
+    counter = {"calls": 0}
+
+    def scorer(item: dict) -> int:
+        counter["calls"] += 1
+        return item["score"]
+
+    result = quickselect_top_k(items, 5, scorer)
+    assert counter["calls"] == len(items)
+    assert [item["score"] for item in result] == [19, 18, 17, 16, 15]
 
 
 def test_hash_trie_inverted_search():
@@ -47,8 +73,130 @@ def test_graph_shortest_path():
     assert cost == 15
 
 
+def test_graph_shortest_distances_matches_path_cost():
+    graph = Graph()
+    graph.add_node("A", 0.0, 0.0)
+    graph.add_node("B", 1.0, 1.0)
+    graph.add_node("C", 2.0, 2.0)
+    graph.add_edge("A", "B", 7, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("B", "C", 4, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("A", "C", 20, 1.0, {"walk": 1.0}, {"walk"})
+
+    dist = graph.shortest_distances("A")
+    path, cost = graph.shortest_path("A", "C")
+
+    assert path == ["A", "B", "C"]
+    assert dist["C"] == cost == 11
+
+
+def test_tsp_algorithms_handle_empty_targets():
+    graph = Graph()
+    graph.add_node("A", 0.0, 0.0)
+
+    exact_route, exact_cost = held_karp(graph, "A", [], "distance", "walk")
+    approx_route, approx_cost = nearest_neighbor_two_opt(graph, "A", [], "distance", "walk")
+
+    assert exact_route == ["A", "A"]
+    assert exact_cost == 0.0
+    assert approx_route == ["A", "A"]
+    assert approx_cost == 0.0
+
+
+def test_held_karp_uses_single_source_distance_tables(monkeypatch):
+    graph = Graph()
+    for code in ("A", "B", "C", "D"):
+        graph.add_node(code, 0.0, 0.0)
+    graph.add_edge("A", "B", 1, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("A", "C", 2, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("A", "D", 3, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("B", "A", 1, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("B", "C", 1, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("B", "D", 2, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("C", "A", 2, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("C", "B", 1, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("C", "D", 1, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("D", "A", 3, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("D", "B", 2, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("D", "C", 1, 1.0, {"walk": 1.0}, {"walk"})
+
+    calls = {"count": 0}
+    original = graph.shortest_distances
+
+    def tracked(start: str, strategy: str = "distance", transport_mode: str = "walk") -> dict[str, float]:
+        calls["count"] += 1
+        return original(start, strategy=strategy, transport_mode=transport_mode)
+
+    monkeypatch.setattr(graph, "shortest_distances", tracked)
+    route, cost = held_karp(graph, "A", ["B", "C", "D"], "distance", "walk")
+
+    assert route[0] == "A" and route[-1] == "A"
+    assert cost > 0
+    assert calls["count"] == 4
+
+
+def test_nearby_facility_uses_graph_distances_instead_of_single_route_calls(monkeypatch):
+    repository = get_repository()
+    service = NearbyFacilityService(repository)
+
+    def should_not_call(*args, **kwargs):
+        raise AssertionError("plan_single should not be called in nearby")
+
+    monkeypatch.setattr(service.route_service, "plan_single", should_not_call)
+    items = service.nearby("BUPT_Main_Campus", "BUPT_GATE")
+
+    assert items
+    assert "graph_distance" in items[0]
+
+
+def test_plan_multi_empty_targets_returns_origin_only():
+    service = RoutePlanningService(get_repository())
+    result = service.plan_multi("BUPT_Main_Campus", "BUPT_GATE", [], "distance", "walk")
+
+    assert result["path_codes"] == ["BUPT_GATE"]
+    assert result["ordered_stop_codes"] == ["BUPT_GATE"]
+    assert result["optimization_label"] == "无目标点"
+
+
 def test_huffman_codec_roundtrip():
     codec = HuffmanCodec()
     encoded, codes = codec.encode("travel diary")
     decoded = codec.decode(encoded, codes)
     assert decoded == "travel diary"
+
+
+def test_compression_service_returns_ratio_metrics():
+    result = CompressionService().compress("故宫故宫故宫故宫")
+    assert "encoded" in result
+    assert "codes" in result
+    assert result["original_bits"] > 0
+    assert result["compressed_bits"] >= 0
+    assert 0 <= result["compression_ratio"] <= 1
+
+
+def test_search_service_fuzzy_results_are_ranked_by_heat_and_rating():
+    class FakeRepository:
+        @staticmethod
+        def destinations() -> list[dict]:
+            return [
+                {
+                    "source_id": "1",
+                    "name": "故宫博物院",
+                    "district": "东城",
+                    "description": "皇家宫殿",
+                    "category": "scenic",
+                    "heat": 900,
+                    "rating": 4.7,
+                },
+                {
+                    "source_id": "2",
+                    "name": "故宫角楼",
+                    "district": "东城",
+                    "description": "故宫拍照机位",
+                    "category": "scenic",
+                    "heat": 1200,
+                    "rating": 4.5,
+                },
+            ]
+
+    results = SearchService(FakeRepository()).fuzzy_search("故宫", ["故宫"], category="scenic")
+    assert [item["source_id"] for item in results] == ["2", "1"]

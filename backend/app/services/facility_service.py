@@ -14,10 +14,15 @@ class NearbyFacilityService:
         if category:
             facilities = [item for item in facilities if item["facility_type"] == category]
 
+        graph = self.route_service._scene_graph(scene_name)
+        distances = graph.shortest_distances(origin_code, strategy="distance", transport_mode="walk")
+
         ranked = []
         for facility in facilities:
-            route = self.route_service.plan_single(scene_name, origin_code, facility["code"], "distance", "walk")
-            if route["path_codes"] and route["total_distance_m"] <= radius:
-                ranked.append({**facility, "graph_distance": route["total_distance_m"]})
+            distance = distances.get(facility["code"])
+            if distance is None or distance == float("inf"):
+                continue
+            if distance <= radius:
+                ranked.append({**facility, "graph_distance": round(distance, 1)})
         ranked.sort(key=lambda item: item["graph_distance"])
         return ranked

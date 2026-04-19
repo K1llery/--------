@@ -1,10 +1,25 @@
+import shutil
+from pathlib import Path
 from uuid import uuid4
 
+import pytest
 from fastapi.testclient import TestClient
 
 from app.main import app
+from app.repositories.data_loader import DatasetRepository, get_repository
 
 client = TestClient(app)
+
+
+@pytest.fixture(autouse=True)
+def isolate_api_dataset(tmp_path):
+    source_dir = Path(__file__).resolve().parents[2] / "datasets" / "prod"
+    target_dir = tmp_path / "prod"
+    shutil.copytree(source_dir, target_dir)
+    repository = DatasetRepository(target_dir)
+    app.dependency_overrides[get_repository] = lambda: repository
+    yield
+    app.dependency_overrides.pop(get_repository, None)
 
 
 def test_destinations_endpoint_returns_real_dataset():
@@ -139,3 +154,45 @@ def test_create_diary_requires_auth_and_persists():
     )
     assert create_response.status_code == 200
     assert create_response.json()["author_name"]
+
+
+def test_diary_view_and_rate_interaction_flow():
+    search_response = client.post("/api/diaries/search", json={"query": "故宫"})
+    assert search_response.status_code == 200
+    diary_id = search_response.json()["items"][0]["id"]
+
+    detail_response = client.get(f"/api/diaries/{diary_id}")
+    assert detail_response.status_code == 200
+    before_views = detail_response.json()["views"]
+
+    view_response = client.post(f"/api/diaries/{diary_id}/view")
+    assert view_response.status_code == 200
+    assert view_response.json()["diary"]["views"] == before_views + 1
+
+    login_response = client.post("/api/auth/login", json={"username": "demo_user_2", "password": "demo123"})
+    assert login_response.status_code == 200
+    token = login_response.json()["token"]
+    headers = {"Authorization": f"Bearer {token}"}
+
+    rate_response = client.post(f"/api/diaries/{diary_id}/rate", json={"score": 4.8}, headers=headers)
+    assert rate_response.status_code == 200
+    payload = rate_response.json()
+    assert payload["user_score"] == 4.8
+    assert payload["rating_count"] >= 1
+    assert 1.0 <= payload["diary"]["rating"] <= 5.0
+
+
+def test_diary_compress_and_decompress_roundtrip():
+    content = "路线体验很好，故宫红墙很适合拍照。"
+    compress_response = client.post("/api/diaries/compress", json={"content": content})
+    assert compress_response.status_code == 200
+    compressed = compress_response.json()
+    assert compressed["encoded"]
+    assert compressed["codes"]
+
+    decompress_response = client.post(
+        "/api/diaries/decompress",
+        json={"encoded": compressed["encoded"], "codes": compressed["codes"]},
+    )
+    assert decompress_response.status_code == 200
+    assert decompress_response.json()["content"] == content
