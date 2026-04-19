@@ -42,7 +42,16 @@
               :class="{ selected: selected?.source_id === item.source_id }"
               @click="selected = item"
             >
-              <img :src="item.image_url" :alt="item.name" class="media-thumb small-thumb" />
+              <RealImage
+                :src="item.image_url"
+                :alt="item.name"
+                :name="item.name"
+                :city="item.city"
+                :latitude="item.latitude"
+                :longitude="item.longitude"
+                :source-url="item.source_url"
+                class="media-thumb small-thumb"
+              />
               <div class="media-body">
                 <h3>{{ item.name }}</h3>
                 <p>{{ categoryLabel(item.category) }} · {{ item.city }}</p>
@@ -65,7 +74,16 @@
               :class="{ selected: selected?.source_id === item.source_id }"
               @click="selected = item"
             >
-              <img :src="item.image_url || fallbackImage" :alt="item.name" class="media-thumb small-thumb" />
+              <RealImage
+                :src="item.image_url"
+                :alt="item.name"
+                :name="item.name"
+                :city="item.city"
+                :latitude="item.latitude"
+                :longitude="item.longitude"
+                :source-url="item.source_url"
+                class="media-thumb small-thumb"
+              />
               <div class="media-body">
                 <h3>{{ item.name }}</h3>
                 <p>{{ categoryLabel(item.category) }} · {{ item.city || "北京" }}</p>
@@ -77,7 +95,16 @@
       </div>
 
       <section v-if="selected" class="detail-panel detail-stack">
-        <img :src="selected.image_url || fallbackImage" :alt="selected.name" class="detail-image" />
+        <RealImage
+          :src="selected.image_url"
+          :alt="selected.name"
+          :name="selected.name"
+          :city="selected.city"
+          :latitude="selected.latitude"
+          :longitude="selected.longitude"
+          :source-url="selected.source_url"
+          class="detail-image"
+        />
         <div>
           <h3>{{ selected.name }}</h3>
           <p>{{ categoryLabel(selected.category) }} · {{ selected.city || "北京" }}</p>
@@ -101,6 +128,7 @@
 import { computed, onMounted, ref } from "vue";
 
 import { api } from "../api/client";
+import RealImage from "../components/RealImage.vue";
 import { useTravelStore } from "../stores/travel";
 
 const store = useTravelStore();
@@ -109,7 +137,6 @@ const cityFilter = ref("全部");
 const categoryFilter = ref("全部");
 const loading = ref(false);
 const error = ref("");
-const fallbackImage = "/media/system/explore.svg";
 
 const exactRaw = ref<any[]>([]);
 const fuzzyRaw = ref<any[]>([]);

@@ -14,6 +14,7 @@ const props = defineProps<{
   nodes: Array<{ code: string; name: string; latitude: number; longitude: number }>;
   path: string[];
   pathColor?: string;
+  currentLocation?: { latitude: number; longitude: number } | null;
 }>();
 
 const mapEl = ref<HTMLDivElement | null>(null);
@@ -21,26 +22,60 @@ const mapError = ref(false);
 let map: L.Map | null = null;
 let markersLayer: L.LayerGroup | null = null;
 let pathLayer: L.Polyline | null = null;
+let currentLocationLayer: L.LayerGroup | null = null;
+let dashTimer: number | null = null;
+let dashOffset = 0;
 
 const renderMap = () => {
   if (!map) return;
   const nodeMap = new Map(props.nodes.map((item) => [item.code, item]));
+  const pathIndex = new Map(props.path.map((code, index) => [code, index]));
   markersLayer?.clearLayers();
+  currentLocationLayer?.clearLayers();
 
   props.nodes.forEach((node) => {
+    const index = pathIndex.get(node.code);
+    const isStart = index === 0;
+    const isEnd = index === props.path.length - 1 && props.path.length > 1;
+    const isOnPath = index !== undefined;
+    const markerColor = isStart ? "#1475c4" : isEnd ? "#d44f2a" : isOnPath ? "#b7672a" : "#8d9fb0";
+    const fillColor = isStart ? "#55aaf1" : isEnd ? "#f4895f" : isOnPath ? "#f0a25d" : "#c8d2dc";
     const marker = L.circleMarker([node.latitude, node.longitude], {
-      radius: 7,
-      color: "#9f4f28",
+      radius: isStart || isEnd ? 9 : isOnPath ? 7 : 6,
+      color: markerColor,
       weight: 2,
-      fillColor: "#d97941",
-      fillOpacity: 0.95
+      fillColor,
+      fillOpacity: 0.96
     }).bindPopup(`${node.name}`);
+
+    if (isOnPath) {
+      marker.bindTooltip(`#${index + 1} ${node.name}`, {
+        permanent: false,
+        direction: "top",
+      });
+    }
+
     markersLayer?.addLayer(marker);
   });
+
+  if (props.currentLocation) {
+    const marker = L.circleMarker([props.currentLocation.latitude, props.currentLocation.longitude], {
+      radius: 8,
+      color: "#1e90ff",
+      weight: 2,
+      fillColor: "#7bc4ff",
+      fillOpacity: 0.98,
+    }).bindTooltip("当前位置", { direction: "top" });
+    currentLocationLayer?.addLayer(marker);
+  }
 
   if (pathLayer) {
     map.removeLayer(pathLayer);
     pathLayer = null;
+  }
+  if (dashTimer) {
+    window.clearInterval(dashTimer);
+    dashTimer = null;
   }
 
   const coordinates = props.path
@@ -52,12 +87,27 @@ const renderMap = () => {
     pathLayer = L.polyline(coordinates, {
       color: props.pathColor ?? "#b65a2e",
       weight: 5,
-      opacity: 0.85
+      opacity: 0.9,
+      dashArray: "12 10",
+      dashOffset: "0",
     }).addTo(map);
+
+    dashOffset = 0;
+    dashTimer = window.setInterval(() => {
+      if (!pathLayer) return;
+      dashOffset -= 1;
+      (pathLayer as any).setStyle({ dashOffset: `${dashOffset}` });
+    }, 80);
+
     map.fitBounds(pathLayer.getBounds(), { padding: [30, 30] });
   } else if (props.nodes.length > 0) {
     const bounds = L.latLngBounds(props.nodes.map((node) => [node.latitude, node.longitude] as [number, number]));
+    if (props.currentLocation) {
+      bounds.extend([props.currentLocation.latitude, props.currentLocation.longitude]);
+    }
     map.fitBounds(bounds, { padding: [30, 30] });
+  } else if (props.currentLocation) {
+    map.setView([props.currentLocation.latitude, props.currentLocation.longitude], 15);
   }
 };
 
@@ -73,11 +123,12 @@ onMounted(() => {
   });
   tileLayer.addTo(map);
   markersLayer = L.layerGroup().addTo(map);
+  currentLocationLayer = L.layerGroup().addTo(map);
   renderMap();
 });
 
 watch(
-  () => [props.nodes, props.path],
+  () => [props.nodes, props.path, props.currentLocation],
   () => {
     renderMap();
   },
@@ -85,6 +136,10 @@ watch(
 );
 
 onBeforeUnmount(() => {
+  if (dashTimer) {
+    window.clearInterval(dashTimer);
+    dashTimer = null;
+  }
   map?.remove();
 });
 </script>

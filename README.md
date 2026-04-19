@@ -100,3 +100,8 @@ cd data_pipeline
 ```bash
 TRAVEL_CORS_ORIGINS="http://localhost:5173,http://127.0.0.1:5173,http://<your-host>:5173"
 ```
+
+## 真实图片与导航说明
+
+- 前端会优先尝试 Wikipedia 实景缩略图；若未命中，会回退到 OpenStreetMap 实景地图快照，不再使用内置占位图作为首选显示。
+- 地图导航支持“当前位置自动匹配最近起点”。如浏览器未授予定位权限，系统会自动回退到手动起点选择。

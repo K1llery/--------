@@ -11,7 +11,7 @@
     <section v-if="showComposer" class="status-card">
       <div class="section-top compact">
         <h3>写一篇新的游记</h3>
-        <span class="toolbar-hint">封面图会从已选目的地的本地图包里读取</span>
+        <span class="toolbar-hint">封面图会优先加载真实图源，失败时回落到地图实景。</span>
       </div>
       <form class="search-form" @submit.prevent="publishDiary">
         <select v-model="draft.destination_name" class="select-input">
@@ -22,7 +22,16 @@
         <button class="primary-btn" type="submit">{{ publishing ? "发布中..." : "确认发布" }}</button>
       </form>
       <div v-if="draftCover" class="draft-cover">
-        <img :src="draftCover.image_url" :alt="draft.destination_name" class="detail-image" />
+        <RealImage
+          :src="draftCover.image_url"
+          :alt="draft.destination_name"
+          :name="draft.destination_name"
+          :city="draftCover.city"
+          :latitude="draftCover.latitude"
+          :longitude="draftCover.longitude"
+          :source-url="draftCover.source_url"
+          class="detail-image"
+        />
       </div>
     </section>
 
@@ -42,7 +51,14 @@
           :class="{ selected: selected?.id === item.id }"
           @click="store.selectDiary(item)"
         >
-          <img :src="item.media_urls?.[0] || '/media/system/explore.svg'" :alt="item.title" class="media-thumb" />
+          <RealImage
+            :src="item.media_urls?.[0]"
+            :alt="item.title"
+            :name="item.destination_name || item.title"
+            :city="item.city"
+            :search-hint="item.destination_name"
+            class="media-thumb"
+          />
           <div class="media-body">
             <h3>{{ item.title }}</h3>
             <p>{{ item.destination_name }}</p>
@@ -72,7 +88,14 @@
     </section>
 
     <section v-if="selected" class="detail-panel detail-stack">
-      <img :src="selected.media_urls?.[0] || '/media/system/explore.svg'" :alt="selected.title" class="detail-image" />
+      <RealImage
+        :src="selected.media_urls?.[0]"
+        :alt="selected.title"
+        :name="selected.destination_name || selected.title"
+        :city="selected.city"
+        :search-hint="selected.destination_name"
+        class="detail-image"
+      />
       <div>
         <h3>{{ selected.title }}</h3>
         <p>{{ selected.destination_name }}</p>
@@ -100,8 +123,10 @@
 import { computed, onMounted, reactive, ref } from "vue";
 
 import { api } from "../api/client";
+import RealImage from "../components/RealImage.vue";
 import { useAuthStore } from "../stores/auth";
 import { useTravelStore } from "../stores/travel";
+import { resolveRealMedia } from "../utils/realMedia";
 
 const store = useTravelStore();
 const auth = useAuthStore();
@@ -176,12 +201,23 @@ const publishDiary = async () => {
   }
   publishing.value = true;
   try {
+    const coverImage = draftCover.value
+      ? await resolveRealMedia({
+          src: draftCover.value.image_url,
+          name: draftCover.value.name,
+          city: draftCover.value.city,
+          latitude: draftCover.value.latitude,
+          longitude: draftCover.value.longitude,
+          sourceUrl: draftCover.value.source_url,
+          searchHint: draft.destination_name,
+        })
+      : "";
     await api.post("/diaries", {
       destination_name: draft.destination_name,
       title: draft.title,
       content: draft.content,
-      cover_image_url: draftCover.value?.image_url,
-      media_urls: draftCover.value?.image_url ? [draftCover.value.image_url] : [],
+      cover_image_url: coverImage || draftCover.value?.image_url,
+      media_urls: coverImage ? [coverImage] : draftCover.value?.image_url ? [draftCover.value.image_url] : [],
     });
     showComposer.value = false;
     draft.title = "";

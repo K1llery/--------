@@ -39,7 +39,16 @@
           :class="{ selected: selected?.source_id === item.source_id }"
           @click="select(item)"
         >
-          <img :src="item.image_url" :alt="item.name" class="media-thumb" />
+          <RealImage
+            :src="item.image_url"
+            :alt="item.name"
+            :name="item.name"
+            :city="item.city"
+            :latitude="item.latitude"
+            :longitude="item.longitude"
+            :source-url="item.source_url"
+            class="media-thumb"
+          />
           <div class="media-body">
             <h3>{{ item.name }}</h3>
             <p>{{ categoryLabel(item.category) }} · {{ item.city }}</p>
@@ -50,7 +59,16 @@
       </div>
 
       <section v-if="selected" class="detail-panel detail-stack">
-        <img :src="selected.image_url" :alt="selected.name" class="detail-image" />
+        <RealImage
+          :src="selected.image_url"
+          :alt="selected.name"
+          :name="selected.name"
+          :city="selected.city"
+          :latitude="selected.latitude"
+          :longitude="selected.longitude"
+          :source-url="selected.source_url"
+          class="detail-image"
+        />
         <div>
           <h3>{{ selected.name }}</h3>
           <p>{{ categoryLabel(selected.category) }} · {{ selected.city }} · {{ selected.district || "热门区域" }}</p>
@@ -70,7 +88,7 @@
             数据来源：
             <a :href="selected.source_url" target="_blank" rel="noreferrer">{{ selected.source_name }}</a>
           </p>
-          <p class="detail-note">图片来源：{{ selected.image_source_name || "本地图包" }}</p>
+          <p class="detail-note">图片来源：{{ selected.image_source_name || "Wikipedia / OpenStreetMap" }}</p>
         </div>
       </section>
     </div>
@@ -80,6 +98,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from "vue";
 
+import RealImage from "../components/RealImage.vue";
 import { useAuthStore } from "../stores/auth";
 import { useTravelStore } from "../stores/travel";
 

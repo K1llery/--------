@@ -26,7 +26,17 @@
         </div>
       </div>
       <div class="hero-preview">
-        <img v-if="heroDestination" :src="heroDestination.image_url" :alt="heroDestination.name" class="detail-image hero-image" />
+        <RealImage
+          v-if="heroDestination"
+          :src="heroDestination.image_url"
+          :alt="heroDestination.name"
+          :name="heroDestination.name"
+          :city="heroDestination.city"
+          :latitude="heroDestination.latitude"
+          :longitude="heroDestination.longitude"
+          :source-url="heroDestination.source_url"
+          class="detail-image hero-image"
+        />
         <div v-if="heroDestination" class="hero-overlay">
           <p class="hero-kicker">{{ heroDestination.city }} · {{ categoryLabel(heroDestination.category) }}</p>
           <h3>{{ heroDestination.name }}</h3>
@@ -101,7 +111,16 @@
           class="item-card media-card"
           @click="store.selectDestination(item)"
         >
-          <img :src="item.image_url" :alt="item.name" class="media-thumb" />
+          <RealImage
+            :src="item.image_url"
+            :alt="item.name"
+            :name="item.name"
+            :city="item.city"
+            :latitude="item.latitude"
+            :longitude="item.longitude"
+            :source-url="item.source_url"
+            class="media-thumb"
+          />
           <div class="media-body">
             <h3>{{ item.name }}</h3>
             <p>{{ categoryLabel(item.category) }} · {{ item.city }}</p>
@@ -117,6 +136,7 @@
 import { computed, onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
 
+import RealImage from "../components/RealImage.vue";
 import { useAuthStore } from "../stores/auth";
 import { useTravelStore } from "../stores/travel";
 

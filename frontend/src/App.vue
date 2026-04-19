@@ -50,7 +50,11 @@
           </template>
         </div>
       </div>
-      <RouterView />
+      <RouterView v-slot="{ Component, route }">
+        <Transition name="page-fade-slide" mode="out-in">
+          <component :is="Component" :key="route.fullPath" />
+        </Transition>
+      </RouterView>
     </main>
     <AuthModal />
   </div>
