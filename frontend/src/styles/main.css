@@ -867,6 +867,47 @@ pre {
   margin-top: 14px;
 }
 
+.aigc-panel {
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(182, 90, 46, 0.18);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.aigc-preview {
+  position: relative;
+  margin-top: 10px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.aigc-preview .detail-image {
+  margin: 0;
+}
+
+.aigc-overlay {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(26, 19, 13, 0.62);
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+
+.aigc-overlay p,
+.aigc-overlay strong {
+  margin: 0;
+}
+
+.aigc-overlay strong + p,
+.aigc-overlay p + p {
+  margin-top: 6px;
+}
+
 .page-fade-slide-enter-active,
 .page-fade-slide-leave-active {
   transition: opacity 0.32s ease, transform 0.32s ease;

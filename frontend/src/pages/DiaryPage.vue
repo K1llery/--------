@@ -111,16 +111,57 @@
           <button class="primary-btn" @click="addView">手动+1浏览</button>
           <button class="primary-btn" @click="rateDiary(4.0)">评分 4.0</button>
           <button class="primary-btn" @click="rateDiary(5.0)">评分 5.0</button>
+          <button class="primary-btn" @click="generateAnimation">{{ animationLoading ? "生成中..." : "生成AIGC动画" }}</button>
+          <button class="secondary-btn" @click="playAnimation" :disabled="!animationResult?.shots?.length">播放预览</button>
+          <button class="secondary-btn" @click="pauseAnimation" :disabled="!animationResult?.shots?.length">暂停预览</button>
         </div>
         <pre v-if="compressionResult">{{ compressionResult }}</pre>
         <pre v-if="decompressedContent">解压结果:\n{{ decompressedContent }}</pre>
+
+        <section v-if="animationResult" class="aigc-panel">
+          <div class="section-top compact">
+            <h3>AIGC 旅游动画脚本</h3>
+            <span class="toolbar-hint">{{ animationResult.generation_mode }} · 总时长 {{ animationResult.total_duration_seconds }} 秒</span>
+          </div>
+
+          <div v-if="activeShot" class="aigc-preview">
+            <RealImage
+              :src="activeShot.media_url || selected.media_urls?.[0]"
+              :alt="activeShot.caption"
+              :name="selected.destination_name || selected.title"
+              :city="selected.city"
+              :search-hint="selected.destination_name"
+              class="detail-image"
+            />
+            <div class="aigc-overlay">
+              <strong>第 {{ activeShot.index }} 镜</strong>
+              <p>{{ activeShot.caption }}</p>
+              <p class="timeline-meta">{{ activeShot.transition }} · {{ activeShot.duration_seconds }} 秒</p>
+            </div>
+          </div>
+
+          <p><strong>旁白串联：</strong>{{ animationResult.narration_script }}</p>
+          <div class="card-grid compact-grid">
+            <article
+              v-for="shot in animationResult.shots"
+              :key="`shot-${shot.index}`"
+              class="item-card"
+              :class="{ selected: activeShot?.index === shot.index }"
+              @click="activeShotIndex = shot.index - 1"
+            >
+              <h3>镜头 {{ shot.index }}</h3>
+              <p>{{ shot.caption }}</p>
+              <p class="timeline-meta">{{ shot.transition }} · {{ shot.duration_seconds }} 秒</p>
+            </article>
+          </div>
+        </section>
       </div>
     </section>
   </section>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from "vue";
 
 import { api } from "../api/client";
 import RealImage from "../components/RealImage.vue";
@@ -142,6 +183,10 @@ const compressionPayload = ref<{ encoded: string; codes: Record<string, string> 
 const decompressedContent = ref("");
 const showComposer = ref(false);
 const publishing = ref(false);
+const animationResult = ref<any | null>(null);
+const animationLoading = ref(false);
+const activeShotIndex = ref(0);
+let animationTimer: number | null = null;
 const draft = reactive({
   destination_name: "",
   title: "",
@@ -149,6 +194,7 @@ const draft = reactive({
 });
 
 const draftCover = computed(() => destinations.value.find((item) => item.name === draft.destination_name) ?? null);
+const activeShot = computed(() => animationResult.value?.shots?.[activeShotIndex.value] ?? null);
 
 const search = async () => {
   await store.searchDiaries(query.value);
@@ -166,6 +212,35 @@ const decompress = async () => {
   if (!compressionPayload.value) return;
   const { data } = await api.post("/diaries/decompress", compressionPayload.value);
   decompressedContent.value = data.content;
+};
+
+const pauseAnimation = () => {
+  if (animationTimer !== null) {
+    window.clearInterval(animationTimer);
+    animationTimer = null;
+  }
+};
+
+const playAnimation = () => {
+  if (!animationResult.value?.shots?.length) return;
+  pauseAnimation();
+  animationTimer = window.setInterval(() => {
+    activeShotIndex.value = (activeShotIndex.value + 1) % animationResult.value.shots.length;
+  }, 2200);
+};
+
+const generateAnimation = async () => {
+  if (!selected.value) return;
+  animationLoading.value = true;
+  pauseAnimation();
+  try {
+    const { data } = await api.post(`/diaries/${selected.value.id}/aigc-animation`);
+    animationResult.value = data;
+    activeShotIndex.value = 0;
+    playAnimation();
+  } finally {
+    animationLoading.value = false;
+  }
 };
 
 const addView = async () => {
@@ -231,5 +306,15 @@ const publishDiary = async () => {
 onMounted(async () => {
   await Promise.all([store.loadDiaries(false), store.loadFeaturedDestinations(false)]);
   draft.destination_name = destinations.value[0]?.name ?? "";
+});
+
+watch(selected, () => {
+  pauseAnimation();
+  animationResult.value = null;
+  activeShotIndex.value = 0;
+});
+
+onBeforeUnmount(() => {
+  pauseAnimation();
 });
 </script>

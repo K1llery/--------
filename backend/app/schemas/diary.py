@@ -57,3 +57,25 @@ class DiaryRateResponse(BaseModel):
 
 class DiaryDecompressionResponse(BaseModel):
     content: str
+
+
+class DiaryAnimationShot(BaseModel):
+    index: int
+    caption: str
+    media_url: str
+    transition: str
+    duration_seconds: int
+    start_second: int
+    visual_prompt: str
+    narration: str
+
+
+class DiaryAIGCAnimationResponse(BaseModel):
+    diary_id: int
+    title: str
+    destination_name: str
+    generation_mode: str
+    keywords: list[str] = Field(default_factory=list)
+    total_duration_seconds: int
+    narration_script: str
+    shots: list[DiaryAnimationShot] = Field(default_factory=list)

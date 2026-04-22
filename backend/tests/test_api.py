@@ -262,3 +262,17 @@ def test_diary_compress_and_decompress_roundtrip():
     )
     assert decompress_response.status_code == 200
     assert decompress_response.json()["content"] == content
+
+
+def test_diary_aigc_animation_endpoint_returns_storyboard():
+    search_response = client.post("/api/diaries/search", json={"query": "故宫"})
+    assert search_response.status_code == 200
+    diary_id = search_response.json()["items"][0]["id"]
+
+    response = client.post(f"/api/diaries/{diary_id}/aigc-animation")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["generation_mode"] == "aigc-storyboard-v1"
+    assert payload["shots"]
+    assert payload["total_duration_seconds"] > 0
+    assert payload["narration_script"]

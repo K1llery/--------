@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from datetime import datetime
 
 from app.algorithms.compression import HuffmanCodec
@@ -144,3 +145,91 @@ class CompressionService:
 
     def decompress(self, encoded: str, codes: dict[str, str]) -> str:
         return self.codec.decode(encoded, codes)
+
+
+class DiaryAIGCService:
+    transitions = ("fade", "pan-left", "zoom-in", "wipe", "dolly")
+    keyword_candidates = (
+        "校园",
+        "景区",
+        "路线",
+        "日落",
+        "湖",
+        "古建筑",
+        "博物馆",
+        "图书馆",
+        "咖啡",
+        "夜景",
+        "花园",
+        "广场",
+    )
+
+    @staticmethod
+    def _split_sentences(content: str) -> list[str]:
+        parts = [item.strip() for item in re.split(r"[。！？!?\n]+", content) if item.strip()]
+        return parts or ["本次旅程记录暂未包含完整文本，系统按标题生成镜头草稿。"]
+
+    @classmethod
+    def _extract_keywords(cls, text: str, limit: int = 6) -> list[str]:
+        matched = [item for item in cls.keyword_candidates if item in text]
+        if len(matched) >= limit:
+            return matched[:limit]
+
+        tokens = re.findall(r"[A-Za-z0-9\u4e00-\u9fff]{2,}", text)
+        stopwords = {"我们", "这里", "可以", "一个", "这个", "非常", "然后", "今天", "感觉", "旅行", "游览", "拍照"}
+        for token in tokens:
+            if token in stopwords or token in matched:
+                continue
+            matched.append(token)
+            if len(matched) >= limit:
+                break
+        return matched[:limit] if matched else ["旅行", "城市漫游"]
+
+    def generate_animation(self, diary: dict, max_shots: int = 6) -> dict:
+        title = diary.get("title") or "旅程回放"
+        destination = diary.get("destination_name") or "目的地"
+        content = diary.get("content") or title
+        media_urls = diary.get("media_urls") or []
+
+        sentences = self._split_sentences(content)
+        shot_count = min(max(len(sentences), 3), max_shots)
+        keywords = self._extract_keywords(f"{title} {destination} {content}")
+
+        shots: list[dict] = []
+        cursor = 0
+        for index in range(shot_count):
+            caption = sentences[index % len(sentences)]
+            transition = self.transitions[index % len(self.transitions)]
+            duration_seconds = max(2, min(6, round(len(caption) / 12)))
+            media_url = media_urls[index % len(media_urls)] if media_urls else ""
+            visual_prompt = (
+                f"目的地:{destination}; 镜头:{transition}; 画面重点:{caption}; "
+                f"关键词:{'、'.join(keywords[:4])}"
+            )
+            narration = f"第{index + 1}镜，{caption}"
+
+            shots.append(
+                {
+                    "index": index + 1,
+                    "caption": caption,
+                    "media_url": media_url,
+                    "transition": transition,
+                    "duration_seconds": duration_seconds,
+                    "start_second": cursor,
+                    "visual_prompt": visual_prompt,
+                    "narration": narration,
+                }
+            )
+            cursor += duration_seconds
+
+        narration_script = " ".join(shot["narration"] for shot in shots)
+        return {
+            "diary_id": int(diary.get("id") or 0),
+            "title": title,
+            "destination_name": destination,
+            "generation_mode": "aigc-storyboard-v1",
+            "keywords": keywords,
+            "total_duration_seconds": cursor,
+            "narration_script": narration_script,
+            "shots": shots,
+        }

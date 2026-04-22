@@ -3,6 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from app.api.deps import get_current_user
 from app.repositories.data_loader import DatasetRepository, get_repository
 from app.schemas.diary import (
+    DiaryAIGCAnimationResponse,
     DiaryCompressionRequest,
     DiaryCreateRequest,
     DiaryDecompressionRequest,
@@ -14,7 +15,7 @@ from app.schemas.diary import (
     DiarySearchRequest,
     DiarySearchResponse,
 )
-from app.services.diary_service import CompressionService, DiarySearchService
+from app.services.diary_service import CompressionService, DiaryAIGCService, DiarySearchService
 
 router = APIRouter()
 
@@ -82,3 +83,11 @@ def compress_diary(payload: DiaryCompressionRequest) -> dict:
 def decompress_diary(payload: DiaryDecompressionRequest) -> DiaryDecompressionResponse:
     content = CompressionService().decompress(payload.encoded, payload.codes)
     return DiaryDecompressionResponse(content=content)
+
+
+@router.post("/{diary_id}/aigc-animation", response_model=DiaryAIGCAnimationResponse)
+def generate_diary_animation(diary_id: int, repository: DatasetRepository = Depends(get_repository)) -> DiaryAIGCAnimationResponse:
+    diary = DiarySearchService(repository).get_by_id(diary_id)
+    if diary is None:
+        raise HTTPException(status_code=404, detail="日记不存在")
+    return DiaryAIGCAnimationResponse(**DiaryAIGCService().generate_animation(diary))

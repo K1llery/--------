@@ -4,7 +4,7 @@ from app.algorithms.search import HashIndex, InvertedIndex, TrieIndex
 from app.algorithms.tsp import held_karp, nearest_neighbor_two_opt
 from app.algorithms.topk import TopKSelector, quickselect_top_k
 from app.repositories.data_loader import get_repository
-from app.services.diary_service import CompressionService
+from app.services.diary_service import CompressionService, DiaryAIGCService
 from app.services.facility_service import NearbyFacilityService
 from app.services.indoor_service import IndoorNavigationService
 from app.services.routing_service import RoutePlanningService
@@ -196,6 +196,22 @@ def test_compression_service_returns_ratio_metrics():
     assert result["original_bits"] > 0
     assert result["compressed_bits"] >= 0
     assert 0 <= result["compression_ratio"] <= 1
+
+
+def test_diary_aigc_service_generates_storyboard():
+    diary = {
+        "id": 99,
+        "title": "颐和园漫游",
+        "destination_name": "颐和园",
+        "content": "从东门入园后先去长廊拍照。随后在昆明湖边散步，最后看日落返程。",
+        "media_urls": ["/media/destinations/sample-01.jpg", "/media/destinations/sample-02.jpg"],
+    }
+    result = DiaryAIGCService().generate_animation(diary)
+
+    assert result["generation_mode"] == "aigc-storyboard-v1"
+    assert len(result["shots"]) >= 3
+    assert result["total_duration_seconds"] > 0
+    assert result["keywords"]
 
 
 def test_search_service_fuzzy_results_are_ranked_by_heat_and_rating():
