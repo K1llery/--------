@@ -1,0 +1,59 @@
+[
+  {
+    "building_code": "BUPT_LIB",
+    "building_name": "北京邮电大学图书馆",
+    "scene_name": "BUPT_Main_Campus",
+    "nodes": [
+      {"code": "BUPT_LIB_GATE_L1", "name": "图书馆正门", "floor": 1, "node_type": "gate"},
+      {"code": "BUPT_LIB_LOBBY_L1", "name": "一层大厅", "floor": 1, "node_type": "hall"},
+      {"code": "BUPT_LIB_ELEVATOR_L1", "name": "一层电梯口", "floor": 1, "node_type": "elevator"},
+      {"code": "BUPT_LIB_STAIRS_L1", "name": "一层楼梯口", "floor": 1, "node_type": "stairs"},
+      {"code": "BUPT_LIB_ELEVATOR_L2", "name": "二层电梯口", "floor": 2, "node_type": "elevator"},
+      {"code": "BUPT_LIB_STAIRS_L2", "name": "二层楼梯口", "floor": 2, "node_type": "stairs"},
+      {"code": "BUPT_LIB_READING_L2", "name": "二层阅览区", "floor": 2, "node_type": "room"},
+      {"code": "BUPT_LIB_ROOM_201", "name": "201研讨室", "floor": 2, "node_type": "room"},
+      {"code": "BUPT_LIB_ELEVATOR_L3", "name": "三层电梯口", "floor": 3, "node_type": "elevator"},
+      {"code": "BUPT_LIB_STAIRS_L3", "name": "三层楼梯口", "floor": 3, "node_type": "stairs"},
+      {"code": "BUPT_LIB_ARCHIVE_L3", "name": "三层档案阅览室", "floor": 3, "node_type": "room"}
+    ],
+    "edges": [
+      {"source": "BUPT_LIB_GATE_L1", "target": "BUPT_LIB_LOBBY_L1", "distance": 24.0, "kind": "walk", "bidirectional": true},
+      {"source": "BUPT_LIB_LOBBY_L1", "target": "BUPT_LIB_ELEVATOR_L1", "distance": 12.0, "kind": "walk", "bidirectional": true},
+      {"source": "BUPT_LIB_LOBBY_L1", "target": "BUPT_LIB_STAIRS_L1", "distance": 28.0, "kind": "walk", "bidirectional": true},
+      {"source": "BUPT_LIB_ELEVATOR_L1", "target": "BUPT_LIB_ELEVATOR_L2", "distance": 6.0, "kind": "elevator", "wait_seconds": 8.0, "bidirectional": true},
+      {"source": "BUPT_LIB_STAIRS_L1", "target": "BUPT_LIB_STAIRS_L2", "distance": 16.0, "kind": "stairs", "bidirectional": true},
+      {"source": "BUPT_LIB_ELEVATOR_L2", "target": "BUPT_LIB_READING_L2", "distance": 10.0, "kind": "walk", "bidirectional": true},
+      {"source": "BUPT_LIB_STAIRS_L2", "target": "BUPT_LIB_READING_L2", "distance": 24.0, "kind": "walk", "bidirectional": true},
+      {"source": "BUPT_LIB_READING_L2", "target": "BUPT_LIB_ROOM_201", "distance": 12.0, "kind": "walk", "bidirectional": true},
+      {"source": "BUPT_LIB_ELEVATOR_L2", "target": "BUPT_LIB_ELEVATOR_L3", "distance": 6.0, "kind": "elevator", "wait_seconds": 8.0, "bidirectional": true},
+      {"source": "BUPT_LIB_STAIRS_L2", "target": "BUPT_LIB_STAIRS_L3", "distance": 16.0, "kind": "stairs", "bidirectional": true},
+      {"source": "BUPT_LIB_ELEVATOR_L3", "target": "BUPT_LIB_ARCHIVE_L3", "distance": 9.0, "kind": "walk", "bidirectional": true},
+      {"source": "BUPT_LIB_STAIRS_L3", "target": "BUPT_LIB_ARCHIVE_L3", "distance": 20.0, "kind": "walk", "bidirectional": true}
+    ]
+  },
+  {
+    "building_code": "SUMMER_MUSEUM",
+    "building_name": "颐和园文物展馆",
+    "scene_name": "Summer_Palace",
+    "nodes": [
+      {"code": "SUMMER_MUSEUM_GATE_L1", "name": "展馆入口", "floor": 1, "node_type": "gate"},
+      {"code": "SUMMER_MUSEUM_EXHIBIT_A_L1", "name": "一层书画展区", "floor": 1, "node_type": "room"},
+      {"code": "SUMMER_MUSEUM_ELEVATOR_L1", "name": "一层电梯口", "floor": 1, "node_type": "elevator"},
+      {"code": "SUMMER_MUSEUM_STAIRS_L1", "name": "一层楼梯口", "floor": 1, "node_type": "stairs"},
+      {"code": "SUMMER_MUSEUM_ELEVATOR_L2", "name": "二层电梯口", "floor": 2, "node_type": "elevator"},
+      {"code": "SUMMER_MUSEUM_STAIRS_L2", "name": "二层楼梯口", "floor": 2, "node_type": "stairs"},
+      {"code": "SUMMER_MUSEUM_EXHIBIT_B_L2", "name": "二层数字展区", "floor": 2, "node_type": "room"},
+      {"code": "SUMMER_MUSEUM_CAFE_L2", "name": "观景咖啡角", "floor": 2, "node_type": "room"}
+    ],
+    "edges": [
+      {"source": "SUMMER_MUSEUM_GATE_L1", "target": "SUMMER_MUSEUM_EXHIBIT_A_L1", "distance": 18.0, "kind": "walk", "bidirectional": true},
+      {"source": "SUMMER_MUSEUM_EXHIBIT_A_L1", "target": "SUMMER_MUSEUM_ELEVATOR_L1", "distance": 10.0, "kind": "walk", "bidirectional": true},
+      {"source": "SUMMER_MUSEUM_EXHIBIT_A_L1", "target": "SUMMER_MUSEUM_STAIRS_L1", "distance": 14.0, "kind": "walk", "bidirectional": true},
+      {"source": "SUMMER_MUSEUM_ELEVATOR_L1", "target": "SUMMER_MUSEUM_ELEVATOR_L2", "distance": 5.0, "kind": "elevator", "wait_seconds": 7.0, "bidirectional": true},
+      {"source": "SUMMER_MUSEUM_STAIRS_L1", "target": "SUMMER_MUSEUM_STAIRS_L2", "distance": 14.0, "kind": "stairs", "bidirectional": true},
+      {"source": "SUMMER_MUSEUM_ELEVATOR_L2", "target": "SUMMER_MUSEUM_EXHIBIT_B_L2", "distance": 9.0, "kind": "walk", "bidirectional": true},
+      {"source": "SUMMER_MUSEUM_STAIRS_L2", "target": "SUMMER_MUSEUM_EXHIBIT_B_L2", "distance": 16.0, "kind": "walk", "bidirectional": true},
+      {"source": "SUMMER_MUSEUM_EXHIBIT_B_L2", "target": "SUMMER_MUSEUM_CAFE_L2", "distance": 11.0, "kind": "walk", "bidirectional": true}
+    ]
+  }
+]

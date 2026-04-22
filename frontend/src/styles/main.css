@@ -657,6 +657,10 @@ pre {
   border: 1px solid var(--line);
 }
 
+.indoor-card .search-form {
+  margin-top: 12px;
+}
+
 .route-card h3,
 .route-card p {
   margin: 0;

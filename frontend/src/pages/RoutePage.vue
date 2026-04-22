@@ -164,6 +164,60 @@
           </li>
         </ol>
       </section>
+
+      <section v-if="indoorBuildingsForScene.length" class="route-summary route-card indoor-card">
+        <div class="section-top compact">
+          <h3>室内导航模拟</h3>
+          <span class="toolbar-hint">支持大门到电梯、跨层换乘和楼层内房间导航</span>
+        </div>
+
+        <form class="search-form" @submit.prevent="planIndoorRoute">
+          <select v-model="selectedIndoorBuildingCode" class="select-input">
+            <option v-for="building in indoorBuildingsForScene" :key="building.building_code" :value="building.building_code">
+              {{ building.building_name }}
+            </option>
+          </select>
+          <select v-model="indoorStartNodeCode" class="select-input">
+            <option v-for="node in indoorNodeOptions" :key="`indoor-start-${node.code}`" :value="node.code">
+              {{ node.name }}（{{ node.floor }}层）
+            </option>
+          </select>
+          <select v-model="indoorEndNodeCode" class="select-input">
+            <option v-for="node in indoorNodeOptions" :key="`indoor-end-${node.code}`" :value="node.code">
+              {{ node.name }}（{{ node.floor }}层）
+            </option>
+          </select>
+          <select v-model="indoorStrategy" class="select-input">
+            <option value="time">最快通过</option>
+            <option value="distance">最短距离</option>
+            <option value="accessible">无障碍优先</option>
+          </select>
+          <select v-model="indoorMobilityMode" class="select-input">
+            <option value="normal">常规通行</option>
+            <option value="wheelchair">轮椅通行</option>
+          </select>
+          <button class="primary-btn" type="submit">{{ indoorLoading ? "规划中..." : "规划室内路径" }}</button>
+        </form>
+
+        <div v-if="indoorRoute" class="results-section">
+          <p>{{ indoorRoute.summary }}</p>
+          <div class="detail-stats">
+            <span class="stat-pill">{{ indoorRoute.total_distance_m }} m</span>
+            <span class="stat-pill">{{ indoorRoute.estimated_seconds }} 秒</span>
+            <span class="stat-pill">{{ indoorRoute.mobility_mode === "wheelchair" ? "轮椅模式" : "常规模式" }}</span>
+          </div>
+          <ol class="timeline-list">
+            <li v-for="step in indoorRoute.steps" :key="`indoor-step-${step.index}`" class="timeline-item">
+              <span class="timeline-index">{{ step.index }}</span>
+              <div class="timeline-content">
+                <strong>{{ step.from_name }}（{{ step.from_floor }}层） → {{ step.to_name }}（{{ step.to_floor }}层）</strong>
+                <p>{{ step.instruction }}</p>
+                <p class="timeline-meta">{{ step.distance_m }} 米 · {{ step.estimated_seconds }} 秒 · {{ step.connector }}</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
     </template>
 
     <div v-else class="status-card">
@@ -202,6 +256,14 @@ const routeError = ref("");
 const useCurrentLocation = ref(false);
 const locating = ref(false);
 const currentLocation = ref<{ latitude: number; longitude: number } | null>(null);
+const indoorBuildings = ref<any[]>([]);
+const selectedIndoorBuildingCode = ref("");
+const indoorStartNodeCode = ref("");
+const indoorEndNodeCode = ref("");
+const indoorStrategy = ref("time");
+const indoorMobilityMode = ref("normal");
+const indoorRoute = ref<any | null>(null);
+const indoorLoading = ref(false);
 
 const supportsGeolocation = typeof navigator !== "undefined" && "geolocation" in navigator;
 
@@ -239,6 +301,12 @@ const travelProfiles = [
 const visibleScenes = computed(() => scenes.value.filter((item) => item.city === selectedCity.value));
 const supportsRouting = computed(() => visibleScenes.value.find((item) => item.name === selectedSceneName.value)?.supports_routing ?? false);
 const placeOptions = computed(() => ([...(scene.value?.nodes ?? []), ...facilities.value]));
+const indoorBuildingsForScene = computed(() => indoorBuildings.value.filter((item) => item.scene_name === selectedSceneName.value));
+const activeIndoorBuilding = computed(() => {
+  if (!indoorBuildingsForScene.value.length) return null;
+  return indoorBuildingsForScene.value.find((item) => item.building_code === selectedIndoorBuildingCode.value) ?? indoorBuildingsForScene.value[0];
+});
+const indoorNodeOptions = computed(() => activeIndoorBuilding.value?.nodes ?? []);
 const mapNodes = computed(() => {
   if (supportsRouting.value) return placeOptions.value;
   return featuredDestinations.value
@@ -289,15 +357,27 @@ const displayPathCodes = computed(() => {
 });
 
 const loadMeta = async () => {
-  const [sceneRes, featuredRes] = await Promise.all([api.get("/map/scenes"), api.get("/destinations/featured")]);
+  const [sceneRes, featuredRes, indoorRes] = await Promise.all([
+    api.get("/map/scenes"),
+    api.get("/destinations/featured"),
+    api.get("/indoor/buildings"),
+  ]);
   scenes.value = sceneRes.data;
   featuredDestinations.value = featuredRes.data;
+  indoorBuildings.value = indoorRes.data.items ?? [];
 };
 
 const syncDefaultNodes = () => {
   startCode.value = placeOptions.value[0]?.code ?? "";
   endCode.value = placeOptions.value[1]?.code ?? startCode.value;
   multiTargetCodes.value = placeOptions.value.slice(1, 4).map((item) => item.code);
+};
+
+const syncIndoorDefaults = () => {
+  selectedIndoorBuildingCode.value = indoorBuildingsForScene.value[0]?.building_code ?? "";
+  indoorStartNodeCode.value = indoorNodeOptions.value[0]?.code ?? "";
+  indoorEndNodeCode.value = indoorNodeOptions.value[1]?.code ?? indoorStartNodeCode.value;
+  indoorRoute.value = null;
 };
 
 const applyTravelProfile = (profileKey: string) => {
@@ -364,16 +444,19 @@ const loadScene = async () => {
   routeError.value = "";
   singleRoute.value = null;
   multiRoute.value = null;
+  indoorRoute.value = null;
   selectedAlternativeStrategy.value = "";
   if (!supportsRouting.value) {
     scene.value = { nodes: [] };
     facilities.value = [];
+    syncIndoorDefaults();
     return;
   }
   const { data } = await api.get(`/map/scenes/${selectedSceneName.value}`);
   scene.value = data.scene;
   facilities.value = data.facilities;
   syncDefaultNodes();
+  syncIndoorDefaults();
 };
 
 const planRoute = async () => {
@@ -430,6 +513,30 @@ const planMultiRoute = async () => {
   }
 };
 
+const planIndoorRoute = async () => {
+  routeError.value = "";
+  if (!selectedIndoorBuildingCode.value || !indoorStartNodeCode.value || !indoorEndNodeCode.value) {
+    routeError.value = "当前场景缺少可用的室内导航点位。";
+    return;
+  }
+
+  indoorLoading.value = true;
+  try {
+    const { data } = await api.post("/indoor/route", {
+      building_code: selectedIndoorBuildingCode.value,
+      start_node_code: indoorStartNodeCode.value,
+      end_node_code: indoorEndNodeCode.value,
+      strategy: indoorStrategy.value,
+      mobility_mode: indoorMobilityMode.value,
+    });
+    indoorRoute.value = data;
+  } catch (error: any) {
+    routeError.value = error?.response?.data?.detail || "室内导航失败，请稍后重试。";
+  } finally {
+    indoorLoading.value = false;
+  }
+};
+
 const saveCurrentRoute = async () => {
   const payload =
     selectedAlternativeStrategy.value && singleRoute.value?.alternatives?.length
@@ -463,5 +570,11 @@ watch(useCurrentLocation, async (enabled) => {
   if (enabled && !currentLocation.value) {
     await captureCurrentLocation();
   }
+});
+
+watch(selectedIndoorBuildingCode, () => {
+  indoorStartNodeCode.value = indoorNodeOptions.value[0]?.code ?? "";
+  indoorEndNodeCode.value = indoorNodeOptions.value[1]?.code ?? indoorStartNodeCode.value;
+  indoorRoute.value = null;
 });
 </script>

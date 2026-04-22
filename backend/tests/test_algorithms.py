@@ -6,6 +6,7 @@ from app.algorithms.topk import TopKSelector, quickselect_top_k
 from app.repositories.data_loader import get_repository
 from app.services.diary_service import CompressionService
 from app.services.facility_service import NearbyFacilityService
+from app.services.indoor_service import IndoorNavigationService
 from app.services.routing_service import RoutePlanningService
 from app.services.search_service import SearchService
 
@@ -165,6 +166,20 @@ def test_plan_multi_empty_targets_returns_origin_only():
     assert result["path_codes"] == ["BUPT_GATE"]
     assert result["ordered_stop_codes"] == ["BUPT_GATE"]
     assert result["optimization_label"] == "无目标点"
+
+
+def test_indoor_service_wheelchair_route_avoids_stairs_edges():
+    service = IndoorNavigationService(get_repository())
+    result = service.plan_route(
+        building_code="BUPT_LIB",
+        start_node_code="BUPT_LIB_GATE_L1",
+        end_node_code="BUPT_LIB_ARCHIVE_L3",
+        strategy="accessible",
+        mobility_mode="wheelchair",
+    )
+
+    assert result["path_node_codes"]
+    assert all(step["connector"] != "stairs" for step in result["steps"])
 
 
 def test_huffman_codec_roundtrip():

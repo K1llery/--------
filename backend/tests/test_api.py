@@ -84,6 +84,49 @@ def test_single_route_can_resolve_start_from_current_location():
     assert payload["path_codes"][0] == "BUPT_GATE"
 
 
+def test_indoor_buildings_endpoint_returns_structured_items():
+    response = client.get("/api/indoor/buildings")
+    assert response.status_code == 200
+    payload = response.json()["items"]
+    assert payload
+    assert any(item["building_code"] == "BUPT_LIB" for item in payload)
+
+
+def test_indoor_route_cross_floor_contains_elevator_instruction():
+    response = client.post(
+        "/api/indoor/route",
+        json={
+            "building_code": "BUPT_LIB",
+            "start_node_code": "BUPT_LIB_GATE_L1",
+            "end_node_code": "BUPT_LIB_ROOM_201",
+            "strategy": "time",
+            "mobility_mode": "normal",
+        },
+    )
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["path_node_codes"]
+    assert any(step["connector"] == "elevator" for step in payload["steps"])
+    assert any("电梯" in step["instruction"] for step in payload["steps"])
+
+
+def test_indoor_route_wheelchair_mode_avoids_stairs():
+    response = client.post(
+        "/api/indoor/route",
+        json={
+            "building_code": "BUPT_LIB",
+            "start_node_code": "BUPT_LIB_GATE_L1",
+            "end_node_code": "BUPT_LIB_ARCHIVE_L3",
+            "strategy": "accessible",
+            "mobility_mode": "wheelchair",
+        },
+    )
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["steps"]
+    assert all(step["connector"] != "stairs" for step in payload["steps"])
+
+
 def test_nearby_facilities_endpoint_returns_graph_distance():
     response = client.get(
         "/api/facilities/nearby",

@@ -40,6 +40,9 @@ class DatasetRepository:
     def facilities(self) -> list[dict[str, Any]]:
         return self._load_json("facilities.json")
 
+    def indoors(self) -> list[dict[str, Any]]:
+        return self._load_json("indoors.json")
+
     def foods(self) -> list[dict[str, Any]]:
         return self._load_json("foods.json")
 
