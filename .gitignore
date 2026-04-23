@@ -38,6 +38,7 @@ datasets/prod/*.tmp
 
 # Environment variables (may contain secrets)
 frontend/.env
+backend/.env
 .env
 
 # Binary / generated
