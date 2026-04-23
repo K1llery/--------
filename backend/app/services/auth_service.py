@@ -4,6 +4,7 @@ import hashlib
 import secrets
 from datetime import datetime
 
+from app.core.exceptions import ConflictError, NotFoundError
 from app.repositories.data_loader import DatasetRepository
 
 
@@ -91,7 +92,7 @@ class AuthService:
     def register(self, username: str, password: str, display_name: str | None = None) -> tuple[dict, str]:
         users = self._load_users()
         if any(item["username"] == username for item in users):
-            raise ValueError("用户名已存在")
+            raise ConflictError("用户名已存在")
         user = {
             "id": max((item["id"] for item in users), default=0) + 1,
             "username": username,
@@ -140,7 +141,7 @@ class AuthService:
             user["favorite_destination_ids"] = favorites
             self._save_users(users)
             return {"favorited": favorited, "user": self._public_user(user)}
-        raise ValueError("用户不存在")
+        raise NotFoundError("用户不存在")
 
     def save_route_favorite(self, token: str, snapshot: dict) -> dict:
         sessions = {item["token"]: item["user_id"] for item in self._load_sessions()}
@@ -159,7 +160,7 @@ class AuthService:
             user["favorite_route_snapshots"] = routes
             self._save_users(users)
             return self._public_user(user)
-        raise ValueError("用户不存在")
+        raise NotFoundError("用户不存在")
 
     def demo_accounts(self) -> list[dict]:
         return [self._public_user(item) for item in self._load_users()]

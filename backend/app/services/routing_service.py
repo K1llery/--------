@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from app.algorithms.graph import Graph
 from app.algorithms.tsp import held_karp, nearest_neighbor_two_opt
+from app.core.exceptions import BusinessError, NotFoundError
 from app.repositories.data_loader import DatasetRepository
 from app.services.graph_builder import GraphBuilder
 
@@ -59,7 +60,7 @@ class RoutePlanningService:
 
         if start_code in scene_codes:
             return start_code
-        raise ValueError("起点不在当前场景可导航范围内，请更换起点。")
+        raise NotFoundError("起点不在当前场景可导航范围内，请更换起点。")
 
     def _build_segments(self, scene_name: str, path_codes: list[str], transport_mode: str) -> list[dict]:
         if len(path_codes) <= 1:
@@ -176,7 +177,7 @@ class RoutePlanningService:
         )
 
         if end_code not in self.graph_builder.get_scene_codes(scene_name):
-            raise ValueError("终点不在当前场景可导航范围内，请更换终点。")
+            raise NotFoundError("终点不在当前场景可导航范围内，请更换终点。")
 
         if resolved_start_code == end_code:
             path_codes = [resolved_start_code]
@@ -193,7 +194,7 @@ class RoutePlanningService:
             path_codes, _ = graph.shortest_path(resolved_start_code, end_code, strategy, transport_mode)
 
         if not path_codes:
-            raise ValueError("未找到可通行路线，请尝试切换策略或交通方式。")
+            raise BusinessError("未找到可通行路线，请尝试切换策略或交通方式。")
 
         result = self._format_single(scene_name, path_codes, strategy, transport_mode)
         result["resolved_start_code"] = resolved_start_code

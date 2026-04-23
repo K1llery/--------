@@ -2,8 +2,9 @@ from __future__ import annotations
 
 from functools import lru_cache
 
-from fastapi import Depends, Header, HTTPException
+from fastapi import Depends, Header
 
+from app.core.exceptions import AuthenticationError
 from app.repositories.data_loader import DatasetRepository, get_repository
 from app.services.auth_service import AuthService
 from app.services.diary_service import CompressionService, DiaryAIGCService, DiarySearchService
@@ -117,5 +118,5 @@ def get_current_user(
     token = extract_token(authorization)
     user = auth_service.current_user(token)
     if user is None:
-        raise HTTPException(status_code=401, detail="请先登录")
+        raise AuthenticationError("请先登录")
     return user

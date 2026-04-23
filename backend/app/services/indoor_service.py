@@ -3,6 +3,7 @@ from __future__ import annotations
 import heapq
 from dataclasses import dataclass
 
+from app.core.exceptions import BusinessError, NotFoundError
 from app.repositories.data_loader import DatasetRepository
 
 
@@ -43,7 +44,7 @@ class IndoorNavigationService:
     def _building_or_raise(self, building_code: str) -> dict:
         building = self._buildings.get(building_code)
         if building is None:
-            raise ValueError("室内建筑不存在，请检查 building_code。")
+            raise NotFoundError("室内建筑不存在，请检查 building_code。")
         return building
 
     @staticmethod
@@ -190,9 +191,9 @@ class IndoorNavigationService:
         nodes = {node["code"]: node for node in building.get("nodes", [])}
 
         if start_node_code not in nodes:
-            raise ValueError("室内起点不存在，请检查 start_node_code。")
+            raise NotFoundError("室内起点不存在，请检查 start_node_code。")
         if end_node_code not in nodes:
-            raise ValueError("室内终点不存在，请检查 end_node_code。")
+            raise NotFoundError("室内终点不存在，请检查 end_node_code。")
 
         if strategy not in {"distance", "time", "accessible"}:
             strategy = "time"
@@ -216,7 +217,7 @@ class IndoorNavigationService:
         adjacency, edge_lookup = self._build_graph(building, mobility_mode)
         path = self._shortest_path(adjacency, start_node_code, end_node_code, strategy)
         if not path:
-            raise ValueError("未找到可达的室内路线，请尝试切换策略或节点。")
+            raise BusinessError("未找到可达的室内路线，请尝试切换策略或节点。")
 
         steps, total_distance, total_seconds = self._build_steps(path, nodes, edge_lookup)
         summary = f"共{len(steps)}段室内路径，约{round(total_distance, 1)}米，预计{round(total_seconds, 1)}秒。"

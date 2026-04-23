@@ -1,7 +1,8 @@
-from fastapi import APIRouter, Depends, Header, HTTPException
+from fastapi import APIRouter, Depends, Header
 from pydantic import BaseModel, Field
 
 from app.api.deps import extract_token, get_auth_service, get_current_user
+from app.core.exceptions import AuthenticationError
 from app.services.auth_service import AuthService
 
 router = APIRouter()
@@ -35,10 +36,7 @@ class FavoriteRouteRequest(BaseModel):
 
 @router.post("/register")
 def register(payload: RegisterRequest, service: AuthService = Depends(get_auth_service)) -> dict:
-    try:
-        user, token = service.register(payload.username, payload.password, payload.display_name)
-    except ValueError as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    user, token = service.register(payload.username, payload.password, payload.display_name)
     return {"user": user, "token": token}
 
 
@@ -46,7 +44,7 @@ def register(payload: RegisterRequest, service: AuthService = Depends(get_auth_s
 def login(payload: LoginRequest, service: AuthService = Depends(get_auth_service)) -> dict:
     result = service.login(payload.username, payload.password)
     if not result:
-        raise HTTPException(status_code=401, detail="用户名或密码错误")
+        raise AuthenticationError("用户名或密码错误")
     user, token = result
     return {"user": user, "token": token}
 
@@ -86,11 +84,8 @@ def toggle_destination_favorite(
 ) -> dict:
     token = extract_token(authorization)
     if not token:
-        raise HTTPException(status_code=401, detail="请先登录")
-    try:
-        return service.toggle_destination_favorite(token, payload.source_id)
-    except ValueError as exc:
-        raise HTTPException(status_code=404, detail=str(exc)) from exc
+        raise AuthenticationError("请先登录")
+    return service.toggle_destination_favorite(token, payload.source_id)
 
 
 @router.post("/favorites/routes")
@@ -101,8 +96,5 @@ def save_route_favorite(
 ) -> dict:
     token = extract_token(authorization)
     if not token:
-        raise HTTPException(status_code=401, detail="请先登录")
-    try:
-        return {"user": service.save_route_favorite(token, payload.model_dump())}
-    except ValueError as exc:
-        raise HTTPException(status_code=404, detail=str(exc)) from exc
+        raise AuthenticationError("请先登录")
+    return {"user": service.save_route_favorite(token, payload.model_dump())}
