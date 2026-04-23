@@ -95,7 +95,9 @@ function parseTitleFromSourceUrl(sourceUrl?: string | null): string | null {
 }
 
 function candidateTitles(input: MediaResolveInput): string[] {
-  const values = [input.name, input.searchHint, parseTitleFromSourceUrl(input.sourceUrl)].filter(Boolean) as string[];
+  const values = [input.name, input.searchHint, parseTitleFromSourceUrl(input.sourceUrl)].filter(
+    Boolean,
+  ) as string[];
   const queue: string[] = [];
 
   values.forEach((value) => {
@@ -109,7 +111,13 @@ function candidateTitles(input: MediaResolveInput): string[] {
 }
 
 function cacheKey(input: MediaResolveInput): string {
-  const parts = [input.city || "", input.name || "", input.searchHint || "", input.latitude || "", input.longitude || ""];
+  const parts = [
+    input.city || "",
+    input.name || "",
+    input.searchHint || "",
+    input.latitude || "",
+    input.longitude || "",
+  ];
   return parts.join("|");
 }
 
@@ -132,7 +140,7 @@ async function fetchJsonWithTimeout(url: string): Promise<any> {
       method: "GET",
       signal: controller.signal,
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
       },
     });
     if (!response.ok) return null;
@@ -144,7 +152,10 @@ async function fetchJsonWithTimeout(url: string): Promise<any> {
   }
 }
 
-async function fetchWikipediaThumbnail(title: string, language: "zh" | "en"): Promise<string | null> {
+async function fetchWikipediaThumbnail(
+  title: string,
+  language: "zh" | "en",
+): Promise<string | null> {
   if (typeof window === "undefined") return null;
   const endpoint = `https://${language}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
   const payload = await fetchJsonWithTimeout(endpoint);
@@ -188,7 +199,9 @@ export async function resolveRealMedia(input: MediaResolveInput): Promise<string
     return mapImage;
   }
 
-  const fallback = seededPhotoUrl(`${input.city || "city"}-${input.name || input.searchHint || "destination"}`);
+  const fallback = seededPhotoUrl(
+    `${input.city || "city"}-${input.name || input.searchHint || "destination"}`,
+  );
   cache.set(key, fallback);
   saveCache();
   return fallback;
@@ -198,5 +211,7 @@ export function buildEmergencyFallback(input: MediaResolveInput): string {
   if (typeof input.latitude === "number" && typeof input.longitude === "number") {
     return mapSnapshotUrl(input.latitude, input.longitude);
   }
-  return seededPhotoUrl(`${input.city || "city"}-${input.name || input.searchHint || "destination"}`);
+  return seededPhotoUrl(
+    `${input.city || "city"}-${input.name || input.searchHint || "destination"}`,
+  );
 }

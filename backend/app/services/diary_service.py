@@ -29,6 +29,10 @@ class DiarySearchService:
             return
         self._rebuild_index(self.repository.diaries())
 
+    def list_all(self) -> list[dict]:
+        """返回全部日记列表。"""
+        return self.repository.diaries()
+
     def search(self, query: str) -> list[dict]:
         self._ensure_index()
         ids = self.inverted.search([query])
@@ -61,7 +65,8 @@ class DiarySearchService:
             "content": payload["content"],
             "views": 0,
             "rating": 4.5,
-            "media_urls": payload.get("media_urls") or ([payload["cover_image_url"]] if payload.get("cover_image_url") else []),
+            "media_urls": payload.get("media_urls")
+            or ([payload["cover_image_url"]] if payload.get("cover_image_url") else []),
             "author_id": user["id"],
             "author_name": user["display_name"],
             "created_at": datetime.now().isoformat(timespec="seconds"),
@@ -111,7 +116,9 @@ class DiarySearchService:
             existing["score"] = float(score)
             existing["updated_at"] = datetime.now().isoformat(timespec="seconds")
 
-        diary_scores = [float(item.get("score") or 0.0) for item in ratings if int(item.get("diary_id") or -1) == diary_id]
+        diary_scores = [
+            float(item.get("score") or 0.0) for item in ratings if int(item.get("diary_id") or -1) == diary_id
+        ]
         if diary_scores:
             diary["rating"] = round(sum(diary_scores) / len(diary_scores), 2)
 
@@ -203,8 +210,7 @@ class DiaryAIGCService:
             duration_seconds = max(2, min(6, round(len(caption) / 12)))
             media_url = media_urls[index % len(media_urls)] if media_urls else ""
             visual_prompt = (
-                f"目的地:{destination}; 镜头:{transition}; 画面重点:{caption}; "
-                f"关键词:{'、'.join(keywords[:4])}"
+                f"目的地:{destination}; 镜头:{transition}; 画面重点:{caption}; 关键词:{'、'.join(keywords[:4])}"
             )
             narration = f"第{index + 1}镜，{caption}"
 

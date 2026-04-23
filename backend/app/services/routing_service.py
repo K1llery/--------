@@ -3,12 +3,13 @@ from __future__ import annotations
 from app.algorithms.graph import Graph
 from app.algorithms.tsp import held_karp, nearest_neighbor_two_opt
 from app.repositories.data_loader import DatasetRepository
+from app.services.graph_builder import GraphBuilder
 
 
 class RoutePlanningService:
-    def __init__(self, repository: DatasetRepository) -> None:
+    def __init__(self, repository: DatasetRepository, graph_builder: GraphBuilder | None = None) -> None:
         self.repository = repository
-        self._graphs: dict[str, Graph] = {}
+        self.graph_builder = graph_builder or GraphBuilder(repository)
 
     @staticmethod
     def _strategy_label(strategy: str) -> str:
@@ -40,62 +41,6 @@ class RoutePlanningService:
         }
         return mapping.get(strategy, "已按默认策略生成路线。")
 
-    @staticmethod
-    def _node_scenic_score(name: str, raw_type: str | None = None) -> float:
-        scenic_keywords = ("门", "湖", "桥", "殿", "宫", "园", "亭", "馆", "阁", "景", "广场", "主楼", "图书馆")
-        if any(keyword in name for keyword in scenic_keywords):
-            return 0.7
-        if raw_type in {"museum", "viewpoint", "artwork", "visitor_center"}:
-            return 0.55
-        return 0.15
-
-    def _scene_graph(self, scene_name: str) -> Graph:
-        if scene_name in self._graphs:
-            return self._graphs[scene_name]
-        graph = Graph()
-        facilities = [item for item in self.repository.facilities() if item["scene_name"] == scene_name]
-        scenes = [item for item in self.repository.scenes() if item["name"] == scene_name]
-        if scenes:
-            for node in scenes[0]["nodes"]:
-                graph.add_node(node["code"], node["latitude"], node["longitude"], scenic_score=self._node_scenic_score(node["name"]))
-        for facility in facilities:
-            graph.add_node(
-                facility["code"],
-                facility["latitude"],
-                facility["longitude"],
-                scenic_score=self._node_scenic_score(facility["name"], facility.get("facility_type")),
-            )
-        for edge in self.repository.edges():
-            if edge["scene_name"] != scene_name:
-                continue
-            graph.add_edge(
-                edge["source_code"],
-                edge["target_code"],
-                edge["distance"],
-                edge.get("congestion", 1.0),
-                {
-                    "walk": edge.get("walk_speed", 1.1),
-                    "bike": edge.get("bike_speed", 3.5),
-                    "shuttle": edge.get("shuttle_speed", 4.8),
-                    "mixed": max(edge.get("walk_speed", 1.1), edge.get("bike_speed", 3.5), edge.get("shuttle_speed", 4.8)),
-                },
-                set(edge.get("allowed_modes", ["walk"])),
-            )
-        self._graphs[scene_name] = graph
-        return graph
-
-    def _name_map(self, scene_name: str) -> dict[str, str]:
-        scene = next((item for item in self.repository.scenes() if item["name"] == scene_name), {"nodes": []})
-        names = {item["code"]: item["name"] for item in scene.get("nodes", [])}
-        names.update({item["code"]: item["name"] for item in self.repository.facilities() if item["scene_name"] == scene_name})
-        return names
-
-    def _scene_codes(self, scene_name: str) -> set[str]:
-        scene = next((item for item in self.repository.scenes() if item["name"] == scene_name), {"nodes": []})
-        codes = {item["code"] for item in scene.get("nodes", [])}
-        codes.update({item["code"] for item in self.repository.facilities() if item["scene_name"] == scene_name})
-        return codes
-
     def _resolve_start_code(
         self,
         scene_name: str,
@@ -104,8 +49,8 @@ class RoutePlanningService:
         start_latitude: float | None,
         start_longitude: float | None,
     ) -> str:
-        graph = self._scene_graph(scene_name)
-        scene_codes = self._scene_codes(scene_name)
+        graph = self.graph_builder.get_scene_graph(scene_name)
+        scene_codes = self.graph_builder.get_scene_codes(scene_name)
 
         if prefer_nearest_start and start_latitude is not None and start_longitude is not None:
             nearest = graph.nearest_node(start_latitude, start_longitude, scene_codes)
@@ -120,8 +65,8 @@ class RoutePlanningService:
         if len(path_codes) <= 1:
             return []
 
-        graph = self._scene_graph(scene_name)
-        names = self._name_map(scene_name)
+        graph = self.graph_builder.get_scene_graph(scene_name)
+        names = self.graph_builder.get_name_map(scene_name)
         segments: list[dict] = []
         cumulative_distance = 0.0
         cumulative_minutes = 0.0
@@ -166,7 +111,9 @@ class RoutePlanningService:
 
         return segments
 
-    def _navigation_summary(self, strategy: str, transport_mode: str, path_codes: list[str], metrics: dict[str, float]) -> str:
+    def _navigation_summary(
+        self, strategy: str, transport_mode: str, path_codes: list[str], metrics: dict[str, float]
+    ) -> str:
         if len(path_codes) <= 1:
             return "当前仅包含起点信息，可添加终点或途经点继续规划。"
         return (
@@ -187,8 +134,8 @@ class RoutePlanningService:
         return expanded or ordered_codes
 
     def _format_single(self, scene_name: str, path_codes: list[str], strategy: str, transport_mode: str) -> dict:
-        graph = self._scene_graph(scene_name)
-        names = self._name_map(scene_name)
+        graph = self.graph_builder.get_scene_graph(scene_name)
+        names = self.graph_builder.get_name_map(scene_name)
         metrics = graph.path_metrics(path_codes, transport_mode)
         segments = self._build_segments(scene_name, path_codes, transport_mode)
         return {
@@ -218,8 +165,8 @@ class RoutePlanningService:
         start_latitude: float | None = None,
         start_longitude: float | None = None,
     ) -> dict:
-        graph = self._scene_graph(scene_name)
-        names = self._name_map(scene_name)
+        graph = self.graph_builder.get_scene_graph(scene_name)
+        names = self.graph_builder.get_name_map(scene_name)
         resolved_start_code = self._resolve_start_code(
             scene_name,
             start_code,
@@ -228,15 +175,21 @@ class RoutePlanningService:
             start_longitude,
         )
 
-        if end_code not in self._scene_codes(scene_name):
+        if end_code not in self.graph_builder.get_scene_codes(scene_name):
             raise ValueError("终点不在当前场景可导航范围内，请更换终点。")
 
         if resolved_start_code == end_code:
             path_codes = [resolved_start_code]
+            result = self._format_single(scene_name, path_codes, strategy, transport_mode)
+            result["resolved_start_code"] = resolved_start_code
+            result["resolved_start_name"] = names.get(resolved_start_code, resolved_start_code)
+            result["alternatives"] = []
+            return result
+
         if strategy == "astar":
             path_codes, _ = graph.a_star(resolved_start_code, end_code, transport_mode)
             strategy = "distance"
-        elif resolved_start_code != end_code:
+        else:
             path_codes, _ = graph.shortest_path(resolved_start_code, end_code, strategy, transport_mode)
 
         if not path_codes:
@@ -268,8 +221,8 @@ class RoutePlanningService:
         start_latitude: float | None = None,
         start_longitude: float | None = None,
     ) -> dict:
-        graph = self._scene_graph(scene_name)
-        names = self._name_map(scene_name)
+        graph = self.graph_builder.get_scene_graph(scene_name)
+        names = self.graph_builder.get_name_map(scene_name)
         resolved_start_code = self._resolve_start_code(
             scene_name,
             start_code,
@@ -278,8 +231,10 @@ class RoutePlanningService:
             start_longitude,
         )
 
-        scene_codes = self._scene_codes(scene_name)
-        normalized_targets = [code for code in dict.fromkeys(target_codes) if code != resolved_start_code and code in scene_codes]
+        scene_codes = self.graph_builder.get_scene_codes(scene_name)
+        normalized_targets = [
+            code for code in dict.fromkeys(target_codes) if code != resolved_start_code and code in scene_codes
+        ]
 
         if not normalized_targets:
             ordered_stops = [resolved_start_code]
@@ -290,7 +245,9 @@ class RoutePlanningService:
             optimization_label = "精确闭环求解"
             full_path = self._expand_segments(graph, ordered_stops, strategy, transport_mode)
         else:
-            ordered_stops, _ = nearest_neighbor_two_opt(graph, resolved_start_code, normalized_targets, strategy, transport_mode)
+            ordered_stops, _ = nearest_neighbor_two_opt(
+                graph, resolved_start_code, normalized_targets, strategy, transport_mode
+            )
             optimization_label = "快速闭环近似"
             full_path = self._expand_segments(graph, ordered_stops, strategy, transport_mode)
 

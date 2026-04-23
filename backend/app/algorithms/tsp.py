@@ -5,7 +5,9 @@ from itertools import combinations
 from app.algorithms.graph import Graph
 
 
-def _pairwise_cost_table(graph: Graph, stops: list[str], strategy: str, transport_mode: str) -> dict[tuple[str, str], float]:
+def _pairwise_cost_table(
+    graph: Graph, stops: list[str], strategy: str, transport_mode: str
+) -> dict[tuple[str, str], float]:
     costs: dict[tuple[str, str], float] = {}
     for source in stops:
         dist = graph.shortest_distances(source, strategy=strategy, transport_mode=transport_mode)
@@ -27,7 +29,9 @@ def _route_cost(route: list[str], costs: dict[tuple[str, str], float]) -> float:
     return total
 
 
-def held_karp(graph: Graph, start: str, nodes: list[str], strategy: str, transport_mode: str) -> tuple[list[str], float]:
+def held_karp(
+    graph: Graph, start: str, nodes: list[str], strategy: str, transport_mode: str
+) -> tuple[list[str], float]:
     unique_nodes = [node for node in dict.fromkeys(nodes) if node != start]
     if not unique_nodes:
         return [start, start], 0.0
@@ -78,7 +82,9 @@ def held_karp(graph: Graph, start: str, nodes: list[str], strategy: str, transpo
     return ordered, best_cost
 
 
-def nearest_neighbor_two_opt(graph: Graph, start: str, nodes: list[str], strategy: str, transport_mode: str) -> tuple[list[str], float]:
+def nearest_neighbor_two_opt(
+    graph: Graph, start: str, nodes: list[str], strategy: str, transport_mode: str
+) -> tuple[list[str], float]:
     unique_nodes = [node for node in dict.fromkeys(nodes) if node != start]
     if not unique_nodes:
         return [start, start], 0.0

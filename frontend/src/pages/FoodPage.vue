@@ -5,7 +5,9 @@
         <h2>美食推荐</h2>
         <p>从城市特色餐厅到景点周边高评分选择，快速筛出这一顿该去哪里。</p>
       </div>
-      <button class="primary-btn" @click="load(true)">{{ loading ? "加载中..." : "刷新推荐" }}</button>
+      <button class="primary-btn" @click="load(true)">
+        {{ loading ? "加载中..." : "刷新推荐" }}
+      </button>
     </div>
 
     <div class="filter-bar">
@@ -19,7 +21,9 @@
       </select>
       <select v-model="destinationFilter" class="select-input">
         <option value="全部">全部关联目的地</option>
-        <option v-for="destination in destinations" :key="destination" :value="destination">{{ destination }}</option>
+        <option v-for="destination in destinations" :key="destination" :value="destination">
+          {{ destination }}
+        </option>
       </select>
       <select v-model="sortMode" class="select-input">
         <option value="recommended">推荐优先</option>
@@ -31,7 +35,9 @@
 
     <div v-if="error" class="status-card error-card">{{ error }}</div>
     <div v-else-if="loading" class="status-card">正在刷新四城美食清单...</div>
-    <div v-else-if="filteredFoods.length === 0" class="status-card">当前筛选条件下暂无美食推荐，换个城市或菜系试试。</div>
+    <div v-else-if="filteredFoods.length === 0" class="status-card">
+      当前筛选条件下暂无美食推荐，换个城市或菜系试试。
+    </div>
     <div v-else class="content-split">
       <div class="card-grid">
         <article
@@ -83,10 +89,14 @@
             <span class="stat-pill">{{ selected.destination_name }}</span>
           </div>
           <p class="detail-note">推荐地点：{{ selected.destination_name }}</p>
-          <p class="detail-note">图片来源：{{ selected.image_source_name || "Wikipedia / OpenStreetMap" }}</p>
+          <p class="detail-note">
+            图片来源：{{ selected.image_source_name || "Wikipedia / OpenStreetMap" }}
+          </p>
           <p class="detail-note">
             数据来源：
-            <a :href="selected.source_url" target="_blank" rel="noreferrer">{{ selected.source_name }}</a>
+            <a :href="selected.source_url" target="_blank" rel="noreferrer">{{
+              selected.source_name
+            }}</a>
           </p>
         </div>
       </section>
@@ -113,14 +123,19 @@ const destinationFilter = ref("全部");
 const sortMode = ref("recommended");
 
 const cities = computed(() => [...new Set(foods.value.map((item) => item.city).filter(Boolean))]);
-const cuisines = computed(() => [...new Set(foods.value.map((item) => item.cuisine).filter(Boolean))]);
-const destinations = computed(() => [...new Set(foods.value.map((item) => item.destination_name).filter(Boolean))]);
+const cuisines = computed(() => [
+  ...new Set(foods.value.map((item) => item.cuisine).filter(Boolean)),
+]);
+const destinations = computed(() => [
+  ...new Set(foods.value.map((item) => item.destination_name).filter(Boolean)),
+]);
 
 const filteredFoods = computed(() => {
   const items = foods.value.filter((item) => {
     const cityMatch = cityFilter.value === "全部" || item.city === cityFilter.value;
     const cuisineMatch = cuisineFilter.value === "全部" || item.cuisine === cuisineFilter.value;
-    const destinationMatch = destinationFilter.value === "全部" || item.destination_name === destinationFilter.value;
+    const destinationMatch =
+      destinationFilter.value === "全部" || item.destination_name === destinationFilter.value;
     return cityMatch && cuisineMatch && destinationMatch;
   });
   const ranked = [...items];

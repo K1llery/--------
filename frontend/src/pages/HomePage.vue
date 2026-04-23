@@ -4,9 +4,7 @@
       <div class="hero-copy">
         <span class="eyebrow">City Picks</span>
         <h2>北上广深高校与景区，一站式安排行程</h2>
-        <p>
-          从热门地标、城市商圈到经典校园，先挑城市，再看精选目的地、美食与路线。
-        </p>
+        <p>从热门地标、城市商圈到经典校园，先挑城市，再看精选目的地、美食与路线。</p>
         <div class="segment-tabs">
           <button
             v-for="city in cities"
@@ -21,8 +19,12 @@
         <div class="hero-actions">
           <RouterLink class="primary-btn" to="/destinations">浏览目的地</RouterLink>
           <RouterLink class="secondary-btn" to="/routes">查看地图</RouterLink>
-          <button v-if="!auth.isLoggedIn" class="ghost-btn" @click="auth.openAuthModal('login')">登录保存行程</button>
-          <button v-if="!auth.isLoggedIn" class="ghost-btn" @click="auth.openAuthModal('register')">快速注册</button>
+          <button v-if="!auth.isLoggedIn" class="ghost-btn" @click="auth.openAuthModal('login')">
+            登录保存行程
+          </button>
+          <button v-if="!auth.isLoggedIn" class="ghost-btn" @click="auth.openAuthModal('register')">
+            快速注册
+          </button>
         </div>
       </div>
       <div class="hero-preview">
@@ -38,7 +40,9 @@
           class="detail-image hero-image"
         />
         <div v-if="heroDestination" class="hero-overlay">
-          <p class="hero-kicker">{{ heroDestination.city }} · {{ categoryLabel(heroDestination.category) }}</p>
+          <p class="hero-kicker">
+            {{ heroDestination.city }} · {{ categoryLabel(heroDestination.category) }}
+          </p>
           <h3>{{ heroDestination.name }}</h3>
           <p>{{ heroDestination.description }}</p>
         </div>
@@ -160,12 +164,12 @@ const cityCards = computed(() =>
           ? "江景地标与都市校园"
           : city === "广州"
             ? "岭南风貌与商圈漫游"
-            : "海滨创意与城市新景"
-  }))
+            : "海滨创意与城市新景",
+  })),
 );
 
 const featuredPreview = computed(() =>
-  featured.value.filter((item) => item.city === selectedCity.value).slice(0, 4)
+  featured.value.filter((item) => item.city === selectedCity.value).slice(0, 4),
 );
 
 const heroDestination = computed(() => featuredPreview.value[0] ?? featured.value[0] ?? null);

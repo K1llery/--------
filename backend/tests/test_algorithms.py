@@ -145,14 +145,13 @@ def test_held_karp_uses_single_source_distance_tables(monkeypatch):
     assert calls["count"] == 4
 
 
-def test_nearby_facility_uses_graph_distances_instead_of_single_route_calls(monkeypatch):
+def test_nearby_facility_uses_graph_distances_instead_of_single_route_calls():
     repository = get_repository()
     service = NearbyFacilityService(repository)
 
-    def should_not_call(*args, **kwargs):
-        raise AssertionError("plan_single should not be called in nearby")
-
-    monkeypatch.setattr(service.route_service, "plan_single", should_not_call)
+    # 重构后 NearbyFacilityService 直接使用 GraphBuilder 而非 RoutePlanningService，
+    # 因此不再存在 route_service 属性——架构已保证不会调用 plan_single。
+    assert not hasattr(service, "route_service"), "NearbyFacilityService 不应再依赖 RoutePlanningService"
     items = service.nearby("BUPT_Main_Campus", "BUPT_GATE")
 
     assert items

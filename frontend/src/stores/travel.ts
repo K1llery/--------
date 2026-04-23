@@ -16,7 +16,7 @@ function createResourceState<T>(): ResourceState<T> {
     loading: false,
     error: "",
     selected: null,
-    lastUpdated: ""
+    lastUpdated: "",
   };
 }
 
@@ -25,7 +25,7 @@ export const useTravelStore = defineStore("travel", {
     destinations: createResourceState<any>(),
     foods: createResourceState<any>(),
     diaries: createResourceState<any>(),
-    diarySearchResults: createResourceState<any>()
+    diarySearchResults: createResourceState<any>(),
   }),
   actions: {
     async loadFeaturedDestinations(force = false) {
@@ -124,6 +124,6 @@ export const useTravelStore = defineStore("travel", {
       this._syncDiaryInCollections(data.diary);
       this.diaries.lastUpdated = new Date().toLocaleString("zh-CN");
       return data;
-    }
-  }
+    },
+  },
 });

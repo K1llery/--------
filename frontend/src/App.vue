@@ -7,7 +7,9 @@
         <p>城市漫游 · 校园打卡 · 景点精选</p>
       </div>
       <nav>
-        <RouterLink v-for="item in navItems" :key="item.to" :to="item.to">{{ item.label }}</RouterLink>
+        <RouterLink v-for="item in navItems" :key="item.to" :to="item.to">{{
+          item.label
+        }}</RouterLink>
       </nav>
 
       <section class="sidebar-account">
@@ -15,7 +17,10 @@
           <div class="account-avatar">{{ (auth.user?.display_name || "旅").slice(0, 1) }}</div>
           <div>
             <h3>{{ auth.user?.display_name }}</h3>
-            <p>{{ auth.favoriteDestinationCount }} 个目的地收藏 · {{ auth.favoriteRouteCount }} 条路线收藏</p>
+            <p>
+              {{ auth.favoriteDestinationCount }} 个目的地收藏 ·
+              {{ auth.favoriteRouteCount }} 条路线收藏
+            </p>
           </div>
           <button class="ghost-btn wide-btn" @click="auth.logout()">退出登录</button>
         </template>
@@ -75,7 +80,7 @@ const navItems = [
   { label: "地图导航", to: "/routes" },
   { label: "附近设施", to: "/facilities" },
   { label: "美食推荐", to: "/foods" },
-  { label: "旅游日记", to: "/diaries" }
+  { label: "旅游日记", to: "/diaries" },
 ];
 
 onMounted(() => {

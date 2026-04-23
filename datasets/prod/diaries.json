@@ -18,7 +18,7 @@
     "title": "颐和园游记2",
     "destination_name": "颐和园",
     "content": "这次我去了北京的颐和园。这次把景点、商圈和餐厅串起来走，几乎没有浪费路程。 如果时间有限，我会建议把附近餐厅和下一个打卡点一起规划。",
-    "views": 196,
+    "views": 197,
     "rating": 4.3,
     "media_urls": [
       "/media/destinations/destination-02.svg"
@@ -144,7 +144,7 @@
     "title": "天环广场游记11",
     "destination_name": "天环广场",
     "content": "这次我去了广州的天环广场。最喜欢的是路线回看和周边设施提醒，适合第一次来这座城市的人照着走。 如果时间有限，我会建议把附近餐厅和下一个打卡点一起规划。",
-    "views": 538,
+    "views": 539,
     "rating": 4.6,
     "media_urls": [
       "/media/destinations/destination-11.svg"
@@ -214,8 +214,8 @@
     "title": "家人们避雷",
     "destination_name": "广州塔",
     "content": "以后再也不去了",
-    "views": 0,
-    "rating": 4.5,
+    "views": 2,
+    "rating": 4.0,
     "media_urls": [
       "/media/destinations/destination-09.svg"
     ],

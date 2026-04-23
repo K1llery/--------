@@ -1,20 +1,22 @@
 from __future__ import annotations
 
 from app.repositories.data_loader import DatasetRepository
-from app.services.routing_service import RoutePlanningService
+from app.services.graph_builder import GraphBuilder
 
 
 class NearbyFacilityService:
-    def __init__(self, repository: DatasetRepository) -> None:
+    def __init__(self, repository: DatasetRepository, graph_builder: GraphBuilder | None = None) -> None:
         self.repository = repository
-        self.route_service = RoutePlanningService(repository)
+        self.graph_builder = graph_builder or GraphBuilder(repository)
 
-    def nearby(self, scene_name: str, origin_code: str, category: str | None = None, radius: float = 1200.0) -> list[dict]:
+    def nearby(
+        self, scene_name: str, origin_code: str, category: str | None = None, radius: float = 1200.0
+    ) -> list[dict]:
         facilities = [item for item in self.repository.facilities() if item["scene_name"] == scene_name]
         if category:
             facilities = [item for item in facilities if item["facility_type"] == category]
 
-        graph = self.route_service._scene_graph(scene_name)
+        graph = self.graph_builder.get_scene_graph(scene_name)
         distances = graph.shortest_distances(origin_code, strategy="distance", transport_mode="walk")
 
         ranked = []

@@ -1,26 +1,41 @@
 from __future__ import annotations
 
 import json
+import logging
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
 from app.core.config import get_settings
 
+logger = logging.getLogger(__name__)
+
 
 class DatasetRepository:
+    """JSON 文件数据仓库，带 mtime 级别读缓存。"""
+
     def __init__(self, dataset_dir: Path) -> None:
         self.dataset_dir = dataset_dir
+        self._cache: dict[str, tuple[float, list[dict[str, Any]]]] = {}
 
     def _load_json(self, name: str) -> list[dict[str, Any]]:
         path = self.dataset_dir / name
         if not path.exists():
             return []
-        return json.loads(path.read_text(encoding="utf-8"))
+        mtime = path.stat().st_mtime
+        cached = self._cache.get(name)
+        if cached is not None and cached[0] == mtime:
+            return cached[1]
+        data = json.loads(path.read_text(encoding="utf-8"))
+        self._cache[name] = (mtime, data)
+        logger.debug("Loaded %s (%d items, mtime=%.0f)", name, len(data), mtime)
+        return data
 
     def _write_json(self, name: str, payload: list[dict[str, Any]]) -> None:
         path = self.dataset_dir / name
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        # 写入后立即失效对应缓存
+        self._cache.pop(name, None)
 
     def destinations(self) -> list[dict[str, Any]]:
         return self._load_json("destinations.json")

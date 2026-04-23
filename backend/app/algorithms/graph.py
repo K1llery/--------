@@ -43,7 +43,11 @@ class Graph:
     def _speed_for_mode(self, edge: Edge, transport_mode: str) -> float:
         if transport_mode == "mixed":
             return max(edge.transport_speeds.values(), default=1.0)
-        return edge.transport_speeds.get(transport_mode) or edge.transport_speeds.get("walk") or max(edge.transport_speeds.values(), default=1.0)
+        return (
+            edge.transport_speeds.get(transport_mode)
+            or edge.transport_speeds.get("walk")
+            or max(edge.transport_speeds.values(), default=1.0)
+        )
 
     def edge_travel_seconds(self, edge: Edge, transport_mode: str) -> float:
         speed = max(self._speed_for_mode(edge, transport_mode), 0.1)
@@ -88,7 +92,9 @@ class Graph:
                     heapq.heappush(queue, (next_cost, edge.target))
         return dist, parent
 
-    def shortest_path(self, start: str, end: str, strategy: str = "distance", transport_mode: str = "walk") -> tuple[list[str], float]:
+    def shortest_path(
+        self, start: str, end: str, strategy: str = "distance", transport_mode: str = "walk"
+    ) -> tuple[list[str], float]:
         dist, parent = self._dijkstra(start, strategy=strategy, transport_mode=transport_mode, end=end)
         if end not in dist:
             return [], float("inf")
@@ -100,7 +106,9 @@ class Graph:
         path.reverse()
         return path, dist[end]
 
-    def shortest_distances(self, start: str, strategy: str = "distance", transport_mode: str = "walk") -> dict[str, float]:
+    def shortest_distances(
+        self, start: str, strategy: str = "distance", transport_mode: str = "walk"
+    ) -> dict[str, float]:
         dist, _ = self._dijkstra(start, strategy=strategy, transport_mode=transport_mode)
         return dist
 

@@ -1,0 +1,40 @@
+[project]
+name = "travel-system-backend"
+version = "0.1.0"
+requires-python = ">=3.12"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+exclude = [".venv", "__pycache__", "migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+ignore = [
+  "E501",   # 交给 formatter 处理
+  "RUF001", # 项目含大量中文 UI/错误提示，保留全角标点
+  "RUF002", # 项目含大量中文注释，保留全角标点
+  "RUF003", # 项目含大量中文注释，保留全角标点
+  "RUF005", # 列表拼接风格先不纳入阶段4门禁
+  "RUF012", # Pydantic/FastAPI 类变量场景允许
+  "UP012",  # encode('utf-8') 暂不纳入阶段4门禁
+  "UP035",  # typing -> collections.abc 迁移暂不纳入阶段4门禁
+  "UP037",  # 前向引用字符串批量迁移暂不纳入阶段4门禁
+  "UP047",  # 保持 Python 3.12 以下也可读的泛型写法
+  "B008",   # FastAPI Depends 形态为框架惯用法，不作为门禁
+  "B905",   # pairwise/strict zip 暂不作为阶段4门禁
+  "RUF007", # pairwise 重写不作为阶段4门禁
+  "I001",   # 历史 import 排序问题后续集中清理
+  "RUF022", # __all__ 排序后续集中清理
+  "F401",   # 历史未用导入后续集中清理
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"

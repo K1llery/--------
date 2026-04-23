@@ -9,14 +9,20 @@
 
     <div class="filter-bar">
       <select v-model="sceneName" class="select-input" @change="loadScene">
-        <option v-for="scene in scenes" :key="scene.value" :value="scene.value">{{ scene.label }}</option>
+        <option v-for="scene in scenes" :key="scene.value" :value="scene.value">
+          {{ scene.label }}
+        </option>
       </select>
       <select v-model="originCode" class="select-input">
-        <option v-for="node in originOptions" :key="node.code" :value="node.code">{{ node.name }}</option>
+        <option v-for="node in originOptions" :key="node.code" :value="node.code">
+          {{ node.name }}
+        </option>
       </select>
       <select v-model="categoryFilter" class="select-input">
         <option value="">全部设施</option>
-        <option v-for="item in categoryOptions" :key="item.value" :value="item.value">{{ item.label }}</option>
+        <option v-for="item in categoryOptions" :key="item.value" :value="item.value">
+          {{ item.label }}
+        </option>
       </select>
       <select v-model="radius" class="select-input">
         <option :value="300">300 米内</option>
@@ -24,7 +30,9 @@
         <option :value="1000">1000 米内</option>
         <option :value="1500">1500 米内</option>
       </select>
-      <button class="primary-btn" @click="loadFacilities">{{ loading ? "查询中..." : "查询设施" }}</button>
+      <button class="primary-btn" @click="loadFacilities">
+        {{ loading ? "查询中..." : "查询设施" }}
+      </button>
     </div>
 
     <div class="helper-grid">
@@ -42,7 +50,9 @@
 
     <div v-if="error" class="status-card error-card">{{ error }}</div>
     <div v-else-if="loading" class="status-card">正在计算周边设施距离...</div>
-    <div v-else-if="facilities.length === 0" class="status-card">当前条件下没有找到合适的设施。</div>
+    <div v-else-if="facilities.length === 0" class="status-card">
+      当前条件下没有找到合适的设施。
+    </div>
     <div v-else class="content-split">
       <div class="card-grid">
         <article
@@ -84,7 +94,7 @@ import { api } from "../api/client";
 
 const scenes = [
   { value: "BUPT_Main_Campus", label: "北京邮电大学校园" },
-  { value: "Summer_Palace", label: "颐和园景区" }
+  { value: "Summer_Palace", label: "颐和园景区" },
 ];
 
 const sceneName = ref("BUPT_Main_Campus");
@@ -106,16 +116,20 @@ const categoryOptions = [
   { value: "service", label: "服务点" },
   { value: "shop", label: "商店" },
   { value: "sports", label: "运动场馆" },
-  { value: "other", label: "其他设施" }
+  { value: "other", label: "其他设施" },
 ];
 
 const currentSceneLabel = computed(
-  () => scenes.find((item) => item.value === sceneName.value)?.label ?? "场景"
+  () => scenes.find((item) => item.value === sceneName.value)?.label ?? "场景",
 );
 const originOptions = computed(() => nodes.value);
-const currentOrigin = computed(() => originOptions.value.find((item) => item.code === originCode.value));
+const currentOrigin = computed(() =>
+  originOptions.value.find((item) => item.code === originCode.value),
+);
 const sceneHint = computed(() =>
-  sceneName.value === "BUPT_Main_Campus" ? "适合演示校园内餐饮、服务点和运动设施。" : "适合演示景区内服务点与游客设施。"
+  sceneName.value === "BUPT_Main_Campus"
+    ? "适合演示校园内餐饮、服务点和运动设施。"
+    : "适合演示景区内服务点与游客设施。",
 );
 
 const inferFacilityType = (item: any) => {
@@ -146,7 +160,7 @@ const facilityLabel = (item: any) => {
     service: "服务点",
     shop: "商店",
     sports: "运动场馆",
-    other: "其他设施"
+    other: "其他设施",
   };
   return mapping[type] ?? "其他设施";
 };
@@ -173,7 +187,7 @@ const loadFacilities = async () => {
     const params: Record<string, string | number> = {
       scene_name: sceneName.value,
       origin_code: originCode.value,
-      radius: radius.value
+      radius: radius.value,
     };
     if (categoryFilter.value && categoryFilter.value !== "other") {
       params.category = categoryFilter.value;

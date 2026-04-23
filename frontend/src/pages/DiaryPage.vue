@@ -5,7 +5,9 @@
         <h2>旅游日记</h2>
         <p>浏览他人的路线心得，也可以登录后写下自己的城市散步记录。</p>
       </div>
-      <button class="primary-btn" @click="openComposer">{{ showComposer ? "收起发布区" : "发布日记" }}</button>
+      <button class="primary-btn" @click="openComposer">
+        {{ showComposer ? "收起发布区" : "发布日记" }}
+      </button>
     </div>
 
     <section v-if="showComposer" class="status-card">
@@ -15,11 +17,19 @@
       </div>
       <form class="search-form" @submit.prevent="publishDiary">
         <select v-model="draft.destination_name" class="select-input">
-          <option v-for="item in destinations" :key="item.source_id" :value="item.name">{{ item.name }}</option>
+          <option v-for="item in destinations" :key="item.source_id" :value="item.name">
+            {{ item.name }}
+          </option>
         </select>
         <input v-model="draft.title" placeholder="标题" />
-        <textarea v-model="draft.content" class="text-area" placeholder="写下你的游览体验、路线建议或踩坑提醒"></textarea>
-        <button class="primary-btn" type="submit">{{ publishing ? "发布中..." : "确认发布" }}</button>
+        <textarea
+          v-model="draft.content"
+          class="text-area"
+          placeholder="写下你的游览体验、路线建议或踩坑提醒"
+        ></textarea>
+        <button class="primary-btn" type="submit">
+          {{ publishing ? "发布中..." : "确认发布" }}
+        </button>
       </form>
       <div v-if="draftCover" class="draft-cover">
         <RealImage
@@ -71,7 +81,9 @@
     <section>
       <h3 class="section-title">搜索结果</h3>
       <div v-if="searching" class="status-card">正在搜索日记...</div>
-      <div v-else-if="searchResults.length === 0" class="status-card">输入关键字后，这里会显示匹配到的日记。</div>
+      <div v-else-if="searchResults.length === 0" class="status-card">
+        输入关键字后，这里会显示匹配到的日记。
+      </div>
       <div v-else class="card-grid">
         <article
           v-for="item in searchResults"
@@ -99,7 +111,10 @@
       <div>
         <h3>{{ selected.title }}</h3>
         <p>{{ selected.destination_name }}</p>
-        <p>作者：{{ selected.author_name || "匿名旅行者" }} · 发布于 {{ selected.created_at || "演示数据" }}</p>
+        <p>
+          作者：{{ selected.author_name || "匿名旅行者" }} · 发布于
+          {{ selected.created_at || "演示数据" }}
+        </p>
         <div class="detail-stats">
           <span class="stat-pill">浏览 {{ selected.views }}</span>
           <span class="stat-pill">评分 {{ selected.rating }}</span>
@@ -107,13 +122,29 @@
         <p>{{ selected.content }}</p>
         <div class="hero-actions">
           <button class="primary-btn" @click="compress">压缩正文演示</button>
-          <button class="primary-btn" @click="decompress" :disabled="!compressionPayload">解压回放</button>
+          <button class="primary-btn" @click="decompress" :disabled="!compressionPayload">
+            解压回放
+          </button>
           <button class="primary-btn" @click="addView">手动+1浏览</button>
           <button class="primary-btn" @click="rateDiary(4.0)">评分 4.0</button>
           <button class="primary-btn" @click="rateDiary(5.0)">评分 5.0</button>
-          <button class="primary-btn" @click="generateAnimation">{{ animationLoading ? "生成中..." : "生成AIGC动画" }}</button>
-          <button class="secondary-btn" @click="playAnimation" :disabled="!animationResult?.shots?.length">播放预览</button>
-          <button class="secondary-btn" @click="pauseAnimation" :disabled="!animationResult?.shots?.length">暂停预览</button>
+          <button class="primary-btn" @click="generateAnimation">
+            {{ animationLoading ? "生成中..." : "生成AIGC动画" }}
+          </button>
+          <button
+            class="secondary-btn"
+            @click="playAnimation"
+            :disabled="!animationResult?.shots?.length"
+          >
+            播放预览
+          </button>
+          <button
+            class="secondary-btn"
+            @click="pauseAnimation"
+            :disabled="!animationResult?.shots?.length"
+          >
+            暂停预览
+          </button>
         </div>
         <pre v-if="compressionResult">{{ compressionResult }}</pre>
         <pre v-if="decompressedContent">解压结果:\n{{ decompressedContent }}</pre>
@@ -121,7 +152,10 @@
         <section v-if="animationResult" class="aigc-panel">
           <div class="section-top compact">
             <h3>AIGC 旅游动画脚本</h3>
-            <span class="toolbar-hint">{{ animationResult.generation_mode }} · 总时长 {{ animationResult.total_duration_seconds }} 秒</span>
+            <span class="toolbar-hint"
+              >{{ animationResult.generation_mode }} · 总时长
+              {{ animationResult.total_duration_seconds }} 秒</span
+            >
           </div>
 
           <div v-if="activeShot" class="aigc-preview">
@@ -136,7 +170,9 @@
             <div class="aigc-overlay">
               <strong>第 {{ activeShot.index }} 镜</strong>
               <p>{{ activeShot.caption }}</p>
-              <p class="timeline-meta">{{ activeShot.transition }} · {{ activeShot.duration_seconds }} 秒</p>
+              <p class="timeline-meta">
+                {{ activeShot.transition }} · {{ activeShot.duration_seconds }} 秒
+              </p>
             </div>
           </div>
 
@@ -193,7 +229,9 @@ const draft = reactive({
   content: "",
 });
 
-const draftCover = computed(() => destinations.value.find((item) => item.name === draft.destination_name) ?? null);
+const draftCover = computed(
+  () => destinations.value.find((item) => item.name === draft.destination_name) ?? null,
+);
 const activeShot = computed(() => animationResult.value?.shots?.[activeShotIndex.value] ?? null);
 
 const search = async () => {
@@ -292,7 +330,11 @@ const publishDiary = async () => {
       title: draft.title,
       content: draft.content,
       cover_image_url: coverImage || draftCover.value?.image_url,
-      media_urls: coverImage ? [coverImage] : draftCover.value?.image_url ? [draftCover.value.image_url] : [],
+      media_urls: coverImage
+        ? [coverImage]
+        : draftCover.value?.image_url
+          ? [draftCover.value.image_url]
+          : [],
     });
     showComposer.value = false;
     draft.title = "";

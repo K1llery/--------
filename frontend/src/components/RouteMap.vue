@@ -45,7 +45,7 @@ const renderMap = () => {
       color: markerColor,
       weight: 2,
       fillColor,
-      fillOpacity: 0.96
+      fillOpacity: 0.96,
     }).bindPopup(`${node.name}`);
 
     if (isOnPath) {
@@ -59,13 +59,16 @@ const renderMap = () => {
   });
 
   if (props.currentLocation) {
-    const marker = L.circleMarker([props.currentLocation.latitude, props.currentLocation.longitude], {
-      radius: 8,
-      color: "#1e90ff",
-      weight: 2,
-      fillColor: "#7bc4ff",
-      fillOpacity: 0.98,
-    }).bindTooltip("当前位置", { direction: "top" });
+    const marker = L.circleMarker(
+      [props.currentLocation.latitude, props.currentLocation.longitude],
+      {
+        radius: 8,
+        color: "#1e90ff",
+        weight: 2,
+        fillColor: "#7bc4ff",
+        fillOpacity: 0.98,
+      },
+    ).bindTooltip("当前位置", { direction: "top" });
     currentLocationLayer?.addLayer(marker);
   }
 
@@ -101,7 +104,9 @@ const renderMap = () => {
 
     map.fitBounds(pathLayer.getBounds(), { padding: [30, 30] });
   } else if (props.nodes.length > 0) {
-    const bounds = L.latLngBounds(props.nodes.map((node) => [node.latitude, node.longitude] as [number, number]));
+    const bounds = L.latLngBounds(
+      props.nodes.map((node) => [node.latitude, node.longitude] as [number, number]),
+    );
     if (props.currentLocation) {
       bounds.extend([props.currentLocation.latitude, props.currentLocation.longitude]);
     }
@@ -116,7 +121,7 @@ onMounted(() => {
   map = L.map(mapEl.value, { zoomControl: true });
   const tileLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   });
   tileLayer.on("tileerror", () => {
     mapError.value = true;
@@ -132,7 +137,7 @@ watch(
   () => {
     renderMap();
   },
-  { deep: true }
+  { deep: true },
 );
 
 onBeforeUnmount(() => {

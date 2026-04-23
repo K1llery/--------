@@ -1,0 +1,52 @@
+{
+  "taskId": "019dba33-4588-70fe-8c21-aaa2933fde19",
+  "todos": [
+    {
+      "id": "8a1972964c3e9cb4ef071e7112d89d71",
+      "content": "全面审查项目代码结构和各模块",
+      "status": "completed"
+    },
+    {
+      "id": "0dfb9b23a9b09757c65741aa774857bb",
+      "content": "整理并分类所有发现的代码问题",
+      "status": "completed"
+    },
+    {
+      "id": "9b4cc1aadfa1c587f639be141a923865",
+      "content": "编写详细修复计划并保存到 .tocodex/plans/",
+      "status": "completed"
+    },
+    {
+      "id": "5eb322b7992a47c1cabba904d985741d",
+      "content": "Phase 1.1: 统一异常处理 — ValueError → 自定义异常",
+      "status": "in_progress"
+    },
+    {
+      "id": "a86abab1ddde84598cf35881f9badf99",
+      "content": "Phase 1.2: 修复测试重复 fixture + 模块级 client",
+      "status": "pending"
+    },
+    {
+      "id": "be9e6b259ac4b93c5a4235f779aebe88",
+      "content": "Phase 1.3: 完善 .gitignore",
+      "status": "pending"
+    },
+    {
+      "id": "bb52c38ba13208c98629a002ceff95bb",
+      "content": "Phase 1.4: 补充前端路由（AgentPage、AdminPage）",
+      "status": "pending"
+    },
+    {
+      "id": "c784174b56c567a315adf05930230139",
+      "content": "Phase 1.5: 更新 AGENTS.md 日志描述",
+      "status": "pending"
+    },
+    {
+      "id": "a1f3d0ad6925322152e4a072ebe9388d",
+      "content": "Phase 2: PostgreSQL 全量迁移（后续）",
+      "status": "pending"
+    }
+  ],
+  "lastUpdated": 1776946351698,
+  "status": "active"
+}

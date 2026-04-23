@@ -151,7 +151,10 @@ class AuthService:
                 continue
             routes = list(user.get("favorite_route_snapshots", []))
             dedupe_key = (snapshot.get("scene_name"), tuple(snapshot.get("path_codes", [])), snapshot.get("strategy"))
-            if not any((item.get("scene_name"), tuple(item.get("path_codes", [])), item.get("strategy")) == dedupe_key for item in routes):
+            if not any(
+                (item.get("scene_name"), tuple(item.get("path_codes", [])), item.get("strategy")) == dedupe_key
+                for item in routes
+            ):
                 routes.append({**snapshot, "saved_at": self._now()})
             user["favorite_route_snapshots"] = routes
             self._save_users(users)

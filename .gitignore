@@ -13,3 +13,5 @@ datasets/prod/*.tmp
 coverage/
 *.sqlite3
 .DS_Store
+# 环境变量（含敏感配置）
+frontend/.env

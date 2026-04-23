@@ -61,10 +61,18 @@ const handleImageError = () => {
 };
 
 watch(
-  () => [props.src, props.name, props.city, props.latitude, props.longitude, props.sourceUrl, props.searchHint],
+  () => [
+    props.src,
+    props.name,
+    props.city,
+    props.latitude,
+    props.longitude,
+    props.sourceUrl,
+    props.searchHint,
+  ],
   () => {
     resolveImage();
-  }
+  },
 );
 
 onMounted(() => {

@@ -1,0 +1,200 @@
+/** 目的地 */
+export interface Destination {
+  source_id: string;
+  name: string;
+  category: string;
+  city?: string;
+  district?: string;
+  address?: string;
+  latitude: number;
+  longitude: number;
+  rating: number | null;
+  heat: number | null;
+  tags?: string[];
+  description?: string;
+  image_url?: string;
+  source_name?: string;
+  source_url?: string;
+}
+
+/** 美食 */
+export interface Food {
+  id: string;
+  name: string;
+  cuisine?: string;
+  rating: number | null;
+  heat?: number | null;
+  source_name?: string;
+  image_url?: string;
+  description?: string;
+  address?: string;
+  latitude?: number;
+  longitude?: number;
+}
+
+/** 日记 */
+export interface Diary {
+  id: number;
+  title: string;
+  destination_name: string;
+  content: string;
+  views: number;
+  rating: number;
+  media_urls: string[];
+  author_id?: number;
+  author_name?: string;
+  created_at?: string;
+}
+
+/** 场景节点 */
+export interface SceneNode {
+  code: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+}
+
+/** 场景 */
+export interface Scene {
+  name: string;
+  label: string;
+  city: string;
+  supports_routing: boolean;
+  nodes: SceneNode[];
+}
+
+/** 路线段 */
+export interface RouteSegment {
+  index: number;
+  from_code: string;
+  from_name: string;
+  to_code: string;
+  to_name: string;
+  distance_m: number;
+  estimated_minutes: number;
+  congestion: number;
+  instruction: string;
+  cumulative_distance_m: number;
+  cumulative_minutes: number;
+}
+
+/** 单点路线结果 */
+export interface SingleRouteResult {
+  path_codes: string[];
+  path_names: string[];
+  total_distance_m: number;
+  estimated_minutes: number;
+  strategy: string;
+  strategy_label: string;
+  transport_mode: string;
+  transport_mode_label: string;
+  explanation: string;
+  navigation_summary: string;
+  average_congestion: number;
+  scenic_score: number;
+  segments: RouteSegment[];
+  resolved_start_code: string;
+  resolved_start_name: string;
+  alternatives: SingleRouteResult[];
+}
+
+/** 多点路线结果 */
+export interface MultiRouteResult {
+  path_codes: string[];
+  path_names: string[];
+  ordered_stop_codes: string[];
+  ordered_stop_names: string[];
+  total_distance_m: number;
+  estimated_minutes: number;
+  strategy: string;
+  strategy_label: string;
+  transport_mode: string;
+  transport_mode_label: string;
+  optimization_label: string;
+  explanation: string;
+  navigation_summary: string;
+  segments: RouteSegment[];
+  resolved_start_code: string;
+  resolved_start_name: string;
+}
+
+/** 室内建筑 */
+export interface IndoorBuilding {
+  building_code: string;
+  building_name: string;
+  scene_name: string;
+  node_count: number;
+  floors: number[];
+  nodes: IndoorNode[];
+}
+
+/** 室内节点 */
+export interface IndoorNode {
+  code: string;
+  name: string;
+  floor: number;
+}
+
+/** 室内路线步骤 */
+export interface IndoorStep {
+  index: number;
+  from_node_code: string;
+  from_name: string;
+  from_floor: number;
+  to_node_code: string;
+  to_name: string;
+  to_floor: number;
+  connector: string;
+  distance_m: number;
+  estimated_seconds: number;
+  instruction: string;
+}
+
+/** 室内路线结果 */
+export interface IndoorRouteResult {
+  building_code: string;
+  building_name: string;
+  path_node_codes: string[];
+  path_node_names: string[];
+  strategy: string;
+  mobility_mode: string;
+  total_distance_m: number;
+  estimated_seconds: number;
+  summary: string;
+  steps: IndoorStep[];
+}
+
+/** 用户 */
+export interface User {
+  id: number;
+  username: string;
+  display_name: string;
+  created_at?: string;
+  last_login_at?: string;
+  favorite_destination_ids: string[];
+  favorite_route_snapshots: RouteSnapshot[];
+}
+
+/** 路线收藏快照 */
+export interface RouteSnapshot {
+  scene_name: string;
+  strategy: string;
+  transport_mode: string;
+  path_codes: string[];
+  path_names: string[];
+  total_distance_m: number;
+  estimated_minutes: number;
+  explanation: string;
+  saved_at?: string;
+}
+
+/** 设施 */
+export interface Facility {
+  code: string;
+  name: string;
+  scene_name: string;
+  facility_type: string;
+  latitude: number;
+  longitude: number;
+  graph_distance?: number;
+}

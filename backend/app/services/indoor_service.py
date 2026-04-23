@@ -65,7 +65,9 @@ class IndoorNavigationService:
             return seconds + (120.0 if edge.kind == "stairs" else 0.0)
         return seconds
 
-    def _build_graph(self, building: dict, mobility_mode: str) -> tuple[dict[str, list[IndoorEdge]], dict[tuple[str, str], IndoorEdge]]:
+    def _build_graph(
+        self, building: dict, mobility_mode: str
+    ) -> tuple[dict[str, list[IndoorEdge]], dict[tuple[str, str], IndoorEdge]]:
         adjacency: dict[str, list[IndoorEdge]] = {}
         edge_lookup: dict[tuple[str, str], IndoorEdge] = {}
 
@@ -141,7 +143,9 @@ class IndoorNavigationService:
             return f"通过楼梯向{direction}到{to_floor}层，抵达{to_name}。"
         return f"从{from_name}步行至{to_name}。"
 
-    def _build_steps(self, path: list[str], nodes: dict[str, dict], edge_lookup: dict[tuple[str, str], IndoorEdge]) -> tuple[list[dict], float, float]:
+    def _build_steps(
+        self, path: list[str], nodes: dict[str, dict], edge_lookup: dict[tuple[str, str], IndoorEdge]
+    ) -> tuple[list[dict], float, float]:
         steps: list[dict] = []
         total_distance = 0.0
         total_seconds = 0.0
@@ -215,10 +219,7 @@ class IndoorNavigationService:
             raise ValueError("未找到可达的室内路线，请尝试切换策略或节点。")
 
         steps, total_distance, total_seconds = self._build_steps(path, nodes, edge_lookup)
-        summary = (
-            f"共{len(steps)}段室内路径，约{round(total_distance, 1)}米，"
-            f"预计{round(total_seconds, 1)}秒。"
-        )
+        summary = f"共{len(steps)}段室内路径，约{round(total_distance, 1)}米，预计{round(total_seconds, 1)}秒。"
 
         return {
             "building_code": building_code,

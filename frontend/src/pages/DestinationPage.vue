@@ -5,7 +5,9 @@
         <h2>目的地推荐</h2>
         <p>按城市、类别和热度快速筛选，挑出更适合当天行程的目的地。</p>
       </div>
-      <button class="primary-btn" @click="load(true)">{{ loading ? "加载中..." : "刷新推荐" }}</button>
+      <button class="primary-btn" @click="load(true)">
+        {{ loading ? "加载中..." : "刷新推荐" }}
+      </button>
     </div>
 
     <div class="filter-bar">
@@ -29,7 +31,9 @@
 
     <div v-if="error" class="status-card error-card">{{ error }}</div>
     <div v-else-if="loading" class="status-card">正在整理四城精选目的地...</div>
-    <div v-else-if="filteredDestinations.length === 0" class="status-card">当前筛选条件下暂无结果，换个城市或类别试试。</div>
+    <div v-else-if="filteredDestinations.length === 0" class="status-card">
+      当前筛选条件下暂无结果，换个城市或类别试试。
+    </div>
     <div v-else class="content-split">
       <div class="card-grid">
         <article
@@ -71,7 +75,10 @@
         />
         <div>
           <h3>{{ selected.name }}</h3>
-          <p>{{ categoryLabel(selected.category) }} · {{ selected.city }} · {{ selected.district || "热门区域" }}</p>
+          <p>
+            {{ categoryLabel(selected.category) }} · {{ selected.city }} ·
+            {{ selected.district || "热门区域" }}
+          </p>
           <p>{{ selected.address }}</p>
           <p>{{ selected.description }}</p>
           <div class="detail-stats">
@@ -86,9 +93,13 @@
           </div>
           <p class="detail-note">
             数据来源：
-            <a :href="selected.source_url" target="_blank" rel="noreferrer">{{ selected.source_name }}</a>
+            <a :href="selected.source_url" target="_blank" rel="noreferrer">{{
+              selected.source_name
+            }}</a>
           </p>
-          <p class="detail-note">图片来源：{{ selected.image_source_name || "Wikipedia / OpenStreetMap" }}</p>
+          <p class="detail-note">
+            图片来源：{{ selected.image_source_name || "Wikipedia / OpenStreetMap" }}
+          </p>
         </div>
       </section>
     </div>
@@ -113,9 +124,11 @@ const selected = computed(() => store.destinations.selected);
 const loading = computed(() => store.destinations.loading);
 const error = computed(() => store.destinations.error);
 const lastUpdated = computed(() => store.destinations.lastUpdated);
-const cities = computed(() => [...new Set(destinations.value.map((item) => item.city).filter(Boolean))]);
+const cities = computed(() => [
+  ...new Set(destinations.value.map((item) => item.city).filter(Boolean)),
+]);
 
-const displayMetric = (value: number | null | undefined) => (value ?? "待补充");
+const displayMetric = (value: number | null | undefined) => value ?? "待补充";
 
 const categoryLabel = (value: string) => {
   if (value === "shopping") return "商场/商圈";
@@ -143,7 +156,10 @@ const ensureSelection = () => {
     store.selectDestination(null);
     return;
   }
-  if (!selected.value || !filteredDestinations.value.some((item) => item.source_id === selected.value?.source_id)) {
+  if (
+    !selected.value ||
+    !filteredDestinations.value.some((item) => item.source_id === selected.value?.source_id)
+  ) {
     store.selectDestination(filteredDestinations.value[0]);
   }
 };

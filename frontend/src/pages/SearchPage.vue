@@ -116,7 +116,9 @@
           </div>
           <p class="detail-note" v-if="selected.source_url">
             数据来源：
-            <a :href="selected.source_url" target="_blank" rel="noreferrer">{{ selected.source_name || "公开来源" }}</a>
+            <a :href="selected.source_url" target="_blank" rel="noreferrer">{{
+              selected.source_name || "公开来源"
+            }}</a>
           </p>
         </div>
       </section>
@@ -179,7 +181,7 @@ const search = async () => {
     const { data } = await api.post("/destinations/search", {
       query: query.value,
       keywords: query.value.split(/\s+/).filter(Boolean),
-      category: categoryFilter.value === "全部" ? null : categoryFilter.value
+      category: categoryFilter.value === "全部" ? null : categoryFilter.value,
     });
     exactRaw.value = data.exact ? [data.exact] : [];
     fuzzyRaw.value = uniqueMerge(data.fuzzy ?? [], data.featured ?? []);

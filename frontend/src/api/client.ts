@@ -3,7 +3,7 @@ import axios from "axios";
 const TOKEN_KEY = "travel_local_token";
 
 export const api = axios.create({
-  baseURL: "http://127.0.0.1:8000/api"
+  baseURL: import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000/api",
 });
 
 api.interceptors.request.use((config) => {
@@ -23,5 +23,5 @@ api.interceptors.response.use(
       window.dispatchEvent(new Event("travel-auth-cleared"));
     }
     return Promise.reject(error);
-  }
+  },
 );

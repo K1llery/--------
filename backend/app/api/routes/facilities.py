@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Query
 
-from app.repositories.data_loader import DatasetRepository, get_repository
+from app.api.deps import get_facility_service
 from app.services.facility_service import NearbyFacilityService
 
 router = APIRouter()
@@ -12,6 +12,6 @@ def nearby(
     origin_code: str = Query(...),
     category: str | None = Query(None),
     radius: float = Query(1200.0),
-    repository: DatasetRepository = Depends(get_repository),
+    service: NearbyFacilityService = Depends(get_facility_service),
 ) -> list[dict]:
-    return NearbyFacilityService(repository).nearby(scene_name, origin_code, category, radius)
+    return service.nearby(scene_name, origin_code, category, radius)
