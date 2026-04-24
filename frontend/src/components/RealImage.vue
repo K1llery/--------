@@ -8,16 +8,10 @@
     @error="handleImageError"
   />
 </template>
-
 <script setup lang="ts">
 import { onMounted, ref, useAttrs, watch } from "vue";
-
 import { buildEmergencyFallback, resolveRealMedia } from "../utils/realMedia";
-
-defineOptions({
-  inheritAttrs: false,
-});
-
+defineOptions({ inheritAttrs: false });
 const props = defineProps<{
   src?: string | null;
   alt: string;
@@ -28,11 +22,9 @@ const props = defineProps<{
   sourceUrl?: string | null;
   searchHint?: string | null;
 }>();
-
 const attrs = useAttrs();
 const resolvedSrc = ref(props.src || "");
 let requestId = 0;
-
 const resolveImage = async () => {
   const currentRequestId = ++requestId;
   const next = await resolveRealMedia({
@@ -47,7 +39,6 @@ const resolveImage = async () => {
   if (currentRequestId !== requestId) return;
   resolvedSrc.value = next;
 };
-
 const handleImageError = () => {
   resolvedSrc.value = buildEmergencyFallback({
     src: props.src,
@@ -59,7 +50,6 @@ const handleImageError = () => {
     searchHint: props.searchHint,
   });
 };
-
 watch(
   () => [
     props.src,
@@ -74,7 +64,6 @@ watch(
     resolveImage();
   },
 );
-
 onMounted(() => {
   resolveImage();
 });

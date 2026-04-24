@@ -18,8 +18,10 @@ export const useAuthStore = defineStore("auth", {
   }),
   getters: {
     isLoggedIn: (state) => Boolean(state.token && state.user),
-    favoriteDestinationCount: (state) => state.user?.favorite_destination_ids?.length ?? 0,
-    favoriteRouteCount: (state) => state.user?.favorite_route_snapshots?.length ?? 0,
+    favoriteDestinationCount: (state) =>
+      state.user?.favorite_destination_ids?.length ?? 0,
+    favoriteRouteCount: (state) =>
+      state.user?.favorite_route_snapshots?.length ?? 0,
   },
   actions: {
     openAuthModal(mode: AuthMode = "login") {
@@ -61,12 +63,17 @@ export const useAuthStore = defineStore("auth", {
         this.setSession(data.token, data.user);
         this.closeAuthModal();
       } catch (error: any) {
-        this.error = error?.response?.data?.detail || "登录失败，请检查账号密码。";
+        this.error =
+          error?.response?.data?.detail || "登录失败，请检查账号密码。";
       } finally {
         this.loading = false;
       }
     },
-    async register(payload: { username: string; display_name: string; password: string }) {
+    async register(payload: {
+      username: string;
+      display_name: string;
+      password: string;
+    }) {
       this.loading = true;
       this.error = "";
       try {
@@ -87,7 +94,9 @@ export const useAuthStore = defineStore("auth", {
       }
     },
     async toggleDestinationFavorite(sourceId: string) {
-      const { data } = await api.post("/auth/favorites/destinations", { source_id: sourceId });
+      const { data } = await api.post("/auth/favorites/destinations", {
+        source_id: sourceId,
+      });
       this.user = data.user;
       return data.favorited as boolean;
     },

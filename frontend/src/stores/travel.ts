@@ -88,7 +88,9 @@ export const useTravelStore = defineStore("travel", {
       try {
         const { data } = await api.post("/diaries/search", { query });
         this.diarySearchResults.items = data.items ?? [];
-        this.diarySearchResults.lastUpdated = new Date().toLocaleString("zh-CN");
+        this.diarySearchResults.lastUpdated = new Date().toLocaleString(
+          "zh-CN",
+        );
       } catch (error) {
         this.diarySearchResults.error = "日记搜索失败。";
       } finally {
@@ -96,11 +98,15 @@ export const useTravelStore = defineStore("travel", {
       }
     },
     _syncDiaryInCollections(diary: any) {
-      const listIndex = this.diaries.items.findIndex((entry) => entry.id === diary.id);
+      const listIndex = this.diaries.items.findIndex(
+        (entry) => entry.id === diary.id,
+      );
       if (listIndex >= 0) {
         this.diaries.items[listIndex] = diary;
       }
-      const searchIndex = this.diarySearchResults.items.findIndex((entry) => entry.id === diary.id);
+      const searchIndex = this.diarySearchResults.items.findIndex(
+        (entry) => entry.id === diary.id,
+      );
       if (searchIndex >= 0) {
         this.diarySearchResults.items[searchIndex] = diary;
       }
