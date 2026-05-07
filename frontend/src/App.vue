@@ -1,21 +1,17 @@
 <template>
-  <div class="flex min-h-screen bg-slate-50">
+  <div class="app-shell">
     <!-- Sidebar -->
-    <aside
-      class="hidden lg:flex w-[280px] flex-col glass-panel border-0 shadow-md shadow-gray-200/50 sticky top-0 h-screen overflow-y-auto"
-    >
+    <aside class="app-sidebar">
       <!-- Brand -->
-      <div class="p-6 pb-4">
-        <div class="flex items-center gap-2.5 mb-1">
-          <div
-            class="w-9 h-9 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center shadow-lg shadow-primary-500/25"
-          >
+      <div class="app-brand">
+        <div class="app-brand-mark">
+          <div class="app-brand-icon">
             <svg
-              class="w-5 h-5 text-white"
+              class="w-5 h-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              stroke-width="2"
+              stroke-width="1.8"
             >
               <path
                 stroke-linecap="round"
@@ -24,106 +20,63 @@
               />
             </svg>
           </div>
-          <span class="text-lg font-bold text-gray-900 tracking-tight"
-            >城市漫游</span
-          >
+          <span>城市漫游</span>
         </div>
-        <p class="text-xs text-gray-400 mt-1">
-          北上广深 · 高校景区 · 个性化旅游
-        </p>
       </div>
-      <div class="divider-gradient mx-3" />
       <!-- Nav -->
-      <nav class="flex-1 px-3 space-y-1">
+      <nav class="app-nav">
         <RouterLink
           v-for="item in navItems"
           :key="item.to"
           :to="item.to"
-          class="nav-glow flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-medium transition-all duration-200"
+          class="app-nav-link"
           :class="[
             $route.path === item.to
-              ? 'bg-primary-50 text-primary-700 shadow-sm shadow-primary-500/5'
-              : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+              ? 'app-nav-link-active'
+              : 'app-nav-link-idle',
           ]"
-          @mousemove="handleNavGlow"
         >
-          <component
-            :is="item.icon"
-            class="w-[18px] h-[18px] flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
-          />
+          <component :is="item.icon" class="app-nav-icon" />
           {{ item.label }}
-          <span
-            v-if="$route.path === item.to"
-            class="ml-auto w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse"
-          />
         </RouterLink>
       </nav>
       <!-- Account -->
-      <div class="divider-gradient mx-3" />
-      <div class="p-4">
+      <div class="app-sidebar-account">
         <template v-if="auth.isLoggedIn">
-          <div class="flex items-center gap-3 mb-3">
-            <div
-              class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md shadow-primary-500/20"
-            >
+          <div class="app-user-card">
+            <div class="app-user-avatar">
               {{ (auth.user?.display_name || "旅").slice(0, 1) }}
             </div>
-            <div class="min-w-0">
-              <p class="text-sm font-semibold text-gray-900 truncate">
-                {{ auth.user?.display_name }}
-              </p>
-              <p class="text-xs text-gray-400">
+            <div class="app-user-meta">
+              <p>{{ auth.user?.display_name }}</p>
+              <span>
                 {{ auth.favoriteDestinationCount }} 收藏 ·
                 {{ auth.favoriteRouteCount }} 路线
-              </p>
+              </span>
             </div>
           </div>
           <button
-            class="btn-soft-ghost w-full text-sm"
+            class="app-shell-button app-shell-button-ghost"
+            type="button"
             v-ripple
             @click="auth.logout()"
           >
             退出登录
           </button>
         </template>
-        <template v-else>
-          <p class="text-xs text-gray-500 mb-3">
-            登录后可同步收藏、保存路线、发布日记
-          </p>
-          <div class="flex gap-2">
-            <button
-              class="btn-soft-primary flex-1 text-sm"
-              v-ripple
-              @click="auth.openAuthModal('login')"
-            >
-              登录
-            </button>
-            <button
-              class="btn-soft-secondary flex-1 text-sm"
-              v-ripple
-              @click="auth.openAuthModal('register')"
-            >
-              注册
-            </button>
-          </div>
-        </template>
       </div>
     </aside>
     <!-- Mobile header -->
-    <div
-      class="lg:hidden fixed top-0 left-0 right-0 z-30 bg-white/80 backdrop-blur-lg border-0 shadow-md shadow-gray-200/50"
-    >
-      <div class="flex items-center justify-between px-4 py-3">
-        <div class="flex items-center gap-2">
-          <div
-            class="w-8 h-8 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center"
-          >
+    <div class="app-mobile-shell">
+      <div class="app-mobile-header">
+        <div class="app-mobile-brand">
+          <div class="app-brand-icon app-brand-icon-mobile">
             <svg
-              class="w-4 h-4 text-white"
+              class="w-4 h-4"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              stroke-width="2"
+              stroke-width="1.8"
             >
               <path
                 stroke-linecap="round"
@@ -132,14 +85,16 @@
               />
             </svg>
           </div>
-          <span class="text-base font-bold text-gray-900">城市漫游</span>
+          <span>城市漫游</span>
         </div>
         <button
+          class="app-icon-button"
+          type="button"
+          aria-label="切换导航菜单"
           @click="mobileMenuOpen = !mobileMenuOpen"
-          class="p-2 rounded-2xl hover:bg-gray-100"
         >
           <svg
-            class="w-5 h-5 text-gray-600"
+            class="w-5 h-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -164,77 +119,77 @@
       <Transition name="page-fade-slide">
         <nav
           v-if="mobileMenuOpen"
-          class="px-3 pb-3 space-y-1 bg-white border-0 shadow-md shadow-gray-200/50"
+          class="app-mobile-nav"
         >
           <RouterLink
             v-for="item in navItems"
             :key="item.to"
             :to="item.to"
-            class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-medium transition-all"
+            class="app-mobile-nav-link"
             :class="[
               $route.path === item.to
-                ? 'bg-primary-50 text-primary-700'
-                : 'text-gray-600 hover:bg-gray-50',
+                ? 'app-nav-link-active'
+                : 'app-nav-link-idle',
             ]"
             @click="mobileMenuOpen = false"
           >
-            <component :is="item.icon" class="w-[18px] h-[18px]" />
+            <component :is="item.icon" class="app-nav-icon" />
             {{ item.label }}
           </RouterLink>
         </nav>
       </Transition>
     </div>
     <!-- Main content -->
-    <main class="flex-1 min-w-0 lg:pt-0 pt-14">
+    <main class="app-main">
       <!-- Top bar -->
-      <header
-        class="sticky top-0 z-20 glass-panel border-0 shadow-md shadow-gray-200/50 px-6 py-3 hidden lg:flex items-center justify-between"
-      >
-        <div>
-          <p class="text-sm text-gray-500">
-            行程收藏、日记发布与路线记录都支持本地账号保存
-          </p>
-        </div>
-        <div class="flex items-center gap-3">
+      <header class="app-topbar">
+        <div class="app-topbar-tools">
+          <span class="app-topbar-tool">
+            <IconBookmark class="app-topbar-icon" />
+            收藏
+            <strong>{{
+              auth.favoriteDestinationCount + auth.favoriteRouteCount
+            }}</strong>
+          </span>
+          <span class="app-topbar-tool">
+            <IconBell class="app-topbar-icon" />
+            通知
+          </span>
           <template v-if="auth.isLoggedIn">
-            <div
-              class="flex items-center gap-2 py-1.5 px-3 rounded-2xl bg-gray-50 border-0 shadow-md shadow-gray-200/50"
-            >
-              <span class="text-sm font-medium text-gray-700">{{
-                auth.user?.display_name
-              }}</span>
-              <span class="text-xs text-gray-400"
-                >{{
-                  auth.favoriteDestinationCount + auth.favoriteRouteCount
-                }}
-                收藏</span
-              >
-            </div>
+            <span class="app-topbar-tool app-topbar-user">
+              <IconUser class="app-topbar-icon" />
+              {{ auth.user?.display_name }}
+            </span>
             <button
-              class="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+              class="app-topbar-link"
+              type="button"
               @click="auth.logout()"
             >
+              <IconLogout class="app-topbar-icon" />
               退出
             </button>
           </template>
           <template v-else>
             <button
-              class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              class="app-topbar-link"
+              type="button"
               @click="auth.openAuthModal('login')"
             >
+              <IconUser class="app-topbar-icon" />
               登录
             </button>
             <button
-              class="btn-soft-primary text-sm"
-              v-ripple
+              class="app-topbar-link app-topbar-register"
+              type="button"
               @click="auth.openAuthModal('register')"
             >
+              <IconUserPlus class="app-topbar-icon" />
               免费注册
             </button>
           </template>
         </div>
       </header>
-      <div class="p-4 lg:p-6">
+      <div class="app-content">
         <RouterView v-slot="{ Component, route }">
           <Transition name="page-fade-slide" mode="out-in">
             <component :is="Component" :key="route.fullPath" />
@@ -252,18 +207,44 @@ import ToastContainer from "./components/ToastContainer.vue";
 import { useAuthStore } from "./stores/auth";
 const auth = useAuthStore();
 const mobileMenuOpen = ref(false);
-const handleNavGlow = (e: MouseEvent) => {
-  const el = e.currentTarget as HTMLElement;
-  const rect = el.getBoundingClientRect();
-  el.style.setProperty(
-    "--glow-x",
-    `${((e.clientX - rect.left) / rect.width) * 100}%`,
+const createTopbarIcon = (pathData: string) =>
+  h(
+    "svg",
+    {
+      class: "app-topbar-icon",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      stroke: "currentColor",
+      "stroke-width": "1.8",
+    },
+    [
+      h("path", {
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        d: pathData,
+      }),
+    ],
   );
-  el.style.setProperty(
-    "--glow-y",
-    `${((e.clientY - rect.top) / rect.height) * 100}%`,
+const IconBookmark = () =>
+  createTopbarIcon(
+    "M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z",
   );
-};
+const IconBell = () =>
+  createTopbarIcon(
+    "M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0",
+  );
+const IconUser = () =>
+  createTopbarIcon(
+    "M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z",
+  );
+const IconUserPlus = () =>
+  createTopbarIcon(
+    "M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM4.269 19.533a6.375 6.375 0 0 1 11.462 0 17.902 17.902 0 0 1-5.731.967 17.902 17.902 0 0 1-5.731-.967Z",
+  );
+const IconLogout = () =>
+  createTopbarIcon(
+    "M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9",
+  );
 const IconHome = () =>
   h(
     "svg",

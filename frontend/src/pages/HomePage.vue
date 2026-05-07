@@ -136,11 +136,11 @@
         <div>
           <h2 class="text-lg font-bold text-gray-900">我的收藏</h2>
           <p class="text-sm text-gray-500 mt-1">
-            当前账号的收藏和最近一次登录信息会保留在本地。
+            当前账号的收藏信息会保留在本地。
           </p>
         </div>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 stagger-children">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5 stagger-children">
         <div
           class="group relative overflow-hidden p-5 rounded-2xl bg-gradient-to-br from-primary-50 via-white to-primary-50/30 border-0 shadow-md shadow-gray-200/50 hover:shadow-lg hover:shadow-primary-500/10 transition-all"
         >
@@ -207,25 +207,6 @@
                 {{ auth.favoriteRouteCount }}
               </p>
               <p class="text-xs text-gray-500 mt-2">已收藏路线</p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="relative overflow-hidden p-5 rounded-2xl bg-gradient-to-br from-gray-50 via-white to-gray-50/30 border-0 shadow-md shadow-gray-200/50 hover:shadow-md hover:shadow-slate-500/10 transition-all"
-        >
-          <div class="flex items-start gap-3">
-            <div
-              class="w-10 h-10 rounded-2xl bg-gradient-to-br from-slate-500 to-slate-700 text-white flex items-center justify-center shadow-lg shadow-slate-500/25 text-sm font-bold flex-shrink-0"
-            >
-              {{ (auth.user?.display_name || "U").slice(0, 1).toUpperCase() }}
-            </div>
-            <div class="min-w-0 flex-1">
-              <p class="text-sm font-semibold text-gray-900 truncate">
-                {{ auth.user?.display_name }}
-              </p>
-              <p class="text-[11px] text-gray-500 mt-1 truncate">
-                最近登录 · {{ auth.user?.last_login_at || "首次进入" }}
-              </p>
             </div>
           </div>
         </div>
