@@ -26,9 +26,7 @@
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: #f7f8fc;
-  background-image: radial-gradient(circle at 1px 1px, rgba(99, 102, 241, 0.04) 1px, transparent 0);
-  background-size: 24px 24px;
+  background: #f7f8fb;
   color: #1e293b;
   min-height: 100vh;
   text-rendering: optimizeLegibility;
@@ -58,6 +56,337 @@ textarea {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* ── App shell inspired by Lagom ── */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #f7f8fb;
+}
+
+.app-sidebar {
+  position: sticky;
+  top: 0;
+  display: none;
+  width: 236px;
+  height: 100vh;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: auto;
+  background: #ffffff;
+  border-right: 1px solid #edf0f7;
+}
+
+.app-brand {
+  padding: 24px 20px 18px;
+}
+
+.app-brand-mark,
+.app-mobile-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #171a23;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.app-brand-icon {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #6f78ef;
+  background: #eef2ff;
+  border: 1px solid #dfe4ff;
+  border-radius: 10px;
+}
+
+.app-brand-icon-mobile {
+  width: 30px;
+  height: 30px;
+}
+
+.app-nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 14px 16px;
+}
+
+.app-nav-link,
+.app-mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 42px;
+  border-radius: 8px;
+  color: #747b8e;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.app-nav-link {
+  padding: 0 12px;
+}
+
+.app-mobile-nav-link {
+  padding: 0 14px;
+}
+
+.app-nav-link-idle:hover {
+  background: #f7f8fb;
+  color: #222631;
+}
+
+.app-nav-link-active {
+  color: #6f78ef;
+  background: #f0f1ff;
+}
+
+.app-nav-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.app-sidebar-account {
+  margin: 0 14px 16px;
+  padding-top: 14px;
+  border-top: 1px solid #edf0f7;
+}
+
+.app-user-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  min-width: 0;
+}
+
+.app-user-avatar {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #6f78ef;
+  background: #eef2ff;
+  border: 1px solid #dfe4ff;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.app-user-meta {
+  min-width: 0;
+}
+
+.app-user-meta p {
+  margin: 0;
+  overflow: hidden;
+  color: #222631;
+  font-size: 13px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-user-meta span {
+  color: #8e95a6;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.app-shell-button {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.app-sidebar-account .app-shell-button {
+  width: 100%;
+}
+
+.app-shell-button-ghost {
+  color: #6f78ef;
+  background: #f7f8ff;
+  border-color: #e4e7ff;
+}
+
+.app-shell-button-ghost:hover {
+  background: #eef2ff;
+  border-color: #d8defe;
+}
+
+.app-mobile-shell {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 30;
+  display: block;
+  background: #ffffff;
+  border-bottom: 1px solid #edf0f7;
+}
+
+.app-mobile-header {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.app-mobile-brand {
+  font-size: 16px;
+}
+
+.app-icon-button {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  color: #747b8e;
+  background: #ffffff;
+  border: 1px solid #edf0f7;
+  border-radius: 8px;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.app-icon-button:hover {
+  color: #222631;
+  background: #f7f8fb;
+}
+
+.app-mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 12px 12px;
+  background: #ffffff;
+  border-top: 1px solid #edf0f7;
+  box-shadow: 0 14px 32px rgba(32, 39, 62, 0.08);
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  padding-top: 56px;
+}
+
+.app-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: none;
+  min-height: 56px;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 28px;
+  background: #ffffff;
+  border-bottom: 1px solid #edf0f7;
+}
+
+.app-topbar-tools {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: #9aa0b1;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.app-topbar-tool,
+.app-topbar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  transition: color 0.18s ease;
+}
+
+.app-topbar-tool strong {
+  color: #6f78ef;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.app-topbar-user {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app-topbar-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.app-topbar-tool:hover,
+.app-topbar-link:hover {
+  color: #747bff;
+}
+
+.app-topbar-register {
+  padding: 0;
+}
+
+.app-content {
+  padding: 18px;
+}
+
+@media (min-width: 1024px) {
+  .app-sidebar {
+    display: flex;
+  }
+
+  .app-mobile-shell {
+    display: none;
+  }
+
+  .app-main {
+    padding-top: 0;
+  }
+
+  .app-topbar {
+    display: flex;
+  }
+
+  .app-content {
+    padding: 28px;
+  }
 }
 
 /* ── Glass panel ── */
