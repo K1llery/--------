@@ -7,8 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from app.core.config import get_settings
-from app.db.session import SessionLocal
-from app.repositories.postgres_repository import PostgresRepository
+from app.repositories.sqlite_repository import SQLiteRepository
 
 logger = logging.getLogger(__name__)
 
@@ -94,13 +93,13 @@ def get_json_repository() -> DatasetRepository:
 
 
 @lru_cache
-def get_postgres_repository() -> PostgresRepository:
-    return PostgresRepository(SessionLocal)
+def get_sqlite_repository() -> SQLiteRepository:
+    return SQLiteRepository(get_settings().sqlite_path)
 
 
 @lru_cache
-def get_repository() -> DatasetRepository | PostgresRepository:
+def get_repository() -> DatasetRepository | SQLiteRepository:
     settings = get_settings()
-    if settings.storage_backend == "postgres":
-        return get_postgres_repository()
+    if settings.storage_backend == "sqlite":
+        return get_sqlite_repository()
     return get_json_repository()

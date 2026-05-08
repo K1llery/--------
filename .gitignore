@@ -35,11 +35,13 @@ datasets/prod/*.tmp
 
 # Database
 *.sqlite3
+*.db
+storage/
 
 # Environment variables (may contain secrets)
 frontend/.env
 backend/.env
 .env
 
-# Binary / generated
-*.sqlite3
+# Runtime generated media
+backend/static/media/generated/

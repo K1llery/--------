@@ -384,8 +384,6 @@ const navItems = [
   { label: "附近设施", to: "/facilities", icon: IconBuilding },
   { label: "美食推荐", to: "/foods", icon: IconUtensils },
   { label: "旅游日记", to: "/diaries", icon: IconBook },
-  { label: "智能助手", to: "/agents", icon: IconSearch },
-  { label: "管理后台", to: "/admin", icon: IconBuilding },
 ];
 onMounted(() => {
   auth.bindUnauthorizedListener();

@@ -56,6 +56,19 @@ export interface CompressionResponse {
   compression_ratio: number;
 }
 
+/** AI 日记草稿响应 */
+export interface DiaryDraftResponse {
+  title: string;
+  content: string;
+}
+
+/** AI 生图响应 */
+export interface ImageGenerateResponse {
+  image_url: string;
+  source_url: string;
+  prompt: string;
+}
+
 /** 室内建筑列表响应 */
 export interface IndoorBuildingListResponse {
   items: IndoorBuilding[];

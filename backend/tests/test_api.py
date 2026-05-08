@@ -9,6 +9,11 @@ def test_destinations_endpoint_returns_real_dataset(client):
     assert any(item["name"] == "北京邮电大学" for item in data)
 
 
+def test_deployment_build_does_not_expose_non_core_debug_routes(client):
+    assert client.get("/api/agents").status_code == 404
+    assert client.get("/api/admin/import/status").status_code == 404
+
+
 def test_featured_destinations_include_scenic_and_shopping(client):
     response = client.get("/api/destinations/featured")
     assert response.status_code == 200

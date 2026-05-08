@@ -27,19 +27,33 @@
           class="text-area"
           placeholder="写下你的游览体验、路线建议或踩坑提醒"
         ></textarea>
+        <div class="hero-actions ai-compose-actions">
+          <button class="secondary-btn" type="button" :disabled="aiDrafting" @click="generateDiaryDraft">
+            {{ aiDrafting ? "正在写..." : "AI帮写日记" }}
+          </button>
+          <button
+            class="secondary-btn"
+            type="button"
+            :disabled="aiImageGenerating || !draft.title || !draft.content"
+            @click="generateCoverImage"
+          >
+            {{ aiImageGenerating ? "正在生图..." : "AI生成封面" }}
+          </button>
+        </div>
+        <div v-if="aiError" class="status-card error-card">{{ aiError }}</div>
         <button class="primary-btn" type="submit">
           {{ publishing ? "发布中..." : "确认发布" }}
         </button>
       </form>
-      <div v-if="draftCover" class="draft-cover">
+      <div v-if="coverPreview" class="draft-cover">
         <RealImage
-          :src="draftCover.image_url"
+          :src="coverPreview.image_url"
           :alt="draft.destination_name"
           :name="draft.destination_name"
-          :city="draftCover.city"
-          :latitude="draftCover.latitude"
-          :longitude="draftCover.longitude"
-          :source-url="draftCover.source_url"
+          :city="coverPreview.city"
+          :latitude="coverPreview.latitude"
+          :longitude="coverPreview.longitude"
+          :source-url="coverPreview.source_url"
           class="detail-image"
         />
       </div>
@@ -203,6 +217,7 @@ import { api } from "../api/client";
 import RealImage from "../components/RealImage.vue";
 import { useAuthStore } from "../stores/auth";
 import { useTravelStore } from "../stores/travel";
+import type { DiaryDraftResponse, ImageGenerateResponse } from "../types/api";
 import { resolveRealMedia } from "../utils/realMedia";
 
 const store = useTravelStore();
@@ -219,7 +234,33 @@ const compressionPayload = ref<{ encoded: string; codes: Record<string, string> 
 const decompressedContent = ref("");
 const showComposer = ref(false);
 const publishing = ref(false);
-const animationResult = ref<any | null>(null);
+const aiDrafting = ref(false);
+const aiImageGenerating = ref(false);
+const aiError = ref("");
+const generatedCoverUrl = ref("");
+interface DiaryAnimationShot {
+  index: number;
+  caption: string;
+  media_url: string;
+  transition: string;
+  duration_seconds: number;
+}
+interface DiaryAnimationResult {
+  generation_mode: string;
+  total_duration_seconds: number;
+  narration_script: string;
+  shots: DiaryAnimationShot[];
+}
+type ApiFailure = {
+  response?: {
+    data?: {
+      detail?: string;
+    };
+  };
+};
+const apiErrorDetail = (error: unknown, fallback: string) =>
+  (error as ApiFailure)?.response?.data?.detail || fallback;
+const animationResult = ref<DiaryAnimationResult | null>(null);
 const animationLoading = ref(false);
 const activeShotIndex = ref(0);
 let animationTimer: number | null = null;
@@ -232,6 +273,18 @@ const draft = reactive({
 const draftCover = computed(
   () => destinations.value.find((item) => item.name === draft.destination_name) ?? null,
 );
+const coverPreview = computed(() => {
+  if (generatedCoverUrl.value) {
+    return {
+      image_url: generatedCoverUrl.value,
+      city: draftCover.value?.city,
+      latitude: draftCover.value?.latitude,
+      longitude: draftCover.value?.longitude,
+      source_url: generatedCoverUrl.value,
+    };
+  }
+  return draftCover.value;
+});
 const activeShot = computed(() => animationResult.value?.shots?.[activeShotIndex.value] ?? null);
 
 const search = async () => {
@@ -260,10 +313,11 @@ const pauseAnimation = () => {
 };
 
 const playAnimation = () => {
-  if (!animationResult.value?.shots?.length) return;
+  const shotCount = animationResult.value?.shots?.length ?? 0;
+  if (!shotCount) return;
   pauseAnimation();
   animationTimer = window.setInterval(() => {
-    activeShotIndex.value = (activeShotIndex.value + 1) % animationResult.value.shots.length;
+    activeShotIndex.value = (activeShotIndex.value + 1) % shotCount;
   }, 2200);
 };
 
@@ -294,8 +348,8 @@ const rateDiary = async (score: number) => {
   }
   try {
     await store.rateDiary(selected.value.id, score);
-  } catch (ratingError: any) {
-    store.diaries.error = ratingError?.response?.data?.detail || "评分失败，请稍后再试。";
+  } catch (ratingError: unknown) {
+    store.diaries.error = apiErrorDetail(ratingError, "评分失败，请稍后再试。");
   }
 };
 
@@ -305,6 +359,49 @@ const openComposer = async () => {
     return;
   }
   showComposer.value = !showComposer.value;
+};
+
+const generateDiaryDraft = async () => {
+  if (!auth.isLoggedIn) {
+    auth.openAuthModal("login");
+    return;
+  }
+  aiDrafting.value = true;
+  aiError.value = "";
+  try {
+    const { data } = await api.post<DiaryDraftResponse>("/ai/diary/draft", {
+      destination_name: draft.destination_name,
+      keywords: [draft.destination_name, query.value].filter(Boolean),
+      style: "轻松真实，适合课程演示",
+    });
+    draft.title = data.title;
+    draft.content = data.content;
+  } catch (draftError: unknown) {
+    aiError.value = apiErrorDetail(draftError, "AI日记生成失败，请检查百炼配置。");
+  } finally {
+    aiDrafting.value = false;
+  }
+};
+
+const generateCoverImage = async () => {
+  if (!auth.isLoggedIn) {
+    auth.openAuthModal("login");
+    return;
+  }
+  aiImageGenerating.value = true;
+  aiError.value = "";
+  try {
+    const { data } = await api.post<ImageGenerateResponse>("/ai/images/generate", {
+      destination_name: draft.destination_name,
+      title: draft.title,
+      content: draft.content,
+    });
+    generatedCoverUrl.value = data.image_url;
+  } catch (imageError: unknown) {
+    aiError.value = apiErrorDetail(imageError, "AI封面生成失败，请检查百炼配置。");
+  } finally {
+    aiImageGenerating.value = false;
+  }
 };
 
 const publishDiary = async () => {
@@ -325,13 +422,14 @@ const publishDiary = async () => {
           searchHint: draft.destination_name,
         })
       : "";
+    const finalCoverImage = generatedCoverUrl.value || coverImage || draftCover.value?.image_url;
     await api.post("/diaries", {
       destination_name: draft.destination_name,
       title: draft.title,
       content: draft.content,
-      cover_image_url: coverImage || draftCover.value?.image_url,
-      media_urls: coverImage
-        ? [coverImage]
+      cover_image_url: finalCoverImage,
+      media_urls: finalCoverImage
+        ? [finalCoverImage]
         : draftCover.value?.image_url
           ? [draftCover.value.image_url]
           : [],
@@ -339,6 +437,7 @@ const publishDiary = async () => {
     showComposer.value = false;
     draft.title = "";
     draft.content = "";
+    generatedCoverUrl.value = "";
     await store.loadDiaries(true);
   } finally {
     publishing.value = false;
@@ -349,6 +448,14 @@ onMounted(async () => {
   await Promise.all([store.loadDiaries(false), store.loadFeaturedDestinations(false)]);
   draft.destination_name = destinations.value[0]?.name ?? "";
 });
+
+watch(
+  () => draft.destination_name,
+  () => {
+    generatedCoverUrl.value = "";
+    aiError.value = "";
+  },
+);
 
 watch(selected, () => {
   pauseAnimation();

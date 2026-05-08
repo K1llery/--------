@@ -5,8 +5,9 @@
 ## 技术栈
 
 - 前端：Vue 3、TypeScript、Vite、Pinia、Vue Router、Leaflet
-- 后端：FastAPI、SQLAlchemy、Pydantic、Uvicorn
-- 数据：PostgreSQL + PostGIS（开发期也支持 JSON 数据快照做演示）
+- 后端：FastAPI、Pydantic、Uvicorn
+- 数据：SQLite（生产默认）+ JSON 快照 seed/test
+- 大模型：阿里云百炼通义千问（日记草稿）+ 万相 2.7（封面生图）
 - 算法：堆、Quickselect、Trie、倒排索引、Dijkstra、A*、Held-Karp、2-opt、Huffman
 
 ## 快速开始
@@ -20,6 +21,7 @@
 cd backend
 source ../.venv/bin/activate
 pip install -r requirements.txt
+python scripts/init_sqlite.py --database-path ../storage/travel.db
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 # 终端 2：前端
@@ -39,37 +41,19 @@ npm run dev -- --host 0.0.0.0 --port 5173
 cd backend
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+python scripts/init_sqlite.py --database-path ..\storage\travel.db
 uvicorn app.main:app --reload
 ```
 
-### PostgreSQL 初始化（首次）
-
-项目现在默认使用 PostgreSQL 存储。首次在本机（apt 安装 PostgreSQL）可按以下流程初始化：
+### SQLite 初始化（首次）
 
 ```bash
 cd backend
 cp .env.example .env
-
-# 创建 travel_app / travel_system（会要求输入 sudo 密码）
-./scripts/setup_local_postgres.sh
-
-# 建表并导入 datasets/prod/*.json 到数据库
-./scripts/bootstrap_postgres.sh
+python scripts/init_sqlite.py --dataset-dir ../datasets/prod --database-path ../storage/travel.db
 ```
 
-如果你使用 Docker，也可以在 `infra/postgres` 下启动数据库：
-
-```bash
-cd infra/postgres
-docker compose up -d
-```
-
-然后回到 `backend` 执行：
-
-```bash
-alembic upgrade head
-python scripts/seed_db.py --skip-create-tables
-```
+`TRAVEL_STORAGE_BACKEND=sqlite` 是默认值。测试或临时演示仍可设置 `TRAVEL_STORAGE_BACKEND=json` 直接读取 `datasets/prod/`。
 
 ### 2. 前端
 
@@ -94,7 +78,7 @@ cd data_pipeline
 - `data_pipeline/`：真实数据抓取与清洗脚本
 - `datasets/`：原始快照、清洗结果和演示数据
 - `docs/`：课程报告所需文档骨架
-- `infra/`：数据库与环境说明
+- `storage/`：本地运行时 SQLite 与生成图片目录（不入库）
 
 ## 当前状态
 
@@ -105,6 +89,7 @@ cd data_pipeline
 - 前端页面骨架与 API 集成层
 - 室外路线 + 室内导航（大门、电梯、楼层、房间）联动演示
 - 日记 AIGC 动画分镜生成与前端播放预览
+- 接入阿里云百炼：AI 帮写日记、AI 生成封面图并保存到本地 `/media/generated`
 - 真实数据抓取脚本与演示数据构建脚本
 - 课程设计文档模板
 
@@ -114,11 +99,21 @@ cd data_pipeline
 - `datasets/prod/destinations.json`、`facilities.json`、`foods.json` 基于真实公开地理点位构建
 - `datasets/prod/users.json`、`diaries.json` 为课程演示联调用种子数据，不宣称为真实公开用户数据
 
-后续可以继续补齐：
+线上部署不建议在 2c2g 服务器上运行抓取链路；如需更新数据，推荐本机重新生成 JSON 后再初始化 SQLite。
 
-- PostGIS 深度空间查询与索引优化
-- 更大规模真实数据清洗
-- 地图精细化导航与验收演示素材
+## 阿里云百炼配置
+
+后端读取环境变量，不要把 Key 写入代码：
+
+```bash
+DASHSCOPE_API_KEY=sk-你的Key
+TRAVEL_AI_TEXT_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+TRAVEL_AI_IMAGE_BASE_URL=https://dashscope.aliyuncs.com/api/v1
+TRAVEL_AI_TEXT_MODEL=qwen-plus
+TRAVEL_AI_IMAGE_MODEL=wan2.7-image
+```
+
+上海 ECS 可以调用北京地域百炼接口，前提是 API Key 和 Base URL 属于同一地域。上线后可访问 `/api/ai/health` 检查模型配置是否被后端读到。
 
 ## 常见通信问题排查
 

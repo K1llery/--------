@@ -7,6 +7,7 @@ from fastapi import Depends, Header
 from app.core.exceptions import AuthenticationError
 from app.repositories.data_loader import DatasetRepository, get_repository
 from app.services.auth_service import AuthService
+from app.services.ai_service import AIService, BailianModelClient
 from app.services.diary_service import CompressionService, DiaryAIGCService, DiarySearchService
 from app.services.facility_service import NearbyFacilityService
 from app.services.graph_builder import GraphBuilder
@@ -91,6 +92,25 @@ def get_compression_service() -> CompressionService:
 
 def get_aigc_service() -> DiaryAIGCService:
     return DiaryAIGCService()
+
+
+@lru_cache
+def get_ai_service() -> AIService:
+    from app.core.config import get_settings
+
+    settings = get_settings()
+    return AIService(
+        model_client=BailianModelClient(
+            api_key=settings.dashscope_api_key,
+            text_base_url=settings.ai_text_base_url,
+            image_base_url=settings.ai_image_base_url,
+            text_model=settings.ai_text_model,
+            image_model=settings.ai_image_model,
+            timeout_seconds=settings.ai_timeout_seconds,
+        ),
+        generated_media_dir=settings.generated_media_dir,
+        generated_media_url_prefix=settings.generated_media_url_prefix,
+    )
 
 
 def get_auth_service(repository: DatasetRepository = Depends(get_repository)) -> AuthService:

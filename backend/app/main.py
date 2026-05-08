@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from app.api.router import api_router
 from app.core.config import get_settings
@@ -26,6 +27,12 @@ app.add_middleware(
 register_error_handlers(app)
 
 app.include_router(api_router, prefix=settings.api_prefix)
+settings.generated_media_dir.mkdir(parents=True, exist_ok=True)
+app.mount(
+    settings.generated_media_url_prefix,
+    StaticFiles(directory=settings.generated_media_dir),
+    name="generated-media",
+)
 
 
 @app.get("/")
