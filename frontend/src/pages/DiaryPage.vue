@@ -1,35 +1,37 @@
 <template>
-  <section class="panel-card">
-    <div class="section-top">
+  <div class="bg-white rounded-3xl card-elevated p-6 space-y-5">
+    <!-- 页面标题 -->
+    <div class="flex items-start justify-between gap-4 flex-wrap">
       <div>
-        <h2>旅游日记</h2>
-        <p>浏览他人的路线心得，也可以登录后写下自己的城市散步记录。</p>
+        <h2 class="text-xl font-bold text-gray-900">旅游日记</h2>
+        <p class="text-sm text-gray-500 mt-1">浏览他人的路线心得，也可以登录后写下自己的城市散步记录。</p>
       </div>
-      <button class="primary-btn" @click="openComposer">
+      <button class="btn-soft-primary text-sm" @click="openComposer">
         {{ showComposer ? "收起发布区" : "发布日记" }}
       </button>
     </div>
 
-    <section v-if="showComposer" class="status-card">
-      <div class="section-top compact">
-        <h3>写一篇新的游记</h3>
-        <span class="toolbar-hint">封面图会优先加载真实图源，失败时回落到地图实景。</span>
+    <!-- 发布日记区域 -->
+    <section v-if="showComposer" class="card-elevated p-5 space-y-4">
+      <div class="flex items-center justify-between gap-3">
+        <h3 class="text-base font-bold text-gray-900">写一篇新的游记</h3>
+        <span class="text-xs text-gray-400">封面图会优先加载真实图源，失败时回落到地图实景。</span>
       </div>
-      <form class="search-form" @submit.prevent="publishDiary">
-        <select v-model="draft.destination_name" class="select-input">
+      <form class="flex flex-wrap gap-3" @submit.prevent="publishDiary">
+        <select v-model="draft.destination_name" class="soft-control flex-1 min-w-40">
           <option v-for="item in destinations" :key="item.source_id" :value="item.name">
             {{ item.name }}
           </option>
         </select>
-        <input v-model="draft.title" placeholder="标题" />
+        <input v-model="draft.title" class="soft-control flex-1 min-w-48" placeholder="标题" />
         <textarea
           v-model="draft.content"
-          class="text-area"
+          class="soft-control w-full min-h-32"
           placeholder="写下你的游览体验、路线建议或踩坑提醒"
         ></textarea>
-        <div class="hero-actions ai-compose-actions">
+        <div class="flex flex-wrap gap-3 w-full">
           <button
-            class="secondary-btn"
+            class="btn-soft-secondary text-sm"
             type="button"
             :disabled="aiDrafting"
             @click="generateDiaryDraft"
@@ -37,7 +39,7 @@
             {{ aiDrafting ? "正在写..." : "AI帮写日记" }}
           </button>
           <button
-            class="secondary-btn"
+            class="btn-soft-secondary text-sm"
             type="button"
             :disabled="aiImageGenerating || !draft.title || !draft.content"
             @click="generateCoverImage"
@@ -45,12 +47,12 @@
             {{ aiImageGenerating ? "正在生图..." : "AI生成封面" }}
           </button>
         </div>
-        <div v-if="aiError" class="status-card error-card">{{ aiError }}</div>
-        <button class="primary-btn" type="submit">
+        <div v-if="aiError" class="alert-soft-error w-full">{{ aiError }}</div>
+        <button class="btn-soft-primary w-full" type="submit">
           {{ publishing ? "发布中..." : "确认发布" }}
         </button>
       </form>
-      <div v-if="coverPreview" class="draft-cover">
+      <div v-if="coverPreview" class="mt-3">
         <RealImage
           :src="coverPreview.image_url"
           :alt="draft.destination_name"
@@ -59,25 +61,27 @@
           :latitude="coverPreview.latitude"
           :longitude="coverPreview.longitude"
           :source-url="coverPreview.source_url"
-          class="detail-image"
+          class="w-full h-48 object-cover rounded-2xl"
         />
       </div>
     </section>
 
-    <form class="search-form" @submit.prevent="search">
-      <input v-model="query" placeholder="输入关键字搜索日记" />
-      <button class="primary-btn" type="submit">{{ searching ? "搜索中..." : "搜索" }}</button>
+    <!-- 搜索栏 -->
+    <form class="flex flex-wrap gap-3" @submit.prevent="search">
+      <input v-model="query" class="soft-control flex-1" placeholder="输入关键字搜索日记" />
+      <button class="btn-soft-primary" type="submit">{{ searching ? "搜索中..." : "搜索" }}</button>
     </form>
-    <div v-if="error" class="status-card error-card">{{ error }}</div>
+    <div v-if="error" class="alert-soft-error">{{ error }}</div>
 
+    <!-- 推荐日记 -->
     <section>
-      <h3 class="section-title">推荐日记</h3>
-      <div class="card-grid">
+      <h3 class="text-base font-bold text-gray-900 mb-3">推荐日记</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <article
           v-for="item in diaries"
           :key="item.id"
-          class="item-card media-card"
-          :class="{ selected: selected?.id === item.id }"
+          class="card-elevated p-4 cursor-pointer glow-border"
+          :class="{ 'ring-2 ring-primary-300': selected?.id === item.id }"
           @click="store.selectDiary(item)"
         >
           <RealImage
@@ -86,133 +90,139 @@
             :name="item.destination_name || item.title"
             :city="item.city"
             :search-hint="item.destination_name"
-            class="media-thumb"
+            class="w-full h-36 object-cover rounded-xl mb-3"
           />
-          <div class="media-body">
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.destination_name }}</p>
-            <p>作者 {{ item.author_name || "匿名旅行者" }}</p>
-          </div>
+          <h4 class="text-sm font-bold text-gray-900">{{ item.title }}</h4>
+          <p class="text-xs text-gray-500 mt-1">{{ item.destination_name }}</p>
+          <p class="text-xs text-gray-400 mt-0.5">作者 {{ item.author_name || "匿名旅行者" }}</p>
         </article>
       </div>
     </section>
 
+    <!-- 搜索结果 -->
     <section>
-      <h3 class="section-title">搜索结果</h3>
-      <div v-if="searching" class="status-card">正在搜索日记...</div>
-      <div v-else-if="searchResults.length === 0" class="status-card">
+      <h3 class="text-base font-bold text-gray-900 mb-3">搜索结果</h3>
+      <div v-if="searching" class="card-elevated p-4 text-sm text-gray-500">正在搜索日记...</div>
+      <div v-else-if="searchResults.length === 0" class="card-elevated p-4 text-sm text-gray-500">
         输入关键字后，这里会显示匹配到的日记。
       </div>
-      <div v-else class="card-grid">
+      <div v-else class="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <article
           v-for="item in searchResults"
           :key="`search-${item.id}`"
-          class="item-card"
-          :class="{ selected: selected?.id === item.id }"
+          class="card-elevated p-4 cursor-pointer glow-border"
+          :class="{ 'ring-2 ring-primary-300': selected?.id === item.id }"
           @click="store.selectDiary(item)"
         >
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.destination_name }}</p>
-          <p>浏览 {{ item.views }} · 评分 {{ item.rating }}</p>
+          <h4 class="text-sm font-bold text-gray-900">{{ item.title }}</h4>
+          <p class="text-xs text-gray-500 mt-1">{{ item.destination_name }}</p>
+          <p class="text-xs text-gray-400 mt-0.5">浏览 {{ item.views }} · 评分 {{ item.rating }}</p>
         </article>
       </div>
     </section>
 
-    <section v-if="selected" class="detail-panel detail-stack">
-      <RealImage
-        :src="selected.media_urls?.[0]"
-        :alt="selected.title"
-        :name="selected.destination_name || selected.title"
-        :city="selected.city"
-        :search-hint="selected.destination_name"
-        class="detail-image"
-      />
-      <div>
-        <h3>{{ selected.title }}</h3>
-        <p>{{ selected.destination_name }}</p>
-        <p>
-          作者：{{ selected.author_name || "匿名旅行者" }} · 发布于
-          {{ selected.created_at || "演示数据" }}
-        </p>
-        <div class="detail-stats">
-          <span class="stat-pill">浏览 {{ selected.views }}</span>
-          <span class="stat-pill">评分 {{ selected.rating }}</span>
+    <!-- 日记详情 -->
+    <section v-if="selected" class="card-elevated p-5 space-y-4">
+      <div class="grid lg:grid-cols-[1fr_1.2fr] gap-5">
+        <RealImage
+          :src="selected.media_urls?.[0]"
+          :alt="selected.title"
+          :name="selected.destination_name || selected.title"
+          :city="selected.city"
+          :search-hint="selected.destination_name"
+          class="w-full h-56 object-cover rounded-2xl"
+        />
+        <div class="space-y-2">
+          <h3 class="text-lg font-bold text-gray-900">{{ selected.title }}</h3>
+          <p class="text-sm text-gray-500">{{ selected.destination_name }}</p>
+          <p class="text-xs text-gray-400">
+            作者：{{ selected.author_name || "匿名旅行者" }} · 发布于
+            {{ selected.created_at || "演示数据" }}
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="stat-pill">浏览 {{ selected.views }}</span>
+            <span class="stat-pill">评分 {{ selected.rating }}</span>
+          </div>
+          <p class="text-sm text-gray-600">{{ selected.content }}</p>
         </div>
-        <p>{{ selected.content }}</p>
-        <div class="hero-actions">
-          <button class="primary-btn" @click="compress">压缩正文演示</button>
-          <button class="primary-btn" @click="decompress" :disabled="!compressionPayload">
-            解压回放
-          </button>
-          <button class="primary-btn" @click="addView">手动+1浏览</button>
-          <button class="primary-btn" @click="rateDiary(4.0)">评分 4.0</button>
-          <button class="primary-btn" @click="rateDiary(5.0)">评分 5.0</button>
-          <button class="primary-btn" @click="generateAnimation">
-            {{ animationLoading ? "生成中..." : "生成AIGC动画" }}
-          </button>
-          <button
-            class="secondary-btn"
-            @click="playAnimation"
-            :disabled="!animationResult?.shots?.length"
-          >
-            播放预览
-          </button>
-          <button
-            class="secondary-btn"
-            @click="pauseAnimation"
-            :disabled="!animationResult?.shots?.length"
-          >
-            暂停预览
-          </button>
-        </div>
-        <pre v-if="compressionResult">{{ compressionResult }}</pre>
-        <pre v-if="decompressedContent">解压结果:\n{{ decompressedContent }}</pre>
-
-        <section v-if="animationResult" class="aigc-panel">
-          <div class="section-top compact">
-            <h3>AIGC 旅游动画脚本</h3>
-            <span class="toolbar-hint"
-              >{{ animationResult.generation_mode }} · 总时长
-              {{ animationResult.total_duration_seconds }} 秒</span
-            >
-          </div>
-
-          <div v-if="activeShot" class="aigc-preview">
-            <RealImage
-              :src="activeShot.media_url || selected.media_urls?.[0]"
-              :alt="activeShot.caption"
-              :name="selected.destination_name || selected.title"
-              :city="selected.city"
-              :search-hint="selected.destination_name"
-              class="detail-image"
-            />
-            <div class="aigc-overlay">
-              <strong>第 {{ activeShot.index }} 镜</strong>
-              <p>{{ activeShot.caption }}</p>
-              <p class="timeline-meta">
-                {{ activeShot.transition }} · {{ activeShot.duration_seconds }} 秒
-              </p>
-            </div>
-          </div>
-
-          <p><strong>旁白串联：</strong>{{ animationResult.narration_script }}</p>
-          <div class="card-grid compact-grid">
-            <article
-              v-for="shot in animationResult.shots"
-              :key="`shot-${shot.index}`"
-              class="item-card"
-              :class="{ selected: activeShot?.index === shot.index }"
-              @click="activeShotIndex = shot.index - 1"
-            >
-              <h3>镜头 {{ shot.index }}</h3>
-              <p>{{ shot.caption }}</p>
-              <p class="timeline-meta">{{ shot.transition }} · {{ shot.duration_seconds }} 秒</p>
-            </article>
-          </div>
-        </section>
       </div>
+
+      <!-- 操作按钮 -->
+      <div class="flex flex-wrap gap-2">
+        <button class="btn-soft-primary text-sm" @click="compress">压缩正文演示</button>
+        <button class="btn-soft-primary text-sm" @click="decompress" :disabled="!compressionPayload">
+          解压回放
+        </button>
+        <button class="btn-soft-primary text-sm" @click="addView">手动+1浏览</button>
+        <button class="btn-soft-primary text-sm" @click="rateDiary(4.0)">评分 4.0</button>
+        <button class="btn-soft-primary text-sm" @click="rateDiary(5.0)">评分 5.0</button>
+        <button class="btn-soft-primary text-sm" @click="generateAnimation">
+          {{ animationLoading ? "生成中..." : "生成AIGC动画" }}
+        </button>
+        <button
+          class="btn-soft-secondary text-sm"
+          @click="playAnimation"
+          :disabled="!animationResult?.shots?.length"
+        >
+          播放预览
+        </button>
+        <button
+          class="btn-soft-secondary text-sm"
+          @click="pauseAnimation"
+          :disabled="!animationResult?.shots?.length"
+        >
+          暂停预览
+        </button>
+      </div>
+
+      <pre v-if="compressionResult" class="text-xs text-gray-600 bg-gray-50 p-3 rounded-xl overflow-auto">{{ compressionResult }}</pre>
+      <pre v-if="decompressedContent" class="text-xs text-gray-600 bg-gray-50 p-3 rounded-xl overflow-auto">解压结果:\n{{ decompressedContent }}</pre>
+
+      <!-- AIGC 动画 -->
+      <section v-if="animationResult" class="space-y-3">
+        <div class="flex items-center justify-between gap-3">
+          <h3 class="text-base font-bold text-gray-900">AIGC 旅游动画脚本</h3>
+          <span class="text-xs text-gray-400">
+            {{ animationResult.generation_mode }} · 总时长
+            {{ animationResult.total_duration_seconds }} 秒
+          </span>
+        </div>
+
+        <div v-if="activeShot" class="relative rounded-2xl overflow-hidden">
+          <RealImage
+            :src="activeShot.media_url || selected.media_urls?.[0]"
+            :alt="activeShot.caption"
+            :name="selected.destination_name || selected.title"
+            :city="selected.city"
+            :search-hint="selected.destination_name"
+            class="w-full h-48 object-cover"
+          />
+          <div class="absolute inset-x-0 bottom-0 p-4 rounded-b-2xl" style="background:rgba(79,70,229,0.72); backdrop-filter:blur(10px)">
+            <strong class="text-sm font-bold text-white">第 {{ activeShot.index }} 镜</strong>
+            <p class="text-xs text-gray-200 mt-1">{{ activeShot.caption }}</p>
+            <p class="text-xs text-gray-300 mt-0.5">
+              {{ activeShot.transition }} · {{ activeShot.duration_seconds }} 秒
+            </p>
+          </div>
+        </div>
+
+        <p class="text-sm text-gray-600"><strong>旁白串联：</strong>{{ animationResult.narration_script }}</p>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <article
+            v-for="shot in animationResult.shots"
+            :key="`shot-${shot.index}`"
+            class="card-elevated p-3 cursor-pointer"
+            :class="{ 'ring-2 ring-primary-300': activeShot?.index === shot.index }"
+            @click="activeShotIndex = shot.index - 1"
+          >
+            <h4 class="text-sm font-bold text-gray-900">镜头 {{ shot.index }}</h4>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2">{{ shot.caption }}</p>
+            <p class="text-xs text-gray-400 mt-0.5">{{ shot.transition }} · {{ shot.duration_seconds }} 秒</p>
+          </article>
+        </div>
+      </section>
     </section>
-  </section>
+  </div>
 </template>
 
 <script setup lang="ts">
