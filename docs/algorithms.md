@@ -21,7 +21,7 @@
 |---|---|---|
 | `RecommendationService` | Top-K、Quickselect | 目的地推荐、美食推荐和推荐日记排序。 |
 | `SearchService` | Hash、Trie、倒排索引 | 目的地搜索和关键词匹配。 |
-| `RoutePlanningService` | Dijkstra/A*、Held-Karp、2-opt | 单点和多点路线规划。 |
+| `RoutePlanningService` | Dijkstra/A*、Held-Karp、2-opt、单源距离表 | 指定地点、自动漫游、多点闭环和最近设施到达路线。 |
 | `NearbyFacilityService` | 单源最短路 | 附近设施按图距离排序。 |
 | `IndoorNavigationService` | Dijkstra | 楼宇内跨层和无障碍导航。 |
 | `DiaryService` | 倒排索引、Huffman | 日记检索、压缩和解压。 |
@@ -31,7 +31,7 @@
 - 查询不能退化为 `O(n)` 线性扫描；名称、类别、关键字和全文检索应走索引结构。
 - 推荐和美食场景只需要前 10 项时，应使用 Top-K 或 Quickselect，避免全量排序。
 - 地图抽象为有向图，交叉口、景点、建筑物和服务设施可作为顶点。
-- 单目标路线使用最短路径算法；多目标闭环不能只依赖 `n!` 枚举，需要精确或近似优化策略。
+- 指定地点和最近设施到达路线使用最短路径算法；自动漫游和多目标闭环不能只依赖 `n!` 枚举，需要精确或近似优化策略。
 - 场所查询的距离必须是道路图距离，不能使用经纬度直线距离替代。
 - 日记压缩必须是无损压缩，并能验证解压一致性。
 - 验收讲解需要能说明多种算法的性能和效果对比。

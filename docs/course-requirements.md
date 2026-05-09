@@ -35,7 +35,7 @@
 | 单目标路线 | 用户输入目标景点或场所，系统规划当前位置到目标的最优线路。 | `RoutePlanningService.plan_single`；接口为 `/api/routes/single`。 |
 | 多目标路线 | 用户输入多个目标，从当前位置出发，参观完后返回当前位置。 | 小规模使用 Held-Karp，大规模使用 Nearest Neighbor + 2-opt；接口为 `/api/routes/multi`。 |
 | 地图和路径展示 | 导航功能需要图形界面，包括地图展示和输出路径展示。 | `RoutePage.vue`、`RouteMap.vue` 和路线结果面板。 |
-| 路线策略 | 支持最短距离、最短时间、考虑拥挤度、交通工具限制等策略。 | 图边包含 `distance`、`congestion`、速度和 `allowed_modes`；支持 `distance`、`time`、`congestion`、`scenic` 与 `walk`、`bike`、`shuttle`、`mixed`。 |
+| 路线策略 | 支持最短距离、最短时间、考虑拥挤度、交通工具限制等策略。 | 图边包含 `distance`、`congestion`、速度和 `allowed_modes`；支持 `distance`、`time`、`congestion`、`scenic` 与 `walk`、`bike`、`taxi`、`shuttle`、`mixed`。 |
 | 室内导航 | 模拟教学楼和景区建筑内部结构，支持大门到电梯、楼层间电梯、楼层内到房间。 | `IndoorNavigationService` 和 `/api/indoor/route`，支持普通和轮椅模式。 |
 | 场所查询 | 在景区或学校内部，选中地点后查找附近设施，按距离排序；不能按直线距离。 | `NearbyFacilityService` 复用单源最短路，按图距离排序；接口为 `/api/facilities/nearby`。 |
 | 设施类别查询 | 用户可选择类别过滤，也可输入类别名称查找附近服务设施。 | 前端设施页和 `/api/facilities/nearby` 支持类型筛选。 |

@@ -1,9 +1,13 @@
 from __future__ import annotations
 
+import heapq
+
 from app.algorithms.graph import Graph
 from app.algorithms.tsp import held_karp, nearest_neighbor_two_opt
 from app.core.exceptions import BusinessError, NotFoundError
 from app.repositories.data_loader import DatasetRepository
+from app.services.facility_service import NearbyFacilityService
+from app.services.facility_types import normalize_facility_type
 from app.services.graph_builder import GraphBuilder
 
 
@@ -27,6 +31,7 @@ class RoutePlanningService:
         mapping = {
             "walk": "步行",
             "bike": "骑行",
+            "taxi": "打车",
             "shuttle": "摆渡车",
             "mixed": "综合方式",
         }
@@ -210,6 +215,158 @@ class RoutePlanningService:
             alternatives.append(self._format_single(scene_name, alt_path, alt_strategy, transport_mode))
         result["alternatives"] = alternatives[:2]
         return result
+
+    @staticmethod
+    def _wander_score(code: str, distance: float, graph: Graph, facility_lookup: dict[str, dict]) -> float:
+        facility = facility_lookup.get(code)
+        facility_bonus = 0.0
+        if facility is not None:
+            normalized_type = normalize_facility_type(facility.get("facility_type"), facility.get("name", ""))
+            facility_bonus = {
+                "artwork": 52.0,
+                "restaurant": 36.0,
+                "restroom": 26.0,
+                "service": 24.0,
+                "supermarket": 20.0,
+                "sports": 18.0,
+            }.get(normalized_type, 10.0)
+        return graph.node_scores.get(code, 0.0) * 100 + facility_bonus - distance / 45
+
+    @staticmethod
+    def _duration_distance_budget(duration_minutes: int, transport_mode: str) -> float:
+        speed_by_mode = {
+            "walk": 1.1,
+            "bike": 3.5,
+            "taxi": 4.8,
+            "shuttle": 4.8,
+            "mixed": 4.0,
+        }
+        speed = speed_by_mode.get(transport_mode, 1.1)
+        return max(220.0, duration_minutes * 60 * speed * 0.35)
+
+    def _auto_wander_targets(
+        self,
+        scene_name: str,
+        start_code: str,
+        transport_mode: str,
+        duration_minutes: int,
+        limit: int,
+    ) -> list[str]:
+        graph = self.graph_builder.get_scene_graph(scene_name)
+        distances = graph.shortest_distances(start_code, strategy="distance", transport_mode=transport_mode)
+        scene_codes = self.graph_builder.get_scene_codes(scene_name)
+        facility_lookup = {
+            item["code"]: item for item in self.repository.facilities() if item["scene_name"] == scene_name
+        }
+        distance_budget = self._duration_distance_budget(duration_minutes, transport_mode)
+
+        candidates: list[tuple[float, str]] = []
+        for code in scene_codes:
+            if code == start_code:
+                continue
+            distance = distances.get(code, float("inf"))
+            if distance == float("inf") or distance <= 0:
+                continue
+            if distance <= distance_budget:
+                score = self._wander_score(code, distance, graph, facility_lookup)
+                candidates.append((score, code))
+
+        if not candidates:
+            return []
+
+        target_count = min(max(3, min(limit, len(candidates))), len(candidates))
+        return [code for _, code in heapq.nlargest(target_count, candidates)]
+
+    def plan_wander(
+        self,
+        scene_name: str,
+        start_code: str,
+        transport_mode: str,
+        duration_minutes: int = 45,
+        prefer_nearest_start: bool = False,
+        start_latitude: float | None = None,
+        start_longitude: float | None = None,
+        limit: int = 4,
+    ) -> dict:
+        names = self.graph_builder.get_name_map(scene_name)
+        resolved_start_code = self._resolve_start_code(
+            scene_name,
+            start_code,
+            prefer_nearest_start,
+            start_latitude,
+            start_longitude,
+        )
+        targets = self._auto_wander_targets(scene_name, resolved_start_code, transport_mode, duration_minutes, limit)
+        if not targets:
+            raise BusinessError("当前交通方式下没有足够可达点位，请扩大时长或切换交通方式。")
+
+        result = self.plan_multi(
+            scene_name=scene_name,
+            start_code=resolved_start_code,
+            target_codes=targets,
+            strategy="scenic",
+            transport_mode=transport_mode,
+        )
+        if len(result["path_codes"]) <= 1:
+            raise BusinessError("当前点位无法组织成闭环路线，请扩大时长或切换交通方式。")
+
+        result["route_intent"] = "wander"
+        result["duration_minutes"] = duration_minutes
+        result["suggested_stop_codes"] = targets
+        result["suggested_stop_names"] = [names.get(code, code) for code in targets]
+        result["explanation"] = (
+            f"已按{self._transport_label(transport_mode)}和轻松漫游偏好，自动挑选{len(targets)}个附近点位组成闭环。"
+        )
+        return result
+
+    def plan_nearby_facility(
+        self,
+        scene_name: str,
+        start_code: str,
+        facility_type: str,
+        transport_mode: str,
+        radius: float = 1200.0,
+        strategy: str = "time",
+        prefer_nearest_start: bool = False,
+        start_latitude: float | None = None,
+        start_longitude: float | None = None,
+    ) -> dict:
+        names = self.graph_builder.get_name_map(scene_name)
+        resolved_start_code = self._resolve_start_code(
+            scene_name,
+            start_code,
+            prefer_nearest_start,
+            start_latitude,
+            start_longitude,
+        )
+        facility_service = NearbyFacilityService(self.repository, self.graph_builder)
+        facilities = facility_service.nearby(
+            scene_name=scene_name,
+            origin_code=resolved_start_code,
+            category=facility_type,
+            radius=radius,
+            transport_mode=transport_mode,
+            strategy="distance",
+        )
+        if not facilities:
+            raise BusinessError("当前范围内没有找到可达设施，请扩大半径或切换交通方式。")
+
+        facility = facilities[0]
+        route = self.plan_single(
+            scene_name=scene_name,
+            start_code=resolved_start_code,
+            end_code=facility["code"],
+            strategy=strategy,
+            transport_mode=transport_mode,
+        )
+        route["route_intent"] = "nearby_facility"
+        route["facility"] = facility
+        route["search_radius_m"] = radius
+        route["explanation"] = (
+            f"已找到距离{names.get(resolved_start_code, resolved_start_code)}最近的{facility['facility_label']}："
+            f"{facility['name']}，并按{self._transport_label(transport_mode)}生成到达路线。"
+        )
+        return route
 
     def plan_multi(
         self,

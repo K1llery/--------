@@ -38,11 +38,21 @@ class Graph:
 
     @staticmethod
     def _mode_allowed(edge: Edge, transport_mode: str) -> bool:
-        return transport_mode == "mixed" or transport_mode in edge.modes or "mixed" in edge.modes
+        if transport_mode == "mixed":
+            return True
+        if transport_mode == "taxi":
+            return bool({"taxi", "shuttle", "mixed"} & edge.modes)
+        return transport_mode in edge.modes or "mixed" in edge.modes
 
     def _speed_for_mode(self, edge: Edge, transport_mode: str) -> float:
         if transport_mode == "mixed":
             return max(edge.transport_speeds.values(), default=1.0)
+        if transport_mode == "taxi":
+            return (
+                edge.transport_speeds.get("taxi")
+                or edge.transport_speeds.get("shuttle")
+                or max(edge.transport_speeds.values(), default=1.0)
+            )
         return (
             edge.transport_speeds.get(transport_mode)
             or edge.transport_speeds.get("walk")

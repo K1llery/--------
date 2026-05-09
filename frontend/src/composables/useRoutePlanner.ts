@@ -1,13 +1,22 @@
 import { ref } from "vue";
 
 import { api } from "../api/client";
-import type { SingleRouteResult, MultiRouteResult } from "../types/models";
+import type {
+  NearbyFacilityRouteResult,
+  SingleRouteResult,
+  MultiRouteResult,
+  WanderRouteResult,
+} from "../types/models";
 
 export function useRoutePlanner() {
   const singleRoute = ref<SingleRouteResult | null>(null);
   const multiRoute = ref<MultiRouteResult | null>(null);
+  const wanderRoute = ref<WanderRouteResult | null>(null);
+  const facilityRoute = ref<NearbyFacilityRouteResult | null>(null);
   const singleLoading = ref(false);
   const multiLoading = ref(false);
+  const wanderLoading = ref(false);
+  const facilityLoading = ref(false);
   const error = ref("");
   const selectedAlternativeStrategy = ref("");
 
@@ -15,6 +24,8 @@ export function useRoutePlanner() {
     error.value = "";
     singleLoading.value = true;
     multiRoute.value = null;
+    wanderRoute.value = null;
+    facilityRoute.value = null;
     selectedAlternativeStrategy.value = "";
     try {
       const { data } = await api.post<SingleRouteResult>("/routes/single", payload);
@@ -30,6 +41,8 @@ export function useRoutePlanner() {
     error.value = "";
     multiLoading.value = true;
     singleRoute.value = null;
+    wanderRoute.value = null;
+    facilityRoute.value = null;
     selectedAlternativeStrategy.value = "";
     try {
       const { data } = await api.post<MultiRouteResult>("/routes/multi", payload);
@@ -41,9 +54,48 @@ export function useRoutePlanner() {
     }
   };
 
+  const planWander = async (payload: Record<string, unknown>) => {
+    error.value = "";
+    wanderLoading.value = true;
+    singleRoute.value = null;
+    multiRoute.value = null;
+    facilityRoute.value = null;
+    selectedAlternativeStrategy.value = "";
+    try {
+      const { data } = await api.post<WanderRouteResult>("/routes/wander", payload);
+      wanderRoute.value = data;
+    } catch (err: any) {
+      error.value = err?.response?.data?.detail || "漫游路线生成失败，请稍后重试。";
+    } finally {
+      wanderLoading.value = false;
+    }
+  };
+
+  const planNearbyFacility = async (payload: Record<string, unknown>) => {
+    error.value = "";
+    facilityLoading.value = true;
+    singleRoute.value = null;
+    multiRoute.value = null;
+    wanderRoute.value = null;
+    selectedAlternativeStrategy.value = "";
+    try {
+      const { data } = await api.post<NearbyFacilityRouteResult>(
+        "/routes/nearby-facility",
+        payload,
+      );
+      facilityRoute.value = data;
+    } catch (err: any) {
+      error.value = err?.response?.data?.detail || "最近设施路线生成失败，请稍后重试。";
+    } finally {
+      facilityLoading.value = false;
+    }
+  };
+
   const reset = () => {
     singleRoute.value = null;
     multiRoute.value = null;
+    wanderRoute.value = null;
+    facilityRoute.value = null;
     selectedAlternativeStrategy.value = "";
     error.value = "";
   };
@@ -51,12 +103,18 @@ export function useRoutePlanner() {
   return {
     singleRoute,
     multiRoute,
+    wanderRoute,
+    facilityRoute,
     singleLoading,
     multiLoading,
+    wanderLoading,
+    facilityLoading,
     error,
     selectedAlternativeStrategy,
     planSingle,
     planMulti,
+    planWander,
+    planNearbyFacility,
     reset,
   };
 }

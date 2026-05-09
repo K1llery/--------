@@ -38,6 +38,8 @@
 |---|---|---|
 | `POST` | `/api/routes/single` | 规划单点路线。 |
 | `POST` | `/api/routes/multi` | 规划多点闭环路线。 |
+| `POST` | `/api/routes/wander` | 根据起点、交通方式和时长自动生成随便逛逛闭环路线。 |
+| `POST` | `/api/routes/nearby-facility` | 查找最近指定设施并返回到达路线。 |
 | `GET` | `/api/indoor/buildings` | 返回可导航楼宇。 |
 | `POST` | `/api/indoor/route` | 规划室内路线。 |
 | `GET` | `/api/map/scenes` | 返回地图场景列表。 |

@@ -158,6 +158,41 @@ def test_nearby_facility_uses_graph_distances_instead_of_single_route_calls():
     assert "graph_distance" in items[0]
 
 
+def test_nearby_facility_restroom_category_matches_toilets_data():
+    service = NearbyFacilityService(get_json_repository())
+    items = service.nearby("BUPT_Main_Campus", "BUPT_LIB", category="restroom", transport_mode="walk")
+
+    assert items
+    assert items[0]["facility_type"] == "toilets"
+    assert items[0]["normalized_type"] == "restroom"
+
+
+def test_taxi_mode_uses_vehicle_speed_on_mixed_roads():
+    service = RoutePlanningService(get_json_repository())
+
+    walk = service.plan_single("BUPT_Main_Campus", "BUPT_GATE", "BUPT_LIB", "time", "walk")
+    taxi = service.plan_single("BUPT_Main_Campus", "BUPT_GATE", "BUPT_LIB", "time", "taxi")
+
+    assert taxi["transport_mode_label"] == "打车"
+    assert taxi["estimated_minutes"] < walk["estimated_minutes"]
+
+
+def test_wander_route_returns_closed_loop_with_auto_stops():
+    service = RoutePlanningService(get_json_repository())
+    result = service.plan_wander(
+        scene_name="BUPT_Main_Campus",
+        start_code="BUPT_GATE",
+        transport_mode="walk",
+        duration_minutes=35,
+    )
+
+    assert result["route_intent"] == "wander"
+    assert result["path_codes"][0] == "BUPT_GATE"
+    assert result["path_codes"][-1] == "BUPT_GATE"
+    assert len(result["ordered_stop_codes"]) >= 3
+    assert result["segments"]
+
+
 def test_plan_multi_empty_targets_returns_origin_only():
     service = RoutePlanningService(get_json_repository())
     result = service.plan_multi("BUPT_Main_Campus", "BUPT_GATE", [], "distance", "walk")

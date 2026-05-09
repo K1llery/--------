@@ -26,6 +26,13 @@ class GraphBuilder:
             return 0.55
         return 0.15
 
+    @staticmethod
+    def _edge_modes(raw_modes: list[str]) -> set[str]:
+        modes = set(raw_modes)
+        if modes & {"mixed", "shuttle", "taxi"}:
+            modes.add("taxi")
+        return modes
+
     def get_scene_graph(self, scene_name: str) -> Graph:
         """获取或构建指定场景的图实例。"""
         if scene_name in self._graphs:
@@ -51,6 +58,7 @@ class GraphBuilder:
         for edge in self.repository.edges():
             if edge["scene_name"] != scene_name:
                 continue
+            taxi_speed = edge.get("taxi_speed", edge.get("shuttle_speed", 4.8))
             graph.add_edge(
                 edge["source_code"],
                 edge["target_code"],
@@ -60,11 +68,15 @@ class GraphBuilder:
                     "walk": edge.get("walk_speed", 1.1),
                     "bike": edge.get("bike_speed", 3.5),
                     "shuttle": edge.get("shuttle_speed", 4.8),
+                    "taxi": taxi_speed,
                     "mixed": max(
-                        edge.get("walk_speed", 1.1), edge.get("bike_speed", 3.5), edge.get("shuttle_speed", 4.8)
+                        edge.get("walk_speed", 1.1),
+                        edge.get("bike_speed", 3.5),
+                        edge.get("shuttle_speed", 4.8),
+                        taxi_speed,
                     ),
                 },
-                set(edge.get("allowed_modes", ["walk"])),
+                self._edge_modes(edge.get("allowed_modes", ["walk"])),
             )
         self._graphs[scene_name] = graph
         logger.debug("Built graph for scene %s: %d nodes", scene_name, len(graph.coords))

@@ -96,6 +96,9 @@ export interface SingleRouteResult {
   resolved_start_code: string;
   resolved_start_name: string;
   alternatives: SingleRouteResult[];
+  route_intent?: string;
+  facility?: Facility;
+  search_radius_m?: number;
 }
 
 /** 多点路线结果 */
@@ -116,6 +119,25 @@ export interface MultiRouteResult {
   segments: RouteSegment[];
   resolved_start_code: string;
   resolved_start_name: string;
+  route_intent?: string;
+  duration_minutes?: number;
+  suggested_stop_codes?: string[];
+  suggested_stop_names?: string[];
+}
+
+/** 自动漫游路线结果 */
+export interface WanderRouteResult extends MultiRouteResult {
+  route_intent: "wander";
+  duration_minutes: number;
+  suggested_stop_codes: string[];
+  suggested_stop_names: string[];
+}
+
+/** 最近设施路线结果 */
+export interface NearbyFacilityRouteResult extends SingleRouteResult {
+  route_intent: "nearby_facility";
+  facility: Facility;
+  search_radius_m: number;
 }
 
 /** 室内建筑 */
@@ -194,7 +216,10 @@ export interface Facility {
   name: string;
   scene_name: string;
   facility_type: string;
+  normalized_type?: string;
+  facility_label?: string;
   latitude: number;
   longitude: number;
   graph_distance?: number;
+  transport_mode?: string;
 }

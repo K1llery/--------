@@ -122,6 +122,46 @@ def test_nearby_facilities_endpoint_returns_graph_distance(client):
     assert "graph_distance" in data[0]
 
 
+def test_nearby_facility_route_endpoint_returns_route_to_restroom(client):
+    response = client.post(
+        "/api/routes/nearby-facility",
+        json={
+            "scene_name": "BUPT_Main_Campus",
+            "start_code": "BUPT_LIB",
+            "facility_type": "restroom",
+            "transport_mode": "taxi",
+            "radius": 1500,
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["route_intent"] == "nearby_facility"
+    assert payload["facility"]["normalized_type"] == "restroom"
+    assert payload["path_codes"][0] == payload["resolved_start_code"]
+    assert payload["path_codes"][-1] == payload["facility"]["code"]
+    assert payload["segments"]
+
+
+def test_wander_route_endpoint_returns_auto_loop(client):
+    response = client.post(
+        "/api/routes/wander",
+        json={
+            "scene_name": "BUPT_Main_Campus",
+            "start_code": "BUPT_GATE",
+            "transport_mode": "walk",
+            "duration_minutes": 35,
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["route_intent"] == "wander"
+    assert payload["path_codes"][0] == "BUPT_GATE"
+    assert payload["path_codes"][-1] == "BUPT_GATE"
+    assert len(payload["ordered_stop_codes"]) >= 3
+
+
 def test_foods_endpoint_returns_structured_items(client):
     response = client.get("/api/foods")
     assert response.status_code == 200

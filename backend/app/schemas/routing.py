@@ -27,6 +27,28 @@ class MultiRouteRequest(BaseModel):
     start_longitude: float | None = None
 
 
+class WanderRouteRequest(BaseModel):
+    scene_name: str
+    start_code: str
+    transport_mode: str = "walk"
+    duration_minutes: int = Field(default=45, ge=10, le=180)
+    prefer_nearest_start: bool = False
+    start_latitude: float | None = None
+    start_longitude: float | None = None
+
+
+class NearbyFacilityRouteRequest(BaseModel):
+    scene_name: str
+    start_code: str
+    facility_type: str = "restroom"
+    transport_mode: str = "walk"
+    strategy: str = "time"
+    radius: float = Field(default=1200.0, gt=0, le=5000)
+    prefer_nearest_start: bool = False
+    start_latitude: float | None = None
+    start_longitude: float | None = None
+
+
 class RouteResponse(BaseModel):
     path: list[str]
     total_distance: float

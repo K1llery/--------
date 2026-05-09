@@ -65,7 +65,7 @@
 | `backend/app/api/routes/ai.py` | AI 健康检查、日记草稿和生图接口。 |
 | `backend/app/api/routes/auth.py` | 注册、登录、登出、当前用户、演示账号和收藏接口。 |
 | `backend/app/api/routes/destinations.py` | 目的地列表、精选、推荐和搜索接口。 |
-| `backend/app/api/routes/routes.py` | 单点和多点路线规划接口。 |
+| `backend/app/api/routes/routes.py` | 指定地点、自动漫游、多点和最近设施路线接口。 |
 | `backend/app/api/routes/indoor.py` | 楼宇列表和室内路线接口。 |
 | `backend/app/api/routes/map_data.py` | 地图场景列表和场景详情接口。 |
 | `backend/app/api/routes/facilities.py` | 附近设施接口。 |
@@ -84,7 +84,7 @@
 | `backend/app/services/recommendation_service.py` | 目的地、美食和日记推荐逻辑。 |
 | `backend/app/services/search_service.py` | 目的地搜索索引构建和查询。 |
 | `backend/app/services/graph_builder.py` | 从场景和边构建可复用图。 |
-| `backend/app/services/routing_service.py` | 室外单点和多点路线业务。 |
+| `backend/app/services/routing_service.py` | 室外指定地点、自动漫游、多点闭环和最近设施路线业务。 |
 | `backend/app/services/facility_service.py` | 附近设施按图距离排序。 |
 | `backend/app/services/indoor_service.py` | 室内跨层和无障碍路线。 |
 | `backend/app/services/diary_service.py` | 日记检索、发布、互动、压缩和 AIGC 分镜。 |
@@ -127,7 +127,7 @@
 | `frontend/src/pages/HomePage.vue` | 首页和系统概览。 |
 | `frontend/src/pages/DestinationPage.vue` | 目的地列表、筛选和推荐。 |
 | `frontend/src/pages/SearchPage.vue` | 搜索体验和结果展示。 |
-| `frontend/src/pages/RoutePage.vue` | 室外路线、室内导航和地图联动。 |
+| `frontend/src/pages/RoutePage.vue` | 问答式路线规划、地图路径高亮和分段导航展示。 |
 | `frontend/src/pages/FacilityPage.vue` | 附近设施查询。 |
 | `frontend/src/pages/FoodPage.vue` | 美食 POI 展示。 |
 | `frontend/src/pages/DiaryPage.vue` | 日记列表、详情、互动、压缩、AI 草稿和封面。 |
