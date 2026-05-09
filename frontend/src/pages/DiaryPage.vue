@@ -67,8 +67,59 @@
     </section>
 
     <!-- 搜索栏 -->
-    <form class="flex flex-wrap gap-3" @submit.prevent="search">
-      <input v-model="query" class="soft-control flex-1" placeholder="输入关键字搜索日记" />
+    <form class="relative flex flex-wrap gap-3" @submit.prevent="search">
+      <div class="relative flex-1">
+        <input
+          v-model="query"
+          class="w-full soft-control pr-10"
+          placeholder="输入关键字搜索日记"
+          @focus="showDropdown = true"
+          @blur="onInputBlur"
+          @input="showDropdown = true"
+        />
+        <button
+          v-if="query"
+          type="button"
+          class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+          @click="query = ''"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+        <!-- Dropdown -->
+        <div
+          v-if="showDropdown && (historyItems.length || suggestionItems.length)"
+          class="absolute z-20 top-full left-0 right-0 mt-1 bg-white rounded-xl card-elevated shadow-lg overflow-hidden"
+        >
+          <div v-if="historyItems.length" class="px-3 py-2">
+            <p class="text-xs text-gray-400 font-medium mb-1.5">历史记录</p>
+            <div class="flex flex-wrap gap-1.5">
+              <button
+                v-for="item in historyItems"
+                :key="item"
+                class="text-xs px-2.5 py-1 rounded-full bg-gray-100 text-gray-600 hover:bg-primary-50 hover:text-primary-700 transition-colors"
+                @mousedown.prevent="applyHistory(item)"
+              >
+                {{ item }}
+              </button>
+            </div>
+          </div>
+          <div v-if="suggestionItems.length" class="px-3 py-2 border-t border-gray-100">
+            <p class="text-xs text-gray-400 font-medium mb-1.5">关键词提示</p>
+            <div class="flex flex-wrap gap-1.5">
+              <button
+                v-for="item in suggestionItems"
+                :key="item"
+                class="text-xs px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 hover:bg-primary-100 transition-colors"
+                @mousedown.prevent="applySuggestion(item)"
+              >
+                {{ item }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <button class="btn-soft-primary" type="submit">{{ searching ? "搜索中..." : "搜索" }}</button>
     </form>
     <div v-if="error" class="alert-soft-error">{{ error }}</div>
@@ -253,6 +304,40 @@ const aiDrafting = ref(false);
 const aiImageGenerating = ref(false);
 const aiError = ref("");
 const generatedCoverUrl = ref("");
+const showDropdown = ref(false);
+const historyKey = "diary_search_history";
+const history = ref<string[]>(JSON.parse(localStorage.getItem(historyKey) || "[]"));
+const historyItems = computed(() => {
+  if (!query.value.trim()) return history.value.slice(0, 8);
+  const q = query.value.toLowerCase();
+  return history.value.filter((item) => item.toLowerCase().includes(q)).slice(0, 6);
+});
+const suggestionItems = computed(() => {
+  const q = query.value.trim().toLowerCase();
+  if (!q) return [];
+  const titles = diaries.value.map((d) => d.title).filter(Boolean);
+  const destinations = diaries.value.map((d) => d.destination_name).filter(Boolean);
+  const all = [...titles, ...destinations];
+  return [...new Set(all.filter((item) => item.toLowerCase().includes(q)))].slice(0, 6);
+});
+const onInputBlur = () => setTimeout(() => (showDropdown.value = false), 150);
+const applyHistory = (item: string) => {
+  query.value = item;
+  showDropdown.value = false;
+  search();
+};
+const applySuggestion = (item: string) => {
+  query.value = item;
+  showDropdown.value = false;
+  search();
+};
+const saveToHistory = (q: string) => {
+  const exists = history.value.indexOf(q);
+  if (exists !== -1) history.value.splice(exists, 1);
+  history.value.unshift(q);
+  history.value = history.value.slice(0, 10);
+  localStorage.setItem(historyKey, JSON.stringify(history.value));
+};
 interface DiaryAnimationShot {
   index: number;
   caption: string;
@@ -303,7 +388,9 @@ const coverPreview = computed(() => {
 const activeShot = computed(() => animationResult.value?.shots?.[activeShotIndex.value] ?? null);
 
 const search = async () => {
-  await store.searchDiaries(query.value);
+  const q = query.value.trim();
+  if (q) saveToHistory(q);
+  await store.searchDiaries(q);
 };
 
 const compress = async () => {

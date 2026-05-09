@@ -264,7 +264,6 @@ const historyItems = computed(() => {
 });
 const suggestionItems = computed(() => {
   const q = query.value.trim().toLowerCase();
-  console.log("[SearchPage] query=", query.value, "allDestinations count=", allDestinations.value.length, "suggestion filter:", q);
   if (!q) return [];
   return allDestinations.value
     .filter((d) => d.name.toLowerCase().includes(q) || (d.city && d.city.toLowerCase().includes(q)))
