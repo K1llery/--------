@@ -42,13 +42,9 @@
             <form class="space-y-4" @submit.prevent="submit">
               <!-- Display name (register only) -->
               <div v-if="auth.modalMode === 'register'" class="space-y-1.5">
-                <label class="block text-sm font-medium text-gray-700"
-                  >昵称</label
-                >
+                <label class="block text-sm font-medium text-gray-700">昵称</label>
                 <div class="relative">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-                  >
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg
                       class="w-4 h-4 text-gray-400"
                       fill="none"
@@ -72,13 +68,9 @@
               </div>
               <!-- Username -->
               <div class="space-y-1.5">
-                <label class="block text-sm font-medium text-gray-700"
-                  >用户名</label
-                >
+                <label class="block text-sm font-medium text-gray-700">用户名</label>
                 <div class="relative">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-                  >
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg
                       class="w-4 h-4 text-gray-400"
                       fill="none"
@@ -102,13 +94,9 @@
               </div>
               <!-- Password -->
               <div class="space-y-1.5">
-                <label class="block text-sm font-medium text-gray-700"
-                  >密码</label
-                >
+                <label class="block text-sm font-medium text-gray-700">密码</label>
                 <div class="relative">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-                  >
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <svg
                       class="w-4 h-4 text-gray-400"
                       fill="none"
@@ -171,10 +159,7 @@
                 </div>
               </div>
               <!-- Error -->
-              <div
-                v-if="auth.error"
-                class="alert-soft-error flex items-center gap-2"
-              >
+              <div v-if="auth.error" class="alert-soft-error flex items-center gap-2">
                 <svg
                   class="w-4 h-4 flex-shrink-0"
                   fill="none"
@@ -211,19 +196,9 @@
                     stroke="currentColor"
                     stroke-width="4"
                   />
-                  <path
-                    class="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8v8z"
-                  />
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
                 </svg>
-                {{
-                  auth.loading
-                    ? "处理中..."
-                    : auth.modalMode === "login"
-                      ? "登录"
-                      : "创建账号"
-                }}
+                {{ auth.loading ? "处理中..." : auth.modalMode === "login" ? "登录" : "创建账号" }}
               </button>
             </form>
             <!-- Switch mode -->
@@ -250,18 +225,12 @@
                 stroke="currentColor"
                 stroke-width="2"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
           <!-- Footer -->
-          <p class="mt-4 text-center text-xs text-gray-400">
-            数据仅保存在本地服务器，安全可控
-          </p>
+          <p class="mt-4 text-center text-xs text-gray-400">数据仅保存在本地服务器，安全可控</p>
         </div>
       </div>
     </Transition>

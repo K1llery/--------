@@ -1311,9 +1311,7 @@ details.reveal > summary::-webkit-details-marker {
 }
 
 .intent-card.active {
-  background:
-    linear-gradient(135deg, rgba(236, 253, 245, 0.98), rgba(255, 251, 235, 0.9)),
-    #fff;
+  background: linear-gradient(135deg, rgba(236, 253, 245, 0.98), rgba(255, 251, 235, 0.9)), #fff;
 }
 
 .planner-shell {

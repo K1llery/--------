@@ -5,12 +5,7 @@
         <h2>地图导航</h2>
         <p>你想怎么做？</p>
       </div>
-      <button
-        v-if="activeRoute"
-        class="secondary-btn"
-        type="button"
-        @click="handleSaveRoute"
-      >
+      <button v-if="activeRoute" class="secondary-btn" type="button" @click="handleSaveRoute">
         收藏路线
       </button>
     </div>
@@ -338,7 +333,10 @@ const currentSceneMessage = computed(() =>
 const currentLocation = computed(() => locationCaptureRef.value?.currentLocation ?? null);
 
 const activeRoute = computed<SingleRouteResult | MultiRouteResult | null>(() => {
-  if (planner.selectedAlternativeStrategy.value && planner.singleRoute.value?.alternatives?.length) {
+  if (
+    planner.selectedAlternativeStrategy.value &&
+    planner.singleRoute.value?.alternatives?.length
+  ) {
     return (
       planner.singleRoute.value.alternatives.find(
         (item) => item.strategy === planner.selectedAlternativeStrategy.value,
@@ -354,7 +352,9 @@ const displayPathCodes = computed<string[]>(() => activeRoute.value?.path_codes 
 
 const activeNavigationSummary = computed(() => activeRoute.value?.navigation_summary ?? "");
 
-const activeAlternatives = computed<SingleRouteResult[]>(() => planner.singleRoute.value?.alternatives ?? []);
+const activeAlternatives = computed<SingleRouteResult[]>(
+  () => planner.singleRoute.value?.alternatives ?? [],
+);
 
 const activeModeTitle = computed(() => {
   if (routeMode.value === "wander") return "随便逛逛";
@@ -374,10 +374,7 @@ const submitLabel = computed(() => {
 });
 
 const isPlanning = computed(
-  () =>
-    planner.singleLoading.value ||
-    planner.wanderLoading.value ||
-    planner.facilityLoading.value,
+  () => planner.singleLoading.value || planner.wanderLoading.value || planner.facilityLoading.value,
 );
 
 const resultKicker = computed(() => {

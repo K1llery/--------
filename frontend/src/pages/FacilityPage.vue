@@ -14,38 +14,19 @@
         </button>
       </div>
       <div class="flex flex-wrap gap-3 mt-5">
-        <select
-          v-model="sceneName"
-          class="soft-control text-sm text-gray-700"
-          @change="loadScene"
-        >
-          <option
-            v-for="scene in scenes"
-            :key="scene.value"
-            :value="scene.value"
-          >
+        <select v-model="sceneName" class="soft-control text-sm text-gray-700" @change="loadScene">
+          <option v-for="scene in scenes" :key="scene.value" :value="scene.value">
             {{ scene.label }}
           </option>
         </select>
         <select v-model="originCode" class="soft-control text-sm text-gray-700">
-          <option
-            v-for="node in originOptions"
-            :key="node.code"
-            :value="node.code"
-          >
+          <option v-for="node in originOptions" :key="node.code" :value="node.code">
             {{ node.name }}
           </option>
         </select>
-        <select
-          v-model="categoryFilter"
-          class="soft-control text-sm text-gray-700"
-        >
+        <select v-model="categoryFilter" class="soft-control text-sm text-gray-700">
           <option value="">全部设施</option>
-          <option
-            v-for="item in categoryOptions"
-            :key="item.value"
-            :value="item.value"
-          >
+          <option v-for="item in categoryOptions" :key="item.value" :value="item.value">
             {{ item.label }}
           </option>
         </select>
@@ -59,23 +40,17 @@
     </div>
     <!-- Info cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div
-        class="bg-white rounded-2xl border-0 shadow-md shadow-gray-200/50 p-4"
-      >
+      <div class="bg-white rounded-2xl border-0 shadow-md shadow-gray-200/50 p-4">
         <h3 class="text-sm font-semibold text-gray-900">当前场景</h3>
         <p class="text-sm text-gray-600 mt-1">{{ currentSceneLabel }}</p>
         <p class="text-xs text-gray-400 mt-0.5">{{ sceneHint }}</p>
       </div>
-      <div
-        class="bg-white rounded-2xl border-0 shadow-md shadow-gray-200/50 p-4"
-      >
+      <div class="bg-white rounded-2xl border-0 shadow-md shadow-gray-200/50 p-4">
         <h3 class="text-sm font-semibold text-gray-900">已选起点</h3>
         <p class="text-sm text-gray-600 mt-1">
           {{ currentOrigin?.name || "请选择起点" }}
         </p>
-        <p class="text-xs text-gray-400 mt-0.5">
-          {{ facilities.length }} 个结果可查看
-        </p>
+        <p class="text-xs text-gray-400 mt-0.5">{{ facilities.length }} 个结果可查看</p>
       </div>
     </div>
     <!-- Status -->
@@ -108,8 +83,7 @@
         >
           <h3 class="font-semibold text-gray-900 text-sm">{{ item.name }}</h3>
           <p class="text-xs text-gray-500 mt-1">
-            {{ facilityLabel(item) }} · 图距离
-            {{ Number(item.graph_distance).toFixed(0) }}m
+            {{ facilityLabel(item) }} · 图距离 {{ Number(item.graph_distance).toFixed(0) }}m
           </p>
           <p class="text-xs text-gray-400 mt-0.5">{{ currentSceneLabel }}</p>
         </article>
@@ -122,9 +96,7 @@
         <div
           class="relative h-32 rounded-2xl overflow-hidden bg-gradient-to-br from-primary-50 via-white to-accent-50 border-0 shadow-md shadow-gray-200/50"
         >
-          <div
-            class="absolute -top-6 -right-6 w-28 h-28 rounded-full bg-primary-200/30 blur-2xl"
-          />
+          <div class="absolute -top-6 -right-6 w-28 h-28 rounded-full bg-primary-200/30 blur-2xl" />
           <div
             class="absolute -bottom-8 -left-8 w-28 h-28 rounded-full bg-accent-200/30 blur-2xl"
           />
@@ -135,9 +107,7 @@
               <component :is="facilityIcon(selected)" />
             </div>
             <div class="min-w-0">
-              <p
-                class="text-[10px] font-semibold uppercase tracking-wider text-primary-600/80"
-              >
+              <p class="text-[10px] font-semibold uppercase tracking-wider text-primary-600/80">
                 Facility
               </p>
               <p class="text-lg font-bold text-gray-900 leading-tight mt-0.5">
@@ -166,8 +136,7 @@
               class="text-xs px-3 py-1.5 rounded-full bg-primary-50 text-primary-700 font-medium"
               >图距离 {{ Number(selected.graph_distance).toFixed(0) }}m</span
             >
-            <span
-              class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600"
+            <span class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600"
               >起点 {{ currentOrigin?.name }}</span
             >
           </div>
@@ -222,12 +191,10 @@ const inferFacilityType = (item: any) => {
     if (/雕像|雕塑|像/.test(name)) return "artwork";
     return "other";
   }
-  if (raw === "canteen" || raw === "restaurant" || raw === "cafe")
-    return "restaurant";
+  if (raw === "canteen" || raw === "restaurant" || raw === "cafe") return "restaurant";
   if (raw === "market") return "supermarket";
   if (raw === "museum" || raw === "viewpoint") return "artwork";
-  if (raw === "service" || raw === "visitor_center" || raw === "ticket")
-    return "service";
+  if (raw === "service" || raw === "visitor_center" || raw === "ticket") return "service";
   if (raw === "restroom") return "restroom";
   if (raw === "shop" || raw === "rental" || raw === "guide") return "shop";
   if (raw === "sports") return "sports";

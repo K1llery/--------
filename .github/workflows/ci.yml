@@ -43,9 +43,6 @@ jobs:
   backend:
     name: Backend Checks
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: backend
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -60,7 +57,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r backend/requirements.txt
           pip install ruff
 
       - name: Ruff format check
@@ -70,4 +67,6 @@ jobs:
         run: ruff check .
 
       - name: Pytest
-        run: python -m pytest tests/ -x -q
+        run: |
+          cd backend
+          python -m pytest tests/ -x -q

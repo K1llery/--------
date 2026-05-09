@@ -19,25 +19,15 @@
             {{ city }}
           </option>
         </select>
-        <select
-          v-model="cuisineFilter"
-          class="soft-control text-sm text-gray-700"
-        >
+        <select v-model="cuisineFilter" class="soft-control text-sm text-gray-700">
           <option value="全部">全部菜系</option>
           <option v-for="cuisine in cuisines" :key="cuisine" :value="cuisine">
             {{ cuisine }}
           </option>
         </select>
-        <select
-          v-model="destinationFilter"
-          class="soft-control text-sm text-gray-700"
-        >
+        <select v-model="destinationFilter" class="soft-control text-sm text-gray-700">
           <option value="全部">全部关联目的地</option>
-          <option
-            v-for="destination in destinations"
-            :key="destination"
-            :value="destination"
-          >
+          <option v-for="destination in destinations" :key="destination" :value="destination">
             {{ destination }}
           </option>
         </select>
@@ -52,10 +42,7 @@
       </div>
     </div>
     <div v-if="error" class="alert-soft-error">{{ error }}</div>
-    <div
-      v-else-if="loading"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-    >
+    <div v-else-if="loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <SkeletonCard v-for="n in 6" :key="n" />
     </div>
     <EmptyState
@@ -92,9 +79,7 @@
           </div>
           <div class="p-3.5">
             <h3 class="font-semibold text-gray-900 text-sm">{{ item.name }}</h3>
-            <p class="text-xs text-gray-500 mt-1">
-              {{ item.city }} · {{ item.cuisine }}
-            </p>
+            <p class="text-xs text-gray-500 mt-1">{{ item.city }} · {{ item.cuisine }}</p>
             <p class="text-xs text-gray-400 mt-0.5 truncate">
               {{ item.destination_name }}
             </p>
@@ -103,8 +88,7 @@
                 class="text-xs px-2 py-0.5 rounded-full bg-primary-50 text-primary-600 font-medium"
                 >{{ item.rating }}</span
               >
-              <span
-                class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500"
+              <span class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500"
                 >热度 {{ item.heat }}</span
               >
             </div>
@@ -128,9 +112,7 @@
         />
         <div>
           <h3 class="text-lg font-bold text-gray-900">{{ selected.name }}</h3>
-          <p class="text-sm text-gray-500 mt-1">
-            {{ selected.city }} · {{ selected.cuisine }}
-          </p>
+          <p class="text-sm text-gray-500 mt-1">{{ selected.city }} · {{ selected.cuisine }}</p>
           <p class="text-sm text-gray-600 mt-3 leading-relaxed">
             {{ selected.description }}
           </p>
@@ -139,22 +121,16 @@
               class="text-xs px-3 py-1.5 rounded-full bg-primary-50 text-primary-700 font-medium"
               >评分 {{ selected.rating }}</span
             >
-            <span
-              class="text-xs px-3 py-1.5 rounded-full bg-accent-50 text-accent-600 font-medium"
+            <span class="text-xs px-3 py-1.5 rounded-full bg-accent-50 text-accent-600 font-medium"
               >热度 {{ selected.heat }}</span
             >
-            <span
-              class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600"
-              >{{ selected.destination_name }}</span
-            >
+            <span class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600">{{
+              selected.destination_name
+            }}</span>
           </div>
-          <p class="text-xs text-gray-400 mt-3">
-            推荐地点：{{ selected.destination_name }}
-          </p>
+          <p class="text-xs text-gray-400 mt-3">推荐地点：{{ selected.destination_name }}</p>
           <p class="text-xs text-gray-400">
-            图片来源：{{
-              selected.image_source_name || "Wikipedia / OpenStreetMap"
-            }}
+            图片来源：{{ selected.image_source_name || "Wikipedia / OpenStreetMap" }}
           </p>
           <p class="text-xs text-gray-400">
             数据来源：<a
@@ -186,9 +162,7 @@ const cityFilter = ref("全部");
 const cuisineFilter = ref("全部");
 const destinationFilter = ref("全部");
 const sortMode = ref("recommended");
-const cities = computed(() => [
-  ...new Set(foods.value.map((item) => item.city).filter(Boolean)),
-]);
+const cities = computed(() => [...new Set(foods.value.map((item) => item.city).filter(Boolean))]);
 const cuisines = computed(() => [
   ...new Set(foods.value.map((item) => item.cuisine).filter(Boolean)),
 ]);
@@ -197,13 +171,10 @@ const destinations = computed(() => [
 ]);
 const filteredFoods = computed(() => {
   const items = foods.value.filter((item) => {
-    const cityMatch =
-      cityFilter.value === "全部" || item.city === cityFilter.value;
-    const cuisineMatch =
-      cuisineFilter.value === "全部" || item.cuisine === cuisineFilter.value;
+    const cityMatch = cityFilter.value === "全部" || item.city === cityFilter.value;
+    const cuisineMatch = cuisineFilter.value === "全部" || item.cuisine === cuisineFilter.value;
     const destinationMatch =
-      destinationFilter.value === "全部" ||
-      item.destination_name === destinationFilter.value;
+      destinationFilter.value === "全部" || item.destination_name === destinationFilter.value;
     return cityMatch && cuisineMatch && destinationMatch;
   });
   const ranked = [...items];
@@ -221,10 +192,7 @@ watch(filteredFoods, (items) => {
     store.selectFood(null);
     return;
   }
-  if (
-    !selected.value ||
-    !items.some((item) => item.source_id === selected.value?.source_id)
-  ) {
+  if (!selected.value || !items.some((item) => item.source_id === selected.value?.source_id)) {
     store.selectFood(items[0]);
   }
 });

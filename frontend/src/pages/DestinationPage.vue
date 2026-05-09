@@ -20,10 +20,7 @@
             {{ city }}
           </option>
         </select>
-        <select
-          v-model="categoryFilter"
-          class="soft-control text-sm text-gray-700"
-        >
+        <select v-model="categoryFilter" class="soft-control text-sm text-gray-700">
           <option value="全部">全部类别</option>
           <option value="scenic">景点</option>
           <option value="shopping">商场/商圈</option>
@@ -41,10 +38,7 @@
     </div>
     <!-- Status -->
     <div v-if="error" class="alert-soft-error">{{ error }}</div>
-    <div
-      v-else-if="loading"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-    >
+    <div v-else-if="loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <SkeletonCard v-for="n in 6" :key="n" />
     </div>
     <EmptyState
@@ -93,8 +87,7 @@
                 class="text-xs px-2 py-0.5 rounded-full bg-primary-50 text-primary-600 font-medium"
                 >{{ displayMetric(item.rating) }}</span
               >
-              <span
-                class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500"
+              <span class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500"
                 >热度 {{ displayMetric(item.heat) }}</span
               >
             </div>
@@ -131,14 +124,12 @@
               class="text-xs px-3 py-1.5 rounded-full bg-primary-50 text-primary-700 font-medium"
               >评分 {{ displayMetric(selected.rating) }}</span
             >
-            <span
-              class="text-xs px-3 py-1.5 rounded-full bg-accent-50 text-accent-600 font-medium"
+            <span class="text-xs px-3 py-1.5 rounded-full bg-accent-50 text-accent-600 font-medium"
               >热度 {{ displayMetric(selected.heat) }}</span
             >
-            <span
-              class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600"
-              >{{ selected.heat_metric || "平台热度" }}</span
-            >
+            <span class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600">{{
+              selected.heat_metric || "平台热度"
+            }}</span>
           </div>
           <button
             class="mt-4 w-full text-sm"
@@ -150,9 +141,7 @@
             v-ripple
             @click="toggleFavorite(selected.source_id)"
           >
-            {{
-              isFavorite(selected.source_id) ? "已收藏，点击取消" : "收藏目的地"
-            }}
+            {{ isFavorite(selected.source_id) ? "已收藏，点击取消" : "收藏目的地" }}
           </button>
           <p class="text-xs text-gray-400 mt-3">
             数据来源：<a
@@ -164,9 +153,7 @@
             >
           </p>
           <p class="text-xs text-gray-400">
-            图片来源：{{
-              selected.image_source_name || "Wikipedia / OpenStreetMap"
-            }}
+            图片来源：{{ selected.image_source_name || "Wikipedia / OpenStreetMap" }}
           </p>
         </div>
       </div>
@@ -203,10 +190,8 @@ const categoryLabel = (value: string) => {
 };
 const filteredDestinations = computed(() => {
   const items = destinations.value.filter((item) => {
-    const cityMatch =
-      cityFilter.value === "全部" || item.city === cityFilter.value;
-    const categoryMatch =
-      categoryFilter.value === "全部" || item.category === categoryFilter.value;
+    const cityMatch = cityFilter.value === "全部" || item.city === cityFilter.value;
+    const categoryMatch = categoryFilter.value === "全部" || item.category === categoryFilter.value;
     return cityMatch && categoryMatch;
   });
   const ranked = [...items];
@@ -224,17 +209,14 @@ const ensureSelection = () => {
   }
   if (
     !selected.value ||
-    !filteredDestinations.value.some(
-      (item) => item.source_id === selected.value?.source_id,
-    )
+    !filteredDestinations.value.some((item) => item.source_id === selected.value?.source_id)
   ) {
     store.selectDestination(filteredDestinations.value[0]);
   }
 };
 const select = (item: any) => store.selectDestination(item);
 const load = (force = false) => store.loadFeaturedDestinations(force);
-const isFavorite = (sourceId: string) =>
-  auth.user?.favorite_destination_ids?.includes(sourceId);
+const isFavorite = (sourceId: string) => auth.user?.favorite_destination_ids?.includes(sourceId);
 const toggleFavorite = async (sourceId: string) => {
   if (!auth.isLoggedIn) {
     auth.openAuthModal("login");

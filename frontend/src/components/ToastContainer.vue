@@ -1,8 +1,6 @@
 <template>
   <Teleport to="body">
-    <div
-      class="fixed top-5 right-5 z-[9999] flex flex-col gap-2.5 pointer-events-none"
-    >
+    <div class="fixed top-5 right-5 z-[9999] flex flex-col gap-2.5 pointer-events-none">
       <TransitionGroup name="toast-slide">
         <div
           v-for="item in toast.items"

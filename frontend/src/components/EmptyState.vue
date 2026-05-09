@@ -16,15 +16,7 @@
         stroke-dasharray="4 4"
         opacity="0.5"
       />
-      <rect
-        x="35"
-        y="40"
-        width="50"
-        height="36"
-        rx="6"
-        stroke="currentColor"
-        stroke-width="1.5"
-      />
+      <rect x="35" y="40" width="50" height="36" rx="6" stroke="currentColor" stroke-width="1.5" />
       <path
         d="M35 64l12-10 8 6 14-12 16 16"
         stroke="currentColor"
@@ -33,14 +25,7 @@
         stroke-linejoin="round"
         opacity="0.6"
       />
-      <circle
-        cx="52"
-        cy="52"
-        r="4"
-        stroke="currentColor"
-        stroke-width="1.5"
-        opacity="0.6"
-      />
+      <circle cx="52" cy="52" r="4" stroke="currentColor" stroke-width="1.5" opacity="0.6" />
       <path
         d="M54 88h12"
         stroke="currentColor"

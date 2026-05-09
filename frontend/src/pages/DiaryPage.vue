@@ -28,7 +28,12 @@
           placeholder="写下你的游览体验、路线建议或踩坑提醒"
         ></textarea>
         <div class="hero-actions ai-compose-actions">
-          <button class="secondary-btn" type="button" :disabled="aiDrafting" @click="generateDiaryDraft">
+          <button
+            class="secondary-btn"
+            type="button"
+            :disabled="aiDrafting"
+            @click="generateDiaryDraft"
+          >
             {{ aiDrafting ? "正在写..." : "AI帮写日记" }}
           </button>
           <button

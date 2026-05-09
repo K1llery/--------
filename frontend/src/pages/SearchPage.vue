@@ -3,9 +3,7 @@
     <!-- Search bar -->
     <div class="bg-white rounded-3xl card-elevated p-6">
       <h2 class="text-xl font-bold text-gray-900">搜索目的地</h2>
-      <p class="text-sm text-gray-500 mt-1">
-        支持名称搜索，并按城市和类别进一步缩小范围。
-      </p>
+      <p class="text-sm text-gray-500 mt-1">支持名称搜索，并按城市和类别进一步缩小范围。</p>
       <form class="flex flex-wrap gap-3 mt-5" @submit.prevent="search">
         <input
           v-model="query"
@@ -18,10 +16,7 @@
             {{ city }}
           </option>
         </select>
-        <select
-          v-model="categoryFilter"
-          class="soft-control text-sm text-gray-700"
-        >
+        <select v-model="categoryFilter" class="soft-control text-sm text-gray-700">
           <option value="全部">全部类别</option>
           <option value="scenic">景点</option>
           <option value="shopping">商场/商圈</option>
@@ -34,10 +29,7 @@
     </div>
     <!-- Status -->
     <div v-if="error" class="alert-soft-error">{{ error }}</div>
-    <div
-      v-else-if="loading"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-    >
+    <div v-else-if="loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <SkeletonCard v-for="n in 6" :key="n" />
     </div>
     <EmptyState
@@ -52,9 +44,7 @@
         <section v-if="exactResults.length">
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-base font-semibold text-gray-900">精确匹配</h3>
-            <span class="text-xs text-gray-400"
-              >{{ exactResults.length }} 条</span
-            >
+            <span class="text-xs text-gray-400">{{ exactResults.length }} 条</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 stagger-children">
             <article
@@ -92,8 +82,7 @@
                   <span
                     class="text-xs px-2 py-0.5 rounded-full bg-primary-50 text-primary-600 font-medium"
                     >{{ displayMetric(item.rating) }}</span
-                  ><span
-                    class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500"
+                  ><span class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500"
                     >热度 {{ displayMetric(item.heat) }}</span
                   >
                 </div>
@@ -105,9 +94,7 @@
         <section>
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-base font-semibold text-gray-900">相关结果</h3>
-            <span class="text-xs text-gray-400"
-              >{{ fuzzyResults.length }} 条</span
-            >
+            <span class="text-xs text-gray-400">{{ fuzzyResults.length }} 条</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 stagger-children">
             <article
@@ -145,8 +132,7 @@
                   <span
                     class="text-xs px-2 py-0.5 rounded-full bg-primary-50 text-primary-600 font-medium"
                     >{{ displayMetric(item.rating) }}</span
-                  ><span
-                    class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500"
+                  ><span class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500"
                     >热度 {{ displayMetric(item.heat) }}</span
                   >
                 </div>
@@ -187,8 +173,7 @@
               class="text-xs px-3 py-1.5 rounded-full bg-primary-50 text-primary-700 font-medium"
               >评分 {{ displayMetric(selected.rating) }}</span
             >
-            <span
-              class="text-xs px-3 py-1.5 rounded-full bg-accent-50 text-accent-600 font-medium"
+            <span class="text-xs px-3 py-1.5 rounded-full bg-accent-50 text-accent-600 font-medium"
               >热度 {{ displayMetric(selected.heat) }}</span
             >
           </div>
@@ -231,18 +216,13 @@ const categoryLabel = (value: string) => {
 const displayMetric = (value: number | null | undefined) => value ?? "待补充";
 const filtered = (items: any[]) =>
   items.filter((item) => {
-    const cityMatch =
-      cityFilter.value === "全部" || item.city === cityFilter.value;
-    const categoryMatch =
-      categoryFilter.value === "全部" || item.category === categoryFilter.value;
+    const cityMatch = cityFilter.value === "全部" || item.city === cityFilter.value;
+    const categoryMatch = categoryFilter.value === "全部" || item.category === categoryFilter.value;
     return cityMatch && categoryMatch;
   });
 const exactResults = computed(() => filtered(exactRaw.value));
 const fuzzyResults = computed(() => filtered(fuzzyRaw.value));
-const displayResults = computed(() => [
-  ...exactResults.value,
-  ...fuzzyResults.value,
-]);
+const displayResults = computed(() => [...exactResults.value, ...fuzzyResults.value]);
 const uniqueMerge = (...groups: any[][]) => {
   const seen = new Set<string>();
   return groups.flat().filter((item) => {

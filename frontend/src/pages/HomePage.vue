@@ -1,9 +1,7 @@
 <template>
   <div class="space-y-6">
     <!-- Hero -->
-    <section
-      class="relative bg-white rounded-3xl card-elevated overflow-hidden"
-    >
+    <section class="relative bg-white rounded-3xl card-elevated overflow-hidden">
       <!-- Floating blobs -->
       <div class="gradient-blob w-72 h-72 bg-primary-400 -top-20 -left-20" />
       <div
@@ -31,9 +29,7 @@
             </svg>
             City Picks
           </span>
-          <h2
-            class="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight"
-          >
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
             北上广深高校与景区，<br class="hidden sm:block" />一站式安排行程
           </h2>
           <p class="mt-3 text-gray-500 text-base leading-relaxed">
@@ -93,9 +89,7 @@
           </div>
         </div>
         <!-- Hero image -->
-        <div
-          class="relative min-h-[300px] lg:min-h-[400px] bg-gray-100 hero-shimmer"
-        >
+        <div class="relative min-h-[300px] lg:min-h-[400px] bg-gray-100 hero-shimmer">
           <RealImage
             v-if="heroDestination"
             :src="heroDestination.image_url"
@@ -126,18 +120,12 @@
       </div>
     </section>
     <!-- My Favorites -->
-    <section
-      v-if="auth.isLoggedIn"
-      v-reveal
-      class="bg-white rounded-3xl card-elevated p-6"
-    >
+    <section v-if="auth.isLoggedIn" v-reveal class="bg-white rounded-3xl card-elevated p-6">
       <div class="flex items-start gap-3">
         <span class="section-accent h-6 mt-1" />
         <div>
           <h2 class="text-lg font-bold text-gray-900">我的收藏</h2>
-          <p class="text-sm text-gray-500 mt-1">
-            当前账号的收藏信息会保留在本地。
-          </p>
+          <p class="text-sm text-gray-500 mt-1">当前账号的收藏信息会保留在本地。</p>
         </div>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5 stagger-children">
@@ -218,9 +206,7 @@
         <span class="section-accent h-6 mt-1" />
         <div>
           <h2 class="text-lg font-bold text-gray-900">热门城市</h2>
-          <p class="text-sm text-gray-500 mt-1">
-            切换城市后，首页推荐和地图浏览都会联动更新。
-          </p>
+          <p class="text-sm text-gray-500 mt-1">切换城市后，首页推荐和地图浏览都会联动更新。</p>
         </div>
       </div>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-5 stagger-children">
@@ -238,9 +224,7 @@
         >
           <h3 class="font-semibold text-gray-900">{{ city.name }}</h3>
           <p class="text-sm text-gray-500 mt-1">{{ city.tagline }}</p>
-          <p class="text-xs text-primary-600 font-medium mt-2">
-            {{ city.count }} 个精选地点
-          </p>
+          <p class="text-xs text-primary-600 font-medium mt-2">{{ city.count }} 个精选地点</p>
         </button>
       </div>
     </section>
@@ -250,12 +234,8 @@
         <div class="flex items-start gap-3">
           <span class="section-accent h-6 mt-1" />
           <div>
-            <h2 class="text-lg font-bold text-gray-900">
-              {{ selectedCity }}精选预览
-            </h2>
-            <p class="text-sm text-gray-500 mt-1">
-              先看最值得逛的景点、商圈和校园
-            </p>
+            <h2 class="text-lg font-bold text-gray-900">{{ selectedCity }}精选预览</h2>
+            <p class="text-sm text-gray-500 mt-1">先看最值得逛的景点、商圈和校园</p>
           </div>
         </div>
         <RouterLink
@@ -278,10 +258,7 @@
           </svg>
         </RouterLink>
       </div>
-      <div
-        v-if="loading"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5"
-      >
+      <div v-if="loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
         <SkeletonCard v-for="n in 4" :key="n" />
       </div>
       <div v-else-if="error" class="mt-5 alert-soft-error">{{ error }}</div>
@@ -318,8 +295,7 @@
                 class="text-xs px-2 py-0.5 rounded-full bg-primary-50 text-primary-600 font-medium"
                 >评分 {{ item.rating ?? "—" }}</span
               >
-              <span
-                class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600"
+              <span class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600"
                 >热度 {{ item.heat ?? "—" }}</span
               >
             </div>
@@ -361,9 +337,7 @@ const cityCards = computed(() =>
 const featuredPreview = computed(() =>
   featured.value.filter((item) => item.city === selectedCity.value).slice(0, 4),
 );
-const heroDestination = computed(
-  () => featuredPreview.value[0] ?? featured.value[0] ?? null,
-);
+const heroDestination = computed(() => featuredPreview.value[0] ?? featured.value[0] ?? null);
 const categoryLabel = (value: string) => {
   if (value === "shopping") return "商场/商圈";
   if (value === "campus") return "校园";

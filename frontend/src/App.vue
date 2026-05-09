@@ -30,11 +30,7 @@
           :key="item.to"
           :to="item.to"
           class="app-nav-link"
-          :class="[
-            $route.path === item.to
-              ? 'app-nav-link-active'
-              : 'app-nav-link-idle',
-          ]"
+          :class="[$route.path === item.to ? 'app-nav-link-active' : 'app-nav-link-idle']"
         >
           <component :is="item.icon" class="app-nav-icon" />
           {{ item.label }}
@@ -50,8 +46,7 @@
             <div class="app-user-meta">
               <p>{{ auth.user?.display_name }}</p>
               <span>
-                {{ auth.favoriteDestinationCount }} 收藏 ·
-                {{ auth.favoriteRouteCount }} 路线
+                {{ auth.favoriteDestinationCount }} 收藏 · {{ auth.favoriteRouteCount }} 路线
               </span>
             </div>
           </div>
@@ -106,31 +101,19 @@
               stroke-linejoin="round"
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
-            <path
-              v-else
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
+            <path v-else stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
       <!-- Mobile nav dropdown -->
       <Transition name="page-fade-slide">
-        <nav
-          v-if="mobileMenuOpen"
-          class="app-mobile-nav"
-        >
+        <nav v-if="mobileMenuOpen" class="app-mobile-nav">
           <RouterLink
             v-for="item in navItems"
             :key="item.to"
             :to="item.to"
             class="app-mobile-nav-link"
-            :class="[
-              $route.path === item.to
-                ? 'app-nav-link-active'
-                : 'app-nav-link-idle',
-            ]"
+            :class="[$route.path === item.to ? 'app-nav-link-active' : 'app-nav-link-idle']"
             @click="mobileMenuOpen = false"
           >
             <component :is="item.icon" class="app-nav-icon" />
@@ -147,9 +130,7 @@
           <span class="app-topbar-tool">
             <IconBookmark class="app-topbar-icon" />
             收藏
-            <strong>{{
-              auth.favoriteDestinationCount + auth.favoriteRouteCount
-            }}</strong>
+            <strong>{{ auth.favoriteDestinationCount + auth.favoriteRouteCount }}</strong>
           </span>
           <span class="app-topbar-tool">
             <IconBell class="app-topbar-icon" />
@@ -160,21 +141,13 @@
               <IconUser class="app-topbar-icon" />
               {{ auth.user?.display_name }}
             </span>
-            <button
-              class="app-topbar-link"
-              type="button"
-              @click="auth.logout()"
-            >
+            <button class="app-topbar-link" type="button" @click="auth.logout()">
               <IconLogout class="app-topbar-icon" />
               退出
             </button>
           </template>
           <template v-else>
-            <button
-              class="app-topbar-link"
-              type="button"
-              @click="auth.openAuthModal('login')"
-            >
+            <button class="app-topbar-link" type="button" @click="auth.openAuthModal('login')">
               <IconUser class="app-topbar-icon" />
               登录
             </button>

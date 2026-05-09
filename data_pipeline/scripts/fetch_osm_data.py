@@ -94,7 +94,9 @@ def query_overpass(query: str) -> dict:
 
 def save_json(name: str, payload: dict) -> None:
     target = RAW_DIR / name
-    target.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    target.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
     print(f"saved {target}")
 
 
