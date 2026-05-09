@@ -2,6 +2,13 @@
 
 This file provides guidance to agents when working with code in this repository.
 
+## Course Requirements Source
+- Teacher PPT requirements are extracted into `docs/course-requirements.md`. Treat that file as the source of truth when updating product scope, README, tests, acceptance docs, or feature descriptions.
+- The course project is a **personalized tourism system built with agent assistance**. Required areas include tourism recommendation, scenic/campus search, route planning, place/facility lookup, diary exchange, food recommendation, persistence, multi-user behavior, algorithm analysis, and complete documentation.
+- Hard data thresholds from the PPT: at least 200 scenic/campus destinations, at least 20 internal buildings/places, at least 10 facility types and 50 facilities, at least 200 road edges, and at least 10 users.
+- Core algorithms must be self-implemented on project data structures: non-`O(n)` lookup, sorting/Top-K without full sort for top 10, shortest path, multi-stop route planning, graph-distance facility sorting, text search, and lossless compression.
+- Do not claim a PPT requirement is fully covered unless code/data/tests support it. Current known documentation note: `datasets/prod/foods.json` has 8 food POIs, so Top-10 food display may need more data if the final demo requires ten visible items.
+
 ## Commands
 - **Backend test**: `cd backend && python -m pytest tests/ -x -q` (requires venv: `source ../.venv/bin/activate`)
 - **Single test**: `cd backend && python -m pytest tests/test_algorithms.py::test_topk_selector_works -x`
@@ -16,6 +23,7 @@ This file provides guidance to agents when working with code in this repository.
 
 ## Critical Architecture Facts
 - Production data layer uses SQLite via `SQLiteRepository`, with one `collections` table storing JSON payloads per domain collection. JSON files in `datasets/prod/` are seed/test snapshots.
+- Current seed scale: `destinations=3701`, `buildings=40`, `facilities=52`, `facility_types=15`, `edges=548`, `users=14`.
 - `DatasetRepository` remains for tests and no-database demos; `SQLiteRepository` is the default runtime repository. Services are cached per-repository via `deps.py` helpers.
 - `GraphBuilder` is extracted as a standalone service — `RoutePlanningService` and `NearbyFacilityService` both depend on it (no longer tight-coupled).
 - Auth uses SHA-256 with salt stored in JSON, demo accounts fallback to password `demo123`.

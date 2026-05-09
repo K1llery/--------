@@ -1,6 +1,6 @@
 # Schema
 
-生产默认使用 SQLite。`SQLiteRepository` 只维护一张 `collections` 表，每个业务集合以 JSON 数组保存，降低课程部署中的迁移复杂度。`DatasetRepository` 仍用于测试和无数据库演示。
+生产默认使用 SQLite。`SQLiteRepository` 只维护一张 `collections` 表，每个业务集合以 JSON 数组保存，降低课程部署中的迁移复杂度。`DatasetRepository` 仍用于测试和无数据库演示。课程数据规模要求见 `course-requirements.md`。
 
 ## SQLite 表
 
@@ -28,6 +28,19 @@
 | `diary_ratings.json` | 用户对日记的评分。 |
 | `data_sources.json` | 数据来源说明。 |
 | `summary.json` | 数据规模摘要，供导入状态和验收检查使用。 |
+
+## 课程数据阈值
+
+| 数据项 | PPT 阈值 | 当前快照 |
+|---|---|---|
+| 景区/校园目的地 | `>= 200` | `destinations.json`: 3701 |
+| 内部建筑物/景点/场所 | `>= 20` | `buildings.json`: 40 |
+| 服务设施类型 | `>= 10` | `facilities.json` 的 `facility_type`: 15 |
+| 服务设施数量 | `>= 50` | `facilities.json`: 52 |
+| 道路边数 | `>= 200` | `edges.json`: 548 |
+| 系统用户数 | `>= 10` | `users.json`: 14 |
+
+美食推荐没有明确数量阈值，但 PPT 要求演示前 10 美食的部分排序思路。当前 `foods.json` 为 8 条，若最终课堂验收要求展示 10 条结果，应先扩充该快照。
 
 ## 数据边界
 

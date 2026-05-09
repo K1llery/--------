@@ -193,6 +193,7 @@
 
 | 文件 | 职责 |
 |---|---|
+| `docs/course-requirements.md` | 从老师 PPT 提取课程数据、功能、算法、智能体和交付要求。 |
 | `docs/prd.md` | 产品目标、用户和功能边界。 |
 | `docs/architecture.md` | 系统分层、运行路径和文件职责。 |
 | `docs/api.md` | 当前生产 API 清单。 |
