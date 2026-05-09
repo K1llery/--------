@@ -1,88 +1,103 @@
 <template>
-  <section class="panel-card route-page route-command">
-    <div class="section-top">
+  <div class="bg-white rounded-3xl card-elevated p-6 space-y-5">
+    <!-- 页面标题 -->
+    <div class="flex items-start justify-between gap-4 flex-wrap">
       <div>
-        <h2>地图导航</h2>
-        <p>你想怎么做？</p>
+        <h2 class="text-xl font-bold text-gray-900">地图导航</h2>
+        <p class="text-sm text-gray-500 mt-1">你想怎么做？</p>
       </div>
-      <button v-if="activeRoute" class="secondary-btn" type="button" @click="handleSaveRoute">
+<button
+        v-if="activeRoute"
+        class="btn-soft-secondary text-sm"
+        type="button"
+        @click="handleSaveRoute"
+      >
         收藏路线
       </button>
     </div>
 
-    <div class="filter-bar route-context-bar">
-      <select v-model="selectedCity" class="select-input" @change="handleCityChange">
+    <!-- 城市/场景筛选 -->
+    <div class="flex flex-wrap gap-3 p-4 bg-gray-50 rounded-2xl">
+      <select v-model="selectedCity" class="soft-control text-sm" @change="handleCityChange">
         <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
       </select>
-      <select v-model="selectedSceneName" class="select-input" @change="handleSceneChange">
+      <select v-model="selectedSceneName" class="soft-control text-sm" @change="handleSceneChange">
         <option v-for="scene in visibleScenes" :key="scene.name" :value="scene.name">
           {{ scene.label }}
         </option>
       </select>
     </div>
 
+    <!-- 地图 -->
     <RouteMap :nodes="mapNodes" :path="displayPathCodes" :current-location="currentLocation" />
 
-    <div class="route-status-row">
-      <div class="helper-card">
-        <h3>{{ currentSceneLabel }}</h3>
-        <p>{{ currentSceneMessage }}</p>
+    <!-- 状态卡片 -->
+    <div class="grid grid-cols-2 gap-4">
+      <div class="card-elevated p-4">
+        <h3 class="text-sm font-bold text-gray-900">{{ currentSceneLabel }}</h3>
+        <p class="text-xs text-gray-500 mt-1">{{ currentSceneMessage }}</p>
       </div>
-      <div class="helper-card">
-        <h3>{{ activeNavigationSummary || "等待规划" }}</h3>
-        <p>{{ activeRoute ? resultSubtitle : "选择一个行动方式后开始生成路线。" }}</p>
+      <div class="card-elevated p-4">
+        <h3 class="text-sm font-bold text-gray-900">{{ activeNavigationSummary || "等待规划" }}</h3>
+        <p class="text-xs text-gray-500 mt-1">
+          {{ activeRoute ? resultSubtitle : "选择一个行动方式后开始生成路线。" }}
+        </p>
       </div>
     </div>
 
-    <div v-if="routeError" class="status-card error-card">{{ routeError }}</div>
+    <!-- 错误提示 -->
+    <div v-if="routeError" class="alert-soft-error">{{ routeError }}</div>
 
     <template v-if="supportsRouting">
-      <div class="intent-grid" aria-label="路线规划模式">
+      <!-- 模式选择：随便逛逛 / 去指定地点 / 找最近设施 -->
+      <div class="grid grid-cols-3 gap-4" aria-label="路线规划模式">
         <button
           v-for="item in modeOptions"
           :key="item.key"
           type="button"
-          class="intent-card"
-          :class="{ active: routeMode === item.key }"
+          class="card-elevated p-4 text-left glow-border cursor-pointer"
+          :class="{ 'ring-2 ring-primary-300': routeMode === item.key }"
           @click="selectMode(item.key)"
         >
-          <span>{{ item.label }}</span>
-          <strong>{{ item.title }}</strong>
-          <small>{{ item.caption }}</small>
+          <span class="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-teal-700 bg-teal-50 mb-2">{{ item.label }}</span>
+          <strong class="block text-base font-bold text-gray-900">{{ item.title }}</strong>
+          <small class="text-xs text-gray-500 mt-1 block line-clamp-2">{{ item.caption }}</small>
         </button>
       </div>
 
-      <section v-if="routeMode" class="planner-shell">
-        <div class="planner-panel">
-          <div class="section-top compact">
-            <h3>{{ activeModeTitle }}</h3>
-            <span class="toolbar-hint">{{ activeTransportLabel }}</span>
+      <!-- 规划器：表单 + 结果 -->
+      <section v-if="routeMode" class="grid lg:grid-cols-[1.1fr_0.9fr] gap-4 items-start">
+        <!-- 左侧：表单 -->
+        <div class="card-elevated p-5 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-bold text-gray-900">{{ activeModeTitle }}</h3>
+            <span class="text-xs text-gray-400">{{ activeTransportLabel }}</span>
           </div>
 
           <LocationCapture ref="locationCaptureRef" v-model="useCurrentLocation" />
 
-          <form class="route-flow-form" @submit.prevent="handleGenerateRoute">
-            <label class="planner-field">
-              <span>当前位置</span>
-              <select v-model="startCode" class="select-input" :disabled="useCurrentLocation">
+          <form class="grid grid-cols-2 gap-3" @submit.prevent="handleGenerateRoute">
+            <label class="space-y-1">
+              <span class="field-label">当前位置</span>
+              <select v-model="startCode" class="soft-control text-sm" :disabled="useCurrentLocation">
                 <option v-for="node in placeOptions" :key="node.code" :value="node.code">
                   {{ node.name }}
                 </option>
               </select>
             </label>
 
-            <label v-if="routeMode === 'destination'" class="planner-field">
-              <span>目的地</span>
-              <select v-model="endCode" class="select-input">
+            <label v-if="routeMode === 'destination'" class="space-y-1">
+              <span class="field-label">目的地</span>
+              <select v-model="endCode" class="soft-control text-sm">
                 <option v-for="node in placeOptions" :key="node.code" :value="node.code">
                   {{ node.name }}
                 </option>
               </select>
             </label>
 
-            <label v-if="routeMode === 'facility'" class="planner-field">
-              <span>设施类型</span>
-              <select v-model="facilityType" class="select-input">
+            <label v-if="routeMode === 'facility'" class="space-y-1">
+              <span class="field-label">设施类型</span>
+              <select v-model="facilityType" class="soft-control text-sm">
                 <option
                   v-for="facility in facilityTypeOptions"
                   :key="facility.value"
@@ -93,27 +108,27 @@
               </select>
             </label>
 
-            <label class="planner-field">
-              <span>交通方式</span>
-              <select v-model="transportMode" class="select-input">
+            <label class="space-y-1">
+              <span class="field-label">交通方式</span>
+              <select v-model="transportMode" class="soft-control text-sm">
                 <option v-for="item in transportOptions" :key="item.value" :value="item.value">
                   {{ item.label }}
                 </option>
               </select>
             </label>
 
-            <label v-if="routeMode === 'destination'" class="planner-field">
-              <span>路线策略</span>
-              <select v-model="strategy" class="select-input">
+            <label v-if="routeMode === 'destination'" class="space-y-1">
+              <span class="field-label">路线策略</span>
+              <select v-model="strategy" class="soft-control text-sm">
                 <option v-for="item in strategyOptions" :key="item.value" :value="item.value">
                   {{ item.label }}
                 </option>
               </select>
             </label>
 
-            <label v-if="routeMode === 'wander'" class="planner-field">
-              <span>可用时长</span>
-              <select v-model.number="durationMinutes" class="select-input">
+            <label v-if="routeMode === 'wander'" class="space-y-1">
+              <span class="field-label">可用时长</span>
+              <select v-model.number="durationMinutes" class="soft-control text-sm">
                 <option :value="25">25 分钟</option>
                 <option :value="35">35 分钟</option>
                 <option :value="50">50 分钟</option>
@@ -121,9 +136,9 @@
               </select>
             </label>
 
-            <label v-if="routeMode === 'facility'" class="planner-field">
-              <span>查找半径</span>
-              <select v-model.number="radius" class="select-input">
+            <label v-if="routeMode === 'facility'" class="space-y-1">
+              <span class="field-label">查找半径</span>
+              <select v-model.number="radius" class="soft-control text-sm">
                 <option :value="600">600 米</option>
                 <option :value="1000">1000 米</option>
                 <option :value="1500">1500 米</option>
@@ -131,69 +146,72 @@
               </select>
             </label>
 
-            <button class="primary-btn route-submit" type="submit" :disabled="isPlanning">
+            <button class="btn-soft-primary w-full col-span-2" type="submit" :disabled="isPlanning">
               {{ isPlanning ? "生成中..." : submitLabel }}
             </button>
           </form>
         </div>
 
-        <aside v-if="activeRoute" class="route-focus-card">
-          <span class="result-kicker">{{ resultKicker }}</span>
-          <h3>{{ resultTitle }}</h3>
-          <p>{{ activeRoute.explanation }}</p>
-          <div class="detail-stats">
+        <!-- 右侧：结果 -->
+        <aside v-if="activeRoute" class="card-elevated sticky top-4 p-5 space-y-3">
+          <span class="inline-block px-2 py-0.5 rounded-full text-xs font-extrabold text-amber-700 bg-amber-50">{{ resultKicker }}</span>
+          <h3 class="text-lg font-bold text-gray-900">{{ resultTitle }}</h3>
+          <p class="text-sm text-gray-500">{{ activeRoute.explanation }}</p>
+          <div class="flex flex-wrap gap-2">
             <span class="stat-pill">{{ activeRoute.total_distance_m }} m</span>
             <span class="stat-pill">{{ activeRoute.estimated_minutes }} 分钟</span>
             <span class="stat-pill">{{ activeRoute.transport_mode_label }}</span>
           </div>
-          <p v-if="activeRoute.resolved_start_name" class="detail-note">
+          <p v-if="activeRoute.resolved_start_name" class="text-xs text-gray-400">
             实际起点：{{ activeRoute.resolved_start_name }}
           </p>
-          <p v-if="planner.facilityRoute.value?.facility" class="detail-note">
+          <p v-if="planner.facilityRoute.value?.facility" class="text-xs text-gray-400">
             最近设施：{{ planner.facilityRoute.value.facility.name }} ·
             {{ planner.facilityRoute.value.facility.facility_label }}
           </p>
-          <p v-if="planner.wanderRoute.value?.ordered_stop_names?.length" class="detail-note">
+          <p v-if="planner.wanderRoute.value?.ordered_stop_names?.length" class="text-xs text-gray-400">
             停靠：{{ planner.wanderRoute.value.ordered_stop_names.join(" → ") }}
           </p>
         </aside>
       </section>
 
-      <section v-if="activeAlternatives.length" class="results-section">
-        <div class="section-top compact">
-          <h3>备选路线</h3>
-          <span class="toolbar-hint">点击卡片切换地图高亮</span>
+      <!-- 备选路线 -->
+      <section v-if="activeAlternatives.length" class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-base font-bold text-gray-900">备选路线</h3>
+          <span class="text-xs text-gray-400">点击卡片切换地图高亮</span>
         </div>
-        <div class="card-grid compact-grid">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
           <article
             v-for="item in activeAlternatives"
             :key="item.strategy"
-            class="item-card"
-            :class="{ selected: planner.selectedAlternativeStrategy.value === item.strategy }"
+            class="card-elevated p-4 cursor-pointer glow-border"
+            :class="{ 'ring-2 ring-primary-300': planner.selectedAlternativeStrategy.value === item.strategy }"
             @click="planner.selectedAlternativeStrategy.value = item.strategy"
           >
-            <h3>{{ item.strategy_label }}</h3>
-            <p>{{ item.total_distance_m }} m · {{ item.estimated_minutes }} 分钟</p>
+            <h4 class="text-sm font-bold text-gray-900">{{ item.strategy_label }}</h4>
+            <p class="text-xs text-gray-500 mt-1">{{ item.total_distance_m }} m · {{ item.estimated_minutes }} 分钟</p>
           </article>
         </div>
       </section>
 
-      <section v-if="activeSegments.length" class="results-section">
-        <div class="section-top compact">
-          <h3>分段导航</h3>
-          <span class="toolbar-hint">按顺序执行即可完成整段行程</span>
+      <!-- 分段导航 -->
+      <section v-if="activeSegments.length" class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-base font-bold text-gray-900">分段导航</h3>
+          <span class="text-xs text-gray-400">按顺序执行即可完成整段行程</span>
         </div>
         <ol class="timeline-list">
           <li
             v-for="segment in activeSegments"
             :key="`segment-${segment.index}-${segment.from_code}-${segment.to_code}`"
-            class="timeline-item"
+            class="timeline-item !bg-gray-50"
           >
             <span class="timeline-index">{{ segment.index }}</span>
             <div class="timeline-content">
-              <strong>{{ segment.from_name }} → {{ segment.to_name }}</strong>
-              <p>{{ segment.instruction }}</p>
-              <p class="timeline-meta">
+              <strong class="text-sm font-bold text-gray-900">{{ segment.from_name }} → {{ segment.to_name }}</strong>
+              <p class="text-xs text-gray-500 mt-0.5">{{ segment.instruction }}</p>
+              <p class="text-xs text-gray-400 mt-0.5">
                 {{ segment.distance_m }} 米 · {{ segment.estimated_minutes }} 分钟 · 累计
                 {{ segment.cumulative_distance_m }} 米
               </p>
@@ -203,10 +221,10 @@
       </section>
     </template>
 
-    <div v-else class="status-card">
+    <div v-else class="alert-soft-info">
       {{ selectedCity }}当前支持城市地图浏览与精选地点查看，精细导航即将上线。
     </div>
-  </section>
+  </div>
 </template>
 
 <script setup lang="ts">

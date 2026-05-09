@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf d:/project/--------/frontend/node_modules && rm -rf C:/nodejs/node_cache/_cacache)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(python -c \"import uvicorn; uvicorn.run\\('backend.app.main:app', host='0.0.0.0', port=8000, reload=False\\)\")",
+      "Bash(curl -s http://localhost:8000/api/health)",
+      "Bash(python -m uvicorn app.main:app --host 0.0.0.0 --port 8000)",
+      "Bash(powershell -Command \"Get-NetTCPConnection -LocalPort 8000 | Format-Table -AutoSize\")",
+      "Bash(powershell -Command \"Stop-Process -Id 14960,32888 -Force -ErrorAction SilentlyContinue; Start-Sleep 2; Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | Format-Table -AutoSize\")",
+      "Bash(powershell -Command 'Stop-Process -Id 14960 -Force -Confirm:$false; Start-Sleep 2; Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue')",
+      "Bash(powershell -Command \"Start-Sleep 5; Get-NetTCPConnection -LocalPort 8000 | Format-Table -AutoSize\")",
+      "Bash(pkill -f \"vite\")",
+      "Bash(powershell -Command \"Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | Format-Table -AutoSize\")",
+      "Bash(powershell -Command \"Stop-Process -Id 14960 -Force -ErrorAction SilentlyContinue; Start-Sleep 3; Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | Format-Table -AutoSize\")",
+      "Bash(powershell -Command \"Get-Process -Id 14960 -ErrorAction SilentlyContinue | Select-Object ProcessName,Id,StartTime\")"
+    ],
+    "additionalDirectories": [
+      "C:\\nodejs\\node_cache\\_cacache"
+    ]
+  }
+}

@@ -1,12 +1,12 @@
 <template>
-  <section v-if="buildings.length" class="route-summary route-card indoor-card">
-    <div class="section-top compact">
-      <h3>室内导航模拟</h3>
-      <span class="toolbar-hint">支持大门到电梯、跨层换乘和楼层内房间导航</span>
+  <section v-if="buildings.length" class="card-elevated p-5 space-y-4">
+    <div class="flex items-center justify-between gap-3">
+      <h3 class="text-base font-bold text-gray-900">室内导航模拟</h3>
+      <span class="text-xs text-gray-400">支持大门到电梯、跨层换乘和楼层内房间导航</span>
     </div>
 
-    <form class="search-form" @submit.prevent="handlePlanRoute">
-      <select v-model="indoor.selectedBuildingCode.value" class="select-input">
+    <form class="flex flex-wrap gap-3" @submit.prevent="handlePlanRoute">
+      <select v-model="indoor.selectedBuildingCode.value" class="soft-control flex-1 min-w-36">
         <option
           v-for="building in buildings"
           :key="building.building_code"
@@ -15,33 +15,33 @@
           {{ building.building_name }}
         </option>
       </select>
-      <select v-model="indoor.startNodeCode.value" class="select-input">
+      <select v-model="indoor.startNodeCode.value" class="soft-control flex-1 min-w-36">
         <option v-for="node in nodeOptions" :key="`indoor-start-${node.code}`" :value="node.code">
           {{ node.name }}（{{ node.floor }}层）
         </option>
       </select>
-      <select v-model="indoor.endNodeCode.value" class="select-input">
+      <select v-model="indoor.endNodeCode.value" class="soft-control flex-1 min-w-36">
         <option v-for="node in nodeOptions" :key="`indoor-end-${node.code}`" :value="node.code">
           {{ node.name }}（{{ node.floor }}层）
         </option>
       </select>
-      <select v-model="indoor.strategy.value" class="select-input">
+      <select v-model="indoor.strategy.value" class="soft-control flex-1 min-w-28">
         <option value="time">最快通过</option>
         <option value="distance">最短距离</option>
         <option value="accessible">无障碍优先</option>
       </select>
-      <select v-model="indoor.mobilityMode.value" class="select-input">
+      <select v-model="indoor.mobilityMode.value" class="soft-control flex-1 min-w-28">
         <option value="normal">常规通行</option>
         <option value="wheelchair">轮椅通行</option>
       </select>
-      <button class="primary-btn" type="submit">
+      <button class="btn-soft-primary" type="submit">
         {{ indoor.indoorLoading.value ? "规划中..." : "规划室内路径" }}
       </button>
     </form>
 
-    <div v-if="indoor.indoorRoute.value" class="results-section">
-      <p>{{ indoor.indoorRoute.value.summary }}</p>
-      <div class="detail-stats">
+    <div v-if="indoor.indoorRoute.value" class="space-y-3">
+      <p class="text-sm text-gray-600">{{ indoor.indoorRoute.value.summary }}</p>
+      <div class="flex flex-wrap gap-2">
         <span class="stat-pill">{{ indoor.indoorRoute.value.total_distance_m }} m</span>
         <span class="stat-pill">{{ indoor.indoorRoute.value.estimated_seconds }} 秒</span>
         <span class="stat-pill">{{
@@ -52,17 +52,17 @@
         <li
           v-for="step in indoor.indoorRoute.value.steps"
           :key="`indoor-step-${step.index}`"
-          class="timeline-item"
+          class="timeline-item !bg-gray-50"
         >
           <span class="timeline-index">{{ step.index }}</span>
           <div class="timeline-content">
-            <strong
-              >{{ step.from_name }}（{{ step.from_floor }}层） → {{ step.to_name }}（{{
+            <strong class="text-sm font-bold text-gray-900">
+              {{ step.from_name }}（{{ step.from_floor }}层） → {{ step.to_name }}（{{
                 step.to_floor
-              }}层）</strong
-            >
-            <p>{{ step.instruction }}</p>
-            <p class="timeline-meta">
+              }}层）
+            </strong>
+            <p class="text-xs text-gray-500 mt-0.5">{{ step.instruction }}</p>
+            <p class="text-xs text-gray-400 mt-0.5">
               {{ step.distance_m }} 米 · {{ step.estimated_seconds }} 秒 · {{ step.connector }}
             </p>
           </div>
