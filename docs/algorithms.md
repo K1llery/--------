@@ -1,78 +1,27 @@
 # Algorithms
 
-## 推荐
+本文档只记录算法职责、落点和复杂度。接口调用方式见 `api.md`。
 
-- TopKSelector（小顶堆）
-	- 目标：在推荐场景返回前 k 个结果，避免全量排序
-	- 实现：堆大小固定为 k，分数更高时替换堆顶
-	- 复杂度：$O(n \log k)$，空间 $O(k)$
-	- 说明：同分场景使用序号打破比较歧义，避免 dict 比较异常
+| 能力 | 文件 | 职责 | 复杂度 |
+|---|---|---|---|
+| Top-K 推荐 | `backend/app/algorithms/topk.py` | 用固定大小小顶堆返回前 k 个目的地，避免全量排序。 | `O(n log k)`，空间 `O(k)` |
+| Quickselect 推荐 | `backend/app/algorithms/topk.py` | 部分选择前 k 项，再只排序候选集；评分函数结果缓存一次。 | 平均 `O(n + k log k)` |
+| Hash 精确查询 | `backend/app/algorithms/search.py` | 按名称或 ID 做精确索引查找。 | 构建 `O(n)`，查询均摊 `O(1)` |
+| Trie 前缀查询 | `backend/app/algorithms/search.py` | 支持目的地名称前缀检索。 | 插入 `O(L)`，查询 `O(P + R)` |
+| 倒排索引 | `backend/app/algorithms/search.py` | 支持多关键词联合检索。 | 构建 `O(T)`，查询为倒排集合交集 |
+| Dijkstra/A* | `backend/app/algorithms/graph.py` | 支持 distance/time/congestion/scenic 策略的最短路。 | `O(E log V)` |
+| 单源距离表 | `backend/app/algorithms/graph.py` | 一次计算起点到所有节点距离，供设施排序和多点路线复用。 | `O(E log V)` |
+| Held-Karp | `backend/app/algorithms/tsp.py` | 目标点较少时求精确多点闭环。 | `O(m^2 2^m)`，另有 `m` 次最短路预计算 |
+| Nearest Neighbor + 2-opt | `backend/app/algorithms/tsp.py` | 目标点较多时构造近似闭环并局部优化。 | 典型 `O(i * m^2)`，另有最短路预计算 |
+| Huffman | `backend/app/algorithms/compression.py` | 对日记文本做可逆压缩、解压和压缩率展示。 | 构树约 `O(n log s)`，解码 `O(n)` |
 
-- quickselect_top_k（部分排序）
-	- 目标：快速筛选前 k 项并只排序前 k
-	- 实现：Quickselect 分区后对前 k 项排序
-	- 复杂度：平均 $O(n + k\log k)$，最坏 $O(n^2)$
-	- 说明：评分值一次性缓存，评分函数调用次数压缩为 $O(n)$
+## 服务落点
 
-## 查询
-
-- HashIndex（精确查找）
-	- 复杂度：构建 $O(n)$，查询平均 $O(1)$
-
-- TrieIndex（前缀查找）
-	- 复杂度：插入 $O(L)$，前缀查询 $O(P + R)$
-	- 其中 $L$ 是词长，$P$ 是前缀长度，$R$ 是返回结果规模
-
-- InvertedIndex（多关键字检索）
-	- 复杂度：构建 $O(T)$，查询为关键词倒排集合交集
-	- 其中 $T$ 是分词总量
-
-## 选路
-
-- Graph.shortest_path（Dijkstra）
-	- 支持 distance/time/congestion/scenic 策略
-	- 复杂度：$O(E \log V)$
-
-- Graph.shortest_distances（单源最短路复用）
-	- 目标：一次求出起点到所有节点距离，供设施查询和多点规划复用
-	- 复杂度：$O(E \log V)$
-	- 收益：附近设施查询由“每设施一次最短路”降为“单次最短路 + 线性筛选”
-
-- Held-Karp（小规模精确闭环）
-	- 场景：目标点数量较少（<=8）
-	- 实现：单源距离表 + 状压 DP
-	- 复杂度：
-		- 距离预计算：$O(m\cdot E\log V)$
-		- 动态规划：$O(m^2 2^m)$
-	- 其中 $m$ 为目标点数量
-
-- Nearest Neighbor + 2-opt（大规模近似闭环）
-	- 场景：目标点数量较多（>8）
-	- 实现：先贪心构造可行回路，再用 2-opt 局部改良
-	- 复杂度：
-		- 距离预计算：$O(m\cdot E\log V)$
-		- 邻近贪心：$O(m^2)$
-		- 2-opt：与迭代轮次相关，典型 $O(i\cdot m^2)$
-
-## 压缩
-
-- HuffmanCodec（无损压缩）
-	- 目标：对日记内容进行可逆压缩展示
-	- 复杂度：构树与编码表构建近似 $O(n\log \sigma)$，解码 $O(n)$
-	- 其中 $\sigma$ 是字符种类数
-
-## 室内导航
-
-- IndoorNavigationService（楼宇内最短路）
-	- 目标：支持大门到电梯、楼层切换、楼层内房间导航
-	- 实现：楼宇节点图 + Dijkstra，支持 `distance/time/accessible` 三种策略
-	- 复杂度：$O(E\log V)$
-	- 说明：轮椅模式下禁用楼梯边，确保无障碍路径可达
-
-## AIGC 动画生成
-
-- DiaryAIGCService（图文分镜脚本生成）
-	- 目标：根据日记文字和图片生成可播放的旅游动画分镜脚本
-	- 实现：句子切分 + 关键词提取 + 转场模板编排 + 时长估算
-	- 复杂度：文本处理近似 $O(n)$，其中 $n$ 为文本长度
-	- 输出：镜头序列（caption/transition/duration/visual prompt/narration）与旁白串联稿
+| 服务 | 使用的算法 | 职责 |
+|---|---|---|
+| `RecommendationService` | Top-K、Quickselect | 目的地推荐、美食推荐和推荐日记排序。 |
+| `SearchService` | Hash、Trie、倒排索引 | 目的地搜索和关键词匹配。 |
+| `RoutePlanningService` | Dijkstra/A*、Held-Karp、2-opt | 单点和多点路线规划。 |
+| `NearbyFacilityService` | 单源最短路 | 附近设施按图距离排序。 |
+| `IndoorNavigationService` | Dijkstra | 楼宇内跨层和无障碍导航。 |
+| `DiaryService` | 倒排索引、Huffman | 日记检索、压缩和解压。 |
