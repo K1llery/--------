@@ -46,6 +46,8 @@ def test_single_route_endpoint_returns_path(client):
     assert payload["navigation_summary"]
     assert payload["resolved_start_code"] == "BUPT_GATE"
     assert "alternatives" in payload
+    assert any(node["route_node_type"] == "road" for node in payload["route_nodes"])
+    assert all(code in {node["code"] for node in payload["route_nodes"]} for code in payload["path_codes"])
 
 
 def test_single_route_can_resolve_start_from_current_location(client):

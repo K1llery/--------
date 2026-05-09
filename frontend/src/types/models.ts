@@ -52,6 +52,7 @@ export interface SceneNode {
   name: string;
   latitude: number;
   longitude: number;
+  route_node_type?: string;
 }
 
 /** 场景 */
@@ -82,6 +83,7 @@ export interface RouteSegment {
 export interface SingleRouteResult {
   path_codes: string[];
   path_names: string[];
+  route_nodes: SceneNode[];
   total_distance_m: number;
   estimated_minutes: number;
   strategy: string;
@@ -105,6 +107,7 @@ export interface SingleRouteResult {
 export interface MultiRouteResult {
   path_codes: string[];
   path_names: string[];
+  route_nodes: SceneNode[];
   ordered_stop_codes: string[];
   ordered_stop_names: string[];
   total_distance_m: number;

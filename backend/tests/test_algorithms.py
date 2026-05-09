@@ -177,6 +177,17 @@ def test_taxi_mode_uses_vehicle_speed_on_mixed_roads():
     assert taxi["estimated_minutes"] < walk["estimated_minutes"]
 
 
+def test_single_route_uses_road_nodes_instead_of_poi_transit_chain():
+    service = RoutePlanningService(get_json_repository())
+    result = service.plan_single("BUPT_Main_Campus", "BUPT_GATE", "BUPT_LIB", "time", "walk")
+
+    assert result["path_codes"][0] == "BUPT_GATE"
+    assert result["path_codes"][-1] == "BUPT_LIB"
+    assert all(code.startswith("__road__") for code in result["path_codes"][1:-1])
+    assert result["total_distance_m"] < 1800
+    assert any(node["route_node_type"] == "road" for node in result["route_nodes"])
+
+
 def test_wander_route_returns_closed_loop_with_auto_stops():
     service = RoutePlanningService(get_json_repository())
     result = service.plan_wander(

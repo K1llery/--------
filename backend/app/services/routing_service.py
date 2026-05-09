@@ -98,6 +98,20 @@ class RoutePlanningService:
 
             from_name = names.get(source, source)
             to_name = names.get(target, target)
+            source_type = self.graph_builder.get_route_node_type(scene_name, source)
+            target_type = self.graph_builder.get_route_node_type(scene_name, target)
+            if source_type != "road" and target_type == "road":
+                instruction = f"从{from_name}接入附近道路，约{distance_m}米，预计{minutes}分钟。"
+            elif source_type == "road" and target_type == "road":
+                instruction = (
+                    f"{self._transport_label(transport_mode)}沿道路继续前行，约{distance_m}米，预计{minutes}分钟。{tip}"
+                )
+            elif source_type == "road" and target_type != "road":
+                instruction = f"离开道路抵达{to_name}，约{distance_m}米，预计{minutes}分钟。"
+            else:
+                instruction = (
+                    f"{self._transport_label(transport_mode)}前往{to_name}，约{distance_m}米，预计{minutes}分钟。{tip}"
+                )
 
             segments.append(
                 {
@@ -109,7 +123,7 @@ class RoutePlanningService:
                     "distance_m": distance_m,
                     "estimated_minutes": minutes,
                     "congestion": round(edge.congestion, 2),
-                    "instruction": f"{self._transport_label(transport_mode)}前往{to_name}，约{distance_m}米，预计{minutes}分钟。{tip}",
+                    "instruction": instruction,
                     "cumulative_distance_m": cumulative_distance,
                     "cumulative_minutes": cumulative_minutes,
                 }
@@ -158,6 +172,7 @@ class RoutePlanningService:
             "average_congestion": metrics["average_congestion"],
             "scenic_score": metrics["scenic_score"],
             "segments": segments,
+            "route_nodes": self.graph_builder.route_nodes_for_path(scene_name, path_codes),
         }
 
     def plan_single(
@@ -433,6 +448,7 @@ class RoutePlanningService:
             "explanation": explanation,
             "navigation_summary": self._navigation_summary(strategy, transport_mode, full_path, metrics),
             "segments": segments,
+            "route_nodes": self.graph_builder.route_nodes_for_path(scene_name, full_path),
             "resolved_start_code": resolved_start_code,
             "resolved_start_name": names.get(resolved_start_code, resolved_start_code),
         }

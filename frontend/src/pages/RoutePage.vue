@@ -312,15 +312,21 @@ const placeOptions = computed(() => [
 ]);
 
 const mapNodes = computed(() => {
-  if (supportsRouting.value) return placeOptions.value;
-  return loader.featuredDestinations.value
-    .filter((item) => item.city === selectedCity.value)
-    .map((item) => ({
-      code: item.source_id,
-      name: item.name,
-      latitude: item.latitude,
-      longitude: item.longitude,
-    }));
+  const visibleNodes = supportsRouting.value
+    ? placeOptions.value
+    : loader.featuredDestinations.value
+        .filter((item) => item.city === selectedCity.value)
+        .map((item) => ({
+          code: item.source_id,
+          name: item.name,
+          latitude: item.latitude,
+          longitude: item.longitude,
+        }));
+  const nodeMap = new Map(visibleNodes.map((item) => [item.code, item]));
+  activeRoute.value?.route_nodes?.forEach((node) => {
+    nodeMap.set(node.code, node);
+  });
+  return [...nodeMap.values()];
 });
 
 const currentSceneMessage = computed(() =>

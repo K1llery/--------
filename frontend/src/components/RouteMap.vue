@@ -11,7 +11,13 @@ import "leaflet/dist/leaflet.css";
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 
 const props = defineProps<{
-  nodes: Array<{ code: string; name: string; latitude: number; longitude: number }>;
+  nodes: Array<{
+    code: string;
+    name: string;
+    latitude: number;
+    longitude: number;
+    route_node_type?: string;
+  }>;
   path: string[];
   pathColor?: string;
   currentLocation?: { latitude: number; longitude: number } | null;
@@ -35,6 +41,7 @@ const renderMap = () => {
 
   props.nodes.forEach((node) => {
     const index = pathIndex.get(node.code);
+    if (node.route_node_type === "road") return;
     const isStart = index === 0;
     const isEnd = index === props.path.length - 1 && props.path.length > 1;
     const isOnPath = index !== undefined;
