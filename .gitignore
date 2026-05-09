@@ -45,3 +45,5 @@ backend/.env
 
 # Runtime generated media
 backend/static/media/generated/
+node_modules/
+eslint.config.mjs
