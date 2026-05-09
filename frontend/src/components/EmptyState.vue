@@ -45,12 +45,19 @@
     <p v-if="description" class="text-xs text-gray-400 mt-1.5 max-w-xs">
       {{ description }}
     </p>
+    <p v-if="actionHint" class="text-xs text-primary-500 mt-2 font-medium">
+      {{ actionHint }}
+    </p>
     <slot />
   </div>
 </template>
 <script setup lang="ts">
-withDefaults(defineProps<{ title?: string; description?: string }>(), {
-  title: "暂无数据",
-  description: "",
-});
+withDefaults(
+  defineProps<{ title?: string; description?: string; actionHint?: string }>(),
+  {
+    title: "暂无数据",
+    description: "",
+    actionHint: "",
+  },
+);
 </script>
