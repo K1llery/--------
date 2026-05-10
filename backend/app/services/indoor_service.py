@@ -1,3 +1,9 @@
+"""
+室内导览与路径规划服务模块 (Indoor Service)
+
+提供多楼层的建筑内部导航逻辑解算方案。
+支持在楼梯、电梯、平地等不同跨层材质边之间按照预设速度和等待惩罚时长模拟跨越，计算得出细致入微的内部指引步聚。
+"""
 from __future__ import annotations
 
 import heapq
@@ -9,6 +15,7 @@ from app.repositories.data_loader import DatasetRepository
 
 @dataclass(slots=True)
 class IndoorEdge:
+    """室内单向或者双向可达连接线的属性定义。"""
     source: str
     target: str
     distance: float
@@ -17,15 +24,20 @@ class IndoorEdge:
 
 
 class IndoorNavigationService:
+    """
+    负责计算单一建筑主体内部指定起止点间最优路线的服务层封装。
+    """
     WALK_SPEED = 1.25
     STAIRS_SPEED = 0.9
     ELEVATOR_SPEED = 1.8
 
     def __init__(self, repository: DatasetRepository) -> None:
+        """加载室内图谱并建立初步的数据哈希绑定。"""
         self.repository = repository
         self._buildings = {item["building_code"]: item for item in repository.indoors()}
 
     def list_buildings(self) -> list[dict]:
+        """拉取提取当前所有已经支持室内建图导航的大楼概览信息。"""
         items: list[dict] = []
         for building in self._buildings.values():
             nodes = building.get("nodes", [])
@@ -42,6 +54,9 @@ class IndoorNavigationService:
         return items
 
     def _building_or_raise(self, building_code: str) -> dict:
+        """
+        保证给定的建筑标识存在，否则抛出统一异常终止服务。
+        """
         building = self._buildings.get(building_code)
         if building is None:
             raise NotFoundError("室内建筑不存在，请检查 building_code。")
@@ -49,6 +64,10 @@ class IndoorNavigationService:
 
     @staticmethod
     def _edge_seconds(edge: IndoorEdge) -> float:
+        """
+        模拟在指定材质和斜率路况下消耗掉的时长（单位秒）。
+        考虑了电梯、楼梯以及平地等速度衰减系数，并补上了初始等候惩罚用时。
+        """
         if edge.kind == "stairs":
             speed = IndoorNavigationService.STAIRS_SPEED
         elif edge.kind == "elevator":
@@ -59,6 +78,10 @@ class IndoorNavigationService:
 
     @classmethod
     def _edge_weight(cls, edge: IndoorEdge, strategy: str) -> float:
+        """
+        根据规划策略推导出图查找算法用到的真实边的代价权值。
+        策略可选取普通距离优先(distance)、无障碍优先(accessible)以及最快耗时(time)。
+        """
         if strategy == "distance":
             return edge.distance
         seconds = cls._edge_seconds(edge)
@@ -69,6 +92,10 @@ class IndoorNavigationService:
     def _build_graph(
         self, building: dict, mobility_mode: str
     ) -> tuple[dict[str, list[IndoorEdge]], dict[tuple[str, str], IndoorEdge]]:
+        """
+        为查询的建筑动态解析加载一份具备剔除特性的运行时邻接表。
+        例如轮椅模式(wheelchair)将隐式地切断掉含阶梯(`stairs`)类型的可跨越线条，以此达成避障逻辑。
+        """
         adjacency: dict[str, list[IndoorEdge]] = {}
         edge_lookup: dict[tuple[str, str], IndoorEdge] = {}
 

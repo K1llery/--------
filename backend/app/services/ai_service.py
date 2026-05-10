@@ -1,3 +1,9 @@
+"""
+AI 服务模块 (AI Service)
+
+提供基于大型语言模型（如阿里云大语言模型及生图模型）的业务封装服务。
+主要用于辅助生成旅游日记草稿以及依据用户输入的内容生成配图。
+"""
 from __future__ import annotations
 
 import json
@@ -12,12 +18,22 @@ from app.core.exceptions import BusinessError
 
 
 class ModelClient(Protocol):
+    """
+    大模型客户端协议接口 (Protocol)。
+    定义了底层的生文(create_diary_draft)与生图(create_image_url)必须要实现的方法。
+    """
     def create_diary_draft(self, *, destination_name: str, keywords: list[str], style: str) -> dict: ...
 
     def create_image_url(self, *, prompt: str) -> str: ...
 
 
 class BailianModelClient:
+    """
+    阿里云百炼模型具体实现类。
+    
+    封装 HTTP 请求直接调用百炼提供的大语言及多模态API。
+    负责请求的构建、参数填充、异常捕获到自定义 BusinessError 的转换。
+    """
     def __init__(
         self,
         *,
@@ -59,6 +75,9 @@ class BailianModelClient:
                 return {}
 
     def create_diary_draft(self, *, destination_name: str, keywords: list[str], style: str) -> dict:
+        """
+        基于用户给出的目的名称与关键词等生成匹配当前要求的旅游日记。
+        """
         prompt = (
             "你是旅游日记助手。请只返回 JSON，字段为 title 和 content。"
             f"目的地：{destination_name}。关键词：{'、'.join(keywords) or '城市漫游'}。"
@@ -91,6 +110,9 @@ class BailianModelClient:
         }
 
     def create_image_url(self, *, prompt: str) -> str:
+        """
+        发起大模型图文转化任务，获取一张生成后给定的最终结果图下载地址。
+        """
         payload = {
             "model": self.image_model,
             "input": {
@@ -123,6 +145,10 @@ class BailianModelClient:
 
 
 def download_binary(url: str) -> bytes:
+    """
+    网络辅助图片下载器抽取函数。
+    读取外部生图的URL转换成本地二进制流用于落盘持久化。
+    """
     try:
         response = httpx.get(url, timeout=60.0)
         response.raise_for_status()
@@ -132,6 +158,10 @@ def download_binary(url: str) -> bytes:
 
 
 class AIService:
+    """
+    综合高级AI服务执行调度门面(Facade)。
+    依赖底层大模型抽象操作完成“草稿日记生成”与“封面配图附带落盘”等高阶功能。
+    """
     def __init__(
         self,
         *,
@@ -140,12 +170,18 @@ class AIService:
         generated_media_url_prefix: str,
         image_downloader: Callable[[str], bytes] = download_binary,
     ) -> None:
+        """
+        初始化 AI 调度服务参数如资源盘路径和依赖请求库。
+        """
         self.model_client = model_client
         self.generated_media_dir = generated_media_dir
         self.generated_media_url_prefix = generated_media_url_prefix.rstrip("/")
         self.image_downloader = image_downloader
 
     def draft_diary(self, *, destination_name: str, keywords: list[str], style: str) -> dict:
+        """
+        调用模型实现代理生成游记草稿的正文内容和合适标题。
+        """
         draft = self.model_client.create_diary_draft(
             destination_name=destination_name,
             keywords=keywords,
@@ -157,6 +193,10 @@ class AIService:
         }
 
     def generate_image(self, *, destination_name: str, title: str, content: str) -> dict:
+        """
+        构造图像生成 prompt 并请求模型端生成结果图地址，完成后落地缓存至本地 storage。
+        返回在本地系统的可用公网访问标识(URL)与原始Prompt等属性。
+        """
         prompt = (
             "中文旅游日记封面图，真实摄影质感，适合网页展示。"
             f"目的地：{destination_name}。标题：{title}。内容摘要：{content[:120]}。"

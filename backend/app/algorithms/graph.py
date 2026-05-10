@@ -4,9 +4,14 @@ import heapq
 import math
 from dataclasses import dataclass
 
+"""
+图论相关算法执行模块，提供单源最短路径（Dijkstra、A*）求值模型，可处理距离、通勤时间、特殊拥堵及风景倾向多目标权重模型。
+"""
+
 
 @dataclass(slots=True)
 class Edge:
+    """图中连接节点的边定义类。存储了路距、拥堵程度、出行模式要求等。"""
     target: str
     distance: float
     congestion: float
@@ -15,12 +20,21 @@ class Edge:
 
 
 class Graph:
+    """表示地图路网的图类，封装节点和边，提供最短路等图论基本操作。"""
     def __init__(self) -> None:
         self.adj: dict[str, list[Edge]] = {}
         self.coords: dict[str, tuple[float, float]] = {}
         self.node_scores: dict[str, float] = {}
 
     def add_node(self, code: str, lat: float, lon: float, scenic_score: float = 0.0) -> None:
+        """
+        添加图节点。
+        
+        :param code: 节点编号唯一标识
+        :param lat: 经度
+        :param lon: 纬度
+        :param scenic_score: 风景指数评分
+        """
         self.coords[code] = (lat, lon)
         self.node_scores[code] = scenic_score
         self.adj.setdefault(code, [])
@@ -34,6 +48,9 @@ class Graph:
         transport_speeds: dict[str, float],
         modes: set[str],
     ) -> None:
+        """
+        向路网之中添加单向边。
+        """
         self.adj.setdefault(source, []).append(Edge(target, distance, congestion, transport_speeds, modes))
 
     @staticmethod
@@ -60,6 +77,9 @@ class Graph:
         )
 
     def edge_travel_seconds(self, edge: Edge, transport_mode: str) -> float:
+        """
+        计算具体交通方式下经过对应边所消耗的时间(秒)，受交通拥堵状态影响。
+        """
         speed = max(self._speed_for_mode(edge, transport_mode), 0.1)
         return edge.distance / speed * max(edge.congestion, 0.45)
 
@@ -105,6 +125,15 @@ class Graph:
     def shortest_path(
         self, start: str, end: str, strategy: str = "distance", transport_mode: str = "walk"
     ) -> tuple[list[str], float]:
+        """
+        计算两点之间的最短加权路径。
+        
+        :param start: 开始节点编号
+        :param end: 目标节点编号
+        :param strategy: 规划优先选项（时间/路程/风景等）
+        :param transport_mode: 使用的交通工具方式
+        :return: (行驶路线的节点序列，总消耗权重)
+        """
         dist, parent = self._dijkstra(start, strategy=strategy, transport_mode=transport_mode, end=end)
         if end not in dist:
             return [], float("inf")
@@ -119,6 +148,9 @@ class Graph:
     def shortest_distances(
         self, start: str, strategy: str = "distance", transport_mode: str = "walk"
     ) -> dict[str, float]:
+        """
+        计算给定的起点到所有其他可达节点的最短路径权重。
+        """
         dist, _ = self._dijkstra(start, strategy=strategy, transport_mode=transport_mode)
         return dist
 
@@ -140,6 +172,14 @@ class Graph:
         return best_code
 
     def a_star(self, start: str, end: str, transport_mode: str = "walk") -> tuple[list[str], float]:
+        """
+        使用 A* 算法估计最短路径，启发式函数为坐标欧式距离，专门用来加快特定情况下的检索速度。
+        
+        :param start: 出发点
+        :param end: 目的地
+        :param transport_mode: 交通工具类型
+        :return: (路径途经的所有节点列表，总路径跨度距离)
+        """
         def heuristic(node: str) -> float:
             lat1, lon1 = self.coords.get(node, (0.0, 0.0))
             lat2, lon2 = self.coords.get(end, (0.0, 0.0))
@@ -173,6 +213,13 @@ class Graph:
         return path, cost_so_far[end]
 
     def path_metrics(self, path: list[str], transport_mode: str = "walk") -> dict[str, float]:
+        """
+        针对指定路线，评定出总距离、预估耗时、综合拥挤和整体路书风景等指标集。
+        
+        :param path: 生成的游览/路线计划中的节点列表
+        :param transport_mode: 出行方式
+        :return: 各类评估维度打分和数据
+        """
         total_distance = 0.0
         total_seconds = 0.0
         total_congestion = 0.0
