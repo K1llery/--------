@@ -126,16 +126,35 @@
     <main class="app-main">
       <!-- Top bar -->
       <header class="app-topbar">
-        <div class="app-topbar-tools">
-          <span class="app-topbar-tool">
+        <div ref="topbarToolsRef" class="app-topbar-tools" @click.stop>
+          <button
+            class="app-topbar-link"
+            :class="{ 'app-topbar-link-active': activeTopbarPanel === 'favorites' }"
+            type="button"
+            @click="handleFavoritesClick"
+          >
             <IconBookmark class="app-topbar-icon" />
             收藏
             <strong>{{ auth.favoriteDestinationCount + auth.favoriteRouteCount }}</strong>
-          </span>
-          <span class="app-topbar-tool">
+          </button>
+          <button
+            class="app-topbar-link"
+            :class="{ 'app-topbar-link-active': activeTopbarPanel === 'notifications' }"
+            type="button"
+            @click="toggleTopbarPanel('notifications')"
+          >
             <IconBell class="app-topbar-icon" />
             通知
-          </span>
+          </button>
+          <button
+            class="app-topbar-link"
+            :class="{ 'app-topbar-link-active': activeTopbarPanel === 'messages' }"
+            type="button"
+            @click="handleMessagesClick"
+          >
+            <IconChat class="app-topbar-icon" />
+            消息
+          </button>
           <template v-if="auth.isLoggedIn">
             <span class="app-topbar-tool app-topbar-user">
               <IconUser class="app-topbar-icon" />
@@ -160,6 +179,118 @@
               免费注册
             </button>
           </template>
+          <Transition name="app-popover">
+            <div
+              v-if="activeTopbarPanel"
+              class="app-topbar-popover"
+              :class="{ 'app-topbar-popover-wide': activeTopbarPanel === 'messages' }"
+            >
+              <template v-if="activeTopbarPanel === 'favorites'">
+                <div class="app-popover-header">
+                  <div>
+                    <p>收藏中心</p>
+                    <span>你的目的地与路线快照会汇总在这里。</span>
+                  </div>
+                  <strong>{{ auth.favoriteDestinationCount + auth.favoriteRouteCount }}</strong>
+                </div>
+                <div class="app-favorite-grid">
+                  <div>
+                    <strong>{{ auth.favoriteDestinationCount }}</strong>
+                    <span>目的地收藏</span>
+                  </div>
+                  <div>
+                    <strong>{{ auth.favoriteRouteCount }}</strong>
+                    <span>路线收藏</span>
+                  </div>
+                </div>
+                <p
+                  v-if="auth.favoriteDestinationCount + auth.favoriteRouteCount === 0"
+                  class="app-popover-empty"
+                >
+                  还没有收藏内容。讲解时可以先收藏一个目的地或路线，这里会实时更新。
+                </p>
+                <div class="app-popover-actions">
+                  <RouterLink to="/destinations" @click="closeTopbarPanel">去目的地推荐</RouterLink>
+                  <RouterLink to="/routes" @click="closeTopbarPanel">去地图导航</RouterLink>
+                  <RouterLink to="/" @click="closeTopbarPanel">查看我的收藏</RouterLink>
+                </div>
+              </template>
+
+              <template v-else-if="activeTopbarPanel === 'notifications'">
+                <div class="app-popover-header">
+                  <div>
+                    <p>通知中心</p>
+                    <span>演示路线、收藏和好友提醒的聚合入口。</span>
+                  </div>
+                  <strong>3</strong>
+                </div>
+                <div class="app-notice-list">
+                  <div
+                    v-for="notice in demoNotifications"
+                    :key="notice.title"
+                    class="app-notice-item"
+                  >
+                    <span class="app-notice-dot" />
+                    <div>
+                      <p>{{ notice.title }}</p>
+                      <span>{{ notice.detail }}</span>
+                    </div>
+                  </div>
+                </div>
+              </template>
+
+              <template v-else>
+                <div class="app-popover-header">
+                  <div>
+                    <p>好友消息</p>
+                    <span>前端交互雏形，后续可接真实好友接口。</span>
+                  </div>
+                  <strong>{{ currentFriendMessages.length }}</strong>
+                </div>
+                <div class="app-message-layout">
+                  <div class="app-friend-list">
+                    <button
+                      v-for="friend in demoFriends"
+                      :key="friend.id"
+                      class="app-friend-item"
+                      :class="{ 'app-friend-item-active': friend.id === selectedFriendId }"
+                      type="button"
+                      @click="selectedFriendId = friend.id"
+                    >
+                      <span>{{ friend.avatar }}</span>
+                      <div>
+                        <p>{{ friend.name }}</p>
+                        <small>{{ friend.status }}</small>
+                      </div>
+                    </button>
+                  </div>
+                  <div class="app-chat-panel">
+                    <div class="app-chat-history">
+                      <div
+                        v-for="message in currentFriendMessages"
+                        :key="message.id"
+                        class="app-chat-bubble"
+                        :class="{ 'app-chat-bubble-self': message.from === 'me' }"
+                      >
+                        {{ message.text }}
+                      </div>
+                    </div>
+                    <form class="app-chat-form" @submit.prevent="sendDemoMessage">
+                      <input
+                        v-model="messageDraft"
+                        type="text"
+                        maxlength="80"
+                        placeholder="输入演示消息"
+                      />
+                      <button type="submit" aria-label="发送消息">
+                        <IconSend class="app-topbar-icon" />
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </Transition>
         </div>
       </header>
       <div class="app-content">
@@ -174,12 +305,111 @@
   </div>
 </template>
 <script setup lang="ts">
-import { h, onMounted, ref } from "vue";
+import { computed, h, onBeforeUnmount, onMounted, ref } from "vue";
 import AuthModal from "./components/AuthModal.vue";
 import ToastContainer from "./components/ToastContainer.vue";
 import { useAuthStore } from "./stores/auth";
+import { useToastStore } from "./stores/toast";
 const auth = useAuthStore();
+const toast = useToastStore();
 const mobileMenuOpen = ref(false);
+type TopbarPanel = "favorites" | "notifications" | "messages";
+type DemoMessage = {
+  id: number;
+  from: "friend" | "me";
+  text: string;
+};
+const topbarToolsRef = ref<HTMLElement | null>(null);
+const activeTopbarPanel = ref<TopbarPanel | null>(null);
+const selectedFriendId = ref("chen");
+const messageDraft = ref("");
+const MESSAGE_STORAGE_KEY = "travel_demo_friend_messages";
+const demoFriends = [
+  { id: "chen", name: "陈同学", avatar: "陈", status: "想看故宫路线" },
+  { id: "lin", name: "林同学", avatar: "林", status: "刚收藏了美食点" },
+  { id: "zhou", name: "周同学", avatar: "周", status: "约周末校园漫游" },
+];
+const demoNotifications = [
+  {
+    title: "收藏同步提醒",
+    detail: "目的地和路线收藏会在登录后同步到当前账号。",
+  },
+  {
+    title: "路线讲解准备",
+    detail: "地图导航里的收藏路线可作为中期演示素材。",
+  },
+  {
+    title: "好友消息预览",
+    detail: "消息入口展示社交模块雏形，后续可接真实接口。",
+  },
+];
+const defaultMessages: Record<string, DemoMessage[]> = {
+  chen: [
+    { id: 1, from: "friend", text: "下午讲解时可以先演示收藏，再切到路线。" },
+    { id: 2, from: "me", text: "好，我把右上角入口做成可点击面板。" },
+  ],
+  lin: [{ id: 1, from: "friend", text: "我想看北京周边美食推荐，能一起发路线吗？" }],
+  zhou: [{ id: 1, from: "friend", text: "周末如果去北邮校园，我可以直接跟着路线走。" }],
+};
+const loadDemoMessages = () => {
+  if (typeof window === "undefined") return defaultMessages;
+  try {
+    const cached = window.localStorage.getItem(MESSAGE_STORAGE_KEY);
+    return cached ? { ...defaultMessages, ...JSON.parse(cached) } : defaultMessages;
+  } catch (error) {
+    return defaultMessages;
+  }
+};
+const friendMessages = ref<Record<string, DemoMessage[]>>(loadDemoMessages());
+const currentFriendMessages = computed(() => friendMessages.value[selectedFriendId.value] || []);
+const persistDemoMessages = () => {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(MESSAGE_STORAGE_KEY, JSON.stringify(friendMessages.value));
+};
+const closeTopbarPanel = () => {
+  activeTopbarPanel.value = null;
+};
+const toggleTopbarPanel = (panel: TopbarPanel) => {
+  activeTopbarPanel.value = activeTopbarPanel.value === panel ? null : panel;
+};
+const handleFavoritesClick = () => {
+  if (!auth.isLoggedIn) {
+    closeTopbarPanel();
+    toast.info("登录后查看收藏中心");
+    auth.openAuthModal("login");
+    return;
+  }
+  toggleTopbarPanel("favorites");
+};
+const handleMessagesClick = () => {
+  if (!auth.isLoggedIn) {
+    closeTopbarPanel();
+    toast.info("登录后查看好友消息");
+    auth.openAuthModal("login");
+    return;
+  }
+  toggleTopbarPanel("messages");
+};
+const sendDemoMessage = () => {
+  const text = messageDraft.value.trim();
+  if (!text) return;
+  const nextMessage = {
+    id: Date.now(),
+    from: "me" as const,
+    text,
+  };
+  friendMessages.value = {
+    ...friendMessages.value,
+    [selectedFriendId.value]: [...currentFriendMessages.value, nextMessage],
+  };
+  messageDraft.value = "";
+  persistDemoMessages();
+};
+const handleDocumentClick = (event: MouseEvent) => {
+  if (!topbarToolsRef.value?.contains(event.target as Node)) {
+    closeTopbarPanel();
+  }
+};
 const createTopbarIcon = (pathData: string) =>
   h(
     "svg",
@@ -206,6 +436,10 @@ const IconBell = () =>
   createTopbarIcon(
     "M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0",
   );
+const IconChat = () =>
+  createTopbarIcon(
+    "M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm3.75 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm3.75 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM21 12c0 4.142-4.03 7.5-9 7.5a10.3 10.3 0 0 1-3.293-.526L3 21l1.45-3.626C3.536 15.995 3 14.411 3 12c0-4.142 4.03-7.5 9-7.5s9 3.358 9 7.5Z",
+  );
 const IconUser = () =>
   createTopbarIcon(
     "M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z",
@@ -217,6 +451,10 @@ const IconUserPlus = () =>
 const IconLogout = () =>
   createTopbarIcon(
     "M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9",
+  );
+const IconSend = () =>
+  createTopbarIcon(
+    "M6 12 3.269 3.125A59.768 59.768 0 0 1 21.485 12 59.77 59.77 0 0 1 3.27 20.875L6 12Zm0 0h7.5",
   );
 const IconHome = () =>
   h(
@@ -361,5 +599,9 @@ const navItems = [
 onMounted(() => {
   auth.bindUnauthorizedListener();
   auth.restoreSession();
+  document.addEventListener("click", handleDocumentClick);
+});
+onBeforeUnmount(() => {
+  document.removeEventListener("click", handleDocumentClick);
 });
 </script>
