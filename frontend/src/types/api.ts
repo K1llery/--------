@@ -7,6 +7,7 @@ import type {
   IndoorRouteResult,
   MultiRouteResult,
   Scene,
+  SceneEdge,
   SingleRouteResult,
   User,
 } from "./models";
@@ -84,7 +85,7 @@ export interface DestinationSearchResponse {
 /** 地图场景详情响应 */
 export interface SceneDetailResponse {
   scene: Scene;
-  buildings: any[];
+  buildings: unknown[];
   facilities: Facility[];
-  edges: any[];
+  edges: SceneEdge[];
 }

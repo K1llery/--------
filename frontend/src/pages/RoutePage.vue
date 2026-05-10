@@ -29,7 +29,12 @@
     </div>
 
     <!-- 地图 -->
-    <RouteMap :nodes="mapNodes" :path="displayPathCodes" :current-location="currentLocation" />
+    <RouteMap
+      :nodes="mapNodes"
+      :edges="mapEdges"
+      :path="displayPathCodes"
+      :current-location="currentLocation"
+    />
 
     <!-- 状态卡片 -->
     <div class="grid grid-cols-2 gap-4">
@@ -235,6 +240,10 @@
                 {{ segment.distance_m }} 米 · {{ segment.estimated_minutes }} 分钟 · 累计
                 {{ segment.cumulative_distance_m }} 米
               </p>
+              <p class="text-xs text-gray-400 mt-0.5">
+                {{ segment.selected_mode_label || activeRoute?.transport_mode_label || "" }} · 拥挤系数
+                {{ segment.congestion }} · 可通行 {{ formatAllowedModes(segment.allowed_modes) }}
+              </p>
             </div>
           </li>
         </ol>
@@ -305,12 +314,6 @@ const modeOptions: RouteModeOption[] = [
   },
 ];
 
-const transportOptions = [
-  { value: "walk", label: "步行" },
-  { value: "bike", label: "骑行" },
-  { value: "taxi", label: "打车" },
-];
-
 const strategyOptions = [
   { value: "distance", label: "最短距离" },
   { value: "time", label: "最快到达" },
@@ -339,6 +342,24 @@ const currentSceneLabel = computed(() => currentScene.value?.label ?? "当前场
 
 const supportsRouting = computed(() => currentScene.value?.supports_routing ?? false);
 
+const isCampusScene = computed(
+  () => selectedSceneName.value.toLowerCase().includes("campus") || currentSceneLabel.value.includes("校园"),
+);
+
+const transportOptions = computed(() =>
+  isCampusScene.value
+    ? [
+        { value: "walk", label: "步行" },
+        { value: "bike", label: "骑行" },
+        { value: "mixed", label: "混合出行" },
+      ]
+    : [
+        { value: "walk", label: "步行" },
+        { value: "shuttle", label: "摆渡车" },
+        { value: "mixed", label: "混合出行" },
+      ],
+);
+
 const placeOptions = computed(() => [
   ...(loader.scene.value?.nodes ?? []),
   ...loader.facilities.value,
@@ -361,6 +382,8 @@ const mapNodes = computed(() => {
   });
   return [...nodeMap.values()];
 });
+
+const mapEdges = computed(() => (supportsRouting.value ? loader.edges.value : []));
 
 const currentSceneMessage = computed(() =>
   supportsRouting.value
@@ -402,7 +425,7 @@ const activeModeTitle = computed(() => {
 });
 
 const activeTransportLabel = computed(
-  () => transportOptions.find((item) => item.value === transportMode.value)?.label ?? "步行",
+  () => transportOptions.value.find((item) => item.value === transportMode.value)?.label ?? "步行",
 );
 
 const submitLabel = computed(() => {
@@ -434,6 +457,9 @@ const resultSubtitle = computed(() => {
 });
 
 const syncDefaults = () => {
+  if (!transportOptions.value.some((item) => item.value === transportMode.value)) {
+    transportMode.value = transportOptions.value[0]?.value ?? "walk";
+  }
   const options = placeOptions.value;
   if (!options.length) {
     startCode.value = "";
@@ -529,11 +555,24 @@ const handleSceneChange = async () => {
   if (!supportsRouting.value) {
     loader.scene.value = { nodes: [] };
     loader.facilities.value = [];
+    loader.edges.value = [];
     return;
   }
 
   await loader.loadScene(selectedSceneName.value);
   syncDefaults();
+};
+
+const formatAllowedModes = (modes?: string[]) => {
+  if (!modes?.length) return "未标注";
+  const labels: Record<string, string> = {
+    walk: "步行",
+    bike: "骑行",
+    shuttle: "摆渡车",
+    taxi: "打车",
+    mixed: "混合",
+  };
+  return modes.map((mode) => labels[mode] ?? mode).join("/");
 };
 
 const handleSaveRoute = async () => {

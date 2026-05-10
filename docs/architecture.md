@@ -83,7 +83,7 @@
 | `backend/app/services/auth_service.py` | 用户、会话、演示账号和收藏逻辑。 |
 | `backend/app/services/recommendation_service.py` | 目的地、美食和日记推荐逻辑。 |
 | `backend/app/services/search_service.py` | 目的地搜索索引构建和查询。 |
-| `backend/app/services/graph_builder.py` | 从场景和边构建可复用图。 |
+| `backend/app/services/graph_builder.py` | 从场景、设施和 `edges` 权威道路边构建可复用有向图。 |
 | `backend/app/services/routing_service.py` | 室外指定地点、自动漫游、多点闭环和最近设施路线业务。 |
 | `backend/app/services/facility_service.py` | 附近设施按图距离排序。 |
 | `backend/app/services/indoor_service.py` | 室内跨层和无障碍路线。 |
@@ -207,6 +207,6 @@
 ## 部署裁剪
 
 - `SQLiteRepository` 是默认运行路径；JSON repository 保留给测试和无数据库演示。
-- `GraphBuilder` 是独立服务，路线和设施查询都依赖它。
+- `GraphBuilder` 是独立服务，路线和设施查询都依赖它；室外巡路以 `edges.json` 为权威道路模型。
 - Admin/Agents 调试路由不注册到生产应用。
 - 数据抓取只在本地执行，服务器只运行后端、静态前端和 SQLite。

@@ -17,7 +17,7 @@
 | `destinations.json` | 目的地基础信息、评分、标签和坐标。 |
 | `featured_destinations.json` | 首页精选目的地。 |
 | `scenes.json` | 地图场景元信息。 |
-| `edges.json` | 室外图边和权重。 |
+| `edges.json` | 室外有向道路边、距离、拥挤系数、理想速度和允许交通方式。 |
 | `facilities.json` | 公共设施 POI。 |
 | `foods.json` | 美食 POI。 |
 | `buildings.json` | 可室内导航的楼宇入口。 |
@@ -48,3 +48,7 @@
 - API 测试通过 `tmp_path` 和依赖覆盖隔离数据。
 - `datasets/raw/` 是抓取原始结果；生产部署不依赖该目录。
 - 用户、会话、日记、评分和生成图片属于运行期数据。
+
+## 道路边字段
+
+`edges.json` 每条记录至少包含 `scene_name`、`source_code`、`target_code`、`distance`、`congestion` 和 `allowed_modes`。可选速度字段包括 `walk_speed`、`bike_speed`、`shuttle_speed`、`taxi_speed`；缺失时后端使用明确默认速度。路线接口返回的 `route_edges` 会在这些字段基础上补充 `selected_mode`、`speed_mps` 和 `estimated_minutes`。

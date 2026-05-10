@@ -46,7 +46,10 @@ def test_single_route_endpoint_returns_path(client):
     assert payload["navigation_summary"]
     assert payload["resolved_start_code"] == "BUPT_GATE"
     assert "alternatives" in payload
-    assert any(node["route_node_type"] == "road" for node in payload["route_nodes"])
+    assert payload["route_edges"]
+    assert payload["route_edges"][0]["source_code"] == payload["path_codes"][0]
+    assert payload["route_edges"][-1]["target_code"] == payload["path_codes"][-1]
+    assert all(edge["allowed_modes"] for edge in payload["route_edges"])
     assert all(code in {node["code"] for node in payload["route_nodes"]} for code in payload["path_codes"])
 
 
@@ -143,6 +146,7 @@ def test_nearby_facility_route_endpoint_returns_route_to_restroom(client):
     assert payload["path_codes"][0] == payload["resolved_start_code"]
     assert payload["path_codes"][-1] == payload["facility"]["code"]
     assert payload["segments"]
+    assert payload["route_edges"]
 
 
 def test_wander_route_endpoint_returns_auto_loop(client):
@@ -162,6 +166,7 @@ def test_wander_route_endpoint_returns_auto_loop(client):
     assert payload["path_codes"][0] == "BUPT_GATE"
     assert payload["path_codes"][-1] == "BUPT_GATE"
     assert len(payload["ordered_stop_codes"]) >= 3
+    assert payload["route_edges"]
 
 
 def test_foods_endpoint_returns_structured_items(client):

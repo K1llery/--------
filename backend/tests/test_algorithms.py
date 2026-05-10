@@ -6,9 +6,42 @@ from app.algorithms.topk import TopKSelector, quickselect_top_k
 from app.repositories.data_loader import get_json_repository
 from app.services.diary_service import CompressionService, DiaryAIGCService
 from app.services.facility_service import NearbyFacilityService
+from app.services.graph_builder import GraphBuilder
 from app.services.indoor_service import IndoorNavigationService
 from app.services.routing_service import RoutePlanningService
 from app.services.search_service import SearchService
+
+
+class EdgeBackedRepository:
+    def __init__(self, edges: list[dict], facilities: list[dict] | None = None) -> None:
+        self.edges_called = False
+        self._facilities = facilities or []
+        self._scenes = [
+            {
+                "name": "Demo",
+                "label": "Demo Scene",
+                "city": "北京",
+                "supports_routing": True,
+                "nodes": [
+                    {"code": "A", "name": "A Gate", "latitude": 39.0, "longitude": 116.0},
+                    {"code": "B", "name": "B Road", "latitude": 39.0, "longitude": 116.001},
+                    {"code": "C", "name": "C Road", "latitude": 39.0, "longitude": 116.002},
+                    {"code": "D", "name": "D Hall", "latitude": 39.0, "longitude": 116.003},
+                    {"code": "J", "name": "J Junction", "latitude": 39.001, "longitude": 116.0},
+                ],
+            }
+        ]
+        self._edges = edges
+
+    def scenes(self) -> list[dict]:
+        return self._scenes
+
+    def facilities(self) -> list[dict]:
+        return self._facilities
+
+    def edges(self) -> list[dict]:
+        self.edges_called = True
+        return self._edges
 
 
 def test_topk_selector_works():
@@ -90,6 +123,34 @@ def test_graph_shortest_distances_matches_path_cost():
     assert dist["C"] == cost == 11
 
 
+def test_graph_time_strategy_uses_congestion_as_speed_factor():
+    graph = Graph()
+    for code in ("A", "B", "C", "D"):
+        graph.add_node(code, 0.0, 0.0)
+    graph.add_edge("A", "B", 50, 0.5, {"walk": 1.0}, {"walk"})
+    graph.add_edge("B", "D", 50, 0.5, {"walk": 1.0}, {"walk"})
+    graph.add_edge("A", "C", 70, 1.0, {"walk": 1.0}, {"walk"})
+    graph.add_edge("C", "D", 70, 1.0, {"walk": 1.0}, {"walk"})
+
+    path, _ = graph.shortest_path("A", "D", strategy="time", transport_mode="walk")
+
+    assert path == ["A", "C", "D"]
+
+
+def test_bike_mode_does_not_use_mixed_marker_as_bike_permission():
+    graph = Graph()
+    for code in ("A", "B", "C", "D"):
+        graph.add_node(code, 0.0, 0.0)
+    graph.add_edge("A", "B", 1, 1.0, {"walk": 1.0, "bike": 3.0}, {"walk", "mixed"})
+    graph.add_edge("B", "D", 1, 1.0, {"walk": 1.0, "bike": 3.0}, {"walk", "mixed"})
+    graph.add_edge("A", "C", 5, 1.0, {"walk": 1.0, "bike": 3.0}, {"walk", "bike", "mixed"})
+    graph.add_edge("C", "D", 5, 1.0, {"walk": 1.0, "bike": 3.0}, {"walk", "bike", "mixed"})
+
+    path, _ = graph.shortest_path("A", "D", strategy="distance", transport_mode="bike")
+
+    assert path == ["A", "C", "D"]
+
+
 def test_graph_nearest_node_returns_closest_candidate():
     graph = Graph()
     graph.add_node("A", 39.0, 116.0)
@@ -98,6 +159,38 @@ def test_graph_nearest_node_returns_closest_candidate():
 
     assert graph.nearest_node(39.48, 116.48) == "B"
     assert graph.nearest_node(39.48, 116.48, {"A", "C"}) == "A"
+
+
+def test_graph_builder_uses_repository_edges_as_authoritative_road_model():
+    repository = EdgeBackedRepository(
+        [
+            {
+                "scene_name": "Demo",
+                "source_code": "A",
+                "target_code": "B",
+                "distance": 7,
+                "congestion": 1.0,
+                "walk_speed": 1.0,
+                "allowed_modes": ["walk"],
+            },
+            {
+                "scene_name": "Demo",
+                "source_code": "B",
+                "target_code": "C",
+                "distance": 8,
+                "congestion": 1.0,
+                "walk_speed": 1.0,
+                "allowed_modes": ["walk"],
+            },
+        ]
+    )
+
+    graph = GraphBuilder(repository).get_scene_graph("Demo")
+    path, cost = graph.shortest_path("A", "C", strategy="distance", transport_mode="walk")
+
+    assert repository.edges_called
+    assert path == ["A", "B", "C"]
+    assert cost == 15
 
 
 def test_tsp_algorithms_handle_empty_targets():
@@ -167,6 +260,64 @@ def test_nearby_facility_restroom_category_matches_toilets_data():
     assert items[0]["normalized_type"] == "restroom"
 
 
+def test_nearby_facility_orders_by_edge_graph_distance_not_straight_line():
+    facilities = [
+        {
+            "code": "F_NEAR",
+            "name": "直线更近的厕所",
+            "scene_name": "Demo",
+            "facility_type": "toilets",
+            "latitude": 39.00001,
+            "longitude": 116.00001,
+        },
+        {
+            "code": "F_FAR",
+            "name": "道路更近的厕所",
+            "scene_name": "Demo",
+            "facility_type": "toilets",
+            "latitude": 39.003,
+            "longitude": 116.003,
+        },
+    ]
+    repository = EdgeBackedRepository(
+        [
+            {
+                "scene_name": "Demo",
+                "source_code": "A",
+                "target_code": "F_NEAR",
+                "distance": 100,
+                "congestion": 1.0,
+                "walk_speed": 1.0,
+                "allowed_modes": ["walk"],
+            },
+            {
+                "scene_name": "Demo",
+                "source_code": "A",
+                "target_code": "J",
+                "distance": 1,
+                "congestion": 1.0,
+                "walk_speed": 1.0,
+                "allowed_modes": ["walk"],
+            },
+            {
+                "scene_name": "Demo",
+                "source_code": "J",
+                "target_code": "F_FAR",
+                "distance": 1,
+                "congestion": 1.0,
+                "walk_speed": 1.0,
+                "allowed_modes": ["walk"],
+            },
+        ],
+        facilities,
+    )
+    service = NearbyFacilityService(repository)
+
+    items = service.nearby("Demo", "A", category="restroom", radius=200, transport_mode="walk")
+
+    assert [item["code"] for item in items] == ["F_FAR", "F_NEAR"]
+
+
 def test_taxi_mode_uses_vehicle_speed_on_mixed_roads():
     service = RoutePlanningService(get_json_repository())
 
@@ -183,9 +334,11 @@ def test_single_route_uses_road_nodes_instead_of_poi_transit_chain():
 
     assert result["path_codes"][0] == "BUPT_GATE"
     assert result["path_codes"][-1] == "BUPT_LIB"
-    assert all(code.startswith("__road__") for code in result["path_codes"][1:-1])
-    assert result["total_distance_m"] < 1800
-    assert any(node["route_node_type"] == "road" for node in result["route_nodes"])
+    assert result["route_edges"]
+    assert result["route_edges"][0]["source_code"] == result["path_codes"][0]
+    assert result["route_edges"][-1]["target_code"] == result["path_codes"][-1]
+    assert all(edge["distance_m"] > 0 for edge in result["route_edges"])
+    assert result["total_distance_m"] == round(sum(edge["distance_m"] for edge in result["route_edges"]), 1)
 
 
 def test_wander_route_returns_closed_loop_with_auto_stops():

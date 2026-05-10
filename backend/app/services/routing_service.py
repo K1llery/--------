@@ -87,8 +87,9 @@ class RoutePlanningService:
             cumulative_distance = round(cumulative_distance + distance_m, 1)
             cumulative_minutes = round(cumulative_minutes + minutes, 1)
 
-            if edge.congestion >= 0.95:
-                tip = "该路段人流偏大，建议放慢节奏并预留等待时间。"
+            selected_mode = graph.selected_mode_for_edge(edge, transport_mode)
+            if edge.congestion <= 0.65:
+                tip = "该路段拥挤系数偏低，实际速度会下降，建议预留等待时间。"
             elif distance_m >= 500:
                 tip = "该路段较长，建议中途留意休息点与补水点。"
             elif transport_mode == "walk" and distance_m >= 250:
@@ -123,6 +124,9 @@ class RoutePlanningService:
                     "distance_m": distance_m,
                     "estimated_minutes": minutes,
                     "congestion": round(edge.congestion, 2),
+                    "allowed_modes": sorted(edge.modes),
+                    "selected_mode": selected_mode,
+                    "selected_mode_label": self._transport_label(selected_mode),
                     "instruction": instruction,
                     "cumulative_distance_m": cumulative_distance,
                     "cumulative_minutes": cumulative_minutes,
@@ -158,6 +162,7 @@ class RoutePlanningService:
         names = self.graph_builder.get_name_map(scene_name)
         metrics = graph.path_metrics(path_codes, transport_mode)
         segments = self._build_segments(scene_name, path_codes, transport_mode)
+        route_edges = self.graph_builder.route_edges_for_path(scene_name, path_codes, transport_mode)
         return {
             "path_codes": path_codes,
             "path_names": [names.get(code, code) for code in path_codes],
@@ -173,6 +178,7 @@ class RoutePlanningService:
             "scenic_score": metrics["scenic_score"],
             "segments": segments,
             "route_nodes": self.graph_builder.route_nodes_for_path(scene_name, path_codes),
+            "route_edges": route_edges,
         }
 
     def plan_single(
@@ -426,6 +432,7 @@ class RoutePlanningService:
 
         metrics = graph.path_metrics(full_path, transport_mode)
         segments = self._build_segments(scene_name, full_path, transport_mode)
+        route_edges = self.graph_builder.route_edges_for_path(scene_name, full_path, transport_mode)
 
         explanation = (
             f"{self._strategy_explanation(strategy)} 未提供额外目标点，返回起点信息。"
@@ -449,6 +456,7 @@ class RoutePlanningService:
             "navigation_summary": self._navigation_summary(strategy, transport_mode, full_path, metrics),
             "segments": segments,
             "route_nodes": self.graph_builder.route_nodes_for_path(scene_name, full_path),
+            "route_edges": route_edges,
             "resolved_start_code": resolved_start_code,
             "resolved_start_name": names.get(resolved_start_code, resolved_start_code),
         }

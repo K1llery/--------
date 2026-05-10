@@ -15,6 +15,8 @@ class Edge:
 
 
 class Graph:
+    _TRAVEL_MODES = {"walk", "bike", "shuttle", "taxi"}
+
     def __init__(self) -> None:
         self.adj: dict[str, list[Edge]] = {}
         self.coords: dict[str, tuple[float, float]] = {}
@@ -36,32 +38,48 @@ class Graph:
     ) -> None:
         self.adj.setdefault(source, []).append(Edge(target, distance, congestion, transport_speeds, modes))
 
-    @staticmethod
-    def _mode_allowed(edge: Edge, transport_mode: str) -> bool:
+    @classmethod
+    def _candidate_speed_modes(cls, edge: Edge, transport_mode: str) -> set[str]:
         if transport_mode == "mixed":
-            return True
+            speed_modes = set(edge.transport_speeds) & cls._TRAVEL_MODES
+            if "mixed" in edge.modes:
+                return speed_modes
+            return speed_modes & edge.modes
         if transport_mode == "taxi":
-            return bool({"taxi", "shuttle", "mixed"} & edge.modes)
-        return transport_mode in edge.modes or "mixed" in edge.modes
+            candidates = set()
+            if "taxi" in edge.modes:
+                candidates.add("taxi")
+            if "shuttle" in edge.modes or "mixed" in edge.modes:
+                candidates.add("shuttle")
+            return candidates
+        if transport_mode == "shuttle" and ("shuttle" in edge.modes or "mixed" in edge.modes):
+            return {"shuttle"}
+        if transport_mode in edge.modes:
+            return {transport_mode}
+        return set()
+
+    @classmethod
+    def _mode_allowed(cls, edge: Edge, transport_mode: str) -> bool:
+        return bool(cls._candidate_speed_modes(edge, transport_mode))
+
+    def selected_mode_for_edge(self, edge: Edge, transport_mode: str) -> str:
+        candidates = self._candidate_speed_modes(edge, transport_mode)
+        if not candidates:
+            return transport_mode
+        return max(candidates, key=lambda mode: edge.transport_speeds.get(mode, 0.0))
 
     def _speed_for_mode(self, edge: Edge, transport_mode: str) -> float:
-        if transport_mode == "mixed":
-            return max(edge.transport_speeds.values(), default=1.0)
-        if transport_mode == "taxi":
-            return (
-                edge.transport_speeds.get("taxi")
-                or edge.transport_speeds.get("shuttle")
-                or max(edge.transport_speeds.values(), default=1.0)
-            )
+        selected_mode = self.selected_mode_for_edge(edge, transport_mode)
         return (
-            edge.transport_speeds.get(transport_mode)
+            edge.transport_speeds.get(selected_mode)
             or edge.transport_speeds.get("walk")
             or max(edge.transport_speeds.values(), default=1.0)
         )
 
     def edge_travel_seconds(self, edge: Edge, transport_mode: str) -> float:
         speed = max(self._speed_for_mode(edge, transport_mode), 0.1)
-        return edge.distance / speed * max(edge.congestion, 0.45)
+        congestion_factor = max(edge.congestion, 0.1)
+        return edge.distance / (speed * congestion_factor)
 
     def _edge_weight(self, source: str, edge: Edge, strategy: str, transport_mode: str) -> float:
         travel_seconds = self.edge_travel_seconds(edge, transport_mode)
@@ -69,7 +87,7 @@ class Graph:
         if strategy == "time":
             return travel_seconds
         if strategy == "congestion":
-            return travel_seconds * (1 + max(edge.congestion - 0.8, 0) * 3.5) + edge.distance * 0.05
+            return travel_seconds * (1 + max(0.85 - edge.congestion, 0) * 3.5) + edge.distance * 0.05
         if strategy == "scenic":
             return max(edge.distance * (1 + edge.congestion * 0.12) - scenic_bonus, 8.0)
         return edge.distance

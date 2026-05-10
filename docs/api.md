@@ -45,6 +45,8 @@
 | `GET` | `/api/map/scenes` | 返回地图场景列表。 |
 | `GET` | `/api/map/scenes/{scene_name}` | 返回指定场景图数据。 |
 
+路线响应会返回 `route_nodes` 和 `route_edges`：前者用于绘制路径节点，后者标明每段道路边的距离、拥挤系数、允许交通方式、实际选用交通方式和预计耗时。`/api/map/scenes/{scene_name}` 的 `edges` 字段返回当前场景道路底图。
+
 ## 设施、美食与日记
 
 | 方法 | 路径 | 职责 |

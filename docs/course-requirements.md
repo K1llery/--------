@@ -21,7 +21,7 @@
 | 景区和校园 | 数量至少 200 个，景区和校园内部可以一致。 | `datasets/prod/destinations.json` 当前 3701 个目的地。 |
 | 景点 / 建筑物 / 景物 | 景区和校园内建筑物不少于 20 个，包括景点、教学楼、办公楼、宿舍楼等。 | `datasets/prod/buildings.json` 当前 40 个楼宇/建筑，`scenes.json` 和 `indoors.json` 描述场景与室内结构。 |
 | 服务设施 | 类型不少于 10 种，数量不少于 50 个，如商店、饭店、洗手间、图书馆、食堂、超市、咖啡馆等。 | `datasets/prod/facilities.json` 当前 52 个设施，`facility_type` 当前 15 类。 |
-| 道路图 | 建立景区和校园内部道路图，包含建筑物、服务设施等信息。 | `datasets/prod/edges.json` + `scenes.json` 被 `GraphBuilder` 抽象为有向图。 |
+| 道路图 | 建立景区和校园内部道路图，包含建筑物、服务设施等信息。 | `datasets/prod/edges.json` 是权威有向道路边集合，`GraphBuilder` 将 `scenes`、`facilities` 和道路边构造成图。 |
 | 边数 | 不少于 200 条，尽量接近真实景区和校园，建议爬取真实地图数据。 | `datasets/prod/edges.json` 当前 548 条边，原始数据位于 `datasets/raw/`。 |
 | 用户 | 系统用户数不少于 10 人。 | `datasets/prod/users.json` 当前 14 个用户。 |
 | 持久化 | 支持数据持久化、初始数据批量导入、运行时数据交互和测试数据。 | SQLite 为默认运行存储；`datasets/prod/` 为初始化快照；测试使用临时数据隔离。 |
@@ -35,7 +35,7 @@
 | 单目标路线 | 用户输入目标景点或场所，系统规划当前位置到目标的最优线路。 | `RoutePlanningService.plan_single`；接口为 `/api/routes/single`。 |
 | 多目标路线 | 用户输入多个目标，从当前位置出发，参观完后返回当前位置。 | 小规模使用 Held-Karp，大规模使用 Nearest Neighbor + 2-opt；接口为 `/api/routes/multi`。 |
 | 地图和路径展示 | 导航功能需要图形界面，包括地图展示和输出路径展示。 | `RoutePage.vue`、`RouteMap.vue` 和路线结果面板。 |
-| 路线策略 | 支持最短距离、最短时间、考虑拥挤度、交通工具限制等策略。 | 图边包含 `distance`、`congestion`、速度和 `allowed_modes`；支持 `distance`、`time`、`congestion`、`scenic` 与 `walk`、`bike`、`taxi`、`shuttle`、`mixed`。 |
+| 路线策略 | 支持最短距离、最短时间、考虑拥挤度、交通工具限制等策略。 | 道路边包含 `distance`、`congestion`、速度和 `allowed_modes`；支持 `distance`、`time`、`congestion`、`scenic` 与 `walk`、`bike`、`shuttle`、`mixed`，旧 `taxi` 参数仍兼容。 |
 | 室内导航 | 模拟教学楼和景区建筑内部结构，支持大门到电梯、楼层间电梯、楼层内到房间。 | `IndoorNavigationService` 和 `/api/indoor/route`，支持普通和轮椅模式。 |
 | 场所查询 | 在景区或学校内部，选中地点后查找附近设施，按距离排序；不能按直线距离。 | `NearbyFacilityService` 复用单源最短路，按图距离排序；接口为 `/api/facilities/nearby`。 |
 | 设施类别查询 | 用户可选择类别过滤，也可输入类别名称查找附近服务设施。 | 前端设施页和 `/api/facilities/nearby` 支持类型筛选。 |
@@ -54,7 +54,7 @@
 | 查询 | 查询不能使用 `O(n)` 线性扫描；支持多关键字和联合查询。 | Hash、Trie、倒排索引。 |
 | 排序 | 按不同关键字使用不同排序策略，并考虑实际数据量。 | 热度、评分、兴趣、距离等组合评分。 |
 | Top-K | 推荐和美食只需前 10 时应做部分排序，不做全量排序。 | 小顶堆 Top-K 和 Quickselect。 |
-| 图 | 地图应接近实际地图，抽象为有向图；交叉口和建筑物作为顶点。 | `Graph` + `GraphBuilder`。 |
+| 图 | 地图应接近实际地图，抽象为有向图；交叉口和建筑物作为顶点。 | `Graph` + `GraphBuilder` 直接读取 `edges.json`，不再运行时生成网格道路。 |
 | 最短路 | 支持最短距离、最短时间和拥挤度策略。 | Dijkstra/A*，边权按策略计算。 |
 | 多点路线 | 不能只依赖阶乘级遍历；需要考虑最近邻、途程改善、回溯或分支限界等思路。 | Held-Karp 用于小规模精确解；Nearest Neighbor + 2-opt 用于大规模近似。 |
 | 压缩 | 日记压缩应为无损压缩。 | Huffman。 |

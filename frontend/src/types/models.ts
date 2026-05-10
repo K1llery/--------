@@ -55,6 +55,20 @@ export interface SceneNode {
   route_node_type?: string;
 }
 
+/** 场景道路边 */
+export interface SceneEdge {
+  scene_name: string;
+  source_code: string;
+  target_code: string;
+  distance: number;
+  congestion: number;
+  walk_speed?: number;
+  bike_speed?: number;
+  shuttle_speed?: number;
+  taxi_speed?: number;
+  allowed_modes: string[];
+}
+
 /** 场景 */
 export interface Scene {
   name: string;
@@ -74,9 +88,28 @@ export interface RouteSegment {
   distance_m: number;
   estimated_minutes: number;
   congestion: number;
+  allowed_modes?: string[];
+  selected_mode?: string;
+  selected_mode_label?: string;
   instruction: string;
   cumulative_distance_m: number;
   cumulative_minutes: number;
+}
+
+/** 路线道路边 */
+export interface RouteEdge {
+  index: number;
+  source_code: string;
+  source_name: string;
+  target_code: string;
+  target_name: string;
+  distance_m: number;
+  congestion: number;
+  allowed_modes: string[];
+  selected_mode: string;
+  speed_mps: number;
+  estimated_minutes: number;
+  transport_speeds: Record<string, number>;
 }
 
 /** 单点路线结果 */
@@ -84,6 +117,7 @@ export interface SingleRouteResult {
   path_codes: string[];
   path_names: string[];
   route_nodes: SceneNode[];
+  route_edges: RouteEdge[];
   total_distance_m: number;
   estimated_minutes: number;
   strategy: string;
@@ -108,6 +142,7 @@ export interface MultiRouteResult {
   path_codes: string[];
   path_names: string[];
   route_nodes: SceneNode[];
+  route_edges: RouteEdge[];
   ordered_stop_codes: string[];
   ordered_stop_names: string[];
   total_distance_m: number;

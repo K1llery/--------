@@ -18,6 +18,13 @@ const props = defineProps<{
     longitude: number;
     route_node_type?: string;
   }>;
+  edges?: Array<{
+    source_code: string;
+    target_code: string;
+    distance: number;
+    congestion: number;
+    allowed_modes: string[];
+  }>;
   path: string[];
   pathColor?: string;
   currentLocation?: { latitude: number; longitude: number } | null;
@@ -26,6 +33,7 @@ const props = defineProps<{
 const mapEl = ref<HTMLDivElement | null>(null);
 const mapError = ref(false);
 let map: L.Map | null = null;
+let roadLayer: L.LayerGroup | null = null;
 let markersLayer: L.LayerGroup | null = null;
 let pathLayer: L.Polyline | null = null;
 let currentLocationLayer: L.LayerGroup | null = null;
@@ -36,8 +44,31 @@ const renderMap = () => {
   if (!map) return;
   const nodeMap = new Map(props.nodes.map((item) => [item.code, item]));
   const pathIndex = new Map(props.path.map((code, index) => [code, index]));
+  roadLayer?.clearLayers();
   markersLayer?.clearLayers();
   currentLocationLayer?.clearLayers();
+
+  props.edges?.forEach((edge) => {
+    const source = nodeMap.get(edge.source_code);
+    const target = nodeMap.get(edge.target_code);
+    if (!source || !target) return;
+    const road = L.polyline(
+      [
+        [source.latitude, source.longitude],
+        [target.latitude, target.longitude],
+      ],
+      {
+        color: edge.congestion <= 0.65 ? "#d08a4f" : "#5d8798",
+        weight: 2,
+        opacity: 0.34,
+        lineCap: "round",
+      },
+    ).bindTooltip(
+      `${source.name} → ${target.name} · ${Number(edge.distance).toFixed(0)}m`,
+      { sticky: true },
+    );
+    roadLayer?.addLayer(road);
+  });
 
   props.nodes.forEach((node) => {
     const index = pathIndex.get(node.code);
@@ -106,7 +137,9 @@ const renderMap = () => {
     dashTimer = window.setInterval(() => {
       if (!pathLayer) return;
       dashOffset -= 1;
-      (pathLayer as any).setStyle({ dashOffset: `${dashOffset}` });
+      pathLayer.setStyle({ dashOffset: `${dashOffset}` } as L.PolylineOptions & {
+        dashOffset: string;
+      });
     }, 80);
 
     map.fitBounds(pathLayer.getBounds(), { padding: [30, 30] });
@@ -134,13 +167,14 @@ onMounted(() => {
     mapError.value = true;
   });
   tileLayer.addTo(map);
+  roadLayer = L.layerGroup().addTo(map);
   markersLayer = L.layerGroup().addTo(map);
   currentLocationLayer = L.layerGroup().addTo(map);
   renderMap();
 });
 
 watch(
-  () => [props.nodes, props.path, props.currentLocation],
+  () => [props.nodes, props.edges, props.path, props.currentLocation],
   () => {
     renderMap();
   },

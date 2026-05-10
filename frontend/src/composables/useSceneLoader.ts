@@ -1,7 +1,7 @@
 import { computed, ref } from "vue";
 
 import { api } from "../api/client";
-import type { Destination, IndoorBuilding, Scene, SceneNode, Facility } from "../types/models";
+import type { Destination, IndoorBuilding, Scene, SceneEdge, SceneNode, Facility } from "../types/models";
 import type { IndoorBuildingListResponse, SceneDetailResponse } from "../types/api";
 
 export function useSceneLoader() {
@@ -10,6 +10,7 @@ export function useSceneLoader() {
   const indoorBuildings = ref<IndoorBuilding[]>([]);
   const scene = ref<{ nodes: SceneNode[] } | null>(null);
   const facilities = ref<Facility[]>([]);
+  const edges = ref<SceneEdge[]>([]);
 
   const loadMeta = async () => {
     const [sceneRes, featuredRes, indoorRes] = await Promise.all([
@@ -26,6 +27,7 @@ export function useSceneLoader() {
     const { data } = await api.get<SceneDetailResponse>(`/map/scenes/${sceneName}`);
     scene.value = data.scene;
     facilities.value = data.facilities;
+    edges.value = data.edges;
   };
 
   const getVisibleScenes = (city: string) =>
@@ -37,6 +39,7 @@ export function useSceneLoader() {
     indoorBuildings,
     scene,
     facilities,
+    edges,
     loadMeta,
     loadScene,
     getVisibleScenes,
