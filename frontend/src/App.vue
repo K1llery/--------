@@ -225,7 +225,11 @@
                   <strong>3</strong>
                 </div>
                 <div class="app-notice-list">
-                  <div v-for="notice in demoNotifications" :key="notice.title" class="app-notice-item">
+                  <div
+                    v-for="notice in demoNotifications"
+                    :key="notice.title"
+                    class="app-notice-item"
+                  >
                     <span class="app-notice-dot" />
                     <div>
                       <p>{{ notice.title }}</p>
@@ -344,12 +348,8 @@ const defaultMessages: Record<string, DemoMessage[]> = {
     { id: 1, from: "friend", text: "下午讲解时可以先演示收藏，再切到路线。" },
     { id: 2, from: "me", text: "好，我把右上角入口做成可点击面板。" },
   ],
-  lin: [
-    { id: 1, from: "friend", text: "我想看北京周边美食推荐，能一起发路线吗？" },
-  ],
-  zhou: [
-    { id: 1, from: "friend", text: "周末如果去北邮校园，我可以直接跟着路线走。" },
-  ],
+  lin: [{ id: 1, from: "friend", text: "我想看北京周边美食推荐，能一起发路线吗？" }],
+  zhou: [{ id: 1, from: "friend", text: "周末如果去北邮校园，我可以直接跟着路线走。" }],
 };
 const loadDemoMessages = () => {
   if (typeof window === "undefined") return defaultMessages;
