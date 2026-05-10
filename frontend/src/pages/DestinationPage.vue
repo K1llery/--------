@@ -13,7 +13,21 @@
           {{ loading ? "加载中..." : "刷新推荐" }}
         </button>
       </div>
-      <div class="flex flex-wrap gap-3 mt-5">
+      <!-- 已选筛选项标签流 -->
+      <div v-if="selectedTags.length" class="flex flex-wrap gap-2 mt-4">
+        <button
+          v-for="tag in selectedTags"
+          :key="tag.key"
+          class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary-50 text-primary-700 text-xs font-medium hover:bg-primary-100 transition-colors"
+          @click="removeTag(tag.key)"
+        >
+          {{ tag.label }}
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-wrap gap-3 mt-3">
         <select v-model="cityFilter" class="soft-control text-sm text-gray-700">
           <option value="全部">全部城市</option>
           <option v-for="city in cities" :key="city" :value="city">
@@ -45,6 +59,7 @@
       v-else-if="filteredDestinations.length === 0"
       title="暂无匹配结果"
       description="当前筛选条件下没有目的地，换个城市或类别试试。"
+      actionHint="换个城市或类别？试试全部城市或景点"
     />
     <!-- Content -->
     <div v-else class="grid lg:grid-cols-[1.4fr_1fr] gap-6">
@@ -225,6 +240,21 @@ const toggleFavorite = async (sourceId: string) => {
   await auth.toggleDestinationFavorite(sourceId);
   toast.success(isFavorite(sourceId) ? "已添加到收藏" : "已取消收藏");
 };
+const removeTag = (key: string) => {
+  if (key === "city") cityFilter.value = "全部";
+  if (key === "category") categoryFilter.value = "全部";
+  if (key === "sort") sortMode.value = "recommended";
+};
+const selectedTags = computed(() => {
+  const tags = [];
+  if (cityFilter.value !== "全部") tags.push({ key: "city", label: `城市:${cityFilter.value}` });
+  if (categoryFilter.value !== "全部") tags.push({ key: "category", label: `类别:${categoryFilter.value}` });
+  if (sortMode.value !== "recommended") {
+    const label = sortMode.value === "rating" ? "评分降序" : "热度降序";
+    tags.push({ key: "sort", label });
+  }
+  return tags;
+});
 watch([filteredDestinations, selected], ensureSelection, { immediate: false });
 onMounted(async () => {
   await load(false);

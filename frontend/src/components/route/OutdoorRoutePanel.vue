@@ -1,98 +1,108 @@
-<template>
-  <form class="search-form" @submit.prevent="handlePlanSingle">
-    <select v-model="startCode" class="select-input" :disabled="disableStartSelect">
+<template class="space-y-5">
+  <!-- 单点路线表单 -->
+  <form class="flex flex-wrap gap-3" @submit.prevent="handlePlanSingle">
+    <select v-model="startCode" class="soft-control flex-1 min-w-32" :disabled="disableStartSelect">
       <option v-for="node in placeOptions" :key="node.code" :value="node.code">
         {{ node.name }}
       </option>
     </select>
-    <select v-model="endCode" class="select-input">
+    <select v-model="endCode" class="soft-control flex-1 min-w-32">
       <option v-for="node in placeOptions" :key="node.code" :value="node.code">
         {{ node.name }}
       </option>
     </select>
-    <button class="primary-btn" type="submit">
+    <button class="btn-soft-primary" type="submit">
       {{ planner.singleLoading.value ? "规划中..." : "规划单点路线" }}
     </button>
   </form>
 
-  <div v-if="planner.singleRoute.value" class="route-summary route-card">
-    <div class="section-top compact">
-      <h3>{{ planner.singleRoute.value.strategy_label }}</h3>
-      <button class="secondary-btn" @click="handleSaveRoute">收藏当前路线</button>
+  <!-- 单点路线结果 -->
+  <div v-if="planner.singleRoute.value" class="card-elevated p-5">
+    <div class="flex items-center justify-between gap-3 mb-3">
+      <h3 class="text-base font-bold text-gray-900 m0">{{ planner.singleRoute.value.strategy_label }}</h3>
+      <button class="btn-soft-secondary text-sm" @click="handleSaveRoute">收藏当前路线</button>
     </div>
-    <p>{{ planner.singleRoute.value.explanation }}</p>
-    <p v-if="planner.singleRoute.value.resolved_start_name" class="detail-note">
+    <p class="text-sm text-gray-500 mt-2">{{ planner.singleRoute.value.explanation }}</p>
+    <p v-if="planner.singleRoute.value.resolved_start_name" class="text-xs text-gray-400 mt-1">
       实际起点：{{ planner.singleRoute.value.resolved_start_name }}
     </p>
-    <div class="detail-stats">
+    <div class="flex flex-wrap gap-2 mt-3">
       <span class="stat-pill">{{ planner.singleRoute.value.total_distance_m }} m</span>
       <span class="stat-pill">{{ planner.singleRoute.value.estimated_minutes }} 分钟</span>
       <span class="stat-pill">平均拥堵 {{ planner.singleRoute.value.average_congestion }}</span>
     </div>
-    <p><strong>路线：</strong> {{ planner.singleRoute.value.path_names.join(" → ") }}</p>
+    <p class="text-sm text-gray-600 mt-3">
+      <strong>路线：</strong> {{ planner.singleRoute.value.path_names.join(" → ") }}
+    </p>
   </div>
 
-  <section v-if="planner.singleRoute.value?.alternatives?.length" class="results-section">
-    <div class="section-top compact">
-      <h3>备选路线</h3>
-      <span class="toolbar-hint">点击卡片可切换地图高亮</span>
+  <!-- 备选路线 -->
+  <section v-if="planner.singleRoute.value?.alternatives?.length">
+    <div class="flex items-center justify-between gap-3 mb-3">
+      <h3 class="text-base font-bold text-gray-900">备选路线</h3>
+      <span class="text-xs text-gray-400">点击卡片可切换地图高亮</span>
     </div>
-    <div class="card-grid compact-grid">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
       <article
         v-for="item in planner.singleRoute.value.alternatives"
         :key="item.strategy"
-        class="item-card"
-        :class="{ selected: planner.selectedAlternativeStrategy.value === item.strategy }"
+        class="card-elevated p-4 cursor-pointer glow-border"
+        :class="{ 'ring-2 ring-primary-300': planner.selectedAlternativeStrategy.value === item.strategy }"
         @click="planner.selectedAlternativeStrategy.value = item.strategy"
       >
-        <h3>{{ item.strategy_label }}</h3>
-        <p>{{ item.explanation }}</p>
-        <p>{{ item.total_distance_m }} m · {{ item.estimated_minutes }} 分钟</p>
+        <h4 class="text-sm font-bold text-gray-900">{{ item.strategy_label }}</h4>
+        <p class="text-xs text-gray-500 mt-1">{{ item.explanation }}</p>
+        <p class="text-xs text-gray-400 mt-1">{{ item.total_distance_m }} m · {{ item.estimated_minutes }} 分钟</p>
       </article>
     </div>
   </section>
 
-  <form class="search-form" @submit.prevent="handlePlanMulti">
-    <select v-model="multiTargetCodes" class="select-input" multiple size="4">
+  <!-- 多点闭环表单 -->
+  <form class="flex flex-wrap gap-3 items-start" @submit.prevent="handlePlanMulti">
+    <select v-model="multiTargetCodes" class="soft-control flex-1 min-w-40" multiple size="4">
       <option v-for="node in placeOptions" :key="node.code" :value="node.code">
         {{ node.name }}
       </option>
     </select>
-    <button class="primary-btn" type="submit">
+    <button class="btn-soft-primary" type="submit">
       {{ planner.multiLoading.value ? "规划中..." : "规划多点闭环" }}
     </button>
   </form>
 
-  <div v-if="planner.multiRoute.value" class="route-summary route-card">
-    <h3>{{ planner.multiRoute.value.optimization_label }}</h3>
-    <p>{{ planner.multiRoute.value.explanation }}</p>
-    <p v-if="planner.multiRoute.value.resolved_start_name" class="detail-note">
+  <!-- 多点闭环结果 -->
+  <div v-if="planner.multiRoute.value" class="card-elevated p-5">
+    <h3 class="text-base font-bold text-gray-900">{{ planner.multiRoute.value.optimization_label }}</h3>
+    <p class="text-sm text-gray-500 mt-2">{{ planner.multiRoute.value.explanation }}</p>
+    <p v-if="planner.multiRoute.value.resolved_start_name" class="text-xs text-gray-400 mt-1">
       实际起点：{{ planner.multiRoute.value.resolved_start_name }}
     </p>
-    <div class="detail-stats">
+    <div class="flex flex-wrap gap-2 mt-3">
       <span class="stat-pill">{{ planner.multiRoute.value.total_distance_m }} m</span>
       <span class="stat-pill">{{ planner.multiRoute.value.estimated_minutes }} 分钟</span>
       <span class="stat-pill">{{ planner.multiRoute.value.strategy_label }}</span>
     </div>
-    <p><strong>闭环停靠：</strong> {{ planner.multiRoute.value.ordered_stop_names.join(" → ") }}</p>
+    <p class="text-sm text-gray-600 mt-3">
+      <strong>闭环停靠：</strong> {{ planner.multiRoute.value.ordered_stop_names.join(" → ") }}
+    </p>
   </div>
 
-  <section v-if="activeSegments.length" class="results-section">
-    <div class="section-top compact">
-      <h3>分段导航</h3>
-      <span class="toolbar-hint">按顺序执行即可完成整段行程</span>
+  <!-- 分段导航 -->
+  <section v-if="activeSegments.length">
+    <div class="flex items-center justify-between gap-3 mb-3">
+      <h3 class="text-base font-bold text-gray-900">分段导航</h3>
+      <span class="text-xs text-gray-400">按顺序执行即可完成整段行程</span>
     </div>
     <ol class="timeline-list">
       <li
         v-for="segment in activeSegments"
         :key="`segment-${segment.index}-${segment.from_code}-${segment.to_code}`"
-        class="timeline-item"
+        class="timeline-item !bg-gray-50"
       >
         <span class="timeline-index">{{ segment.index }}</span>
         <div class="timeline-content">
-          <strong>{{ segment.from_name }} → {{ segment.to_name }}</strong>
-          <p>{{ segment.instruction }}</p>
-          <p class="timeline-meta">
+          <strong class="text-sm font-bold text-gray-900">{{ segment.from_name }} → {{ segment.to_name }}</strong>
+          <p class="text-xs text-gray-500 mt-0.5">{{ segment.instruction }}</p>
+          <p class="text-xs text-gray-400 mt-0.5">
             {{ segment.distance_m }} 米 · {{ segment.estimated_minutes }} 分钟 · 累计
             {{ segment.cumulative_distance_m }} 米
           </p>

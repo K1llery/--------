@@ -1,17 +1,18 @@
 <template>
-  <article class="helper-card">
-    <h3>出发方式</h3>
-    <div class="route-start-row">
-      <label class="route-toggle">
+  <div class="card-elevated p-4 space-y-3">
+    <h3 class="text-sm font-bold text-gray-900">出发方式</h3>
+    <div class="flex flex-wrap items-center gap-3">
+      <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
         <input
           :checked="modelValue"
           type="checkbox"
+          class="w-4 h-4 accent-primary-500"
           @change="emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
         />
         <span>使用当前位置自动匹配最近起点</span>
       </label>
       <button
-        class="secondary-btn"
+        class="btn-soft-secondary text-sm"
         type="button"
         :disabled="!geo.supportsGeolocation || geo.locating.value"
         @click="geo.capture()"
@@ -19,8 +20,8 @@
         {{ geo.locating.value ? "定位中..." : "刷新定位" }}
       </button>
     </div>
-    <p class="toolbar-hint">{{ locationMessage }}</p>
-  </article>
+    <p class="text-xs text-gray-400">{{ locationMessage }}</p>
+  </div>
 </template>
 
 <script setup lang="ts">

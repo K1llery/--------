@@ -394,54 +394,53 @@ a {
   backdrop-filter: blur(20px) saturate(1.8);
   -webkit-backdrop-filter: blur(20px) saturate(1.8);
   border: 0;
-  border-radius: 1.5rem;
+  border-radius: 0.75rem;
   box-shadow:
-    0 12px 32px rgba(148, 163, 184, 0.16),
-    0 2px 6px rgba(148, 163, 184, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 /* ── Soft UI card (elevated, colored soft shadow, lift on hover) ── */
 .card-elevated {
   background: #fff;
-  border-radius: 1.5rem;
+  border-radius: 0.75rem;
   border: 0;
   box-shadow:
-    0 12px 32px rgba(148, 163, 184, 0.22),
-    0 2px 6px rgba(148, 163, 184, 0.06);
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .card-elevated:hover {
-  transform: translateY(-4px);
+  transform: translateY(-1px);
   box-shadow:
-    0 24px 48px rgba(99, 102, 241, 0.18),
-    0 6px 14px rgba(99, 102, 241, 0.1);
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 /* ── Soft UI buttons ── */
 .btn-soft-primary {
   padding: 0.75rem 1.5rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 0;
   font-weight: 500;
   color: #fff;
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.26);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn-soft-primary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 34px rgba(99, 102, 241, 0.34);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 .btn-soft-primary:active:not(:disabled) {
-  transform: translateY(1px) scale(0.95);
-  box-shadow: inset 0 4px 10px rgba(67, 56, 202, 0.28);
+  transform: translateY(0) scale(0.98);
+  box-shadow: inset 0 2px 4px rgba(67, 56, 202, 0.2);
 }
 .btn-soft-primary:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 3px rgba(99, 102, 241, 0.28),
-    0 12px 28px rgba(99, 102, 241, 0.26);
+    0 0 0 2px rgba(99, 102, 241, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.1);
 }
 .btn-soft-primary:disabled {
   opacity: 0.6;
@@ -450,64 +449,64 @@ a {
 
 .btn-soft-secondary {
   padding: 0.75rem 1.5rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 0;
   font-weight: 500;
   color: #374151;
   background: #fff;
-  box-shadow: 0 12px 28px rgba(148, 163, 184, 0.22);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
   transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn-soft-secondary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 30px rgba(148, 163, 184, 0.32);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .btn-soft-secondary:active {
-  transform: translateY(1px) scale(0.95);
-  box-shadow: inset 0 4px 10px rgba(148, 163, 184, 0.2);
+  transform: translateY(0) scale(0.98);
+  box-shadow: inset 0 2px 4px rgba(148, 163, 184, 0.15);
 }
 .btn-soft-secondary:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 3px rgba(99, 102, 241, 0.22),
-    0 12px 28px rgba(148, 163, 184, 0.22);
+    0 0 0 2px rgba(99, 102, 241, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 .btn-soft-ghost {
   padding: 0.75rem 1.5rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 0;
   font-weight: 500;
   color: var(--color-primary-600);
   background: var(--color-primary-50);
-  box-shadow: 0 10px 24px rgba(148, 163, 184, 0.16);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
   transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn-soft-ghost:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   background: var(--color-primary-100);
-  box-shadow: 0 16px 30px rgba(99, 102, 241, 0.16);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 .btn-soft-ghost:active {
-  transform: translateY(1px) scale(0.95);
-  box-shadow: inset 0 3px 8px rgba(99, 102, 241, 0.15);
+  transform: translateY(0) scale(0.98);
+  box-shadow: inset 0 2px 4px rgba(99, 102, 241, 0.12);
 }
 
 /* ── Soft UI small chip/pill button ── */
 .btn-soft-chip {
-  padding: 0.625rem 1.1rem;
-  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
   border: 0;
   font-size: 0.75rem;
   font-weight: 500;
   background: #fff;
   color: #4b5563;
-  box-shadow: 0 4px 12px rgba(148, 163, 184, 0.18);
-  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn-soft-chip:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(148, 163, 184, 0.28);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: #1f2937;
 }
 .btn-soft-chip:active:not(:disabled) {
@@ -518,14 +517,14 @@ a {
   cursor: not-allowed;
 }
 .btn-soft-chip-primary {
-  padding: 0.625rem 1.1rem;
-  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
   border: 0;
   font-size: 0.75rem;
   font-weight: 500;
   background: var(--color-primary-50);
   color: var(--color-primary-600);
-  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn-soft-chip-primary:hover {
   background: var(--color-primary-100);
@@ -533,51 +532,52 @@ a {
 }
 .btn-soft-chip-primary:active {
   transform: translateY(0) scale(0.97);
-  box-shadow: inset 0 3px 8px rgba(99, 102, 241, 0.15);
+  box-shadow: inset 0 2px 4px rgba(99, 102, 241, 0.12);
 }
 
 /* ── Soft UI alerts ── */
 .alert-soft-error {
-  padding: 1rem 1.25rem;
-  border-radius: 1rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: 0.5rem;
   border: 0;
   background: #fef2f2;
   color: #b91c1c;
   font-size: 0.875rem;
-  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.08);
+  box-shadow: 0 1px 2px rgba(239, 68, 68, 0.08);
 }
 .alert-soft-info {
-  padding: 1rem 1.25rem;
-  border-radius: 1rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: 0.5rem;
   border: 0;
   background: var(--color-primary-50);
   color: var(--color-primary-700);
   font-size: 0.875rem;
-  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.08);
+  box-shadow: 0 1px 2px rgba(99, 102, 241, 0.08);
 }
 
 /* ── Soft UI input ── */
 .input-soft {
   width: 100%;
-  padding: 0.875rem 1.25rem;
-  background: #f8fafc;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
   border: 0;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   color: #1e293b;
   outline: none;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 .input-soft::placeholder {
   color: #94a3b8;
 }
 .input-soft:hover {
-  background: #f1f5f9;
+  background: #fafafa;
 }
 .input-soft:focus {
   background: #fff;
   box-shadow:
-    0 0 0 2px rgba(99, 102, 241, 0.28),
-    0 10px 26px rgba(99, 102, 241, 0.14);
+    0 0 0 2px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .input-soft.has-leading-icon {
@@ -589,23 +589,23 @@ a {
 }
 
 .soft-control {
-  padding: 0.875rem 1.25rem;
-  background: #f8fafc;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
   border: 0;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   color: #374151;
   outline: none;
-  box-shadow: 0 8px 18px rgba(148, 163, 184, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .soft-control:hover {
-  background: #f1f5f9;
+  background: #fafafa;
 }
 .soft-control:focus {
   background: #fff;
   box-shadow:
-    0 0 0 2px rgba(99, 102, 241, 0.28),
-    0 10px 26px rgba(99, 102, 241, 0.14);
+    0 0 0 2px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .soft-selectable {
@@ -1540,7 +1540,7 @@ details.reveal > summary::-webkit-details-marker {
   align-items: center;
   min-height: 2rem;
   padding: 0.4rem 0.8rem;
-  border-radius: 999px;
+  border-radius: 0.375rem;
   color: var(--color-primary-700);
   background: var(--color-primary-50);
   font-size: 0.78rem;
@@ -1590,8 +1590,8 @@ details.reveal > summary::-webkit-details-marker {
   gap: 0.75rem;
   align-items: start;
   padding: 0.95rem;
-  border-radius: 1.25rem;
-  background: #f8fafc;
+  border-radius: 0.75rem;
+  background: #fafafa;
 }
 
 .timeline-index {

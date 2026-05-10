@@ -4,12 +4,59 @@
     <div class="bg-white rounded-3xl card-elevated p-6">
       <h2 class="text-xl font-bold text-gray-900">搜索目的地</h2>
       <p class="text-sm text-gray-500 mt-1">支持名称搜索，并按城市和类别进一步缩小范围。</p>
-      <form class="flex flex-wrap gap-3 mt-5" @submit.prevent="search">
-        <input
-          v-model="query"
-          placeholder="搜索景点、高校、商圈名称"
-          class="flex-1 min-w-[200px] soft-control text-sm"
-        />
+      <form class="relative flex flex-wrap gap-3 mt-5" @submit.prevent="search">
+        <div class="relative flex-1 min-w-[200px]">
+          <input
+            v-model="query"
+            placeholder="搜索景点、高校、商圈名称"
+            class="w-full soft-control text-sm pr-10"
+            @focus="showDropdown = true"
+            @blur="onInputBlur"
+            @input="showDropdown = true"
+          />
+          <button
+            v-if="query"
+            type="button"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            @click="query = ''"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+          <!-- Dropdown -->
+          <div
+            v-if="showDropdown && (historyItems.length || suggestionItems.length)"
+            class="absolute z-20 top-full left-0 right-0 mt-1 bg-white rounded-xl card-elevated shadow-lg overflow-hidden"
+          >
+            <div v-if="historyItems.length" class="px-3 py-2">
+              <p class="text-xs text-gray-400 font-medium mb-1.5">历史记录</p>
+              <div class="flex flex-wrap gap-1.5">
+                <button
+                  v-for="item in historyItems"
+                  :key="item"
+                  class="text-xs px-2.5 py-1 rounded-full bg-gray-100 text-gray-600 hover:bg-primary-50 hover:text-primary-700 transition-colors"
+                  @mousedown.prevent="applyHistory(item)"
+                >
+                  {{ item }}
+                </button>
+              </div>
+            </div>
+            <div v-if="suggestionItems.length" class="px-3 py-2 border-t border-gray-100">
+              <p class="text-xs text-gray-400 font-medium mb-1.5">关键词提示</p>
+              <div class="flex flex-wrap gap-1.5">
+                <button
+                  v-for="item in suggestionItems"
+                  :key="item"
+                  class="text-xs px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 hover:bg-primary-100 transition-colors"
+                  @mousedown.prevent="applySuggestion(item)"
+                >
+                  {{ item }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
         <select v-model="cityFilter" class="soft-control text-sm text-gray-700">
           <option value="全部">全部城市</option>
           <option v-for="city in cities" :key="city" :value="city">
@@ -207,6 +254,34 @@ const error = ref("");
 const exactRaw = ref<any[]>([]);
 const fuzzyRaw = ref<any[]>([]);
 const selected = ref<any | null>(null);
+const showDropdown = ref(false);
+const historyKey = "search_history";
+const history = ref<string[]>(JSON.parse(localStorage.getItem(historyKey) || "[]"));
+const historyItems = computed(() => {
+  if (!query.value.trim()) return history.value.slice(0, 8);
+  const q = query.value.toLowerCase();
+  return history.value.filter((item) => item.toLowerCase().includes(q)).slice(0, 6);
+});
+const suggestionItems = computed(() => {
+  const q = query.value.trim().toLowerCase();
+  if (!q) return [];
+  return allDestinations.value
+    .filter((d) => d.name.toLowerCase().includes(q) || (d.city && d.city.toLowerCase().includes(q)))
+    .slice(0, 6)
+    .map((d) => d.name);
+});
+const allDestinations = computed(() => store.destinations.items);
+const onInputBlur = () => setTimeout(() => (showDropdown.value = false), 150);
+const applyHistory = (item: string) => {
+  query.value = item;
+  showDropdown.value = false;
+  search();
+};
+const applySuggestion = (item: string) => {
+  query.value = item;
+  showDropdown.value = false;
+  search();
+};
 const cities = ["北京", "上海", "广州", "深圳"];
 const categoryLabel = (value: string) => {
   if (value === "shopping") return "商场/商圈";
@@ -233,12 +308,20 @@ const uniqueMerge = (...groups: any[][]) => {
   });
 };
 const search = async () => {
+  if (!query.value.trim()) return;
+  const q = query.value.trim();
+  const exists = history.value.indexOf(q);
+  if (exists !== -1) history.value.splice(exists, 1);
+  history.value.unshift(q);
+  history.value = history.value.slice(0, 10);
+  localStorage.setItem(historyKey, JSON.stringify(history.value));
+  showDropdown.value = false;
   loading.value = true;
   error.value = "";
   try {
     const { data } = await api.post("/destinations/search", {
-      query: query.value,
-      keywords: query.value.split(/\s+/).filter(Boolean),
+      query: q,
+      keywords: q.split(/\s+/).filter(Boolean),
       category: categoryFilter.value === "全部" ? null : categoryFilter.value,
     });
     exactRaw.value = data.exact ? [data.exact] : [];
@@ -251,7 +334,7 @@ const search = async () => {
   }
 };
 onMounted(async () => {
-  await store.loadFeaturedDestinations(false);
+  await store.loadFeaturedDestinations(true);
   await search();
 });
 </script>
