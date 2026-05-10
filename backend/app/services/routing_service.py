@@ -1,3 +1,9 @@
+"""
+路由规划组件模块 (Routing Service)
+
+集中了单目标、多目标的经典寻路与 TSP 问题求解能力，以提供实际出游导引建议。
+借用 GraphBuilder 生成的时空网络数据，运算输出包含距离段与时间估计在内的完整旅游路径表。
+"""
 from __future__ import annotations
 
 import heapq
@@ -12,12 +18,21 @@ from app.services.graph_builder import GraphBuilder
 
 
 class RoutePlanningService:
+    """
+    承担后端地图查询及相关综合运筹能力的路径控制服务。
+    支持点对点寻路 (A/Dijkstra 等变体)、TSP多目标旅行商游览、附近找等功能，是核心交通中枢。
+    """
     def __init__(self, repository: DatasetRepository, graph_builder: GraphBuilder | None = None) -> None:
+        """
+        初始化地图路由与底层设施。
+        若外部未透传注入的实例将自建一套默认缓存依赖组件（用于抓取和构图）。
+        """
         self.repository = repository
         self.graph_builder = graph_builder or GraphBuilder(repository)
 
     @staticmethod
     def _strategy_label(strategy: str) -> str:
+        """翻译策略类型的简短内码到用于中文面板回显的名称"""
         mapping = {
             "distance": "最短距离",
             "time": "最快到达",

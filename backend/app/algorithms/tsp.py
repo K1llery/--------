@@ -4,10 +4,23 @@ from itertools import combinations
 
 from app.algorithms.graph import Graph
 
+"""
+TSP（旅行商问题）及路线规划算法模块。实现了在多站点间的路径排序优化，支持 Held-Karp（动态规划）和 近邻+2-opt 启发式策略。
+"""
+
 
 def _pairwise_cost_table(
     graph: Graph, stops: list[str], strategy: str, transport_mode: str
 ) -> dict[tuple[str, str], float]:
+    """
+    计算所有停靠点两两之间的通行代价。
+    
+    :param graph: 导航所用图对象
+    :param stops: 需要停留的节点集合
+    :param strategy: 优化策略（距离或时间等）
+    :param transport_mode: 交通工具模式
+    :return: 返回以起点、终点对为键的代价映射字典
+    """
     costs: dict[tuple[str, str], float] = {}
     for source in stops:
         dist = graph.shortest_distances(source, strategy=strategy, transport_mode=transport_mode)
@@ -20,6 +33,9 @@ def _pairwise_cost_table(
 
 
 def _route_cost(route: list[str], costs: dict[tuple[str, str], float]) -> float:
+    """
+    评测目标路线的总通行代价。
+    """
     total = 0.0
     for source, target in zip(route, route[1:]):
         edge_cost = costs.get((source, target), float("inf"))
@@ -32,6 +48,17 @@ def _route_cost(route: list[str], costs: dict[tuple[str, str], float]) -> float:
 def held_karp(
     graph: Graph, start: str, nodes: list[str], strategy: str, transport_mode: str
 ) -> tuple[list[str], float]:
+    """
+    应用 Held-Karp (基于状态压缩动态规划) 算法计算精准的旅行商最短回路。
+    由于复杂度 O(n^2 * 2^n)，适用于少量的点集合优化。
+    
+    :param graph: 图数据结构
+    :param start: 起始和终止节点
+    :param nodes: 内部必须经过的节点列表
+    :param strategy: 衡量边权重的策略
+    :param transport_mode: 交通模式
+    :return: (最佳走访顺序列表, 最小消耗代价)
+    """
     unique_nodes = [node for node in dict.fromkeys(nodes) if node != start]
     if not unique_nodes:
         return [start, start], 0.0
@@ -85,6 +112,17 @@ def held_karp(
 def nearest_neighbor_two_opt(
     graph: Graph, start: str, nodes: list[str], strategy: str, transport_mode: str
 ) -> tuple[list[str], float]:
+    """
+    采用 最近邻贪心算法初始化 + 2-opt 局部搜索 的混合式启发算法。
+    用于在节点较多时计算旅行商问题的近似解，效率较高。
+    
+    :param graph: 图结构
+    :param start: 起始与闭环节点
+    :param nodes: 需要经过的节点列表
+    :param strategy: 距离评估策略
+    :param transport_mode: 出行方式
+    :return: (近似最优访问序列, 该路线对应的预估代价)
+    """
     unique_nodes = [node for node in dict.fromkeys(nodes) if node != start]
     if not unique_nodes:
         return [start, start], 0.0

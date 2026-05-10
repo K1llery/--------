@@ -1,3 +1,17 @@
+"""
+主应用程序模块 (Main Application Module)
+=========================================
+该模块负责初始化 FastAPI 应用程序、配置中间件(CORS)、
+注册异常处理器、挂载静态文件目录以及引入 API 路由。
+
+主要流程:
+1. 获取系统配置字典和初始化日志。
+2. 创建 FastAPI 实例。
+3. 配置跨域资源共享 (CORS) 策略。
+4. 注册自定义以及全局的错误/异常处理。
+5. 注册子路由 (API Router) 并挂载用于 AI 生成图片的静态资源目录。
+"""
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -37,4 +51,10 @@ app.mount(
 
 @app.get("/")
 def root() -> dict[str, str]:
+    """
+    根路由处理函数。
+    
+    返回:
+        dict: 包含系统 API 运行状态的欢迎信息。
+    """
     return {"message": "Personalized Travel System API is running."}

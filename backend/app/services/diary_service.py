@@ -1,3 +1,9 @@
+"""
+游客日记与交流管理服务模块 (Diary Service)
+
+集合了游记系统的检索查询(倒排索引)、数据存取与压缩解压(霍夫曼树)、
+以及通过规则引擎抽取或生成故事板(AIGC storyboard)的能力等核心业务实现。
+"""
 from __future__ import annotations
 
 import re
@@ -10,7 +16,12 @@ from app.repositories.data_loader import DatasetRepository
 
 
 class DiarySearchService:
+    """
+    负责本地游记模糊检索与全文查询的业务服务层。
+    依靠 InvertedIndex 倒排搜索进行加速返回。
+    """
     def __init__(self, repository: DatasetRepository) -> None:
+        """初始化结构变量及索引缓存状态"""
         self.repository = repository
         self.inverted = InvertedIndex()
         self._built = False
@@ -18,6 +29,10 @@ class DiarySearchService:
         self._items_by_id_str: dict[str, dict] = {}
 
     def _rebuild_index(self, diaries: list[dict]) -> None:
+        """
+        每次发生核心数据变动时（或第一次加载），把游记的所有标题和内容
+        灌入树形索引实现词库打散和建立倒排链。
+        """
         self.inverted = InvertedIndex()
         self.inverted.build(diaries, ["title", "content", "destination_name"], "id")
         self._items_by_id = {int(item["id"]): item for item in diaries}
@@ -25,15 +40,20 @@ class DiarySearchService:
         self._built = True
 
     def _ensure_index(self) -> None:
+        """确保在搜索以前词汇倒排索图建立完善"""
         if self._built:
             return
         self._rebuild_index(self.repository.diaries())
 
     def list_all(self) -> list[dict]:
-        """返回全部日记列表。"""
+        """返回无条件全部系统内原始日记列表(已倒序等基础展示)"""
         return self.repository.diaries()
 
     def search(self, query: str) -> list[dict]:
+        """
+        根据给出的分词片段或查询指令进行搜索。
+        优先利用 O(1) + O(K) 的倒排索引命中集；如果倒排漏检了，退回暴力包含匹配。
+        """
         self._ensure_index()
         ids = self.inverted.search([query])
         matched = [self._items_by_id_str[item_id] for item_id in ids if item_id in self._items_by_id_str]
@@ -49,14 +69,19 @@ class DiarySearchService:
         ]
 
     def recommend(self, top_k: int = 10) -> list[dict]:
+        """依据系统内访问量和已有评分推荐出最为热门优秀的前 K 篇日记。"""
         selector = TopKSelector(lambda item: item["views"] + item["rating"] * 10)
         return selector.select(self.repository.diaries(), top_k)
 
     def get_by_id(self, diary_id: int) -> dict | None:
+        """凭借指定的整型ID获取唯一的日记详细对象。"""
         self._ensure_index()
         return self._items_by_id.get(diary_id)
 
     def create(self, user: dict, payload: dict) -> dict:
+        """
+        创建一个全新的用户日记（草稿发布），并自动保存与维护倒排缓存过期。
+        """
         diaries = self.repository.diaries()
         diary = {
             "id": max((item["id"] for item in diaries), default=0) + 1,
@@ -77,6 +102,9 @@ class DiarySearchService:
         return diary
 
     def increment_view(self, diary_id: int) -> dict | None:
+        """
+        自增指定日记的浏览次数（热度增长），并持久化重置相应缓存。
+        """
         diaries = self.repository.diaries()
         for item in diaries:
             if int(item["id"]) != diary_id:
@@ -88,7 +116,10 @@ class DiarySearchService:
         return None
 
     def rate(self, diary_id: int, user: dict, score: float) -> dict | None:
-        diaries = self.repository.diaries()
+        """
+        接收并处理针对某一游记的用户评分。
+        计算包含历史评分和新增评分的均值，更新至主表。
+        """
         diary = next((item for item in diaries if int(item["id"]) == diary_id), None)
         if diary is None:
             return None
@@ -134,10 +165,18 @@ class DiarySearchService:
 
 
 class CompressionService:
+    """
+    提供面向游记/博客级纯文本的字符无损压缩与解压缩服务。
+    使用自定义的霍夫曼(HuffmanCodec)实现实现以字节为单位的最佳前缀编码节省后端保存游记所须储存层开销。
+    """
     def __init__(self) -> None:
+        """初始化一个无状态基于即时字典映射生成的信源编码引擎实例"""
         self.codec = HuffmanCodec()
 
     def compress(self, content: str) -> dict:
+        """
+        接收长段文本内容进行哈夫曼压缩。返回被压缩过后的比特01字符串、字典表及效率等元资料。
+        """
         encoded, codes = self.codec.encode(content)
         original_bits = len(content.encode("utf-8")) * 8
         compressed_bits = len(encoded)
@@ -151,10 +190,14 @@ class CompressionService:
         }
 
     def decompress(self, encoded: str, codes: dict[str, str]) -> str:
+        """反向执行霍夫曼解压得出原始的中英文字符串内容"""
         return self.codec.decode(encoded, codes)
 
 
 class DiaryAIGCService:
+    """
+    负责进行针对性分析将单薄图文游记按电影分镜（AIGC Storyboard）进行编排展示的服务体系。
+    """
     transitions = ("fade", "pan-left", "zoom-in", "wipe", "dolly")
     keyword_candidates = (
         "校园",
@@ -173,11 +216,16 @@ class DiaryAIGCService:
 
     @staticmethod
     def _split_sentences(content: str) -> list[str]:
+        """通过分析常规中文句号和标点利用正则强行分割句子"""
         parts = [item.strip() for item in re.split(r"[。！？!?\n]+", content) if item.strip()]
         return parts or ["本次旅程记录暂未包含完整文本，系统按标题生成镜头草稿。"]
 
     @classmethod
     def _extract_keywords(cls, text: str, limit: int = 6) -> list[str]:
+        """
+        穷举+字典筛除模式（简易 NLP 抽取代替繁重的 TF-IDF等机制）。
+        过滤掉常用停留停用词("可以", "非常"等)，留下富有实际场景描述的字词组成精修提示信息。
+        """
         matched = [item for item in cls.keyword_candidates if item in text]
         if len(matched) >= limit:
             return matched[:limit]
@@ -193,6 +241,19 @@ class DiaryAIGCService:
         return matched[:limit] if matched else ["旅行", "城市漫游"]
 
     def generate_animation(self, diary: dict, max_shots: int = 6) -> dict:
+        """
+        基于原日记对象执行虚拟拍摄解析(Storyboard 分镜引擎)。
+        
+        模拟通过分屏展示的方式把整篇日记划分为特定数目的“镜头”(Shot)，
+        推导出各自配音讲解文本与假想转场样式特效提示指令以及每个片段维持的秒数，最后打包成AIGC剧本结构体返回。
+        
+        Args:
+            diary (dict): 系统获取的日记原属字典。
+            max_shots (int, optional): 制作分镜数量最大截断。
+            
+        Returns:
+            dict: 囊括了脚本描述、时长列表、分镜头词汇列表元素的媒体大合集字典。
+        """
         title = diary.get("title") or "旅程回放"
         destination = diary.get("destination_name") or "目的地"
         content = diary.get("content") or title

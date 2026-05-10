@@ -1,3 +1,7 @@
+"""
+API 路由注册模块
+该模块负责将各个业务子路由（ai, auth, destinations 等）整合到全局 API 路由中。
+"""
 from fastapi import APIRouter
 
 from app.api.routes import ai, auth, destinations, diaries, facilities, foods, indoor, map_data, routes
