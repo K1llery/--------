@@ -6,7 +6,7 @@
         <h2 class="text-xl font-bold text-gray-900">地图导航</h2>
         <p class="text-sm text-gray-500 mt-1">你想怎么做？</p>
       </div>
-<button
+      <button
         v-if="activeRoute"
         class="btn-soft-secondary text-sm"
         type="button"
@@ -59,7 +59,10 @@
           :class="{ 'ring-2 ring-primary-300': routeMode === item.key }"
           @click="selectMode(item.key)"
         >
-          <span class="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-teal-700 bg-teal-50 mb-2">{{ item.label }}</span>
+          <span
+            class="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-teal-700 bg-teal-50 mb-2"
+            >{{ item.label }}</span
+          >
           <strong class="block text-base font-bold text-gray-900">{{ item.title }}</strong>
           <small class="text-xs text-gray-500 mt-1 block line-clamp-2">{{ item.caption }}</small>
         </button>
@@ -79,7 +82,11 @@
           <form class="grid grid-cols-2 gap-3" @submit.prevent="handleGenerateRoute">
             <label class="space-y-1">
               <span class="field-label">当前位置</span>
-              <select v-model="startCode" class="soft-control text-sm" :disabled="useCurrentLocation">
+              <select
+                v-model="startCode"
+                class="soft-control text-sm"
+                :disabled="useCurrentLocation"
+              >
                 <option v-for="node in placeOptions" :key="node.code" :value="node.code">
                   {{ node.name }}
                 </option>
@@ -154,7 +161,10 @@
 
         <!-- 右侧：结果 -->
         <aside v-if="activeRoute" class="card-elevated sticky top-4 p-5 space-y-3">
-          <span class="inline-block px-2 py-0.5 rounded-full text-xs font-extrabold text-amber-700 bg-amber-50">{{ resultKicker }}</span>
+          <span
+            class="inline-block px-2 py-0.5 rounded-full text-xs font-extrabold text-amber-700 bg-amber-50"
+            >{{ resultKicker }}</span
+          >
           <h3 class="text-lg font-bold text-gray-900">{{ resultTitle }}</h3>
           <p class="text-sm text-gray-500">{{ activeRoute.explanation }}</p>
           <div class="flex flex-wrap gap-2">
@@ -169,7 +179,10 @@
             最近设施：{{ planner.facilityRoute.value.facility.name }} ·
             {{ planner.facilityRoute.value.facility.facility_label }}
           </p>
-          <p v-if="planner.wanderRoute.value?.ordered_stop_names?.length" class="text-xs text-gray-400">
+          <p
+            v-if="planner.wanderRoute.value?.ordered_stop_names?.length"
+            class="text-xs text-gray-400"
+          >
             停靠：{{ planner.wanderRoute.value.ordered_stop_names.join(" → ") }}
           </p>
         </aside>
@@ -186,11 +199,16 @@
             v-for="item in activeAlternatives"
             :key="item.strategy"
             class="card-elevated p-4 cursor-pointer glow-border"
-            :class="{ 'ring-2 ring-primary-300': planner.selectedAlternativeStrategy.value === item.strategy }"
+            :class="{
+              'ring-2 ring-primary-300':
+                planner.selectedAlternativeStrategy.value === item.strategy,
+            }"
             @click="planner.selectedAlternativeStrategy.value = item.strategy"
           >
             <h4 class="text-sm font-bold text-gray-900">{{ item.strategy_label }}</h4>
-            <p class="text-xs text-gray-500 mt-1">{{ item.total_distance_m }} m · {{ item.estimated_minutes }} 分钟</p>
+            <p class="text-xs text-gray-500 mt-1">
+              {{ item.total_distance_m }} m · {{ item.estimated_minutes }} 分钟
+            </p>
           </article>
         </div>
       </section>
@@ -209,7 +227,9 @@
           >
             <span class="timeline-index">{{ segment.index }}</span>
             <div class="timeline-content">
-              <strong class="text-sm font-bold text-gray-900">{{ segment.from_name }} → {{ segment.to_name }}</strong>
+              <strong class="text-sm font-bold text-gray-900"
+                >{{ segment.from_name }} → {{ segment.to_name }}</strong
+              >
               <p class="text-xs text-gray-500 mt-0.5">{{ segment.instruction }}</p>
               <p class="text-xs text-gray-400 mt-0.5">
                 {{ segment.distance_m }} 米 · {{ segment.estimated_minutes }} 分钟 · 累计

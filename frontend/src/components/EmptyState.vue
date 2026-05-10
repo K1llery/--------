@@ -52,12 +52,9 @@
   </div>
 </template>
 <script setup lang="ts">
-withDefaults(
-  defineProps<{ title?: string; description?: string; actionHint?: string }>(),
-  {
-    title: "暂无数据",
-    description: "",
-    actionHint: "",
-  },
-);
+withDefaults(defineProps<{ title?: string; description?: string; actionHint?: string }>(), {
+  title: "暂无数据",
+  description: "",
+  actionHint: "",
+});
 </script>

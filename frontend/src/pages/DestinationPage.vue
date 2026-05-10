@@ -23,7 +23,12 @@
         >
           {{ tag.label }}
           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
       </div>
@@ -59,7 +64,7 @@
       v-else-if="filteredDestinations.length === 0"
       title="暂无匹配结果"
       description="当前筛选条件下没有目的地，换个城市或类别试试。"
-      actionHint="换个城市或类别？试试全部城市或景点"
+      action-hint="换个城市或类别？试试全部城市或景点"
     />
     <!-- Content -->
     <div v-else class="grid lg:grid-cols-[1.4fr_1fr] gap-6">
@@ -248,7 +253,8 @@ const removeTag = (key: string) => {
 const selectedTags = computed(() => {
   const tags = [];
   if (cityFilter.value !== "全部") tags.push({ key: "city", label: `城市:${cityFilter.value}` });
-  if (categoryFilter.value !== "全部") tags.push({ key: "category", label: `类别:${categoryFilter.value}` });
+  if (categoryFilter.value !== "全部")
+    tags.push({ key: "category", label: `类别:${categoryFilter.value}` });
   if (sortMode.value !== "recommended") {
     const label = sortMode.value === "rating" ? "评分降序" : "热度降序";
     tags.push({ key: "sort", label });

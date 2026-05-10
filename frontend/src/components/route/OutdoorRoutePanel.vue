@@ -19,7 +19,9 @@
   <!-- 单点路线结果 -->
   <div v-if="planner.singleRoute.value" class="card-elevated p-5">
     <div class="flex items-center justify-between gap-3 mb-3">
-      <h3 class="text-base font-bold text-gray-900 m0">{{ planner.singleRoute.value.strategy_label }}</h3>
+      <h3 class="text-base font-bold text-gray-900 m0">
+        {{ planner.singleRoute.value.strategy_label }}
+      </h3>
       <button class="btn-soft-secondary text-sm" @click="handleSaveRoute">收藏当前路线</button>
     </div>
     <p class="text-sm text-gray-500 mt-2">{{ planner.singleRoute.value.explanation }}</p>
@@ -47,12 +49,16 @@
         v-for="item in planner.singleRoute.value.alternatives"
         :key="item.strategy"
         class="card-elevated p-4 cursor-pointer glow-border"
-        :class="{ 'ring-2 ring-primary-300': planner.selectedAlternativeStrategy.value === item.strategy }"
+        :class="{
+          'ring-2 ring-primary-300': planner.selectedAlternativeStrategy.value === item.strategy,
+        }"
         @click="planner.selectedAlternativeStrategy.value = item.strategy"
       >
         <h4 class="text-sm font-bold text-gray-900">{{ item.strategy_label }}</h4>
         <p class="text-xs text-gray-500 mt-1">{{ item.explanation }}</p>
-        <p class="text-xs text-gray-400 mt-1">{{ item.total_distance_m }} m · {{ item.estimated_minutes }} 分钟</p>
+        <p class="text-xs text-gray-400 mt-1">
+          {{ item.total_distance_m }} m · {{ item.estimated_minutes }} 分钟
+        </p>
       </article>
     </div>
   </section>
@@ -71,7 +77,9 @@
 
   <!-- 多点闭环结果 -->
   <div v-if="planner.multiRoute.value" class="card-elevated p-5">
-    <h3 class="text-base font-bold text-gray-900">{{ planner.multiRoute.value.optimization_label }}</h3>
+    <h3 class="text-base font-bold text-gray-900">
+      {{ planner.multiRoute.value.optimization_label }}
+    </h3>
     <p class="text-sm text-gray-500 mt-2">{{ planner.multiRoute.value.explanation }}</p>
     <p v-if="planner.multiRoute.value.resolved_start_name" class="text-xs text-gray-400 mt-1">
       实际起点：{{ planner.multiRoute.value.resolved_start_name }}
@@ -100,7 +108,9 @@
       >
         <span class="timeline-index">{{ segment.index }}</span>
         <div class="timeline-content">
-          <strong class="text-sm font-bold text-gray-900">{{ segment.from_name }} → {{ segment.to_name }}</strong>
+          <strong class="text-sm font-bold text-gray-900"
+            >{{ segment.from_name }} → {{ segment.to_name }}</strong
+          >
           <p class="text-xs text-gray-500 mt-0.5">{{ segment.instruction }}</p>
           <p class="text-xs text-gray-400 mt-0.5">
             {{ segment.distance_m }} 米 · {{ segment.estimated_minutes }} 分钟 · 累计

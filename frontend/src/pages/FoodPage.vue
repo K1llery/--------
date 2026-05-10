@@ -22,7 +22,12 @@
         >
           {{ tag.label }}
           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
       </div>
@@ -63,7 +68,7 @@
       v-else-if="filteredFoods.length === 0"
       title="暂无美食推荐"
       description="当前筛选条件下没有结果，换个城市或菜系试试。"
-      actionHint="换个城市或菜系？试试全部城市或川菜"
+      action-hint="换个城市或菜系？试试全部城市或川菜"
     />
     <div v-else class="grid lg:grid-cols-[1.4fr_1fr] gap-6">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 stagger-children">
@@ -211,8 +216,10 @@ const removeTag = (key: string) => {
 const selectedTags = computed(() => {
   const tags = [];
   if (cityFilter.value !== "全部") tags.push({ key: "city", label: `城市:${cityFilter.value}` });
-  if (cuisineFilter.value !== "全部") tags.push({ key: "cuisine", label: `菜系:${cuisineFilter.value}` });
-  if (destinationFilter.value !== "全部") tags.push({ key: "destination", label: `目的地:${destinationFilter.value}` });
+  if (cuisineFilter.value !== "全部")
+    tags.push({ key: "cuisine", label: `菜系:${cuisineFilter.value}` });
+  if (destinationFilter.value !== "全部")
+    tags.push({ key: "destination", label: `目的地:${destinationFilter.value}` });
   if (sortMode.value !== "recommended") {
     const label = sortMode.value === "rating" ? "评分优先" : "热度优先";
     tags.push({ key: "sort", label });

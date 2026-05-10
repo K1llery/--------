@@ -4,7 +4,9 @@
     <div class="flex items-start justify-between gap-4 flex-wrap">
       <div>
         <h2 class="text-xl font-bold text-gray-900">旅游日记</h2>
-        <p class="text-sm text-gray-500 mt-1">浏览他人的路线心得，也可以登录后写下自己的城市散步记录。</p>
+        <p class="text-sm text-gray-500 mt-1">
+          浏览他人的路线心得，也可以登录后写下自己的城市散步记录。
+        </p>
       </div>
       <button class="btn-soft-primary text-sm" @click="openComposer">
         {{ showComposer ? "收起发布区" : "发布日记" }}
@@ -84,7 +86,12 @@
           @click="query = ''"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
         <!-- Dropdown -->
@@ -201,7 +208,11 @@
       <!-- 操作按钮 -->
       <div class="flex flex-wrap gap-2">
         <button class="btn-soft-primary text-sm" @click="compress">压缩正文演示</button>
-        <button class="btn-soft-primary text-sm" @click="decompress" :disabled="!compressionPayload">
+        <button
+          class="btn-soft-primary text-sm"
+          @click="decompress"
+          :disabled="!compressionPayload"
+        >
           解压回放
         </button>
         <button class="btn-soft-primary text-sm" @click="addView">手动+1浏览</button>
@@ -226,8 +237,17 @@
         </button>
       </div>
 
-      <pre v-if="compressionResult" class="text-xs text-gray-600 bg-gray-50 p-3 rounded-xl overflow-auto">{{ compressionResult }}</pre>
-      <pre v-if="decompressedContent" class="text-xs text-gray-600 bg-gray-50 p-3 rounded-xl overflow-auto">解压结果:\n{{ decompressedContent }}</pre>
+      <pre
+        v-if="compressionResult"
+        class="text-xs text-gray-600 bg-gray-50 p-3 rounded-xl overflow-auto"
+        >{{ compressionResult }}</pre
+      >
+      <pre
+        v-if="decompressedContent"
+        class="text-xs text-gray-600 bg-gray-50 p-3 rounded-xl overflow-auto"
+      >
+解压结果:\n{{ decompressedContent }}</pre
+      >
 
       <!-- AIGC 动画 -->
       <section v-if="animationResult" class="space-y-3">
@@ -248,7 +268,10 @@
             :search-hint="selected.destination_name"
             class="w-full h-48 object-cover"
           />
-          <div class="absolute inset-x-0 bottom-0 p-4 rounded-b-2xl" style="background:rgba(79,70,229,0.72); backdrop-filter:blur(10px)">
+          <div
+            class="absolute inset-x-0 bottom-0 p-4 rounded-b-2xl"
+            style="background: rgba(79, 70, 229, 0.72); backdrop-filter: blur(10px)"
+          >
             <strong class="text-sm font-bold text-white">第 {{ activeShot.index }} 镜</strong>
             <p class="text-xs text-gray-200 mt-1">{{ activeShot.caption }}</p>
             <p class="text-xs text-gray-300 mt-0.5">
@@ -257,7 +280,9 @@
           </div>
         </div>
 
-        <p class="text-sm text-gray-600"><strong>旁白串联：</strong>{{ animationResult.narration_script }}</p>
+        <p class="text-sm text-gray-600">
+          <strong>旁白串联：</strong>{{ animationResult.narration_script }}
+        </p>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
           <article
             v-for="shot in animationResult.shots"
@@ -268,7 +293,9 @@
           >
             <h4 class="text-sm font-bold text-gray-900">镜头 {{ shot.index }}</h4>
             <p class="text-xs text-gray-500 mt-1 line-clamp-2">{{ shot.caption }}</p>
-            <p class="text-xs text-gray-400 mt-0.5">{{ shot.transition }} · {{ shot.duration_seconds }} 秒</p>
+            <p class="text-xs text-gray-400 mt-0.5">
+              {{ shot.transition }} · {{ shot.duration_seconds }} 秒
+            </p>
           </article>
         </div>
       </section>
