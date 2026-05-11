@@ -86,6 +86,12 @@ class DatasetRepository:
     def save_diary_ratings(self, payload: list[dict[str, Any]]) -> None:
         self._write_json("diary_ratings.json", payload)
 
+    def plans(self) -> list[dict[str, Any]]:
+        return self._load_json("plans.json")
+
+    def save_plans(self, payload: list[dict[str, Any]]) -> None:
+        self._write_json("plans.json", payload)
+
 
 @lru_cache
 def get_json_repository() -> DatasetRepository:

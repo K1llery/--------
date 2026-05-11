@@ -53,3 +53,13 @@ class RouteResponse(BaseModel):
     path: list[str]
     total_distance: float
     total_cost: float
+
+
+class OptimizeOrderRequest(BaseModel):
+    destination_ids: list[str] = Field(default_factory=list, min_length=2)
+
+
+class OptimizeOrderResponse(BaseModel):
+    ordered_ids: list[str]
+    total_distance_km: float
+    optimization_label: str

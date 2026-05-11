@@ -587,6 +587,24 @@ const IconBook = () =>
       }),
     ],
   );
+const IconCalendar = () =>
+  h(
+    "svg",
+    {
+      class: "w-[18px] h-[18px]",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      stroke: "currentColor",
+      "stroke-width": "1.5",
+    },
+    [
+      h("path", {
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        d: "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5",
+      }),
+    ],
+  );
 const navItems = [
   { label: "首页", to: "/", icon: IconHome },
   { label: "目的地推荐", to: "/destinations", icon: IconPin },
@@ -595,6 +613,7 @@ const navItems = [
   { label: "附近设施", to: "/facilities", icon: IconBuilding },
   { label: "美食推荐", to: "/foods", icon: IconUtensils },
   { label: "旅游日记", to: "/diaries", icon: IconBook },
+  { label: "旅游规划", to: "/plan", icon: IconCalendar },
 ];
 onMounted(() => {
   auth.bindUnauthorizedListener();

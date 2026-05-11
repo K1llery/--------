@@ -2,7 +2,7 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.62.11 87bfad18",
   "osm3s": {
-    "timestamp_osm_base": "2026-04-18T05:53:44Z",
+    "timestamp_osm_base": "2026-05-11T12:52:45Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -803,18 +803,6 @@
     },
     {
       "type": "node",
-      "id": 12761676320,
-      "lat": 40.0011774,
-      "lon": 116.267962,
-      "tags": {
-        "description": "summer palace beijing",
-        "name": "Summer Palace ticket office",
-        "opening_hours": "Mo-Su 06:00-19:00",
-        "tourism": "attraction"
-      }
-    },
-    {
-      "type": "node",
       "id": 12889807248,
       "lat": 39.9959039,
       "lon": 116.286942,
@@ -845,6 +833,37 @@
         "name": "正红旗",
         "name:zh-Hant": "正紅旗",
         "place": "neighbourhood"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13744152732,
+      "lat": 39.985568,
+      "lon": 116.2912655,
+      "tags": {
+        "name": "中心草坪东侧林下帐篷区",
+        "tourism": "camp_site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13744152734,
+      "lat": 39.9861041,
+      "lon": 116.2873916,
+      "tags": {
+        "name": "大湖西侧林下帐篷区",
+        "tourism": "camp_site"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13744152780,
+      "lat": 39.9854479,
+      "lon": 116.2911075,
+      "tags": {
+        "amenity": "cafe",
+        "cuisine": "coffee_shop",
+        "name": "西花园"
       }
     },
     {
@@ -883,7 +902,7 @@
         "phone": "+86 10 6262 8501",
         "smoking": "no",
         "tourism": "attraction",
-        "website": "http://www.yuanmingyuanpark.cn/",
+        "website": "https://www.yuanmingyuanpark.cn/",
         "wikidata": "Q907894",
         "wikipedia": "en:Old Summer Palace"
       }
@@ -2147,6 +2166,19 @@
         "leisure": "golf_course",
         "name": "万柳高尔夫球场",
         "sport": "golf",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 14049824,
+      "center": {
+        "lat": 39.9986811,
+        "lon": 116.2826219
+      },
+      "tags": {
+        "building": "yes",
+        "name": "硕士楼",
         "type": "multipolygon"
       }
     }

@@ -21,6 +21,7 @@ export interface Destination {
 export interface Food {
   id: string;
   name: string;
+  city?: string;
   cuisine?: string;
   rating: number | null;
   heat?: number | null;
@@ -30,6 +31,7 @@ export interface Food {
   address?: string;
   latitude?: number;
   longitude?: number;
+  distance_km?: number;
 }
 
 /** 日记 */
@@ -211,6 +213,37 @@ export interface RouteSnapshot {
   estimated_minutes: number;
   explanation: string;
   saved_at?: string;
+}
+
+/** 时段条目 */
+export interface TimeSlotEntry {
+  destination_id: string;
+  destination_name: string;
+  notes: string;
+}
+
+/** 每日时段 */
+export interface TimeSlots {
+  morning: TimeSlotEntry | null;
+  afternoon: TimeSlotEntry | null;
+  evening: TimeSlotEntry | null;
+}
+
+/** 单日行程 */
+export interface DayPlan {
+  date: string;
+  city: string;
+  time_slots: TimeSlots;
+}
+
+/** 旅行计划 */
+export interface TravelPlan {
+  id: number;
+  user_id: number;
+  title: string;
+  days: DayPlan[];
+  created_at: string;
+  updated_at: string;
 }
 
 /** 设施 */

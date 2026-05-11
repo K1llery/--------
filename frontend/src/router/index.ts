@@ -38,6 +38,11 @@ const router = createRouter({
       name: "diaries",
       component: () => import("../pages/DiaryPage.vue"),
     },
+    {
+      path: "/plan",
+      name: "plan",
+      component: () => import("../pages/PlanPage.vue"),
+    },
   ],
 });
 

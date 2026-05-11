@@ -105,3 +105,9 @@ class SQLiteRepository:
 
     def save_diary_ratings(self, payload: list[dict[str, Any]]) -> None:
         self._save_collection("diary_ratings", payload)
+
+    def plans(self) -> list[dict[str, Any]]:
+        return self._load_collection("plans")
+
+    def save_plans(self, payload: list[dict[str, Any]]) -> None:
+        self._save_collection("plans", payload)

@@ -2,7 +2,7 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.62.11 87bfad18",
   "osm3s": {
-    "timestamp_osm_base": "2026-04-18T05:52:43Z",
+    "timestamp_osm_base": "2026-05-11T12:51:45Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -2638,6 +2638,19 @@
     },
     {
       "type": "way",
+      "id": 544581120,
+      "center": {
+        "lat": 39.9615579,
+        "lon": 116.3661084
+      },
+      "tags": {
+        "building": "apartments",
+        "building:levels": "5",
+        "name": "26号楼"
+      }
+    },
+    {
+      "type": "way",
       "id": 556779106,
       "center": {
         "lat": 39.9587133,
@@ -2799,8 +2812,8 @@
       "type": "way",
       "id": 665143611,
       "center": {
-        "lat": 39.9621978,
-        "lon": 116.3684371
+        "lat": 39.962198,
+        "lon": 116.3684538
       },
       "tags": {
         "addr:postcode": "100088",
@@ -2923,8 +2936,8 @@
       "type": "way",
       "id": 915345954,
       "center": {
-        "lat": 39.9626761,
-        "lon": 116.369123
+        "lat": 39.9626612,
+        "lon": 116.369084
       },
       "tags": {
         "building": "school",
@@ -2937,8 +2950,8 @@
       "type": "way",
       "id": 915345955,
       "center": {
-        "lat": 39.9622638,
-        "lon": 116.3690172
+        "lat": 39.9622568,
+        "lon": 116.3690103
       },
       "tags": {
         "building": "school",
@@ -3397,8 +3410,8 @@
       "type": "way",
       "id": 1488785337,
       "center": {
-        "lat": 39.961761,
-        "lon": 116.3694098
+        "lat": 39.9617576,
+        "lon": 116.3694072
       },
       "tags": {
         "building": "yes",
@@ -3419,6 +3432,19 @@
         "building": "yes",
         "name": "祖冲之亭",
         "shelter_type": "gazebo"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1509391026,
+      "center": {
+        "lat": 39.9615515,
+        "lon": 116.3666491
+      },
+      "tags": {
+        "building": "residential",
+        "building:levels": "5",
+        "name": "24号楼"
       }
     },
     {
@@ -3490,8 +3516,8 @@
       "type": "relation",
       "id": 20151457,
       "center": {
-        "lat": 39.9620073,
-        "lon": 116.3688948
+        "lat": 39.9620143,
+        "lon": 116.3688949
       },
       "tags": {
         "addr:postcode": "100088",

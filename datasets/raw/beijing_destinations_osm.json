@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.62.11 87bfad18",
   "osm3s": {
-    "timestamp_osm_base": "2026-04-18T05:52:43Z",
-    "timestamp_areas_base": "2026-04-17T23:00:58Z",
+    "timestamp_osm_base": "2026-05-11T12:47:43Z",
+    "timestamp_areas_base": "2026-05-11T09:48:59Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -412,17 +412,6 @@
         "name": "司马台长城",
         "name:en": "Great Wall at Simatai",
         "name:pt": "Muralha da China Simatai",
-        "tourism": "attraction"
-      }
-    },
-    {
-      "type": "node",
-      "id": 380645187,
-      "lat": 40.6771768,
-      "lon": 117.2323101,
-      "tags": {
-        "name": "金山岭长城 Jinshanling",
-        "name:en": "Great Wall at JinShanLing",
         "tourism": "attraction"
       }
     },
@@ -2467,7 +2456,7 @@
         "name:zh-Hans": "故宫博物院",
         "name:zh-Hant": "故宮博物院",
         "tourism": "museum",
-        "website": "http://www.dpm.org.cn/",
+        "website": "https://www.dpm.org.cn/",
         "wikidata": "Q5146118",
         "wikipedia": "zh:故宫博物院"
       }
@@ -4149,8 +4138,8 @@
     {
       "type": "node",
       "id": 5225840222,
-      "lat": 39.8540293,
-      "lon": 116.6144084,
+      "lat": 39.8540396,
+      "lon": 116.6144661,
       "tags": {
         "artwork_type": "sculpture",
         "name": "台湖镇",
@@ -5112,7 +5101,8 @@
       "lon": 116.391255,
       "tags": {
         "artwork_type": "sculpture",
-        "tourism": "artwork"
+        "tourism": "artwork",
+        "wheelchair": "yes"
       }
     },
     {
@@ -5122,7 +5112,8 @@
       "lon": 116.3905603,
       "tags": {
         "artwork_type": "sculpture",
-        "tourism": "artwork"
+        "tourism": "artwork",
+        "wheelchair": "yes"
       }
     },
     {
@@ -8493,6 +8484,15 @@
       "lon": 116.7096921,
       "tags": {
         "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9183226128,
+      "lat": 39.9872342,
+      "lon": 116.2888905,
+      "tags": {
+        "tourism": "viewpoint"
       }
     },
     {
@@ -19457,16 +19457,6 @@
     },
     {
       "type": "node",
-      "id": 10946143905,
-      "lat": 40.449273,
-      "lon": 116.5533457,
-      "tags": {
-        "name:ru": "Начало Нового участка",
-        "tourism": "attraction"
-      }
-    },
-    {
-      "type": "node",
       "id": 10948755691,
       "lat": 40.3078835,
       "lon": 116.1330574,
@@ -23304,7 +23294,8 @@
         "artist_name": "李瑞环",
         "artwork_type": "statue",
         "name": "时付祥同志",
-        "tourism": "artwork"
+        "tourism": "artwork",
+        "wheelchair": "yes"
       }
     },
     {
@@ -24862,7 +24853,8 @@
         "name": "中华人民共和国国徽",
         "name:en": "National Emblem of the People's Republic of China",
         "name:pl": "Godło Chińskiej Republiki Ludowej",
-        "tourism": "artwork"
+        "tourism": "artwork",
+        "wheelchair": "yes"
       }
     },
     {
@@ -25228,7 +25220,7 @@
       "lon": 116.267962,
       "tags": {
         "description": "summer palace beijing",
-        "name": "Summer Palace ticket office",
+        "name:en": "Summer Palace ticket office",
         "opening_hours": "Mo-Su 06:00-19:00",
         "tourism": "attraction"
       }
@@ -27305,6 +27297,148 @@
       }
     },
     {
+      "type": "node",
+      "id": 13747124931,
+      "lat": 39.9711328,
+      "lon": 116.4687642,
+      "tags": {
+        "name": "荷风思永",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13747124932,
+      "lat": 39.9706056,
+      "lon": 116.4692768,
+      "tags": {
+        "name": "君子观杉",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13747124933,
+      "lat": 39.9701231,
+      "lon": 116.4690874,
+      "tags": {
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13747124934,
+      "lat": 39.9716637,
+      "lon": 116.4684674,
+      "tags": {
+        "name": "得心亭",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13747124935,
+      "lat": 39.97047,
+      "lon": 116.4709996,
+      "tags": {
+        "name": "樱花剧场",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13789021759,
+      "lat": 39.8141095,
+      "lon": 116.381541,
+      "tags": {
+        "name": "燕景台",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13789171213,
+      "lat": 39.8183524,
+      "lon": 116.3623646,
+      "tags": {
+        "name": "一亩古泉",
+        "tourism": "viewpoint"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13806060968,
+      "lat": 40.009688,
+      "lon": 116.4696446,
+      "tags": {
+        "artwork_type": "sculpture",
+        "tourism": "artwork"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13807668687,
+      "lat": 39.9252829,
+      "lon": 116.3828357,
+      "tags": {
+        "name": "Hall of Ripples",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13808220130,
+      "lat": 40.0729249,
+      "lon": 116.4563707,
+      "tags": {
+        "name": "芸上梯田",
+        "name:zh-hant": "芸上梯田",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13808220234,
+      "lat": 40.0696799,
+      "lon": 116.4550652,
+      "tags": {
+        "name": "飞瀑叠翠",
+        "name:zh-hant": "飛瀑疊翠",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13808220245,
+      "lat": 40.0760123,
+      "lon": 116.4580473,
+      "tags": {
+        "name": "玲珑望月",
+        "name:zh-hant": "玲瓏望月",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13808220292,
+      "lat": 40.0757937,
+      "lon": 116.4570492,
+      "tags": {
+        "name": "阳光沙滩",
+        "name:zh-hant": "陽光沙灘",
+        "tourism": "attraction"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13809930989,
+      "lat": 39.8242542,
+      "lon": 116.5962942,
+      "tags": {
+        "tourism": "museum"
+      }
+    },
+    {
       "type": "way",
       "id": 4922662,
       "center": {
@@ -27608,7 +27742,7 @@
         "phone": "+86 10 6262 8501",
         "smoking": "no",
         "tourism": "attraction",
-        "website": "http://www.yuanmingyuanpark.cn/",
+        "website": "https://www.yuanmingyuanpark.cn/",
         "wikidata": "Q907894",
         "wikipedia": "en:Old Summer Palace"
       }
@@ -27650,6 +27784,7 @@
         "name:zh-Latn-pinyin": "Shèjìtán",
         "religion": "confucian",
         "tourism": "attraction",
+        "wheelchair": "yes",
         "wikidata": "Q6743471",
         "wikipedia": "zh:社稷坛"
       }
@@ -29230,12 +29365,13 @@
       "id": 48049618,
       "center": {
         "lat": 40.0882764,
-        "lon": 116.3042745
+        "lon": 116.3042675
       },
       "tags": {
         "amenity": "university",
         "name": "华北电力大学 - 北京",
-        "name:en": "North China Electric Power University - Beijing Campus"
+        "name:en": "North China Electric Power University - Beijing Campus",
+        "wikidata": "Q7054810"
       }
     },
     {
@@ -29315,7 +29451,7 @@
       "id": 55806544,
       "center": {
         "lat": 40.0814938,
-        "lon": 116.31868
+        "lon": 116.3186616
       },
       "tags": {
         "capacity": "2.8",
@@ -31766,8 +31902,8 @@
       "type": "way",
       "id": 231113730,
       "center": {
-        "lat": 39.8700766,
-        "lon": 116.7334903
+        "lat": 39.8700135,
+        "lon": 116.7336011
       },
       "tags": {
         "leisure": "park",
@@ -37008,13 +37144,14 @@
       "type": "way",
       "id": 412286531,
       "center": {
-        "lat": 40.0929929,
-        "lon": 116.3045768
+        "lat": 40.0930055,
+        "lon": 116.3045347
       },
       "tags": {
         "amenity": "university",
         "name": "北京农学院",
-        "name:en": "Beijing University of Agriculture"
+        "name:en": "Beijing University of Agriculture",
+        "wikidata": "Q10902048"
       }
     },
     {
@@ -39378,7 +39515,8 @@
         "name:zh-Hans": "西坛门",
         "name:zh-Hant": "西壇門",
         "name:zh-Latn-pinyin": "Xītánmén",
-        "tourism": "artwork"
+        "tourism": "artwork",
+        "wheelchair": "yes"
       }
     },
     {
@@ -40925,7 +41063,9 @@
       },
       "tags": {
         "leisure": "park",
-        "name": "北坞公园"
+        "name": "北坞公园",
+        "wikidata": "Q48928388",
+        "wikipedia": "zh:北坞公园"
       }
     },
     {
@@ -42620,7 +42760,8 @@
         "name:zh-Hans": "东坛门",
         "name:zh-Hant": "東壇門",
         "name:zh-Latn-pinyin": "Dōngtánmén",
-        "tourism": "artwork"
+        "tourism": "artwork",
+        "wheelchair": "yes"
       }
     },
     {
@@ -42965,7 +43106,7 @@
         "name": "国家植物园（南园）",
         "name:en": "National Botanical Garden, Chinese Academy of Sciences",
         "name:zh": "国家植物园（南园）",
-        "website": "http://garden.ibcas.ac.cn/index.htm",
+        "website": "https://garden.ibcas.ac.cn/index.htm",
         "wikidata": "Q10874021",
         "wikimedia_commons": "Category:IBCAS Beijing Botanical Garden",
         "wikipedia": "zh:中国科学院北京植物园"
@@ -43748,7 +43889,7 @@
       "id": 682468647,
       "center": {
         "lat": 40.0790849,
-        "lon": 116.3212488
+        "lon": 116.3212081
       },
       "tags": {
         "leisure": "park"
@@ -43759,7 +43900,7 @@
       "id": 682468661,
       "center": {
         "lat": 40.0753462,
-        "lon": 116.3530111
+        "lon": 116.3530128
       },
       "tags": {
         "leisure": "park"
@@ -44316,6 +44457,57 @@
       },
       "tags": {
         "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 688353398,
+      "center": {
+        "lat": 40.6789216,
+        "lon": 117.2509998
+      },
+      "tags": {
+        "barrier": "city_wall",
+        "foot": "yes",
+        "highway": "steps",
+        "historic": "citywalls",
+        "historic:civilization": "imperial_chinese",
+        "name": "长城",
+        "name:als": "Chinesische Mauer",
+        "name:ar": "سور الصين العظيم",
+        "name:azb": "چین دیواری",
+        "name:be": "Вялікая Кітайская сцяна",
+        "name:be-tarask": "Вялікая кітайская сьцяна",
+        "name:cs": "Velká čínská zeď",
+        "name:de": "Chinesische Mauer",
+        "name:en": "Great Wall of China",
+        "name:es": "Gran Muralla China",
+        "name:fa": "دیوار بزرگ چین",
+        "name:fr": "Grande Muraille",
+        "name:grc": "Σινικόν Τεῖχος",
+        "name:hy": "Չինական մեծ պարիսպ",
+        "name:ka": "ჩინეთის დიდი კედელი",
+        "name:kk": "Қытай қорғаны",
+        "name:kk-Arab": "ۇلى قىتاي قورعانى",
+        "name:mk": "Кинески ѕид",
+        "name:mzn": "چین گت دیوار",
+        "name:pa": "ਚੀਨ ਦੀ ਮਹਾਨ ਦੀਵਾਰ",
+        "name:pnb": "چین دی کندھ",
+        "name:ps": "د چین لوی دیوال",
+        "name:pt": "Muralha da China",
+        "name:ru": "Великая Китайская Стена",
+        "name:sd": "چين جي عظيم ديوار",
+        "name:sr": "Кинески зид",
+        "name:sv": "Kinesiska muren",
+        "name:ug": "سەدىچىن سېپىلى",
+        "name:uk": "Великий китайський мур",
+        "name:ur": "دیوار چین",
+        "name:zh": "长城",
+        "name:zh-Hant": "長城",
+        "name:zh-Latn-pinyin": "Chángchéng",
+        "tourism": "attraction",
+        "two_sided": "yes",
+        "wikidata": "Q11088230"
       }
     },
     {
@@ -46665,8 +46857,8 @@
       "type": "way",
       "id": 746980708,
       "center": {
-        "lat": 39.8945779,
-        "lon": 116.2150534
+        "lat": 39.8948944,
+        "lon": 116.2154924
       },
       "tags": {
         "leisure": "park"
@@ -49533,7 +49725,7 @@
       "type": "way",
       "id": 829238731,
       "center": {
-        "lat": 40.082405,
+        "lat": 40.0824083,
         "lon": 116.3776726
       },
       "tags": {
@@ -49557,7 +49749,7 @@
       "id": 829238735,
       "center": {
         "lat": 40.0746244,
-        "lon": 116.3787615
+        "lon": 116.3788
       },
       "tags": {
         "leisure": "park",
@@ -52409,17 +52601,6 @@
       "tags": {
         "leisure": "park",
         "name": "乐跑公园"
-      }
-    },
-    {
-      "type": "way",
-      "id": 867008983,
-      "center": {
-        "lat": 39.8104831,
-        "lon": 116.5722889
-      },
-      "tags": {
-        "leisure": "park"
       }
     },
     {
@@ -56025,8 +56206,8 @@
       "type": "way",
       "id": 910674876,
       "center": {
-        "lat": 39.8153557,
-        "lon": 116.372022
+        "lat": 39.812213,
+        "lon": 116.372139
       },
       "tags": {
         "leisure": "park",
@@ -57323,6 +57504,21 @@
     },
     {
       "type": "way",
+      "id": 926179322,
+      "center": {
+        "lat": 39.8899536,
+        "lon": 116.7050034
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "京华福满园",
+        "old_name": "六环高线公园",
+        "opening_hours": "24/7",
+        "start_date": "2026-04-29"
+      }
+    },
+    {
+      "type": "way",
       "id": 926722384,
       "center": {
         "lat": 39.8513127,
@@ -58422,7 +58618,7 @@
       "type": "way",
       "id": 940009347,
       "center": {
-        "lat": 39.8090373,
+        "lat": 39.8090399,
         "lon": 116.4572393
       },
       "tags": {
@@ -59145,7 +59341,7 @@
       "id": 943917003,
       "center": {
         "lat": 40.0804364,
-        "lon": 116.308024
+        "lon": 116.3079792
       },
       "tags": {
         "leisure": "park",
@@ -59156,8 +59352,8 @@
       "type": "way",
       "id": 943917004,
       "center": {
-        "lat": 40.0818251,
-        "lon": 116.3260863
+        "lat": 40.0818352,
+        "lon": 116.3260828
       },
       "tags": {
         "leisure": "park",
@@ -61358,18 +61554,6 @@
     },
     {
       "type": "way",
-      "id": 962102770,
-      "center": {
-        "lat": 40.1002611,
-        "lon": 116.3033801
-      },
-      "tags": {
-        "amenity": "university",
-        "name": "北京农学院北校区"
-      }
-    },
-    {
-      "type": "way",
       "id": 962102789,
       "center": {
         "lat": 40.0745945,
@@ -61411,6 +61595,8 @@
         "lon": 116.2319094
       },
       "tags": {
+        "addr:housenumber": "55",
+        "addr:street": "太行路",
         "amenity": "university",
         "name": "北京信息科技大学昌平校区",
         "name:zh": "北京信息科技大学昌平校区",
@@ -68762,18 +68948,6 @@
     },
     {
       "type": "way",
-      "id": 1040475858,
-      "center": {
-        "lat": 39.9328041,
-        "lon": 116.1803094
-      },
-      "tags": {
-        "leisure": "park",
-        "name": "石景山区第三幼儿园"
-      }
-    },
-    {
-      "type": "way",
       "id": 1040475859,
       "center": {
         "lat": 39.9314285,
@@ -69097,8 +69271,8 @@
       "type": "way",
       "id": 1046532919,
       "center": {
-        "lat": 40.0957411,
-        "lon": 116.2993952
+        "lat": 40.0957592,
+        "lon": 116.2993896
       },
       "tags": {
         "leisure": "park"
@@ -69670,17 +69844,6 @@
     },
     {
       "type": "way",
-      "id": 1053026136,
-      "center": {
-        "lat": 40.1149174,
-        "lon": 116.6877627
-      },
-      "tags": {
-        "leisure": "park"
-      }
-    },
-    {
-      "type": "way",
       "id": 1053213996,
       "center": {
         "lat": 39.949923,
@@ -69927,7 +70090,8 @@
         "lon": 116.2562676
       },
       "tags": {
-        "leisure": "park"
+        "leisure": "park",
+        "name": "永建公园"
       }
     },
     {
@@ -73555,28 +73719,6 @@
       "center": {
         "lat": 39.9688587,
         "lon": 116.4205067
-      },
-      "tags": {
-        "leisure": "park"
-      }
-    },
-    {
-      "type": "way",
-      "id": 1086321493,
-      "center": {
-        "lat": 39.8883923,
-        "lon": 116.4431377
-      },
-      "tags": {
-        "leisure": "park"
-      }
-    },
-    {
-      "type": "way",
-      "id": 1086321494,
-      "center": {
-        "lat": 39.8874086,
-        "lon": 116.44308
       },
       "tags": {
         "leisure": "park"
@@ -78279,17 +78421,6 @@
     },
     {
       "type": "way",
-      "id": 1186444374,
-      "center": {
-        "lat": 39.8439235,
-        "lon": 116.5602763
-      },
-      "tags": {
-        "leisure": "park"
-      }
-    },
-    {
-      "type": "way",
       "id": 1186444379,
       "center": {
         "lat": 40.3457794,
@@ -78420,7 +78551,7 @@
       "id": 1192334194,
       "center": {
         "lat": 40.0897401,
-        "lon": 116.327695
+        "lon": 116.3276829
       },
       "tags": {
         "leisure": "park",
@@ -87582,28 +87713,6 @@
     },
     {
       "type": "way",
-      "id": 1498994023,
-      "center": {
-        "lat": 39.9985435,
-        "lon": 116.0945829
-      },
-      "tags": {
-        "leisure": "park"
-      }
-    },
-    {
-      "type": "way",
-      "id": 1498994024,
-      "center": {
-        "lat": 39.8900169,
-        "lon": 116.1937872
-      },
-      "tags": {
-        "leisure": "park"
-      }
-    },
-    {
-      "type": "way",
       "id": 1499642535,
       "center": {
         "lat": 40.0689263,
@@ -87701,6 +87810,98 @@
       },
       "tags": {
         "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1508784527,
+      "center": {
+        "lat": 39.8982915,
+        "lon": 116.4393537
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1509091339,
+      "center": {
+        "lat": 40.2631958,
+        "lon": 116.6383697
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1509091340,
+      "center": {
+        "lat": 40.3040219,
+        "lon": 116.6711242
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1509091341,
+      "center": {
+        "lat": 40.267724,
+        "lon": 116.6385107
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1509091346,
+      "center": {
+        "lat": 40.2221299,
+        "lon": 116.6488324
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1509091351,
+      "center": {
+        "lat": 40.2211933,
+        "lon": 116.6471586
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "牛栏山中心公园",
+        "opening_hours": "24/7",
+        "start_date": "2025-09-30"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1509091353,
+      "center": {
+        "lat": 40.215222,
+        "lon": 116.6495756
+      },
+      "tags": {
+        "leisure": "park"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1511789041,
+      "center": {
+        "lat": 39.9231364,
+        "lon": 116.3564525
+      },
+      "tags": {
+        "leisure": "park",
+        "name": "东岔口小广场"
       }
     },
     {

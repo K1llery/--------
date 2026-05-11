@@ -275,5 +275,26 @@
     "city": "深圳",
     "supports_routing": false,
     "nodes": []
+  },
+  {
+    "name": "Chengdu_City_View",
+    "label": "成都城市精选地图",
+    "city": "成都",
+    "supports_routing": false,
+    "nodes": []
+  },
+  {
+    "name": "Nanjing_City_View",
+    "label": "南京城市精选地图",
+    "city": "南京",
+    "supports_routing": false,
+    "nodes": []
+  },
+  {
+    "name": "Suzhou_City_View",
+    "label": "苏州城市精选地图",
+    "city": "苏州",
+    "supports_routing": false,
+    "nodes": []
   }
 ]

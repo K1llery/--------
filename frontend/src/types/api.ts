@@ -8,6 +8,7 @@ import type {
   MultiRouteResult,
   Scene,
   SingleRouteResult,
+  TravelPlan,
   User,
 } from "./models";
 
@@ -87,4 +88,28 @@ export interface SceneDetailResponse {
   buildings: any[];
   facilities: Facility[];
   edges: any[];
+}
+
+/** 旅行计划列表响应 */
+export interface PlanListResponse {
+  items: TravelPlan[];
+}
+
+/** 路线优化请求 */
+export interface OptimizeOrderRequest {
+  destination_ids: string[];
+}
+
+/** 路线优化响应 */
+export interface OptimizeOrderResponse {
+  ordered_ids: string[];
+  total_distance_km: number;
+  optimization_label: string;
+}
+
+/** 附近美食列表响应 */
+export interface NearbyFoodResponse {
+  items: Food[];
+  loaded_count: number;
+  source_names: string[];
 }

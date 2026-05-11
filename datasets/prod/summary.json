@@ -1,12 +1,12 @@
 {
-  "destinations": 3701,
-  "featured_destinations": 16,
-  "cities": 4,
-  "scenes": 5,
+  "destinations": 11614,
+  "featured_destinations": 28,
+  "cities": 7,
+  "scenes": 8,
   "facilities": 52,
   "buildings": 40,
   "edges": 548,
-  "foods": 8,
+  "foods": 183,
   "users": 10,
-  "diaries": 12
+  "diaries": 56
 }

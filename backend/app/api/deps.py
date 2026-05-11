@@ -15,6 +15,7 @@ from app.services.indoor_service import IndoorNavigationService
 from app.services.recommendation_service import RecommendationService
 from app.services.routing_service import RoutePlanningService
 from app.services.search_service import SearchService
+from app.services.plan_service import PlanService
 
 
 # ---------------------------------------------------------------------------
@@ -57,6 +58,11 @@ def _facility_service(repository: DatasetRepository) -> NearbyFacilityService:
     return NearbyFacilityService(repository, _graph_builder(repository))
 
 
+@lru_cache
+def _plan_service(repository: DatasetRepository) -> PlanService:
+    return PlanService(repository)
+
+
 # ---------------------------------------------------------------------------
 # FastAPI Depends 依赖项
 # ---------------------------------------------------------------------------
@@ -84,6 +90,10 @@ def get_recommendation_service(repository: DatasetRepository = Depends(get_repos
 
 def get_facility_service(repository: DatasetRepository = Depends(get_repository)) -> NearbyFacilityService:
     return _facility_service(repository)
+
+
+def get_plan_service(repository: DatasetRepository = Depends(get_repository)) -> PlanService:
+    return _plan_service(repository)
 
 
 def get_compression_service() -> CompressionService:

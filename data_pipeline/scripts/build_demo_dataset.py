@@ -24,6 +24,9 @@ CITY_COLORS = {
     "上海": ("#0e355d", "#3ca7d8", "#eef8ff"),
     "广州": ("#164734", "#e5a54a", "#fbf4de"),
     "深圳": ("#10243f", "#29b6a6", "#effbff"),
+    "成都": ("#3d1f1f", "#c0392b", "#fdf0ee"),
+    "南京": ("#1a2744", "#2ecc71", "#f0fdf4"),
+    "苏州": ("#1a2e1a", "#27ae60", "#f0fdf4"),
 }
 
 
@@ -377,6 +380,198 @@ FEATURED_DESTINATION_CATALOG = [
         "tags": ["campus", "modern", "citywalk"],
         "description": "城市感强、开放感好，是深圳校园参观里的热门选择。",
     },
+    {
+        "name": "宽窄巷子",
+        "city": "成都",
+        "category": "scenic",
+        "district": "青羊区",
+        "address": "成都市青羊区长顺街附近",
+        "latitude": 30.659487,
+        "longitude": 104.054233,
+        "rating": 4.6,
+        "heat": 18021,
+        "heat_metric": "Trip.com点评数",
+        "source_name": "Trip.com",
+        "source_url": "https://www.trip.com/travel-guide/attraction/chengdu/kuangzhang-alley-10559383/",
+        "tags": ["historic", "old-town", "culture"],
+        "description": "成都最代表性的历史文化街区，适合慢逛与美食探索。",
+    },
+    {
+        "name": "大熊猫繁育研究基地",
+        "city": "成都",
+        "category": "scenic",
+        "district": "成华区",
+        "address": "成都市成华区外北熊猫大道1375号",
+        "latitude": 30.740543,
+        "longitude": 104.147034,
+        "rating": 4.8,
+        "heat": 28103,
+        "heat_metric": "Trip.com点评数",
+        "source_name": "Trip.com",
+        "source_url": "https://www.trip.com/travel-guide/attraction/chengdu/chengdu-research-base-of-giant-panda-breeding-10559399/",
+        "tags": ["zoo", "animal", "nature"],
+        "description": "近距离观赏大熊猫的最佳场所，适合家庭与亲子出行。",
+    },
+    {
+        "name": "太古里",
+        "city": "成都",
+        "category": "shopping",
+        "district": "锦江区",
+        "address": "成都市锦江区中纱帽街8号",
+        "latitude": 30.660775,
+        "longitude": 104.067853,
+        "rating": 4.7,
+        "heat": 9544,
+        "heat_metric": "Trip.com点评数",
+        "source_name": "Trip.com",
+        "source_url": "https://www.trip.com/travel-guide/attraction/chengdu/taikoo-li-10559377/",
+        "tags": ["shopping", "fashion", "lifestyle"],
+        "description": "开放式商业街区，成都潮流与慢生活的交汇点。",
+    },
+    {
+        "name": "四川大学(望江校区)",
+        "city": "成都",
+        "category": "campus",
+        "district": "武侯区",
+        "address": "成都市武侯区一环路南一段24号",
+        "latitude": 30.631157,
+        "longitude": 104.100746,
+        "rating": 4.6,
+        "heat": 712,
+        "heat_metric": "马蜂窝热度",
+        "source_name": "马蜂窝",
+        "source_url": "https://www.mafengwo.cn/poi/5371033.html",
+        "tags": ["campus", "history", "greenery"],
+        "description": "老成都校园氛围浓厚，适合城市漫步与感受学术气息。",
+    },
+    {
+        "name": "中山陵",
+        "city": "南京",
+        "category": "scenic",
+        "district": "玄武区",
+        "address": "南京市玄武区石象路7号",
+        "latitude": 32.060648,
+        "longitude": 118.858395,
+        "rating": 4.8,
+        "heat": 16542,
+        "heat_metric": "Trip.com点评数",
+        "source_name": "Trip.com",
+        "source_url": "https://www.trip.com/travel-guide/attraction/nanjing/mt-zhongshan-10559219/",
+        "tags": ["historic", "park", "landmark"],
+        "description": "钟山风景区的核心，历史与自然结合最好的南京名片。",
+    },
+    {
+        "name": "夫子庙-秦淮风光带",
+        "city": "南京",
+        "category": "scenic",
+        "district": "秦淮区",
+        "address": "南京市秦淮区夫子庙步行街",
+        "latitude": 32.022855,
+        "longitude": 118.783365,
+        "rating": 4.6,
+        "heat": 21983,
+        "heat_metric": "Trip.com点评数",
+        "source_name": "Trip.com",
+        "source_url": "https://www.trip.com/travel-guide/attraction/nanjing/confucius-temple-qinhuai-scenery-area-10559233/",
+        "tags": ["historic", "riverfront", "nightview"],
+        "description": "南京夜景与小吃文化的核心代表，秦淮河畔的经典漫步路线。",
+    },
+    {
+        "name": "新街口商圈",
+        "city": "南京",
+        "category": "shopping",
+        "district": "玄武区",
+        "address": "南京市玄武区中山南路",
+        "latitude": 32.027506,
+        "longitude": 118.792373,
+        "rating": 4.5,
+        "heat": 8321,
+        "heat_metric": "Trip.com点评数",
+        "source_name": "Trip.com",
+        "source_url": "https://www.trip.com/travel-guide/attraction/nanjing/xinjiekou-10559229/",
+        "tags": ["shopping", "mall", "landmark"],
+        "description": "华东知名的商业中心，适合购物与城市体验。",
+    },
+    {
+        "name": "南京大学(鼓楼校区)",
+        "city": "南京",
+        "category": "campus",
+        "district": "鼓楼区",
+        "address": "南京市鼓楼区汉口路22号",
+        "latitude": 32.052544,
+        "longitude": 118.767499,
+        "rating": 4.7,
+        "heat": 684,
+        "heat_metric": "马蜂窝热度",
+        "source_name": "马蜂窝",
+        "source_url": "https://www.mafengwo.cn/poi/6279.html",
+        "tags": ["campus", "history", "architecture"],
+        "description": "百年校园与近代建筑，适合感受南京的学术底蕴。",
+    },
+    {
+        "name": "拙政园",
+        "city": "苏州",
+        "category": "scenic",
+        "district": "姑苏区",
+        "address": "苏州市姑苏区东北街178号",
+        "latitude": 31.32335,
+        "longitude": 120.610203,
+        "rating": 4.8,
+        "heat": 22341,
+        "heat_metric": "Trip.com点评数",
+        "source_name": "Trip.com",
+        "source_url": "https://www.trip.com/travel-guide/attraction/suzhou/humble-administrator-garden-10559173/",
+        "tags": ["garden", "classic", "culture"],
+        "description": "苏州园林的代表，江南古典园林艺术的集大成之作。",
+    },
+    {
+        "name": "平江路历史街区",
+        "city": "苏州",
+        "category": "scenic",
+        "district": "姑苏区",
+        "address": "苏州市姑苏区平江路",
+        "latitude": 31.317968,
+        "longitude": 120.630987,
+        "rating": 4.7,
+        "heat": 14872,
+        "heat_metric": "Trip.com点评数",
+        "source_name": "Trip.com",
+        "source_url": "https://www.trip.com/travel-guide/attraction/suzhou/pingjiang-road-10559189/",
+        "tags": ["historic", "old-town", "water-town"],
+        "description": "小桥流水人家的苏州老街，适合慢节奏城市漫步。",
+    },
+    {
+        "name": "观前街",
+        "city": "苏州",
+        "category": "shopping",
+        "district": "姑苏区",
+        "address": "苏州市姑苏区观前街",
+        "latitude": 31.314903,
+        "longitude": 120.633803,
+        "rating": 4.5,
+        "heat": 6102,
+        "heat_metric": "Trip.com点评数",
+        "source_name": "Trip.com",
+        "source_url": "https://www.trip.com/travel-guide/attraction/suzhou/guanqian-street-10559185/",
+        "tags": ["shopping", "historic", "food"],
+        "description": "苏州最繁华的商业街区，百年老店与现代商业并存。",
+    },
+    {
+        "name": "苏州大学(本部)",
+        "city": "苏州",
+        "category": "campus",
+        "district": "姑苏区",
+        "address": "苏州市姑苏区十梓街1号",
+        "latitude": 31.296944,
+        "longitude": 120.628036,
+        "rating": 4.6,
+        "heat": 543,
+        "heat_metric": "马蜂窝热度",
+        "source_name": "马蜂窝",
+        "source_url": "https://www.mafengwo.cn/poi/6867676.html",
+        "tags": ["campus", "garden", "history"],
+        "description": "校园内有民国风格建筑，与苏州园林韵味相融合。",
+    },
 ]
 
 
@@ -511,7 +706,7 @@ def load_raw(name: str) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def normalize_destination(element: dict) -> dict | None:
+def normalize_destination(element: dict, city: str) -> dict | None:
     tags = element.get("tags", {})
     name = tags.get("name")
     if not name:
@@ -535,7 +730,7 @@ def normalize_destination(element: dict) -> dict | None:
     return {
         "source_id": f"osm-{element['type']}-{element['id']}",
         "name": name,
-        "city": "北京",
+        "city": city,
         "category": category,
         "district": tags.get("addr:district", ""),
         "address": tags.get("addr:full", "") or tags.get("addr:street", ""),
@@ -798,14 +993,220 @@ def scene_from_raw(
     return scene, facilities, edges
 
 
-def foods_from_catalog() -> list[dict]:
+def load_raw(name: str) -> dict:
+    path = RAW_DIR / name
+    if not path.exists():
+        return {"elements": []}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    R = 6371.0
+    phi1 = math.radians(lat1)
+    phi2 = math.radians(lat2)
+    dphi = math.radians(lat2 - lat1)
+    dlambda = math.radians(lon2 - lon1)
+    a = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2) ** 2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    return R * c
+
+
+CITY_CUISINE_POOLS = {
+    "北京": ["烤鸭", "京菜", "铜锅涮肉", "炸酱面", "小吃", "宫廷菜"],
+    "上海": ["本帮菜", "江浙菜", "小笼包", "生煎", "西餐", "日料"],
+    "广州": ["粤菜", "早茶", "烧腊", "海鲜", "糖水", "粥品"],
+    "深圳": ["粤菜", "海鲜", "椰子鸡", "茶餐厅", "日料", "湘菜"],
+    "成都": ["川菜", "火锅", "串串", "小吃", "麻辣烫", "兔头"],
+    "南京": ["淮扬菜", "金陵菜", "鸭血粉丝", "汤包", "小吃", "锅贴"],
+    "苏州": ["苏帮菜", "面点", "松鼠鳜鱼", "小吃", "甜点", "太湖菜"],
+}
+
+CUISINE_DESCRIPTIONS = {
+    "烤鸭": "皮脆肉嫩，搭配薄饼甜面酱，是京城最具代表性的美食体验。",
+    "京菜": "讲究咸鲜适中、火候精准，融合了北方烹饪的厚重与精致。",
+    "铜锅涮肉": "冬日暖胃首选，清汤锅底最能体现肉质的鲜美。",
+    "炸酱面": "家常味浓，菜码丰富，是北京胡同里最接地气的一碗面。",
+    "小吃": "品种繁多，从爆肚到驴打滚，每一样都藏着城市的故事。",
+    "宫廷菜": "从御膳房流传下来的技艺，摆盘考究，风味独特。",
+    "本帮菜": "浓油赤酱，注重原汁原味，是上海人餐桌上的记忆。",
+    "江浙菜": "清淡鲜美，刀工精细，体现出江南人的细腻品味。",
+    "小笼包": "皮薄汁多，轻轻咬开先吸一口汤，鲜美的滋味瞬间在口腔绽放。",
+    "生煎": "底部焦脆、肉馅鲜嫩、芝麻葱香，是上海早餐摊上的明星。",
+    "西餐": "融合了西式烹饪技法与本地食材，呈现出独特的城市味道。",
+    "日料": "食材新鲜，料理精致，适合安静享受一顿高品质的餐食。",
+    "粤菜": "选料广博、清淡鲜美，讲究原汁原味，是广府饮食文化的核心。",
+    "早茶": "一盅两件，边吃边聊，是广州人生活中不可或缺的仪式感。",
+    "烧腊": "皮脆肉滑，蜜汁香甜，是岭南餐桌上最亮眼的风景线。",
+    "海鲜": "靠海吃海，新鲜直达餐桌，简单烹饪即可呈现极致鲜美。",
+    "糖水": "甜而不腻、消暑解渴，是广式生活中最温柔的甜蜜注脚。",
+    "粥品": "绵软细滑，配料丰富，一碗好粥暖胃更暖心。",
+    "椰子鸡": "清甜的椰汁搭配鲜嫩鸡肉，是深圳最具人气的聚餐选择。",
+    "茶餐厅": "中西合璧的港式风情，出餐快、选择多，是都市快餐的经典代表。",
+    "湘菜": "香辣浓郁、口感丰富，是嗜辣人群在深圳不可错过的风味。",
+    "川菜": "麻辣鲜香、百菜百味，一口下去让人直呼过瘾。",
+    "火锅": "热气腾腾、围炉而坐，是成都最具社交属性的美食体验。",
+    "串串": "一根一根吃，边烫边吃，轻松随意的氛围让聚餐更加自在。",
+    "麻辣烫": "自选食材、热辣汤底，是成都街头最平民也最温暖的美食。",
+    "兔头": "麻辣入味、肉质细嫩，是成都夜宵摊上最具地方特色的美味。",
+    "淮扬菜": "刀工精湛、口味清淡，是中国四大菜系中最具文人气质的一支。",
+    "金陵菜": "兼收南北之长，口味平和，体现了南京作为六朝古都的包容气质。",
+    "鸭血粉丝": "汤鲜味美、粉丝爽滑，是南京街头最具代表性的市井小吃。",
+    "汤包": "皮薄馅大、汤汁丰富，轻轻一提一咬，满口生香。",
+    "锅贴": "底部金黄酥脆、上部柔软鲜香，一口一个让人停不下来。",
+    "苏帮菜": "甜咸适中、色泽雅致，是江南菜系中最讲究意境的一支。",
+    "面点": "精细考究，从苏式汤面到蟹黄包，每一口都是江南的温柔。",
+    "松鼠鳜鱼": "造型生动、外酥里嫩、酸甜适口，是苏州宴客桌上的招牌。",
+    "甜点": "细腻清甜，从桂花糕到酒酿圆子，每一口都是江南的诗意。",
+    "太湖菜": "取自太湖水产，清淡鲜美，尽显江南水乡的自然馈赠。",
+}
+
+
+# 精选美食描述模板（当 cuisine 不在上述字典时使用）
+def generic_food_description(city: str, cuisine: str, venue: str) -> str:
+    templates = [
+        f"{city}当地人气较高的{cuisine}餐厅，环境舒适，口味地道，是游客和本地人都喜欢的选择。",
+        f"主打{cuisine}的知名餐厅，菜品丰富、用料讲究，在{city}美食圈口碑不错。",
+        f"想尝尝正宗的{city}{cuisine}，这家店是值得打卡的一站，招牌菜点单率很高。",
+        f"藏在{city}街巷里的{cuisine}宝藏，无论是环境还是味道都能给人留下深刻印象。",
+        f"{city}吃{cuisine}的好去处，菜品精致、服务周到，适合逛街歇脚或专程前往。",
+        f"{cuisine}爱好者在{city}不容错过的餐厅，特色鲜明，性价比不错。",
+    ]
+    idx = hash(venue + city) % len(templates)
+    return templates[idx]
+
+
+def build_foods(featured_destinations: list[dict]) -> list[dict]:
     items = []
+    # 1. 保留原有 8 条精选美食
     for idx, item in enumerate(FEATURED_FOOD_CATALOG, start=1):
         food = {**item}
         food["source_id"] = f"food-featured-{idx}"
         food["fetched_date"] = FETCHED_DATE
         items.append(food)
+
+    # 2. 构建城市→目的地列表映射
+    city_destinations: dict[str, list[dict]] = {}
+    for dest in featured_destinations:
+        city = dest.get("city", "")
+        if city:
+            city_destinations.setdefault(city, []).append(dest)
+
+    CITY_CODES_MAP = {
+        "北京": "beijing", "上海": "shanghai", "广州": "guangzhou",
+        "深圳": "shenzhen", "成都": "chengdu", "南京": "nanjing", "苏州": "suzhou",
+    }
+
+    food_idx = len(items) + 1
+    # 3. 从各城市 OSM 美食数据中生成
+    for city, code in CITY_CODES_MAP.items():
+        raw = load_raw(f"{code}_foods_osm.json")
+        raw_points = [
+            normalize_raw_point(item) for item in raw.get("elements", [])
+        ]
+        raw_points = [p for p in raw_points if p is not None]
+        # 去重
+        seen: set[str] = set()
+        unique_points: list[dict] = []
+        for p in raw_points:
+            key = p["name"].strip().lower()
+            if key not in seen:
+                seen.add(key)
+                unique_points.append(p)
+
+        # 每个城市取前 25 个（控制总量 ~150 条）
+        per_city_limit = 25
+        selected = unique_points[:per_city_limit]
+
+        cuisine_pool = CITY_CUISINE_POOLS.get(city, ["本地菜", "小吃"])
+
+        for p in selected:
+            tags = {}
+            # 尝试从 OSM 原始数据中找到 tags
+            for elem in raw.get("elements", []):
+                if elem.get("tags", {}).get("name") == p["name"]:
+                    tags = elem.get("tags", {})
+                    break
+
+            cuisine = tags.get("cuisine", "")
+            if not cuisine:
+                # 根据 name 推断
+                name_lower = p["name"].lower()
+                inferred = None
+                for c in cuisine_pool:
+                    if c in name_lower or any(kw in name_lower for kw in _cuisine_keywords(c)):
+                        inferred = c
+                        break
+                if not inferred:
+                    inferred = rand.choice(cuisine_pool)
+                cuisine = inferred
+
+            # 关联最近的目的地
+            dests = city_destinations.get(city, [])
+            nearest_dest = None
+            min_dist = float("inf")
+            for dest in dests:
+                d = haversine_distance(
+                    p["latitude"], p["longitude"],
+                    dest.get("latitude", 0), dest.get("longitude", 0)
+                )
+                if d < min_dist:
+                    min_dist = d
+                    nearest_dest = dest
+
+            dest_name = nearest_dest["name"] if nearest_dest else city
+            rating = round(3.5 + rand.random() * 1.4, 1)
+            heat = int(50 + rand.random() * 1950)
+
+            desc = CUISINE_DESCRIPTIONS.get(cuisine, "")
+            if not desc:
+                desc = generic_food_description(city, cuisine, p["name"])
+
+            food = {
+                "source_id": f"food-osm-{food_idx}",
+                "name": p["name"],
+                "city": city,
+                "destination_name": dest_name,
+                "cuisine": cuisine,
+                "venue_name": p["name"],
+                "latitude": p["latitude"],
+                "longitude": p["longitude"],
+                "rating": rating,
+                "heat": heat,
+                "heat_metric": "OSM POI 热度估算",
+                "source_name": "OpenStreetMap",
+                "source_url": "https://overpass-api.de/api/interpreter",
+                "description": desc,
+                "fetched_date": FETCHED_DATE,
+            }
+            items.append(food)
+            food_idx += 1
+
     return items
+
+
+def _cuisine_keywords(cuisine: str) -> list[str]:
+    kw_map = {
+        "烤鸭": ["烤鸭", "duck"],
+        "火锅": ["火锅", "hot pot"],
+        "串串": ["串串"],
+        "麻辣烫": ["麻辣烫"],
+        "兔头": ["兔头"],
+        "小笼包": ["小笼", "汤包"],
+        "生煎": ["生煎"],
+        "炸酱面": ["炸酱"],
+        "早茶": ["早茶", "茶点"],
+        "烧腊": ["烧腊", "烧鹅", "叉烧"],
+        "椰子鸡": ["椰子鸡"],
+        "鸭血粉丝": ["鸭血"],
+        "锅贴": ["锅贴"],
+        "松鼠鳜鱼": ["松鼠"],
+        "汤包": ["汤包"],
+        "糖水": ["糖水"],
+        "粥品": ["粥"],
+        "面点": ["面", "面馆"],
+        "甜点": ["甜", "糕", "饼"],
+    }
+    return kw_map.get(cuisine, [cuisine])
 
 
 def build_users() -> list[dict]:
@@ -834,38 +1235,120 @@ def build_users() -> list[dict]:
     return users
 
 
+DIARY_TEMPLATES = [
+    # 0: 文化深度游
+    "{city}的文化底蕴真的超出预期，{name}的每一处细节都值得细品。上午跟着导览走了精华路线，下午又独自折返回去拍了些特写。建议预留至少半天，走马观花会错过很多细节。",
+    # 1: 美食联动游
+    "来{city}怎么少得了吃？{name}逛完之后，我直奔附近那家{food}，味道确实名不虚传。建议大家把景点和美食安排在同一天，走路消食刚好消化下一顿。",
+    # 2: 亲子休闲游
+    "带娃来{city}，{name}比想象中更适合亲子。地方宽敞、设施齐全，小朋友{activity}玩得不亦乐乎。中午在园内随便吃了点，晚上回市区补了顿好的。",
+    # 3: 摄影打卡游
+    "为了拍{name}的{scene}，我特意{action}，效果确实不一样。{city}的光影在{time}最有感觉，建议摄影爱好者挑这个时段来。",
+    # 4: 历史沉浸游
+    "作为一个历史迷，{name}带给我的震撼远超预期。从{city}的老街巷一路走过来，时间仿佛在这里慢了下来。认真看每一个展板和建筑细节，不知不觉就待了三个多小时。",
+    # 5: 城市漫步游
+    "{city}最舒服的就是{name}周边的{feature}，不用赶行程，走走停停、拍拍照就很惬意。累了就在旁边的咖啡馆坐坐，看着人流发呆，这才是旅游该有的样子。",
+    # 6: 夜景推荐游
+    "白天和晚上的{name}完全是两个地方！建议下午三四点进园，逛到天黑刚刚好。{city}的夜色配上{scene}，真的值回票价。",
+    # 7: 建筑美学游
+    "{name}的建筑设计太戳我了，{city}能把传统和现代融合得这么好真的很厉害。从{spot1}走到{spot2}，一路上的视觉体验都很在线，建筑爱好者绝对不能错过。",
+    # 8: 小众探索游
+    "避开人挤人的主景区，我绕到了{name}的{hidden}，几乎没人，安静得能听见自己的脚步声。{city}的美不只在热门打卡点，藏在角落里的风景反而更让人心动。",
+    # 9: 季节限定游
+    "{season}的{name}真的是一年中最好的时节，{feature}美得不像话。虽然{city}四季都好看，但这个时间来绝对是最对的决定。",
+    # 10: 结伴同行游
+    "和小伙伴一起来{city}，{name}成了我们行程的高光时刻。一边逛一边互拍，走走停停居然也逛了快一天。人多热闹，但建议提前规划路线，不然容易走散。",
+    # 11: 独自漫游游
+    "一个人来{name}真的太治愈了，不用迁就任何人的节奏，想停就停、想走就走。{city}的{feature}有一种特别的安静力量，适合放空和思考。",
+]
+
+
+def _render_template(template: str, dest: dict, city: str, name: str) -> str:
+    """用目的地信息填充模板变量"""
+    food_pool = CITY_CUISINE_POOLS.get(city, ["本地菜", "小吃"])
+    scene_pool = ["全景", "夜景", "晨雾", "日落", "灯光", "倒影", "天际线", "花海", "红墙", "长廊"]
+    activity_pool = ["喂鱼", "划船", "放风筝", "骑车", "野餐", "看表演"]
+    action_pool = ["起了个大早", "等到日落时分", "换了三个机位", "背着器材走了两万步"]
+    time_pool = ["清晨六点到八点", "下午四点到六点", "傍晚五点半", "雨后的黄昏"]
+    feature_pool = ["老巷子", "林荫道", "河畔步道", "石板街", "梧桐大道", "网红桥"]
+    spot_pool = ["正门广场", "观景台", "后巷小院", "钟楼下面", "湖边栈道", "天台花园"]
+    hidden_pool = ["西门侧院", "后山小径", "地下展览厅", "竹林深处", "老居民楼之间", "废弃仓库改造区"]
+    season_pool = ["春天", "初夏", "秋天", "初雪后"]
+
+    return template.format(
+        city=city,
+        name=name,
+        food=rand.choice(food_pool),
+        scene=rand.choice(scene_pool),
+        activity=rand.choice(activity_pool),
+        action=rand.choice(action_pool),
+        time=rand.choice(time_pool),
+        feature=rand.choice(feature_pool),
+        spot1=rand.choice(spot_pool),
+        spot2=rand.choice(spot_pool),
+        hidden=rand.choice(hidden_pool),
+        season=rand.choice(season_pool),
+    )
+
+
 def build_diaries(featured_destinations: list[dict]) -> list[dict]:
-    templates = [
-        "上午先走经典路线，下午转进更适合拍照和休息的区域，整体节奏很舒服。",
-        "我更关注建筑和城市漫步感，这条路线的视野和动线都很顺。",
-        "这次把景点、商圈和餐厅串起来走，几乎没有浪费路程。",
-        "最喜欢的是路线回看和周边设施提醒，适合第一次来这座城市的人照着走。",
-    ]
     diaries = []
-    for idx, destination in enumerate(featured_destinations[:12], start=1):
-        diaries.append(
-            {
-                "id": idx,
-                "title": f"{destination['name']}游记{idx}",
-                "destination_name": destination["name"],
-                "content": f"这次我去了{destination['city']}的{destination['name']}。{templates[idx % len(templates)]} 如果时间有限，我会建议把附近餐厅和下一个打卡点一起规划。",
-                "views": 120 + idx * 38,
-                "rating": round(4.1 + (idx % 6) * 0.1, 1),
-                "media_urls": [destination["image_url"]],
-                "author_id": idx % 10 + 1,
-                "author_name": f"演示用户{idx % 10 + 1}",
-                "created_at": f"{FETCHED_DATE}T1{idx % 10}:00:00",
-            }
-        )
+    diary_id = 1
+    for dest in featured_destinations:
+        city = dest.get("city", "")
+        name = dest.get("name", "")
+        if not city or not name:
+            continue
+
+        # 为每个目的地生成 2 条不同风格的日记
+        template_indices = rand.sample(range(len(DIARY_TEMPLATES)), k=2)
+        for t_idx in template_indices:
+            template = DIARY_TEMPLATES[t_idx]
+            content = _render_template(template, dest, city, name)
+            views = int(50 + rand.random() * 1450)
+            rating = round(3.8 + rand.random() * 1.2, 1)
+            author_id = (diary_id % 10) + 1
+
+            diaries.append(
+                {
+                    "id": diary_id,
+                    "title": f"{name}游记 · {city}的第{t_idx + 1}种打开方式",
+                    "destination_name": name,
+                    "content": content,
+                    "views": views,
+                    "rating": rating,
+                    "media_urls": [dest.get("image_url", "")],
+                    "author_id": author_id,
+                    "author_name": f"演示用户{author_id}",
+                    "created_at": f"{FETCHED_DATE}T{(diary_id % 20):02d}:00:00",
+                }
+            )
+            diary_id += 1
+
     return diaries
 
 
 def main() -> None:
-    raw = load_raw("beijing_destinations_osm.json")
-    normalized = [normalize_destination(item) for item in raw.get("elements", [])]
-    destinations = dedupe_by_name([item for item in normalized if item is not None])
-    destinations, featured_destinations = merge_featured_metadata(destinations)
-    destinations.sort(key=lambda item: (item["city"], item["category"], item["name"]))
+    # 城市代码映射
+    CITY_CODES = {
+        "北京": "beijing",
+        "上海": "shanghai",
+        "广州": "guangzhou",
+        "深圳": "shenzhen",
+        "成都": "chengdu",
+        "南京": "nanjing",
+        "苏州": "suzhou",
+    }
+
+    all_destinations: list[dict] = []
+    for city, code in CITY_CODES.items():
+        raw = load_raw(f"{code}_destinations_osm.json")
+        normalized = [normalize_destination(item, city) for item in raw.get("elements", [])]
+        city_items = dedupe_by_name([item for item in normalized if item is not None])
+        all_destinations.extend(city_items)
+
+    all_destinations, featured_destinations = merge_featured_metadata(all_destinations)
+    all_destinations.sort(key=lambda item: (item["city"], item["category"], item["name"]))
 
     bupt_buildings = [
         "南门",
@@ -1018,6 +1501,27 @@ def main() -> None:
             "supports_routing": False,
             "nodes": [],
         },
+        {
+            "name": "Chengdu_City_View",
+            "label": "成都城市精选地图",
+            "city": "成都",
+            "supports_routing": False,
+            "nodes": [],
+        },
+        {
+            "name": "Nanjing_City_View",
+            "label": "南京城市精选地图",
+            "city": "南京",
+            "supports_routing": False,
+            "nodes": [],
+        },
+        {
+            "name": "Suzhou_City_View",
+            "label": "苏州城市精选地图",
+            "city": "苏州",
+            "supports_routing": False,
+            "nodes": [],
+        },
     ]
     buildings = [
         {**node, "scene_name": bupt_scene["name"], "building_type": "landmark"}
@@ -1029,10 +1533,10 @@ def main() -> None:
     ]
     facilities = bupt_scene_facilities + summer_scene_facilities
     edges = bupt_edges + summer_edges
-    foods = foods_from_catalog()
+    foods = build_foods(featured_destinations)
     ensure_local_media(featured_destinations, foods)
     featured_by_name = {item["name"]: item for item in featured_destinations}
-    for destination in destinations:
+    for destination in all_destinations:
         if destination["name"] in featured_by_name:
             destination.update(
                 {
@@ -1067,7 +1571,7 @@ def main() -> None:
     ]
 
     (PROD_DIR / "destinations.json").write_text(
-        json.dumps(destinations, ensure_ascii=False, indent=2), encoding="utf-8"
+        json.dumps(all_destinations, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     (PROD_DIR / "featured_destinations.json").write_text(
         json.dumps(featured_destinations, ensure_ascii=False, indent=2),
@@ -1102,7 +1606,7 @@ def main() -> None:
     )
 
     summary = {
-        "destinations": len(destinations),
+        "destinations": len(all_destinations),
         "featured_destinations": len(featured_destinations),
         "cities": len({item["city"] for item in featured_destinations}),
         "scenes": len(scenes),

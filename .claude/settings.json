@@ -14,7 +14,8 @@
       "Bash(pkill -f \"vite\")",
       "Bash(powershell -Command \"Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | Format-Table -AutoSize\")",
       "Bash(powershell -Command \"Stop-Process -Id 14960 -Force -ErrorAction SilentlyContinue; Start-Sleep 3; Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | Format-Table -AutoSize\")",
-      "Bash(powershell -Command \"Get-Process -Id 14960 -ErrorAction SilentlyContinue | Select-Object ProcessName,Id,StartTime\")"
+      "Bash(powershell -Command \"Get-Process -Id 14960 -ErrorAction SilentlyContinue | Select-Object ProcessName,Id,StartTime\")",
+      "Bash(echo \"Backend PID: $!\")"
     ],
     "additionalDirectories": [
       "C:\\nodejs\\node_cache\\_cacache"
