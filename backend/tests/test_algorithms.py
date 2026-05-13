@@ -191,6 +191,8 @@ def test_single_route_returns_algorithm_path_and_geometry():
     assert result["route_source"] == "local"
     assert result["algorithm_path_codes"] == result["path_codes"]
     assert result["route_geometry"]
+    assert len(result["path_codes"]) > 2
+    assert any(node["route_node_type"] != "place" for node in result["route_nodes"][1:-1])
     assert all(code in {node["code"] for node in result["route_nodes"]} for code in result["path_codes"])
 
 
