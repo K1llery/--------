@@ -1,163 +1,696 @@
 [
   {
-    "code": "BUPT_GATE",
-    "name": "麦当劳",
-    "latitude": 39.9600741,
-    "longitude": 116.3640842,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_253330141",
+    "name": "教二楼",
+    "latitude": 39.95914305714286,
+    "longitude": 116.35184315,
+    "building_type": "教学楼",
+    "legacy_id": "building_253330141",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_LIB",
-    "name": "北京国都医院",
-    "latitude": 39.9672105,
-    "longitude": 116.3614418,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_265030100",
+    "name": "国际汉语培训中心",
+    "latitude": 39.96296031666667,
+    "longitude": 116.34979845,
+    "building_type": "教学楼",
+    "legacy_id": "building_265030100",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_03",
-    "name": "总政北太平庄招待所",
-    "latitude": 39.965625,
-    "longitude": 116.3578268,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_265030103",
+    "name": "留学生2号公寓",
+    "latitude": 39.96263332,
+    "longitude": 116.3490194,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_265030103",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_04",
-    "name": "御马墩",
-    "latitude": 39.9598048,
-    "longitude": 116.3641192,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_265030104",
+    "name": "学生13号公寓",
+    "latitude": 39.96177026,
+    "longitude": 116.34905874,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_265030104",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_05",
-    "name": "12橡树咖啡",
-    "latitude": 39.9603023,
-    "longitude": 116.3640468,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_265030105",
+    "name": "学生5号公寓",
+    "latitude": 39.96206782857142,
+    "longitude": 116.34961075714284,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_265030105",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_06",
-    "name": "校训石",
-    "latitude": 39.9598565,
-    "longitude": 116.3501595,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_265030106",
+    "name": "学生3号公寓",
+    "latitude": 39.96154896,
+    "longitude": 116.34957560000001,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_265030106",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_07",
-    "name": "毛主席像",
-    "latitude": 39.9598622,
-    "longitude": 116.3506473,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_265030107",
+    "name": "学生8号公寓",
+    "latitude": 39.96209796000001,
+    "longitude": 116.35045128000002,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_265030107",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_08",
-    "name": "格林联盟酒店",
-    "latitude": 39.967153,
-    "longitude": 116.3508592,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_265030108",
+    "name": "学生4号公寓",
+    "latitude": 39.96157042,
+    "longitude": 116.35043759999999,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_265030108",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_09",
-    "name": "零壹时光咖啡馆",
-    "latitude": 39.9582958,
-    "longitude": 116.3505065,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_265030109",
+    "name": "学生1号公寓",
+    "latitude": 39.961095646153844,
+    "longitude": 116.3496417076923,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_265030109",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_10",
-    "name": "南区超市",
-    "latitude": 39.9581307,
-    "longitude": 116.3510136,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_265030110",
+    "name": "学生2号公寓",
+    "latitude": 39.96111426923077,
+    "longitude": 116.35050226153845,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_265030110",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_11",
-    "name": "中国建设银行",
-    "latitude": 39.9672713,
-    "longitude": 116.3645893,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_344376259",
+    "name": "28号楼",
+    "latitude": 39.958061542857145,
+    "longitude": 116.35062724285714,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376259",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_12",
-    "name": "中国光大银行",
-    "latitude": 39.9672878,
-    "longitude": 116.3652652,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_344376260",
+    "name": "7号楼",
+    "latitude": 39.9575967,
+    "longitude": 116.35065847999999,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376260",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_13",
-    "name": "苏宁电器",
-    "latitude": 39.9676537,
-    "longitude": 116.3645624,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_344376261",
+    "name": "9号楼",
+    "latitude": 39.95722212,
+    "longitude": 116.35066056000001,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376261",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_14",
-    "name": "物美",
-    "latitude": 39.9676208,
-    "longitude": 116.3645571,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_344376262",
+    "name": "14号楼",
+    "latitude": 39.95855154,
+    "longitude": 116.34969166,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376262",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_15",
-    "name": "招商银行",
-    "latitude": 39.9675715,
-    "longitude": 116.3645624,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_344376263",
+    "name": "27号楼",
+    "latitude": 39.95830316,
+    "longitude": 116.34974078,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376263",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_16",
-    "name": "捷安特",
-    "latitude": 39.9671605,
-    "longitude": 116.3634256,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_344376264",
+    "name": "2号楼",
+    "latitude": 39.95799272,
+    "longitude": 116.34976420000001,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376264",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_17",
-    "name": "国美电器",
-    "latitude": 39.9659326,
-    "longitude": 116.3576679,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_344376265",
+    "name": "7号楼",
+    "latitude": 39.957651420000005,
+    "longitude": 116.34977726,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376265",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_18",
-    "name": "如家快捷酒店",
-    "latitude": 39.9659352,
-    "longitude": 116.3575784,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_344376266",
+    "name": "8号楼",
+    "latitude": 39.957202900000006,
+    "longitude": 116.3497809,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376266",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_19",
-    "name": "速8酒店",
-    "latitude": 39.9660808,
-    "longitude": 116.3661381,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_344376267",
+    "name": "4号楼",
+    "latitude": 39.95686278,
+    "longitude": 116.34988004000002,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_344376267",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
-    "code": "BUPT_20",
-    "name": "北京银行",
-    "latitude": 39.9659344,
-    "longitude": 116.3560861,
     "scene_name": "BUPT_Main_Campus",
-    "building_type": "landmark"
+    "code": "LEGACY_building_344376268",
+    "name": "10号楼",
+    "latitude": 39.9568669,
+    "longitude": 116.3511864,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_344376268",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_344376269",
+    "name": "28号楼",
+    "latitude": 39.958815416666674,
+    "longitude": 116.34919554999999,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376269",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_344376270",
+    "name": "15号楼",
+    "latitude": 39.95829526,
+    "longitude": 116.34923696000001,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376270",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_344376271",
+    "name": "16号楼",
+    "latitude": 39.95776066,
+    "longitude": 116.34925286,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376271",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_344376272",
+    "name": "17号楼",
+    "latitude": 39.95722528,
+    "longitude": 116.3492608,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376272",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_344376663",
+    "name": "1号楼",
+    "latitude": 39.95862524,
+    "longitude": 116.35170272,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376663",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_344376664",
+    "name": "2号楼",
+    "latitude": 39.95825276,
+    "longitude": 116.35177478,
+    "building_type": "教学楼",
+    "legacy_id": "building_344376664",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_344376665",
+    "name": "4号楼",
+    "latitude": 39.95775274615385,
+    "longitude": 116.35187795384617,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_344376665",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_344376666",
+    "name": "5号楼",
+    "latitude": 39.95732506923077,
+    "longitude": 116.35190078461538,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_344376666",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_363833971",
+    "name": "教四楼",
+    "latitude": 39.96056334285714,
+    "longitude": 116.35008660476188,
+    "building_type": "教学楼",
+    "legacy_id": "building_363833971",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399008789",
+    "name": "主教学楼",
+    "latitude": 39.95995346923077,
+    "longitude": 116.35218096923077,
+    "building_type": "教学楼",
+    "legacy_id": "building_399008789",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399008979",
+    "name": "教一楼",
+    "latitude": 39.96055533333333,
+    "longitude": 116.35174187333334,
+    "building_type": "教学楼",
+    "legacy_id": "building_399008979",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399008980",
+    "name": "行政办公楼",
+    "latitude": 39.96071198333333,
+    "longitude": 116.35174589999998,
+    "building_type": "办公楼",
+    "legacy_id": "building_399008980",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399008981",
+    "name": "财务处",
+    "latitude": 39.96076298,
+    "longitude": 116.35136231999999,
+    "building_type": "办公楼",
+    "legacy_id": "building_399008981",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399008982",
+    "name": "后勤处",
+    "latitude": 39.96069124444444,
+    "longitude": 116.35135893333336,
+    "building_type": "办公楼",
+    "legacy_id": "building_399008982",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399009831",
+    "name": "明光楼",
+    "latitude": 39.95719684,
+    "longitude": 116.35477190000002,
+    "building_type": "教学楼",
+    "legacy_id": "building_399009831",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399010162",
+    "name": "留学生1号公寓",
+    "latitude": 39.96253082,
+    "longitude": 116.34953082000001,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399010162",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399013936",
+    "name": "学生11号公寓",
+    "latitude": 39.9632844,
+    "longitude": 116.34951057999999,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399013936",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399014219",
+    "name": "学生10号公寓",
+    "latitude": 39.96321245,
+    "longitude": 116.35032051666666,
+    "building_type": "宿舍楼 ",
+    "legacy_id": "building_399014219",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399015104",
+    "name": "学生6号公寓",
+    "latitude": 39.96331951111111,
+    "longitude": 116.3520491,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399015104",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399015107",
+    "name": "经管楼",
+    "latitude": 39.96322664,
+    "longitude": 116.35119654,
+    "building_type": "教学楼",
+    "legacy_id": "building_399015107",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399018201",
+    "name": "家属27号楼",
+    "latitude": 39.96261986,
+    "longitude": 116.35377286,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399018201",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399018202",
+    "name": "家属28号楼",
+    "latitude": 39.96185084,
+    "longitude": 116.35381643999999,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399018202",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399018593",
+    "name": "学生29号公寓",
+    "latitude": 39.961476958064516,
+    "longitude": 116.35442373225806,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399018593",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399018595",
+    "name": "25号楼",
+    "latitude": 39.96298120909091,
+    "longitude": 116.35432999090908,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399018595",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399018596",
+    "name": "26号楼",
+    "latitude": 39.962331688888895,
+    "longitude": 116.35436880000003,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399018596",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399038556",
+    "name": "30号楼",
+    "latitude": 39.95774818,
+    "longitude": 116.35286706,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399038556",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399038557",
+    "name": "21号楼",
+    "latitude": 39.9573328,
+    "longitude": 116.35280918000001,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399038557",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399038558",
+    "name": "13号楼",
+    "latitude": 39.95743761999999,
+    "longitude": 116.35328431999999,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399038558",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399038559",
+    "name": "北京交通大学附属中学分校宿舍楼2",
+    "latitude": 39.95791637000001,
+    "longitude": 116.35404901,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399038559",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399038560",
+    "name": "33号楼",
+    "latitude": 39.958238888888886,
+    "longitude": 116.35388825555555,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399038560",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399038561",
+    "name": "19号楼",
+    "latitude": 39.958626179999996,
+    "longitude": 116.35278095999999,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399038561",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399038562",
+    "name": "科学会堂",
+    "latitude": 39.95993568,
+    "longitude": 116.35279726000002,
+    "building_type": "教学楼",
+    "legacy_id": "building_399038562",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399041101",
+    "name": "11号楼",
+    "latitude": 39.9568771,
+    "longitude": 116.35219784,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399041101",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399041102",
+    "name": "北京邮电大学幼儿园",
+    "latitude": 39.95818091538461,
+    "longitude": 116.35310089230767,
+    "building_type": "教学楼",
+    "legacy_id": "building_399041102",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399041103",
+    "name": "32号楼",
+    "latitude": 39.95776094,
+    "longitude": 116.35476532,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399041103",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399041104",
+    "name": "北京交通大学附属中学分校宿舍楼1",
+    "latitude": 39.957662428571425,
+    "longitude": 116.35388428571427,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399041104",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399042378",
+    "name": "23号楼",
+    "latitude": 39.963481939999994,
+    "longitude": 116.35275726,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399042378",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399042379",
+    "name": "24号楼",
+    "latitude": 39.96353146,
+    "longitude": 116.35370407999999,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399042379",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399046289",
+    "name": "教三楼",
+    "latitude": 39.95903866470588,
+    "longitude": 116.3502741764706,
+    "building_type": "教学楼",
+    "legacy_id": "building_399046289",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399046290",
+    "name": "34号楼",
+    "latitude": 39.96193656,
+    "longitude": 116.35447968000001,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399046290",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399046291",
+    "name": "22号楼",
+    "latitude": 39.956868580000005,
+    "longitude": 116.35357452000001,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399046291",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399046292",
+    "name": "12号楼",
+    "latitude": 39.95695968571429,
+    "longitude": 116.35326301428573,
+    "building_type": "教学楼",
+    "legacy_id": "building_399046292",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_building_399046293",
+    "name": "23号楼",
+    "latitude": 39.957053200000004,
+    "longitude": 116.35386958,
+    "building_type": "宿舍楼",
+    "legacy_id": "building_399046293",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "building"
   },
   {
     "code": "SUMMER_01",
@@ -318,5 +851,2405 @@
     "longitude": 116.2919332,
     "scene_name": "Summer_Palace",
     "building_type": "landmark"
+  },
+  {
+    "code": "BJR01_GATE",
+    "name": "故宫博物院",
+    "latitude": 39.916345,
+    "longitude": 116.397155,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_01",
+    "name": "九龙壁",
+    "latitude": 39.917101,
+    "longitude": 116.3941884,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_02",
+    "name": "老舍纪念馆",
+    "latitude": 39.9172454,
+    "longitude": 116.4021102,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_03",
+    "name": "珍妃井",
+    "latitude": 39.9205283,
+    "longitude": 116.3937977,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_04",
+    "name": "天福茗茶",
+    "latitude": 39.9143682,
+    "longitude": 116.4083494,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_05",
+    "name": "故宫文化服务中心",
+    "latitude": 39.9103796,
+    "longitude": 116.390967,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_06",
+    "name": "十八槐",
+    "latitude": 39.9143252,
+    "longitude": 116.389242,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_07",
+    "name": "明思宗殉国处",
+    "latitude": 39.9232417,
+    "longitude": 116.3927531,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_08",
+    "name": "北京人艺戏剧博物馆",
+    "latitude": 39.9202355,
+    "longitude": 116.4064145,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_09",
+    "name": "金石图",
+    "latitude": 39.9110133,
+    "longitude": 116.4008049,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_10",
+    "name": "时付祥同志",
+    "latitude": 39.9086882,
+    "longitude": 116.392801,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_11",
+    "name": "郜三喜",
+    "latitude": 39.9086837,
+    "longitude": 116.3925856,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_12",
+    "name": "中华人民共和国国徽",
+    "latitude": 39.9073038,
+    "longitude": 116.3913532,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_13",
+    "name": "3D ТV",
+    "latitude": 39.9129812,
+    "longitude": 116.404797,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_14",
+    "name": "社稷坛",
+    "latitude": 39.9098182,
+    "longitude": 116.3885888,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_15",
+    "name": "太庙",
+    "latitude": 39.9099786,
+    "longitude": 116.3936276,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_16",
+    "name": "景山公园",
+    "latitude": 39.9244135,
+    "longitude": 116.3903832,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_17",
+    "name": "御花园",
+    "latitude": 39.9201373,
+    "longitude": 116.390611,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_18",
+    "name": "慈宁宫花园",
+    "latitude": 39.9164143,
+    "longitude": 116.3877504,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR01_19",
+    "name": "王府井大街",
+    "latitude": 39.9116083,
+    "longitude": 116.4050572,
+    "scene_name": "BJR01_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_GATE",
+    "name": "三里屯",
+    "latitude": 39.937611,
+    "longitude": 116.454056,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_01",
+    "name": "过山车",
+    "latitude": 39.937645,
+    "longitude": 116.4733844,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_02",
+    "name": "乐高小镇",
+    "latitude": 39.9359055,
+    "longitude": 116.4764097,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_03",
+    "name": "金台夕照",
+    "latitude": 39.9213962,
+    "longitude": 116.4641398,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_04",
+    "name": "庆丰收组雕（右）",
+    "latitude": 39.9392909,
+    "longitude": 116.4574252,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_05",
+    "name": "庆丰收组雕（左）",
+    "latitude": 39.9407142,
+    "longitude": 116.4574239,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_06",
+    "name": "约翰斯特劳斯花园",
+    "latitude": 39.9431645,
+    "longitude": 116.4711624,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_07",
+    "name": "米特熊雕塑",
+    "latitude": 39.943181,
+    "longitude": 116.4712949,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_08",
+    "name": "莫扎特雕像",
+    "latitude": 39.9431944,
+    "longitude": 116.4719255,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_09",
+    "name": "抵制暴力雕塑",
+    "latitude": 39.9432023,
+    "longitude": 116.471752,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_10",
+    "name": "英杰硬石博物馆",
+    "latitude": 39.9392739,
+    "longitude": 116.4418808,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_11",
+    "name": "三里屯酒吧街",
+    "latitude": 39.9339929,
+    "longitude": 116.4493583,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_12",
+    "name": "全国农业展览馆;中国农业博物馆",
+    "latitude": 39.9393745,
+    "longitude": 116.4596758,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_13",
+    "name": "汇爱婚礼堂",
+    "latitude": 39.944976,
+    "longitude": 116.4707794,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_14",
+    "name": "中泰友谊亭",
+    "latitude": 39.9427006,
+    "longitude": 116.4724844,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_15",
+    "name": "滨水之舟广场",
+    "latitude": 39.9433236,
+    "longitude": 116.4732341,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_16",
+    "name": "世纪喷泉广场",
+    "latitude": 39.9364341,
+    "longitude": 116.4769673,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_17",
+    "name": "朝阳公园",
+    "latitude": 39.9444089,
+    "longitude": 116.4755863,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_18",
+    "name": "团结湖公园",
+    "latitude": 39.9244699,
+    "longitude": 116.458345,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR02_19",
+    "name": "左家庄科普廉政文化公园",
+    "latitude": 39.9472882,
+    "longitude": 116.4368934,
+    "scene_name": "BJR02_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_GATE",
+    "name": "清华大学",
+    "latitude": 40.003021,
+    "longitude": 116.326956,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_01",
+    "name": "日晷",
+    "latitude": 40.0007804,
+    "longitude": 116.3184164,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_02",
+    "name": "地质之角",
+    "latitude": 40.0017659,
+    "longitude": 116.3208183,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_03",
+    "name": "人间天使",
+    "latitude": 40.0051916,
+    "longitude": 116.3200096,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_04",
+    "name": "记忆的华彩",
+    "latitude": 40.0049775,
+    "longitude": 116.319695,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_05",
+    "name": "北院",
+    "latitude": 40.0047492,
+    "longitude": 116.3195977,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_06",
+    "name": "水",
+    "latitude": 40.0018984,
+    "longitude": 116.3191512,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_07",
+    "name": "悟",
+    "latitude": 40.0007352,
+    "longitude": 116.3190749,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_08",
+    "name": "行健",
+    "latitude": 40.0044137,
+    "longitude": 116.324718,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_09",
+    "name": "黑洞与白洞",
+    "latitude": 39.9980511,
+    "longitude": 116.328809,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_10",
+    "name": "栋梁",
+    "latitude": 39.9977489,
+    "longitude": 116.3274877,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_11",
+    "name": "星光旅行者",
+    "latitude": 39.9994975,
+    "longitude": 116.3271931,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_12",
+    "name": "凝聚的风景",
+    "latitude": 39.9988009,
+    "longitude": 116.326831,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_13",
+    "name": "生之欲",
+    "latitude": 39.9990331,
+    "longitude": 116.3288949,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_14",
+    "name": "开放之门",
+    "latitude": 39.9988307,
+    "longitude": 116.3282914,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_15",
+    "name": "一，二，三，捉金鸡",
+    "latitude": 40.0004077,
+    "longitude": 116.3284028,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_16",
+    "name": "城市屏风",
+    "latitude": 40.0001714,
+    "longitude": 116.3284108,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_17",
+    "name": "国学四大导师",
+    "latitude": 40.0001981,
+    "longitude": 116.329025,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_18",
+    "name": "磁力",
+    "latitude": 40.0002125,
+    "longitude": 116.3294032,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "BJR03_19",
+    "name": "一竿风骨",
+    "latitude": 40.0002474,
+    "longitude": 116.3305163,
+    "scene_name": "BJR03_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_GATE",
+    "name": "外滩",
+    "latitude": 31.240044,
+    "longitude": 121.490317,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_01",
+    "name": "中国银行大楼",
+    "latitude": 31.2414831,
+    "longitude": 121.4853948,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_02",
+    "name": "怡和洋行大楼",
+    "latitude": 31.242325,
+    "longitude": 121.4855801,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_03",
+    "name": "横滨正金银行大楼",
+    "latitude": 31.2417559,
+    "longitude": 121.4854592,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_04",
+    "name": "扬子大楼",
+    "latitude": 31.2419875,
+    "longitude": 121.4855155,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_05",
+    "name": "汇中饭店大楼",
+    "latitude": 31.2406912,
+    "longitude": 121.4853362,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_06",
+    "name": "麦加利银行大楼",
+    "latitude": 31.2403999,
+    "longitude": 121.4853871,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_07",
+    "name": "字林大楼",
+    "latitude": 31.2401622,
+    "longitude": 121.4854137,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_08",
+    "name": "台湾银行大楼",
+    "latitude": 31.2399676,
+    "longitude": 121.4854322,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_09",
+    "name": "华俄道胜银行大楼",
+    "latitude": 31.2396328,
+    "longitude": 121.4854885,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_10",
+    "name": "交通银行大楼",
+    "latitude": 31.2390962,
+    "longitude": 121.485604,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_11",
+    "name": "江海关大楼",
+    "latitude": 31.2386397,
+    "longitude": 121.4856441,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_12",
+    "name": "前汇丰银行大楼",
+    "latitude": 31.2380045,
+    "longitude": 121.4857569,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_13",
+    "name": "中国通商银行大楼",
+    "latitude": 31.2367496,
+    "longitude": 121.4862961,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_14",
+    "name": "电报大楼",
+    "latitude": 31.2371051,
+    "longitude": 121.4860868,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_15",
+    "name": "日清大楼",
+    "latitude": 31.2365093,
+    "longitude": 121.4864622,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_16",
+    "name": "上海总会大楼",
+    "latitude": 31.2358621,
+    "longitude": 121.4868862,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_17",
+    "name": "亚细亚大楼",
+    "latitude": 31.2355318,
+    "longitude": 121.487015,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_18",
+    "name": "沙逊大厦",
+    "latitude": 31.2411292,
+    "longitude": 121.4853496,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR04_19",
+    "name": "震旦美术馆",
+    "latitude": 31.2365031,
+    "longitude": 121.495396,
+    "scene_name": "SHR04_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_GATE",
+    "name": "豫园",
+    "latitude": 31.227245,
+    "longitude": 121.492516,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_01",
+    "name": "日清大楼",
+    "latitude": 31.2365093,
+    "longitude": 121.4864622,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_02",
+    "name": "上海总会大楼",
+    "latitude": 31.2358621,
+    "longitude": 121.4868862,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_03",
+    "name": "亚细亚大楼",
+    "latitude": 31.2355318,
+    "longitude": 121.487015,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_04",
+    "name": "十六铺码头",
+    "latitude": 31.2305882,
+    "longitude": 121.4937792,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_05",
+    "name": "震旦美术馆",
+    "latitude": 31.2365031,
+    "longitude": 121.495396,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_06",
+    "name": "内园",
+    "latitude": 31.2284167,
+    "longitude": 121.4880671,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_07",
+    "name": "黄埔江观光区",
+    "latitude": 31.234014,
+    "longitude": 121.4889934,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_08",
+    "name": "小南门警钟楼",
+    "latitude": 31.2178928,
+    "longitude": 121.4934426,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_09",
+    "name": "空中数字花园",
+    "latitude": 31.2288669,
+    "longitude": 121.4936994,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_10",
+    "name": "童涵春堂中药博物馆",
+    "latitude": 31.2290756,
+    "longitude": 121.486519,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_11",
+    "name": "玄扈台",
+    "latitude": 31.2276445,
+    "longitude": 121.489787,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_12",
+    "name": "华商纱布交易所旧址",
+    "latitude": 31.2332915,
+    "longitude": 121.4828132,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_13",
+    "name": "太古洋行大楼",
+    "latitude": 31.2327422,
+    "longitude": 121.4896382,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_14",
+    "name": "法国邮船公司大楼",
+    "latitude": 31.2344116,
+    "longitude": 121.4879334,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_15",
+    "name": "上海中心大厦",
+    "latitude": 31.2354554,
+    "longitude": 121.5004394,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_16",
+    "name": "老上海茶楼",
+    "latitude": 31.2269519,
+    "longitude": 121.485522,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_17",
+    "name": "上海城隍庙",
+    "latitude": 31.2278759,
+    "longitude": 121.4881711,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_18",
+    "name": "十六铺",
+    "latitude": 31.2283676,
+    "longitude": 121.4954101,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR05_19",
+    "name": "九曲桥",
+    "latitude": 31.2287331,
+    "longitude": 121.4873825,
+    "scene_name": "SHR05_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_GATE",
+    "name": "南京路步行街",
+    "latitude": 31.234412,
+    "longitude": 121.475321,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_01",
+    "name": "1930风情街",
+    "latitude": 31.2337024,
+    "longitude": 121.4710198,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_02",
+    "name": "上海杜莎夫人蜡像馆",
+    "latitude": 31.2365391,
+    "longitude": 121.4689971,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_03",
+    "name": "四明公所",
+    "latitude": 31.2277051,
+    "longitude": 121.4783343,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_04",
+    "name": "东方饭店",
+    "latitude": 31.2324474,
+    "longitude": 121.4730194,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_05",
+    "name": "公共租界总巡捕房旧址",
+    "latitude": 31.2367102,
+    "longitude": 121.482244,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_06",
+    "name": "新永安大楼",
+    "latitude": 31.237136,
+    "longitude": 121.474268,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_07",
+    "name": "公共租界工部局旧址",
+    "latitude": 31.2379216,
+    "longitude": 121.4822883,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_08",
+    "name": "东海大楼",
+    "latitude": 31.2384432,
+    "longitude": 121.4795971,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_09",
+    "name": "国际饭店",
+    "latitude": 31.2353607,
+    "longitude": 121.4672285,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_10",
+    "name": "原西侨青年会",
+    "latitude": 31.2355881,
+    "longitude": 121.4675053,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_11",
+    "name": "华安大楼",
+    "latitude": 31.2360854,
+    "longitude": 121.468192,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_12",
+    "name": "南京大戏院",
+    "latitude": 31.2292405,
+    "longitude": 121.4733075,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_13",
+    "name": "华商纱布交易所旧址",
+    "latitude": 31.2332915,
+    "longitude": 121.4828132,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_14",
+    "name": "大新百货大楼",
+    "latitude": 31.236892,
+    "longitude": 121.4703038,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_15",
+    "name": "上海古城墙遗址",
+    "latitude": 31.229165,
+    "longitude": 121.4797753,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_16",
+    "name": "老闸捕房旧址",
+    "latitude": 31.2379285,
+    "longitude": 121.4711735,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_17",
+    "name": "春美术馆",
+    "latitude": 31.2339838,
+    "longitude": 121.4742416,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_18",
+    "name": "人民公园",
+    "latitude": 31.2338603,
+    "longitude": 121.4687153,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR06_19",
+    "name": "上海城市规划展示馆",
+    "latitude": 31.2333709,
+    "longitude": 121.4708818,
+    "scene_name": "SHR06_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_GATE",
+    "name": "上海交通大学(徐汇校区)",
+    "latitude": 31.202694,
+    "longitude": 121.432728,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_01",
+    "name": "Bazaar compatible program",
+    "latitude": 31.2038348,
+    "longitude": 121.4164872,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_02",
+    "name": "刘海粟美术馆",
+    "latitude": 31.2113561,
+    "longitude": 121.4146186,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_03",
+    "name": "Chinese Cooking Workshop",
+    "latitude": 31.210527,
+    "longitude": 121.4464448,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_04",
+    "name": "上海宣传画艺术中心",
+    "latitude": 31.2173452,
+    "longitude": 121.4293519,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_05",
+    "name": "张乐平",
+    "latitude": 31.2143935,
+    "longitude": 121.4374341,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_06",
+    "name": "陆汉斌打字机博物馆",
+    "latitude": 31.216309,
+    "longitude": 121.4294103,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_07",
+    "name": "马相伯像",
+    "latitude": 31.1946105,
+    "longitude": 121.4314506,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_08",
+    "name": "东方乐器博物馆",
+    "latitude": 31.2053614,
+    "longitude": 121.4398783,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_09",
+    "name": "普希金雕像",
+    "latitude": 31.2107632,
+    "longitude": 121.4471703,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_10",
+    "name": "上海电影博物馆",
+    "latitude": 31.1880906,
+    "longitude": 121.4336552,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_11",
+    "name": "谢晋",
+    "latitude": 31.1880465,
+    "longitude": 121.433375,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_12",
+    "name": "盛宣怀住宅",
+    "latitude": 31.2104246,
+    "longitude": 121.4412672,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_13",
+    "name": "宏恩医院",
+    "latitude": 31.219993,
+    "longitude": 121.4367558,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_14",
+    "name": "黄佐临像",
+    "latitude": 31.2153678,
+    "longitude": 121.4365234,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_15",
+    "name": "熊佛西像",
+    "latitude": 31.2187347,
+    "longitude": 121.4355075,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_16",
+    "name": "清风园",
+    "latitude": 31.2121525,
+    "longitude": 121.4157676,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_17",
+    "name": "刘海粟像",
+    "latitude": 31.2112697,
+    "longitude": 121.4149958,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_18",
+    "name": "徐家汇公园",
+    "latitude": 31.1994755,
+    "longitude": 121.4377772,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SHR07_19",
+    "name": "番禺绿地",
+    "latitude": 31.1976952,
+    "longitude": 121.4220146,
+    "scene_name": "SHR07_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_GATE",
+    "name": "广州塔",
+    "latitude": 23.10857,
+    "longitude": 113.319256,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_01",
+    "name": "惺亭",
+    "latitude": 23.1003158,
+    "longitude": 113.2931647,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_02",
+    "name": "孙中山像",
+    "latitude": 23.0999098,
+    "longitude": 113.3017493,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_03",
+    "name": "冼星海像",
+    "latitude": 23.1102295,
+    "longitude": 113.3005424,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_04",
+    "name": "珠江啤酒博物馆",
+    "latitude": 23.108751,
+    "longitude": 113.3375512,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_05",
+    "name": "Now",
+    "latitude": 23.1189829,
+    "longitude": 113.3149809,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_06",
+    "name": "萌宠乐园",
+    "latitude": 23.1341081,
+    "longitude": 113.318999,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_07",
+    "name": "畔江花园",
+    "latitude": 23.1008501,
+    "longitude": 113.3423164,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_08",
+    "name": "杨箕大块石",
+    "latitude": 23.1292802,
+    "longitude": 113.3068777,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_09",
+    "name": "Prismatic light",
+    "latitude": 23.1251419,
+    "longitude": 113.3192348,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_10",
+    "name": "Firefighters",
+    "latitude": 23.1232457,
+    "longitude": 113.3191175,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_11",
+    "name": "Flower balloon",
+    "latitude": 23.124871,
+    "longitude": 113.3192246,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_12",
+    "name": "海心沙亚运公园",
+    "latitude": 23.1140096,
+    "longitude": 113.3198451,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_13",
+    "name": "越秀南粤先贤公园",
+    "latitude": 23.1130208,
+    "longitude": 113.3116132,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_14",
+    "name": "珠江公园",
+    "latitude": 23.1226511,
+    "longitude": 113.3337111,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_15",
+    "name": "传祺公园",
+    "latitude": 23.1132906,
+    "longitude": 113.3077287,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_16",
+    "name": "广州会展公园",
+    "latitude": 23.1060305,
+    "longitude": 113.3483301,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_17",
+    "name": "广东省博物馆",
+    "latitude": 23.1174149,
+    "longitude": 113.3214228,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_18",
+    "name": "广州发展公园",
+    "latitude": 23.1122607,
+    "longitude": 113.3008333,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR08_19",
+    "name": "花城广场",
+    "latitude": 23.122579,
+    "longitude": 113.319181,
+    "scene_name": "GZR08_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_GATE",
+    "name": "陈家祠",
+    "latitude": 23.12583,
+    "longitude": 113.244218,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_01",
+    "name": "荔湾博物馆",
+    "latitude": 23.1224018,
+    "longitude": 113.2305374,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_02",
+    "name": "孙中山像",
+    "latitude": 23.1354729,
+    "longitude": 113.2593142,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_03",
+    "name": "上下九商业步行街",
+    "latitude": 23.1175043,
+    "longitude": 113.242931,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_04",
+    "name": "广州市革命历史博物馆",
+    "latitude": 23.1271846,
+    "longitude": 113.2593339,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_05",
+    "name": "广州起义纪念馆",
+    "latitude": 23.1269931,
+    "longitude": 113.2591399,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_06",
+    "name": "广州市禁毒教育馆",
+    "latitude": 23.1246806,
+    "longitude": 113.2325091,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_07",
+    "name": "詹天佑像",
+    "latitude": 23.1120003,
+    "longitude": 113.2328433,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_08",
+    "name": "芙蓉洲",
+    "latitude": 23.1407368,
+    "longitude": 113.2478638,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_09",
+    "name": "流花西苑",
+    "latitude": 23.1388219,
+    "longitude": 113.2387135,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_10",
+    "name": "云鹤华表",
+    "latitude": 23.134968,
+    "longitude": 113.2586692,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_11",
+    "name": "瘗发塔",
+    "latitude": 23.1323513,
+    "longitude": 113.2511127,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_12",
+    "name": "菩提树",
+    "latitude": 23.1323398,
+    "longitude": 113.2512859,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_13",
+    "name": "北方多闻天王",
+    "latitude": 23.1315381,
+    "longitude": 113.2508646,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_14",
+    "name": "东方持国天王",
+    "latitude": 23.131531,
+    "longitude": 113.2510075,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_15",
+    "name": "韦驮天像",
+    "latitude": 23.131555,
+    "longitude": 113.2509385,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_16",
+    "name": "弥勒佛像",
+    "latitude": 23.13152,
+    "longitude": 113.2509368,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_17",
+    "name": "木鱼",
+    "latitude": 23.132011,
+    "longitude": 113.2514797,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_18",
+    "name": "西方广目天王",
+    "latitude": 23.1315029,
+    "longitude": 113.250859,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR09_19",
+    "name": "南方增长天王",
+    "latitude": 23.1314962,
+    "longitude": 113.2510067,
+    "scene_name": "GZR09_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_GATE",
+    "name": "天环广场",
+    "latitude": 23.132429,
+    "longitude": 113.322389,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_01",
+    "name": "Now",
+    "latitude": 23.1189829,
+    "longitude": 113.3149809,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_02",
+    "name": "萌宠乐园",
+    "latitude": 23.1341081,
+    "longitude": 113.318999,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_03",
+    "name": "杨箕大块石",
+    "latitude": 23.1292802,
+    "longitude": 113.3068777,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_04",
+    "name": "Prismatic light",
+    "latitude": 23.1251419,
+    "longitude": 113.3192348,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_05",
+    "name": "Firefighters",
+    "latitude": 23.1232457,
+    "longitude": 113.3191175,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_06",
+    "name": "Flower balloon",
+    "latitude": 23.124871,
+    "longitude": 113.3192246,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_07",
+    "name": "珠江公园",
+    "latitude": 23.1226511,
+    "longitude": 113.3337111,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_08",
+    "name": "广东省博物馆",
+    "latitude": 23.1174149,
+    "longitude": 113.3214228,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_09",
+    "name": "花城广场",
+    "latitude": 23.122579,
+    "longitude": 113.319181,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_10",
+    "name": "暨南大学(石牌校区)",
+    "latitude": 23.133503,
+    "longitude": 113.3418832,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_11",
+    "name": "广州体育学院(主校区)",
+    "latitude": 23.1459759,
+    "longitude": 113.3138326,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_12",
+    "name": "聚清园",
+    "latitude": 23.1400143,
+    "longitude": 113.3393089,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_13",
+    "name": "口袋公园",
+    "latitude": 23.132574,
+    "longitude": 113.3083835,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_14",
+    "name": "广州大道中口袋公园",
+    "latitude": 23.1189222,
+    "longitude": 113.3105868,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_15",
+    "name": "花港观鱼",
+    "latitude": 23.143901,
+    "longitude": 113.3273358,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_16",
+    "name": "体育西横街桃花园",
+    "latitude": 23.1308233,
+    "longitude": 113.3208633,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_17",
+    "name": "藤本园",
+    "latitude": 23.1236203,
+    "longitude": 113.3318987,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_18",
+    "name": "天河体育中心口袋公园",
+    "latitude": 23.1432648,
+    "longitude": 113.3221409,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR10_19",
+    "name": "广州东站广场",
+    "latitude": 23.147052,
+    "longitude": 113.3193153,
+    "scene_name": "GZR10_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_GATE",
+    "name": "中山大学(南校园)",
+    "latitude": 23.096296,
+    "longitude": 113.299251,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_01",
+    "name": "惺亭",
+    "latitude": 23.1003158,
+    "longitude": 113.2931647,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_02",
+    "name": "孙中山像",
+    "latitude": 23.0999098,
+    "longitude": 113.3017493,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_03",
+    "name": "冼星海像",
+    "latitude": 23.1102295,
+    "longitude": 113.3005424,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_04",
+    "name": "Now",
+    "latitude": 23.1189829,
+    "longitude": 113.3149809,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_05",
+    "name": "中共三大会议办公楼",
+    "latitude": 23.120994,
+    "longitude": 113.2899274,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_06",
+    "name": "开山祖师李明徹像",
+    "latitude": 23.0876191,
+    "longitude": 113.2895085,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_07",
+    "name": "海心沙亚运公园",
+    "latitude": 23.1140096,
+    "longitude": 113.3198451,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_08",
+    "name": "东山湖公园",
+    "latitude": 23.1178233,
+    "longitude": 113.286209,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_09",
+    "name": "越秀南粤先贤公园",
+    "latitude": 23.1130208,
+    "longitude": 113.3116132,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_10",
+    "name": "传祺公园",
+    "latitude": 23.1132906,
+    "longitude": 113.3077287,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_11",
+    "name": "晓港公园",
+    "latitude": 23.099495,
+    "longitude": 113.2752646,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_12",
+    "name": "广州发展公园",
+    "latitude": 23.1122607,
+    "longitude": 113.3008333,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_13",
+    "name": "中山大学(广州校区南校园)",
+    "latitude": 23.0995864,
+    "longitude": 113.2925062,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_14",
+    "name": "林则徐纪念公园",
+    "latitude": 23.1145714,
+    "longitude": 113.2814448,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_15",
+    "name": "赤岗塔公园",
+    "latitude": 23.1040961,
+    "longitude": 113.3182234,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_16",
+    "name": "广东华侨博物馆",
+    "latitude": 23.1111966,
+    "longitude": 113.3004394,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_17",
+    "name": "二沙体育公园",
+    "latitude": 23.1113189,
+    "longitude": 113.3066232,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_18",
+    "name": "海印公园",
+    "latitude": 23.1091692,
+    "longitude": 113.2826328,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "GZR11_19",
+    "name": "中共三大会址纪念馆",
+    "latitude": 23.1216915,
+    "longitude": 113.2906285,
+    "scene_name": "GZR11_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_GATE",
+    "name": "世界之窗",
+    "latitude": 22.536195,
+    "longitude": 113.974539,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_01",
+    "name": "富士山微缩模型",
+    "latitude": 22.5369428,
+    "longitude": 113.9722937,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_02",
+    "name": "悉尼歌剧院微缩模型",
+    "latitude": 22.534146,
+    "longitude": 113.9707393,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_03",
+    "name": "科隆主教座堂微缩模型",
+    "latitude": 22.5354838,
+    "longitude": 113.969996,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_04",
+    "name": "猴园",
+    "latitude": 22.5326205,
+    "longitude": 113.980372,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_05",
+    "name": "埃及门",
+    "latitude": 22.5381309,
+    "longitude": 113.9691853,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_06",
+    "name": "凡尔赛宫微缩模型",
+    "latitude": 22.5358557,
+    "longitude": 113.9697483,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_07",
+    "name": "比萨斜塔微缩模型",
+    "latitude": 22.5355395,
+    "longitude": 113.9697424,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_08",
+    "name": "伦敦塔桥微缩模型",
+    "latitude": 22.5364314,
+    "longitude": 113.969513,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_09",
+    "name": "英国国会大厦微缩模型",
+    "latitude": 22.5362484,
+    "longitude": 113.9696113,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_10",
+    "name": "白金汉宫微缩模型",
+    "latitude": 22.5363181,
+    "longitude": 113.9697774,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_11",
+    "name": "冬宫微缩模型",
+    "latitude": 22.5367087,
+    "longitude": 113.9697134,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_12",
+    "name": "科威特水塔微缩模型",
+    "latitude": 22.5362253,
+    "longitude": 113.970194,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_13",
+    "name": "斯顿亨治“环状列石”微缩模型",
+    "latitude": 22.5361565,
+    "longitude": 113.9699256,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_14",
+    "name": "阿尔罕布拉宫狮子院微缩模型",
+    "latitude": 22.5360283,
+    "longitude": 113.9701705,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_15",
+    "name": "仰光大金塔微缩模型",
+    "latitude": 22.537247,
+    "longitude": 113.9708064,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_16",
+    "name": "婆罗浮屠微缩模型",
+    "latitude": 22.5375222,
+    "longitude": 113.9713211,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_17",
+    "name": "吴哥窑微缩模型",
+    "latitude": 22.5373997,
+    "longitude": 113.9711043,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_18",
+    "name": "景福宫微缩模型",
+    "latitude": 22.5381174,
+    "longitude": 113.9712888,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR12_19",
+    "name": "泰王宫微缩模型",
+    "latitude": 22.5377995,
+    "longitude": 113.9710859,
+    "scene_name": "SZR12_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_GATE",
+    "name": "深圳湾公园",
+    "latitude": 22.514367,
+    "longitude": 113.949867,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_01",
+    "name": "第26届世界大学生夏季运动会主火炬塔",
+    "latitude": 22.520655,
+    "longitude": 113.949122,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_02",
+    "name": "我是IT人",
+    "latitude": 22.5131535,
+    "longitude": 113.9415331,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_03",
+    "name": "弄潮儿",
+    "latitude": 22.5165802,
+    "longitude": 113.9438591,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_04",
+    "name": "领航者",
+    "latitude": 22.5165,
+    "longitude": 113.9442121,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_05",
+    "name": "拓荒者",
+    "latitude": 22.5166611,
+    "longitude": 113.9435146,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_06",
+    "name": "本地郎",
+    "latitude": 22.5177491,
+    "longitude": 113.9443356,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_07",
+    "name": "鹏城丽人",
+    "latitude": 22.5178207,
+    "longitude": 113.9432346,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_08",
+    "name": "孔雀亭",
+    "latitude": 22.510457,
+    "longitude": 113.9450798,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_09",
+    "name": "红·蓝马甲",
+    "latitude": 22.5103122,
+    "longitude": 113.9427781,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_10",
+    "name": "圆周率之歌",
+    "latitude": 22.5105202,
+    "longitude": 113.9444493,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_11",
+    "name": "外来妹",
+    "latitude": 22.5175456,
+    "longitude": 113.9449049,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_12",
+    "name": "Luna",
+    "latitude": 22.5184089,
+    "longitude": 113.9417739,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_13",
+    "name": "智慧之门",
+    "latitude": 22.5163576,
+    "longitude": 113.9452436,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_14",
+    "name": "金色海归",
+    "latitude": 22.517766,
+    "longitude": 113.943211,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_15",
+    "name": "弯月山谷",
+    "latitude": 22.5087944,
+    "longitude": 113.9488106,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_16",
+    "name": "流花山",
+    "latitude": 22.5152575,
+    "longitude": 113.9491764,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_17",
+    "name": "大运火炬塔纪念广场",
+    "latitude": 22.5200049,
+    "longitude": 113.9498244,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_18",
+    "name": "小沙山",
+    "latitude": 22.5225676,
+    "longitude": 113.9518846,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR13_19",
+    "name": "人才星光桥",
+    "latitude": 22.5132924,
+    "longitude": 113.946443,
+    "scene_name": "SZR13_SCENIC_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_GATE",
+    "name": "万象天地",
+    "latitude": 22.541506,
+    "longitude": 113.954773,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_01",
+    "name": "富士山微缩模型",
+    "latitude": 22.5369428,
+    "longitude": 113.9722937,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_02",
+    "name": "悉尼歌剧院微缩模型",
+    "latitude": 22.534146,
+    "longitude": 113.9707393,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_03",
+    "name": "科隆主教座堂微缩模型",
+    "latitude": 22.5354838,
+    "longitude": 113.969996,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_04",
+    "name": "尼亚加拉大瀑布微缩模型",
+    "latitude": 22.5370377,
+    "longitude": 113.966105,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_05",
+    "name": "自由女神像微缩模型",
+    "latitude": 22.5383151,
+    "longitude": 113.9649176,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_06",
+    "name": "复活节岛巨人石像微缩模型",
+    "latitude": 22.5384307,
+    "longitude": 113.9645394,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_07",
+    "name": "金字塔探秘",
+    "latitude": 22.5363332,
+    "longitude": 113.9666187,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_08",
+    "name": "海豚塑像",
+    "latitude": 22.5432436,
+    "longitude": 113.9619865,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_09",
+    "name": "救世基督像",
+    "latitude": 22.5383777,
+    "longitude": 113.9638392,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_10",
+    "name": "墨西哥凝神武士像微缩模型",
+    "latitude": 22.5380354,
+    "longitude": 113.9644715,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_11",
+    "name": "王阳明",
+    "latitude": 22.5375673,
+    "longitude": 113.9376467,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_12",
+    "name": "埃及门",
+    "latitude": 22.5381309,
+    "longitude": 113.9691853,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_13",
+    "name": "凡尔赛宫微缩模型",
+    "latitude": 22.5358557,
+    "longitude": 113.9697483,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_14",
+    "name": "比萨斜塔微缩模型",
+    "latitude": 22.5355395,
+    "longitude": 113.9697424,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_15",
+    "name": "曼哈顿高层建筑群微缩模型",
+    "latitude": 22.5379781,
+    "longitude": 113.9649355,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_16",
+    "name": "白宫微缩模型",
+    "latitude": 22.5378644,
+    "longitude": 113.965224,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_17",
+    "name": "美国国会大厦微缩模型",
+    "latitude": 22.5377107,
+    "longitude": 113.9655766,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_18",
+    "name": "林肯纪念堂微缩模型",
+    "latitude": 22.5376965,
+    "longitude": 113.9650202,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR14_19",
+    "name": "杰弗逊纪念堂微缩模型",
+    "latitude": 22.5375316,
+    "longitude": 113.9652306,
+    "scene_name": "SZR14_SHOPPING_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_GATE",
+    "name": "深圳大学",
+    "latitude": 22.53332,
+    "longitude": 113.93041,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_01",
+    "name": "自由男神",
+    "latitude": 22.5446776,
+    "longitude": 113.9282104,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_02",
+    "name": "天鹅",
+    "latitude": 22.5338588,
+    "longitude": 113.9291625,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_03",
+    "name": "虹",
+    "latitude": 22.5352091,
+    "longitude": 113.9264015,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_04",
+    "name": "王阳明",
+    "latitude": 22.5375673,
+    "longitude": 113.9376467,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_05",
+    "name": "海王波塞冬",
+    "latitude": 22.5187755,
+    "longitude": 113.9217277,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_06",
+    "name": "日晷",
+    "latitude": 22.5359363,
+    "longitude": 113.9294346,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_07",
+    "name": "廉政社区公园",
+    "latitude": 22.545495,
+    "longitude": 113.9267799,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_08",
+    "name": "和弦",
+    "latitude": 22.5457854,
+    "longitude": 113.9332633,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_09",
+    "name": "荔香公园",
+    "latitude": 22.5397398,
+    "longitude": 113.9245959,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_10",
+    "name": "文心广场街心花园",
+    "latitude": 22.5216008,
+    "longitude": 113.9266825,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_11",
+    "name": "文心公园",
+    "latitude": 22.5242102,
+    "longitude": 113.9254689,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_12",
+    "name": "南山博物馆",
+    "latitude": 22.5380438,
+    "longitude": 113.9189803,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_13",
+    "name": "科技公园",
+    "latitude": 22.5263412,
+    "longitude": 113.9394018,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_14",
+    "name": "虚拟大学园社区公园",
+    "latitude": 22.5330138,
+    "longitude": 113.939978,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_15",
+    "name": "高新南社区公园",
+    "latitude": 22.5387186,
+    "longitude": 113.9429008,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_16",
+    "name": "红花岭社区公园",
+    "latitude": 22.5423628,
+    "longitude": 113.9180449,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_17",
+    "name": "马家龙街心公园",
+    "latitude": 22.5463885,
+    "longitude": 113.9238207,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_18",
+    "name": "南头古城博物馆",
+    "latitude": 22.5439096,
+    "longitude": 113.9150583,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
+  },
+  {
+    "code": "SZR15_19",
+    "name": "麻岭和弦公园",
+    "latitude": 22.5462854,
+    "longitude": 113.9326278,
+    "scene_name": "SZR15_CAMPUS_Route",
+    "building_type": "navigation_point"
   }
 ]

@@ -3,127 +3,1805 @@
     "name": "BUPT_Main_Campus",
     "label": "北京邮电大学校园",
     "city": "北京",
+    "category": "campus",
     "supports_routing": true,
+    "navigation_radius_m": 1800,
+    "transport_modes": [
+      "walk",
+      "bike",
+      "mixed"
+    ],
     "nodes": [
       {
-        "code": "BUPT_GATE",
-        "name": "麦当劳",
-        "latitude": 39.9600741,
-        "longitude": 116.3640842
+        "code": "LEGACY_place_001",
+        "name": "北京邮电大学",
+        "latitude": 39.9577,
+        "longitude": 116.3577,
+        "route_node_type": "place",
+        "legacy_id": "place_001",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_LIB",
-        "name": "北京国都医院",
-        "latitude": 39.9672105,
-        "longitude": 116.3614418
+        "code": "LEGACY_building_253330141",
+        "name": "教二楼",
+        "latitude": 39.95914305714286,
+        "longitude": 116.35184315,
+        "route_node_type": "building",
+        "legacy_id": "building_253330141",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_03",
-        "name": "总政北太平庄招待所",
-        "latitude": 39.965625,
-        "longitude": 116.3578268
+        "code": "LEGACY_building_265030100",
+        "name": "国际汉语培训中心",
+        "latitude": 39.96296031666667,
+        "longitude": 116.34979845,
+        "route_node_type": "building",
+        "legacy_id": "building_265030100",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_04",
-        "name": "御马墩",
-        "latitude": 39.9598048,
-        "longitude": 116.3641192
+        "code": "LEGACY_building_265030103",
+        "name": "留学生2号公寓",
+        "latitude": 39.96263332,
+        "longitude": 116.3490194,
+        "route_node_type": "building",
+        "legacy_id": "building_265030103",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_05",
-        "name": "12橡树咖啡",
-        "latitude": 39.9603023,
-        "longitude": 116.3640468
+        "code": "LEGACY_building_265030104",
+        "name": "学生13号公寓",
+        "latitude": 39.96177026,
+        "longitude": 116.34905874,
+        "route_node_type": "building",
+        "legacy_id": "building_265030104",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_06",
-        "name": "校训石",
-        "latitude": 39.9598565,
-        "longitude": 116.3501595
+        "code": "LEGACY_building_265030105",
+        "name": "学生5号公寓",
+        "latitude": 39.96206782857142,
+        "longitude": 116.34961075714284,
+        "route_node_type": "building",
+        "legacy_id": "building_265030105",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_07",
-        "name": "毛主席像",
-        "latitude": 39.9598622,
-        "longitude": 116.3506473
+        "code": "LEGACY_building_265030106",
+        "name": "学生3号公寓",
+        "latitude": 39.96154896,
+        "longitude": 116.34957560000001,
+        "route_node_type": "building",
+        "legacy_id": "building_265030106",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_08",
-        "name": "格林联盟酒店",
-        "latitude": 39.967153,
-        "longitude": 116.3508592
+        "code": "LEGACY_building_265030107",
+        "name": "学生8号公寓",
+        "latitude": 39.96209796000001,
+        "longitude": 116.35045128000002,
+        "route_node_type": "building",
+        "legacy_id": "building_265030107",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_09",
-        "name": "零壹时光咖啡馆",
-        "latitude": 39.9582958,
-        "longitude": 116.3505065
+        "code": "LEGACY_building_265030108",
+        "name": "学生4号公寓",
+        "latitude": 39.96157042,
+        "longitude": 116.35043759999999,
+        "route_node_type": "building",
+        "legacy_id": "building_265030108",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_10",
-        "name": "南区超市",
-        "latitude": 39.9581307,
-        "longitude": 116.3510136
+        "code": "LEGACY_building_265030109",
+        "name": "学生1号公寓",
+        "latitude": 39.961095646153844,
+        "longitude": 116.3496417076923,
+        "route_node_type": "building",
+        "legacy_id": "building_265030109",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_11",
-        "name": "中国建设银行",
-        "latitude": 39.9672713,
-        "longitude": 116.3645893
+        "code": "LEGACY_building_265030110",
+        "name": "学生2号公寓",
+        "latitude": 39.96111426923077,
+        "longitude": 116.35050226153845,
+        "route_node_type": "building",
+        "legacy_id": "building_265030110",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_12",
-        "name": "中国光大银行",
-        "latitude": 39.9672878,
-        "longitude": 116.3652652
+        "code": "LEGACY_building_344376259",
+        "name": "28号楼",
+        "latitude": 39.958061542857145,
+        "longitude": 116.35062724285714,
+        "route_node_type": "building",
+        "legacy_id": "building_344376259",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_13",
-        "name": "苏宁电器",
-        "latitude": 39.9676537,
-        "longitude": 116.3645624
+        "code": "LEGACY_building_344376260",
+        "name": "7号楼",
+        "latitude": 39.9575967,
+        "longitude": 116.35065847999999,
+        "route_node_type": "building",
+        "legacy_id": "building_344376260",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_14",
-        "name": "物美",
-        "latitude": 39.9676208,
-        "longitude": 116.3645571
+        "code": "LEGACY_building_344376261",
+        "name": "9号楼",
+        "latitude": 39.95722212,
+        "longitude": 116.35066056000001,
+        "route_node_type": "building",
+        "legacy_id": "building_344376261",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_15",
-        "name": "招商银行",
-        "latitude": 39.9675715,
-        "longitude": 116.3645624
+        "code": "LEGACY_building_344376262",
+        "name": "14号楼",
+        "latitude": 39.95855154,
+        "longitude": 116.34969166,
+        "route_node_type": "building",
+        "legacy_id": "building_344376262",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_16",
-        "name": "捷安特",
-        "latitude": 39.9671605,
-        "longitude": 116.3634256
+        "code": "LEGACY_building_344376263",
+        "name": "27号楼",
+        "latitude": 39.95830316,
+        "longitude": 116.34974078,
+        "route_node_type": "building",
+        "legacy_id": "building_344376263",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_17",
-        "name": "国美电器",
-        "latitude": 39.9659326,
-        "longitude": 116.3576679
+        "code": "LEGACY_building_344376264",
+        "name": "2号楼",
+        "latitude": 39.95799272,
+        "longitude": 116.34976420000001,
+        "route_node_type": "building",
+        "legacy_id": "building_344376264",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_18",
-        "name": "如家快捷酒店",
-        "latitude": 39.9659352,
-        "longitude": 116.3575784
+        "code": "LEGACY_building_344376265",
+        "name": "7号楼",
+        "latitude": 39.957651420000005,
+        "longitude": 116.34977726,
+        "route_node_type": "building",
+        "legacy_id": "building_344376265",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_19",
-        "name": "速8酒店",
-        "latitude": 39.9660808,
-        "longitude": 116.3661381
+        "code": "LEGACY_building_344376266",
+        "name": "8号楼",
+        "latitude": 39.957202900000006,
+        "longitude": 116.3497809,
+        "route_node_type": "building",
+        "legacy_id": "building_344376266",
+        "source_dataset": "tourism-system-main"
       },
       {
-        "code": "BUPT_20",
-        "name": "北京银行",
-        "latitude": 39.9659344,
-        "longitude": 116.3560861
+        "code": "LEGACY_building_344376267",
+        "name": "4号楼",
+        "latitude": 39.95686278,
+        "longitude": 116.34988004000002,
+        "route_node_type": "building",
+        "legacy_id": "building_344376267",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_344376268",
+        "name": "10号楼",
+        "latitude": 39.9568669,
+        "longitude": 116.3511864,
+        "route_node_type": "building",
+        "legacy_id": "building_344376268",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_344376269",
+        "name": "28号楼",
+        "latitude": 39.958815416666674,
+        "longitude": 116.34919554999999,
+        "route_node_type": "building",
+        "legacy_id": "building_344376269",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_344376270",
+        "name": "15号楼",
+        "latitude": 39.95829526,
+        "longitude": 116.34923696000001,
+        "route_node_type": "building",
+        "legacy_id": "building_344376270",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_344376271",
+        "name": "16号楼",
+        "latitude": 39.95776066,
+        "longitude": 116.34925286,
+        "route_node_type": "building",
+        "legacy_id": "building_344376271",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_344376272",
+        "name": "17号楼",
+        "latitude": 39.95722528,
+        "longitude": 116.3492608,
+        "route_node_type": "building",
+        "legacy_id": "building_344376272",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_344376663",
+        "name": "1号楼",
+        "latitude": 39.95862524,
+        "longitude": 116.35170272,
+        "route_node_type": "building",
+        "legacy_id": "building_344376663",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_344376664",
+        "name": "2号楼",
+        "latitude": 39.95825276,
+        "longitude": 116.35177478,
+        "route_node_type": "building",
+        "legacy_id": "building_344376664",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_344376665",
+        "name": "4号楼",
+        "latitude": 39.95775274615385,
+        "longitude": 116.35187795384617,
+        "route_node_type": "building",
+        "legacy_id": "building_344376665",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_344376666",
+        "name": "5号楼",
+        "latitude": 39.95732506923077,
+        "longitude": 116.35190078461538,
+        "route_node_type": "building",
+        "legacy_id": "building_344376666",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_363833971",
+        "name": "教四楼",
+        "latitude": 39.96056334285714,
+        "longitude": 116.35008660476188,
+        "route_node_type": "building",
+        "legacy_id": "building_363833971",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399008789",
+        "name": "主教学楼",
+        "latitude": 39.95995346923077,
+        "longitude": 116.35218096923077,
+        "route_node_type": "building",
+        "legacy_id": "building_399008789",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399008979",
+        "name": "教一楼",
+        "latitude": 39.96055533333333,
+        "longitude": 116.35174187333334,
+        "route_node_type": "building",
+        "legacy_id": "building_399008979",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399008980",
+        "name": "行政办公楼",
+        "latitude": 39.96071198333333,
+        "longitude": 116.35174589999998,
+        "route_node_type": "building",
+        "legacy_id": "building_399008980",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399008981",
+        "name": "财务处",
+        "latitude": 39.96076298,
+        "longitude": 116.35136231999999,
+        "route_node_type": "building",
+        "legacy_id": "building_399008981",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399008982",
+        "name": "后勤处",
+        "latitude": 39.96069124444444,
+        "longitude": 116.35135893333336,
+        "route_node_type": "building",
+        "legacy_id": "building_399008982",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399009831",
+        "name": "明光楼",
+        "latitude": 39.95719684,
+        "longitude": 116.35477190000002,
+        "route_node_type": "building",
+        "legacy_id": "building_399009831",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399010162",
+        "name": "留学生1号公寓",
+        "latitude": 39.96253082,
+        "longitude": 116.34953082000001,
+        "route_node_type": "building",
+        "legacy_id": "building_399010162",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399013936",
+        "name": "学生11号公寓",
+        "latitude": 39.9632844,
+        "longitude": 116.34951057999999,
+        "route_node_type": "building",
+        "legacy_id": "building_399013936",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399014219",
+        "name": "学生10号公寓",
+        "latitude": 39.96321245,
+        "longitude": 116.35032051666666,
+        "route_node_type": "building",
+        "legacy_id": "building_399014219",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399015104",
+        "name": "学生6号公寓",
+        "latitude": 39.96331951111111,
+        "longitude": 116.3520491,
+        "route_node_type": "building",
+        "legacy_id": "building_399015104",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399015107",
+        "name": "经管楼",
+        "latitude": 39.96322664,
+        "longitude": 116.35119654,
+        "route_node_type": "building",
+        "legacy_id": "building_399015107",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399018201",
+        "name": "家属27号楼",
+        "latitude": 39.96261986,
+        "longitude": 116.35377286,
+        "route_node_type": "building",
+        "legacy_id": "building_399018201",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399018202",
+        "name": "家属28号楼",
+        "latitude": 39.96185084,
+        "longitude": 116.35381643999999,
+        "route_node_type": "building",
+        "legacy_id": "building_399018202",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399018593",
+        "name": "学生29号公寓",
+        "latitude": 39.961476958064516,
+        "longitude": 116.35442373225806,
+        "route_node_type": "building",
+        "legacy_id": "building_399018593",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399018595",
+        "name": "25号楼",
+        "latitude": 39.96298120909091,
+        "longitude": 116.35432999090908,
+        "route_node_type": "building",
+        "legacy_id": "building_399018595",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399018596",
+        "name": "26号楼",
+        "latitude": 39.962331688888895,
+        "longitude": 116.35436880000003,
+        "route_node_type": "building",
+        "legacy_id": "building_399018596",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399038556",
+        "name": "30号楼",
+        "latitude": 39.95774818,
+        "longitude": 116.35286706,
+        "route_node_type": "building",
+        "legacy_id": "building_399038556",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399038557",
+        "name": "21号楼",
+        "latitude": 39.9573328,
+        "longitude": 116.35280918000001,
+        "route_node_type": "building",
+        "legacy_id": "building_399038557",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399038558",
+        "name": "13号楼",
+        "latitude": 39.95743761999999,
+        "longitude": 116.35328431999999,
+        "route_node_type": "building",
+        "legacy_id": "building_399038558",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399038559",
+        "name": "北京交通大学附属中学分校宿舍楼2",
+        "latitude": 39.95791637000001,
+        "longitude": 116.35404901,
+        "route_node_type": "building",
+        "legacy_id": "building_399038559",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399038560",
+        "name": "33号楼",
+        "latitude": 39.958238888888886,
+        "longitude": 116.35388825555555,
+        "route_node_type": "building",
+        "legacy_id": "building_399038560",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399038561",
+        "name": "19号楼",
+        "latitude": 39.958626179999996,
+        "longitude": 116.35278095999999,
+        "route_node_type": "building",
+        "legacy_id": "building_399038561",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399038562",
+        "name": "科学会堂",
+        "latitude": 39.95993568,
+        "longitude": 116.35279726000002,
+        "route_node_type": "building",
+        "legacy_id": "building_399038562",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399041101",
+        "name": "11号楼",
+        "latitude": 39.9568771,
+        "longitude": 116.35219784,
+        "route_node_type": "building",
+        "legacy_id": "building_399041101",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399041102",
+        "name": "北京邮电大学幼儿园",
+        "latitude": 39.95818091538461,
+        "longitude": 116.35310089230767,
+        "route_node_type": "building",
+        "legacy_id": "building_399041102",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399041103",
+        "name": "32号楼",
+        "latitude": 39.95776094,
+        "longitude": 116.35476532,
+        "route_node_type": "building",
+        "legacy_id": "building_399041103",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399041104",
+        "name": "北京交通大学附属中学分校宿舍楼1",
+        "latitude": 39.957662428571425,
+        "longitude": 116.35388428571427,
+        "route_node_type": "building",
+        "legacy_id": "building_399041104",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399042378",
+        "name": "23号楼",
+        "latitude": 39.963481939999994,
+        "longitude": 116.35275726,
+        "route_node_type": "building",
+        "legacy_id": "building_399042378",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399042379",
+        "name": "24号楼",
+        "latitude": 39.96353146,
+        "longitude": 116.35370407999999,
+        "route_node_type": "building",
+        "legacy_id": "building_399042379",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399046289",
+        "name": "教三楼",
+        "latitude": 39.95903866470588,
+        "longitude": 116.3502741764706,
+        "route_node_type": "building",
+        "legacy_id": "building_399046289",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399046290",
+        "name": "34号楼",
+        "latitude": 39.96193656,
+        "longitude": 116.35447968000001,
+        "route_node_type": "building",
+        "legacy_id": "building_399046290",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399046291",
+        "name": "22号楼",
+        "latitude": 39.956868580000005,
+        "longitude": 116.35357452000001,
+        "route_node_type": "building",
+        "legacy_id": "building_399046291",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399046292",
+        "name": "12号楼",
+        "latitude": 39.95695968571429,
+        "longitude": 116.35326301428573,
+        "route_node_type": "building",
+        "legacy_id": "building_399046292",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_building_399046293",
+        "name": "23号楼",
+        "latitude": 39.957053200000004,
+        "longitude": 116.35386958,
+        "route_node_type": "building",
+        "legacy_id": "building_399046293",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_001",
+        "name": "路口 001",
+        "latitude": 39.9566624,
+        "longitude": 116.3490707,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_001",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_002",
+        "name": "路口 002",
+        "latitude": 39.9567884,
+        "longitude": 116.3483872,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_002",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_003",
+        "name": "路口 003",
+        "latitude": 39.9565666,
+        "longitude": 116.349074,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_003",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_004",
+        "name": "路口 004",
+        "latitude": 39.9567925,
+        "longitude": 116.3508374,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_004",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_005",
+        "name": "路口 005",
+        "latitude": 39.9564444,
+        "longitude": 116.3508374,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_005",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_006",
+        "name": "路口 006",
+        "latitude": 39.9570142,
+        "longitude": 116.3518339,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_006",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_007",
+        "name": "路口 007",
+        "latitude": 39.9566498,
+        "longitude": 116.3518371,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_007",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_008",
+        "name": "路口 008",
+        "latitude": 39.9571433,
+        "longitude": 116.3518296,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_008",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_009",
+        "name": "路口 009",
+        "latitude": 39.9571448,
+        "longitude": 116.3512011,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_009",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_010",
+        "name": "路口 010",
+        "latitude": 39.9571432,
+        "longitude": 116.3526763,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_010",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_011",
+        "name": "路口 011",
+        "latitude": 39.9571473,
+        "longitude": 116.3530908,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_011",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_012",
+        "name": "路口 012",
+        "latitude": 39.9573407,
+        "longitude": 116.3530875,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_012",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_013",
+        "name": "路口 013",
+        "latitude": 39.9572385,
+        "longitude": 116.3530892,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_013",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_014",
+        "name": "路口 014",
+        "latitude": 39.9572458,
+        "longitude": 116.3536553,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_014",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_015",
+        "name": "路口 015",
+        "latitude": 39.9566999,
+        "longitude": 116.3649393,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_015",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_016",
+        "name": "路口 016",
+        "latitude": 39.956616,
+        "longitude": 116.3648266,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_016",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_017",
+        "name": "路口 017",
+        "latitude": 39.9589794,
+        "longitude": 116.3489692,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_017",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_018",
+        "name": "路口 018",
+        "latitude": 39.9573177,
+        "longitude": 116.3494217,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_018",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_019",
+        "name": "路口 019",
+        "latitude": 39.9573383,
+        "longitude": 116.3502549,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_019",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_020",
+        "name": "路口 020",
+        "latitude": 39.9578195,
+        "longitude": 116.3494077,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_020",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_021",
+        "name": "路口 021",
+        "latitude": 39.9578361,
+        "longitude": 116.3502368,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_021",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_022",
+        "name": "路口 022",
+        "latitude": 39.9583869,
+        "longitude": 116.351151,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_022",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_023",
+        "name": "路口 023",
+        "latitude": 39.9581278,
+        "longitude": 116.3493992,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_023",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_024",
+        "name": "路口 024",
+        "latitude": 39.9581446,
+        "longitude": 116.3502255,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_024",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_025",
+        "name": "路口 025",
+        "latitude": 39.9583773,
+        "longitude": 116.3493835,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_025",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_026",
+        "name": "路口 026",
+        "latitude": 39.9583896,
+        "longitude": 116.3502096,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_026",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_027",
+        "name": "路口 027",
+        "latitude": 39.9599117,
+        "longitude": 116.3488127,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_027",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_028",
+        "name": "路口 028",
+        "latitude": 39.9597597,
+        "longitude": 116.3490066,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_028",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_029",
+        "name": "路口 029",
+        "latitude": 39.9597728,
+        "longitude": 116.3493692,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_029",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_030",
+        "name": "路口 030",
+        "latitude": 39.9587364,
+        "longitude": 116.3494182,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_030",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_031",
+        "name": "路口 031",
+        "latitude": 39.9598126,
+        "longitude": 116.3501595,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_031",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_032",
+        "name": "路口 032",
+        "latitude": 39.9604305,
+        "longitude": 116.3501438,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_032",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_033",
+        "name": "路口 033",
+        "latitude": 39.9593257,
+        "longitude": 116.3501709,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_033",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_034",
+        "name": "路口 034",
+        "latitude": 39.9598447,
+        "longitude": 116.3510875,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_034",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_035",
+        "name": "路口 035",
+        "latitude": 39.9602895,
+        "longitude": 116.3486791,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_035",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_036",
+        "name": "路口 036",
+        "latitude": 39.9602992,
+        "longitude": 116.3490743,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_036",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_037",
+        "name": "路口 037",
+        "latitude": 39.9600582,
+        "longitude": 116.3490792,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_037",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_038",
+        "name": "路口 038",
+        "latitude": 39.9608725,
+        "longitude": 116.3493082,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_038",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_039",
+        "name": "路口 039",
+        "latitude": 39.9648667,
+        "longitude": 116.3487025,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_039",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_040",
+        "name": "路口 040",
+        "latitude": 39.9625319,
+        "longitude": 116.3492262,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_040",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_041",
+        "name": "路口 041",
+        "latitude": 39.9619069,
+        "longitude": 116.3492546,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_041",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_042",
+        "name": "路口 042",
+        "latitude": 39.9619329,
+        "longitude": 116.3500568,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_042",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_043",
+        "name": "路口 043",
+        "latitude": 39.9608878,
+        "longitude": 116.3501004,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_043",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_044",
+        "name": "路口 044",
+        "latitude": 39.9627818,
+        "longitude": 116.3499895,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_044",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_045",
+        "name": "路口 045",
+        "latitude": 39.962352,
+        "longitude": 116.3492457,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_045",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_046",
+        "name": "路口 046",
+        "latitude": 39.9623989,
+        "longitude": 116.3509594,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_046",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_047",
+        "name": "路口 047",
+        "latitude": 39.9578815,
+        "longitude": 116.3549506,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_047",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_048",
+        "name": "路口 048",
+        "latitude": 39.9571578,
+        "longitude": 116.3491248,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_048",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_049",
+        "name": "路口 049",
+        "latitude": 39.9575234,
+        "longitude": 116.3511876,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_049",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_050",
+        "name": "路口 050",
+        "latitude": 39.957543,
+        "longitude": 116.3525109,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_050",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_051",
+        "name": "路口 051",
+        "latitude": 39.9577129,
+        "longitude": 116.351667,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_051",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_052",
+        "name": "路口 052",
+        "latitude": 39.9580237,
+        "longitude": 116.3511657,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_052",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_053",
+        "name": "路口 053",
+        "latitude": 39.9580318,
+        "longitude": 116.3524854,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_053",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_054",
+        "name": "路口 054",
+        "latitude": 39.9583794,
+        "longitude": 116.352472,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_054",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_055",
+        "name": "路口 055",
+        "latitude": 39.9571416,
+        "longitude": 116.352535,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_055",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_056",
+        "name": "路口 056",
+        "latitude": 39.9575604,
+        "longitude": 116.3536239,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_056",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_057",
+        "name": "路口 057",
+        "latitude": 39.9578775,
+        "longitude": 116.3524975,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_057",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_058",
+        "name": "路口 058",
+        "latitude": 39.9578938,
+        "longitude": 116.3532656,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_058",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_059",
+        "name": "路口 059",
+        "latitude": 39.9583827,
+        "longitude": 116.3547505,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_059",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_060",
+        "name": "路口 060",
+        "latitude": 39.9588351,
+        "longitude": 116.353168,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_060",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_061",
+        "name": "路口 061",
+        "latitude": 39.9603457,
+        "longitude": 116.351052,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_061",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_062",
+        "name": "路口 062",
+        "latitude": 39.959312,
+        "longitude": 116.3493792,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_062",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_063",
+        "name": "路口 063",
+        "latitude": 39.9593787,
+        "longitude": 116.3531552,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_063",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_064",
+        "name": "路口 064",
+        "latitude": 39.9598696,
+        "longitude": 116.3518393,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_064",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_065",
+        "name": "路口 065",
+        "latitude": 39.959355,
+        "longitude": 116.3518606,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_065",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_066",
+        "name": "路口 066",
+        "latitude": 39.9598727,
+        "longitude": 116.3519023,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_066",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_067",
+        "name": "路口 067",
+        "latitude": 39.9593655,
+        "longitude": 116.3524656,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_067",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_068",
+        "name": "路口 068",
+        "latitude": 39.9588188,
+        "longitude": 116.3524885,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_068",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_069",
+        "name": "路口 069",
+        "latitude": 39.9609937,
+        "longitude": 116.3531173,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_069",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_070",
+        "name": "路口 070",
+        "latitude": 39.9583865,
+        "longitude": 116.3534148,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_070",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_071",
+        "name": "路口 071",
+        "latitude": 39.9573328,
+        "longitude": 116.3546459,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_071",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_072",
+        "name": "路口 072",
+        "latitude": 39.960303,
+        "longitude": 116.3493338,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_072",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_073",
+        "name": "路口 073",
+        "latitude": 39.9603946,
+        "longitude": 116.3531314,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_073",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_074",
+        "name": "路口 074",
+        "latitude": 39.9609281,
+        "longitude": 116.3510338,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_074",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_075",
+        "name": "路口 075",
+        "latitude": 39.9609793,
+        "longitude": 116.3525175,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_075",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_076",
+        "name": "路口 076",
+        "latitude": 39.9593668,
+        "longitude": 116.3525394,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_076",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_077",
+        "name": "路口 077",
+        "latitude": 39.9606141,
+        "longitude": 116.3525453,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_077",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_078",
+        "name": "路口 078",
+        "latitude": 39.9606129,
+        "longitude": 116.3531262,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_078",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_079",
+        "name": "路口 079",
+        "latitude": 39.9610308,
+        "longitude": 116.3549132,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_079",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_080",
+        "name": "路口 080",
+        "latitude": 39.9615987,
+        "longitude": 116.3524825,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_080",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_081",
+        "name": "路口 081",
+        "latitude": 39.9610165,
+        "longitude": 116.3542224,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_081",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_082",
+        "name": "路口 082",
+        "latitude": 39.9619767,
+        "longitude": 116.3524682,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_082",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_083",
+        "name": "路口 083",
+        "latitude": 39.9614088,
+        "longitude": 116.3510073,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_083",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_084",
+        "name": "路口 084",
+        "latitude": 39.9614105,
+        "longitude": 116.3510704,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_084",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_085",
+        "name": "路口 085",
+        "latitude": 39.9627408,
+        "longitude": 116.3509428,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_085",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_086",
+        "name": "路口 086",
+        "latitude": 39.9624079,
+        "longitude": 116.3512153,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_086",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_087",
+        "name": "路口 087",
+        "latitude": 39.9619441,
+        "longitude": 116.3512411,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_087",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_088",
+        "name": "路口 088",
+        "latitude": 39.9624461,
+        "longitude": 116.352445,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_088",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_089",
+        "name": "路口 089",
+        "latitude": 39.9632716,
+        "longitude": 116.3523861,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_089",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_090",
+        "name": "路口 090",
+        "latitude": 39.9622969,
+        "longitude": 116.3524524,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_090",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_091",
+        "name": "路口 091",
+        "latitude": 39.9623448,
+        "longitude": 116.3535417,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_091",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_092",
+        "name": "路口 092",
+        "latitude": 39.9602552,
+        "longitude": 116.3531327,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_092",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_093",
+        "name": "路口 093",
+        "latitude": 39.9610265,
+        "longitude": 116.3547033,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_093",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_094",
+        "name": "路口 094",
+        "latitude": 39.9661197,
+        "longitude": 116.3546694,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_094",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_095",
+        "name": "路口 095",
+        "latitude": 39.9566326,
+        "longitude": 116.3551204,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_095",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_096",
+        "name": "路口 096",
+        "latitude": 39.9616516,
+        "longitude": 116.3541734,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_096",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_097",
+        "name": "路口 097",
+        "latitude": 39.9616626,
+        "longitude": 116.3546647,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_097",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_098",
+        "name": "路口 098",
+        "latitude": 39.9631676,
+        "longitude": 116.3534948,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_098",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_099",
+        "name": "路口 099",
+        "latitude": 39.9616368,
+        "longitude": 116.3536182,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_099",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_100",
+        "name": "路口 100",
+        "latitude": 39.9631733,
+        "longitude": 116.3540595,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_100",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_101",
+        "name": "路口 101",
+        "latitude": 39.9621291,
+        "longitude": 116.3541472,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_101",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_102",
+        "name": "路口 102",
+        "latitude": 39.962129,
+        "longitude": 116.3546393,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_102",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_103",
+        "name": "路口 103",
+        "latitude": 39.9636074,
+        "longitude": 116.3545534,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_103",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_104",
+        "name": "路口 104",
+        "latitude": 39.9624436,
+        "longitude": 116.3541208,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_104",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_105",
+        "name": "路口 105",
+        "latitude": 39.9624457,
+        "longitude": 116.3546209,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_105",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_106",
+        "name": "路口 106",
+        "latitude": 39.9630859,
+        "longitude": 116.3493254,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_106",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_107",
+        "name": "路口 107",
+        "latitude": 39.9630973,
+        "longitude": 116.3499693,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_107",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_108",
+        "name": "路口 108",
+        "latitude": 39.9635253,
+        "longitude": 116.3499422,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_108",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_109",
+        "name": "路口 109",
+        "latitude": 39.9627622,
+        "longitude": 116.3492637,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_109",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_110",
+        "name": "路口 110",
+        "latitude": 39.9628075,
+        "longitude": 116.3509397,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_110",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_111",
+        "name": "路口 111",
+        "latitude": 39.9635495,
+        "longitude": 116.3509046,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_111",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_112",
+        "name": "路口 112",
+        "latitude": 39.9630222,
+        "longitude": 116.3524039,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_112",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_113",
+        "name": "路口 113",
+        "latitude": 39.9629825,
+        "longitude": 116.3509343,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_113",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_114",
+        "name": "路口 114",
+        "latitude": 39.9630124,
+        "longitude": 116.3518799,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_114",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_115",
+        "name": "路口 115",
+        "latitude": 39.9627803,
+        "longitude": 116.3518882,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_115",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_116",
+        "name": "路口 116",
+        "latitude": 39.9630092,
+        "longitude": 116.3517072,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_116",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_117",
+        "name": "路口 117",
+        "latitude": 39.9634669,
+        "longitude": 116.3516897,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_117",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_118",
+        "name": "路口 118",
+        "latitude": 39.9631471,
+        "longitude": 116.352395,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_118",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_119",
+        "name": "路口 119",
+        "latitude": 39.9631968,
+        "longitude": 116.3545773,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_119",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_120",
+        "name": "路口 120",
+        "latitude": 39.9631642,
+        "longitude": 116.3531618,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_120",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_121",
+        "name": "路口 121",
+        "latitude": 39.9633977,
+        "longitude": 116.3545641,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_121",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_122",
+        "name": "路口 122",
+        "latitude": 39.9627869,
+        "longitude": 116.3540919,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_122",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_123",
+        "name": "路口 123",
+        "latitude": 39.9628033,
+        "longitude": 116.3546001,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_123",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_124",
+        "name": "路口 124",
+        "latitude": 39.9587689,
+        "longitude": 116.3511504,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_124",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_125",
+        "name": "路口 125",
+        "latitude": 39.9593264,
+        "longitude": 116.3511321,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_125",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_126",
+        "name": "路口 126",
+        "latitude": 39.9603772,
+        "longitude": 116.3525759,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_126",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_127",
+        "name": "路口 127",
+        "latitude": 39.961355,
+        "longitude": 116.3493045,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_127",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_128",
+        "name": "路口 128",
+        "latitude": 39.9613824,
+        "longitude": 116.3501086,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_128",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_129",
+        "name": "路口 129",
+        "latitude": 39.9619124,
+        "longitude": 116.3510133,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_129",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_130",
+        "name": "路口 130",
+        "latitude": 39.962107,
+        "longitude": 116.3500753,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_130",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_131",
+        "name": "路口 131",
+        "latitude": 39.9623989,
+        "longitude": 116.3500377,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_131",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_132",
+        "name": "路口 132",
+        "latitude": 39.9621276,
+        "longitude": 116.3509496,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_132",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_133",
+        "name": "路口 133",
+        "latitude": 39.962107,
+        "longitude": 116.3500753,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_133",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_134",
+        "name": "路口 134",
+        "latitude": 39.9623989,
+        "longitude": 116.3500377,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_134",
+        "source_dataset": "tourism-system-main"
+      },
+      {
+        "code": "LEGACY_intersection_135",
+        "name": "路口 135",
+        "latitude": 39.9621276,
+        "longitude": 116.3509496,
+        "route_node_type": "intersection",
+        "legacy_id": "intersection_135",
+        "source_dataset": "tourism-system-main"
       }
     ]
   },
@@ -131,7 +1809,15 @@
     "name": "Summer_Palace",
     "label": "颐和园景区",
     "city": "北京",
+    "category": "scenic",
+    "anchor_destination_id": "osm-node-4822625121",
     "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "shuttle",
+      "mixed"
+    ],
     "nodes": [
       {
         "code": "SUMMER_01",
@@ -256,25 +1942,2044 @@
     ]
   },
   {
-    "name": "Shanghai_City_View",
-    "label": "上海城市精选地图",
+    "name": "BJR01_SCENIC_Route",
+    "label": "故宫博物院精细导航",
+    "city": "北京",
+    "category": "scenic",
+    "anchor_destination_id": "osm-node-3884441391",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "shuttle",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "BJR01_GATE",
+        "name": "故宫博物院",
+        "latitude": 39.916345,
+        "longitude": 116.397155
+      },
+      {
+        "code": "BJR01_01",
+        "name": "九龙壁",
+        "latitude": 39.917101,
+        "longitude": 116.3941884
+      },
+      {
+        "code": "BJR01_02",
+        "name": "老舍纪念馆",
+        "latitude": 39.9172454,
+        "longitude": 116.4021102
+      },
+      {
+        "code": "BJR01_03",
+        "name": "珍妃井",
+        "latitude": 39.9205283,
+        "longitude": 116.3937977
+      },
+      {
+        "code": "BJR01_04",
+        "name": "天福茗茶",
+        "latitude": 39.9143682,
+        "longitude": 116.4083494
+      },
+      {
+        "code": "BJR01_05",
+        "name": "故宫文化服务中心",
+        "latitude": 39.9103796,
+        "longitude": 116.390967
+      },
+      {
+        "code": "BJR01_06",
+        "name": "十八槐",
+        "latitude": 39.9143252,
+        "longitude": 116.389242
+      },
+      {
+        "code": "BJR01_07",
+        "name": "明思宗殉国处",
+        "latitude": 39.9232417,
+        "longitude": 116.3927531
+      },
+      {
+        "code": "BJR01_08",
+        "name": "北京人艺戏剧博物馆",
+        "latitude": 39.9202355,
+        "longitude": 116.4064145
+      },
+      {
+        "code": "BJR01_09",
+        "name": "金石图",
+        "latitude": 39.9110133,
+        "longitude": 116.4008049
+      },
+      {
+        "code": "BJR01_10",
+        "name": "时付祥同志",
+        "latitude": 39.9086882,
+        "longitude": 116.392801
+      },
+      {
+        "code": "BJR01_11",
+        "name": "郜三喜",
+        "latitude": 39.9086837,
+        "longitude": 116.3925856
+      },
+      {
+        "code": "BJR01_12",
+        "name": "中华人民共和国国徽",
+        "latitude": 39.9073038,
+        "longitude": 116.3913532
+      },
+      {
+        "code": "BJR01_13",
+        "name": "3D ТV",
+        "latitude": 39.9129812,
+        "longitude": 116.404797
+      },
+      {
+        "code": "BJR01_14",
+        "name": "社稷坛",
+        "latitude": 39.9098182,
+        "longitude": 116.3885888
+      },
+      {
+        "code": "BJR01_15",
+        "name": "太庙",
+        "latitude": 39.9099786,
+        "longitude": 116.3936276
+      },
+      {
+        "code": "BJR01_16",
+        "name": "景山公园",
+        "latitude": 39.9244135,
+        "longitude": 116.3903832
+      },
+      {
+        "code": "BJR01_17",
+        "name": "御花园",
+        "latitude": 39.9201373,
+        "longitude": 116.390611
+      },
+      {
+        "code": "BJR01_18",
+        "name": "慈宁宫花园",
+        "latitude": 39.9164143,
+        "longitude": 116.3877504
+      },
+      {
+        "code": "BJR01_19",
+        "name": "王府井大街",
+        "latitude": 39.9116083,
+        "longitude": 116.4050572
+      }
+    ]
+  },
+  {
+    "name": "BJR02_SHOPPING_Route",
+    "label": "三里屯精细导航",
+    "city": "北京",
+    "category": "shopping",
+    "anchor_destination_id": "osm-node-5174023921",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "shuttle",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "BJR02_GATE",
+        "name": "三里屯",
+        "latitude": 39.937611,
+        "longitude": 116.454056
+      },
+      {
+        "code": "BJR02_01",
+        "name": "过山车",
+        "latitude": 39.937645,
+        "longitude": 116.4733844
+      },
+      {
+        "code": "BJR02_02",
+        "name": "乐高小镇",
+        "latitude": 39.9359055,
+        "longitude": 116.4764097
+      },
+      {
+        "code": "BJR02_03",
+        "name": "金台夕照",
+        "latitude": 39.9213962,
+        "longitude": 116.4641398
+      },
+      {
+        "code": "BJR02_04",
+        "name": "庆丰收组雕（右）",
+        "latitude": 39.9392909,
+        "longitude": 116.4574252
+      },
+      {
+        "code": "BJR02_05",
+        "name": "庆丰收组雕（左）",
+        "latitude": 39.9407142,
+        "longitude": 116.4574239
+      },
+      {
+        "code": "BJR02_06",
+        "name": "约翰斯特劳斯花园",
+        "latitude": 39.9431645,
+        "longitude": 116.4711624
+      },
+      {
+        "code": "BJR02_07",
+        "name": "米特熊雕塑",
+        "latitude": 39.943181,
+        "longitude": 116.4712949
+      },
+      {
+        "code": "BJR02_08",
+        "name": "莫扎特雕像",
+        "latitude": 39.9431944,
+        "longitude": 116.4719255
+      },
+      {
+        "code": "BJR02_09",
+        "name": "抵制暴力雕塑",
+        "latitude": 39.9432023,
+        "longitude": 116.471752
+      },
+      {
+        "code": "BJR02_10",
+        "name": "英杰硬石博物馆",
+        "latitude": 39.9392739,
+        "longitude": 116.4418808
+      },
+      {
+        "code": "BJR02_11",
+        "name": "三里屯酒吧街",
+        "latitude": 39.9339929,
+        "longitude": 116.4493583
+      },
+      {
+        "code": "BJR02_12",
+        "name": "全国农业展览馆;中国农业博物馆",
+        "latitude": 39.9393745,
+        "longitude": 116.4596758
+      },
+      {
+        "code": "BJR02_13",
+        "name": "汇爱婚礼堂",
+        "latitude": 39.944976,
+        "longitude": 116.4707794
+      },
+      {
+        "code": "BJR02_14",
+        "name": "中泰友谊亭",
+        "latitude": 39.9427006,
+        "longitude": 116.4724844
+      },
+      {
+        "code": "BJR02_15",
+        "name": "滨水之舟广场",
+        "latitude": 39.9433236,
+        "longitude": 116.4732341
+      },
+      {
+        "code": "BJR02_16",
+        "name": "世纪喷泉广场",
+        "latitude": 39.9364341,
+        "longitude": 116.4769673
+      },
+      {
+        "code": "BJR02_17",
+        "name": "朝阳公园",
+        "latitude": 39.9444089,
+        "longitude": 116.4755863
+      },
+      {
+        "code": "BJR02_18",
+        "name": "团结湖公园",
+        "latitude": 39.9244699,
+        "longitude": 116.458345
+      },
+      {
+        "code": "BJR02_19",
+        "name": "左家庄科普廉政文化公园",
+        "latitude": 39.9472882,
+        "longitude": 116.4368934
+      }
+    ]
+  },
+  {
+    "name": "BJR03_CAMPUS_Route",
+    "label": "清华大学精细导航",
+    "city": "北京",
+    "category": "campus",
+    "anchor_destination_id": "osm-way-993287090",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "bike",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "BJR03_GATE",
+        "name": "清华大学",
+        "latitude": 40.003021,
+        "longitude": 116.326956
+      },
+      {
+        "code": "BJR03_01",
+        "name": "日晷",
+        "latitude": 40.0007804,
+        "longitude": 116.3184164
+      },
+      {
+        "code": "BJR03_02",
+        "name": "地质之角",
+        "latitude": 40.0017659,
+        "longitude": 116.3208183
+      },
+      {
+        "code": "BJR03_03",
+        "name": "人间天使",
+        "latitude": 40.0051916,
+        "longitude": 116.3200096
+      },
+      {
+        "code": "BJR03_04",
+        "name": "记忆的华彩",
+        "latitude": 40.0049775,
+        "longitude": 116.319695
+      },
+      {
+        "code": "BJR03_05",
+        "name": "北院",
+        "latitude": 40.0047492,
+        "longitude": 116.3195977
+      },
+      {
+        "code": "BJR03_06",
+        "name": "水",
+        "latitude": 40.0018984,
+        "longitude": 116.3191512
+      },
+      {
+        "code": "BJR03_07",
+        "name": "悟",
+        "latitude": 40.0007352,
+        "longitude": 116.3190749
+      },
+      {
+        "code": "BJR03_08",
+        "name": "行健",
+        "latitude": 40.0044137,
+        "longitude": 116.324718
+      },
+      {
+        "code": "BJR03_09",
+        "name": "黑洞与白洞",
+        "latitude": 39.9980511,
+        "longitude": 116.328809
+      },
+      {
+        "code": "BJR03_10",
+        "name": "栋梁",
+        "latitude": 39.9977489,
+        "longitude": 116.3274877
+      },
+      {
+        "code": "BJR03_11",
+        "name": "星光旅行者",
+        "latitude": 39.9994975,
+        "longitude": 116.3271931
+      },
+      {
+        "code": "BJR03_12",
+        "name": "凝聚的风景",
+        "latitude": 39.9988009,
+        "longitude": 116.326831
+      },
+      {
+        "code": "BJR03_13",
+        "name": "生之欲",
+        "latitude": 39.9990331,
+        "longitude": 116.3288949
+      },
+      {
+        "code": "BJR03_14",
+        "name": "开放之门",
+        "latitude": 39.9988307,
+        "longitude": 116.3282914
+      },
+      {
+        "code": "BJR03_15",
+        "name": "一，二，三，捉金鸡",
+        "latitude": 40.0004077,
+        "longitude": 116.3284028
+      },
+      {
+        "code": "BJR03_16",
+        "name": "城市屏风",
+        "latitude": 40.0001714,
+        "longitude": 116.3284108
+      },
+      {
+        "code": "BJR03_17",
+        "name": "国学四大导师",
+        "latitude": 40.0001981,
+        "longitude": 116.329025
+      },
+      {
+        "code": "BJR03_18",
+        "name": "磁力",
+        "latitude": 40.0002125,
+        "longitude": 116.3294032
+      },
+      {
+        "code": "BJR03_19",
+        "name": "一竿风骨",
+        "latitude": 40.0002474,
+        "longitude": 116.3305163
+      }
+    ]
+  },
+  {
+    "name": "SHR04_SCENIC_Route",
+    "label": "外滩精细导航",
     "city": "上海",
-    "supports_routing": false,
-    "nodes": []
+    "category": "scenic",
+    "anchor_destination_id": "osm-node-11290954427",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "shuttle",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "SHR04_GATE",
+        "name": "外滩",
+        "latitude": 31.240044,
+        "longitude": 121.490317
+      },
+      {
+        "code": "SHR04_01",
+        "name": "中国银行大楼",
+        "latitude": 31.2414831,
+        "longitude": 121.4853948
+      },
+      {
+        "code": "SHR04_02",
+        "name": "怡和洋行大楼",
+        "latitude": 31.242325,
+        "longitude": 121.4855801
+      },
+      {
+        "code": "SHR04_03",
+        "name": "横滨正金银行大楼",
+        "latitude": 31.2417559,
+        "longitude": 121.4854592
+      },
+      {
+        "code": "SHR04_04",
+        "name": "扬子大楼",
+        "latitude": 31.2419875,
+        "longitude": 121.4855155
+      },
+      {
+        "code": "SHR04_05",
+        "name": "汇中饭店大楼",
+        "latitude": 31.2406912,
+        "longitude": 121.4853362
+      },
+      {
+        "code": "SHR04_06",
+        "name": "麦加利银行大楼",
+        "latitude": 31.2403999,
+        "longitude": 121.4853871
+      },
+      {
+        "code": "SHR04_07",
+        "name": "字林大楼",
+        "latitude": 31.2401622,
+        "longitude": 121.4854137
+      },
+      {
+        "code": "SHR04_08",
+        "name": "台湾银行大楼",
+        "latitude": 31.2399676,
+        "longitude": 121.4854322
+      },
+      {
+        "code": "SHR04_09",
+        "name": "华俄道胜银行大楼",
+        "latitude": 31.2396328,
+        "longitude": 121.4854885
+      },
+      {
+        "code": "SHR04_10",
+        "name": "交通银行大楼",
+        "latitude": 31.2390962,
+        "longitude": 121.485604
+      },
+      {
+        "code": "SHR04_11",
+        "name": "江海关大楼",
+        "latitude": 31.2386397,
+        "longitude": 121.4856441
+      },
+      {
+        "code": "SHR04_12",
+        "name": "前汇丰银行大楼",
+        "latitude": 31.2380045,
+        "longitude": 121.4857569
+      },
+      {
+        "code": "SHR04_13",
+        "name": "中国通商银行大楼",
+        "latitude": 31.2367496,
+        "longitude": 121.4862961
+      },
+      {
+        "code": "SHR04_14",
+        "name": "电报大楼",
+        "latitude": 31.2371051,
+        "longitude": 121.4860868
+      },
+      {
+        "code": "SHR04_15",
+        "name": "日清大楼",
+        "latitude": 31.2365093,
+        "longitude": 121.4864622
+      },
+      {
+        "code": "SHR04_16",
+        "name": "上海总会大楼",
+        "latitude": 31.2358621,
+        "longitude": 121.4868862
+      },
+      {
+        "code": "SHR04_17",
+        "name": "亚细亚大楼",
+        "latitude": 31.2355318,
+        "longitude": 121.487015
+      },
+      {
+        "code": "SHR04_18",
+        "name": "沙逊大厦",
+        "latitude": 31.2411292,
+        "longitude": 121.4853496
+      },
+      {
+        "code": "SHR04_19",
+        "name": "震旦美术馆",
+        "latitude": 31.2365031,
+        "longitude": 121.495396
+      }
+    ]
   },
   {
-    "name": "Guangzhou_City_View",
-    "label": "广州城市精选地图",
+    "name": "SHR05_SCENIC_Route",
+    "label": "豫园精细导航",
+    "city": "上海",
+    "category": "scenic",
+    "anchor_destination_id": "osm-way-40036584",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "shuttle",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "SHR05_GATE",
+        "name": "豫园",
+        "latitude": 31.227245,
+        "longitude": 121.492516
+      },
+      {
+        "code": "SHR05_01",
+        "name": "日清大楼",
+        "latitude": 31.2365093,
+        "longitude": 121.4864622
+      },
+      {
+        "code": "SHR05_02",
+        "name": "上海总会大楼",
+        "latitude": 31.2358621,
+        "longitude": 121.4868862
+      },
+      {
+        "code": "SHR05_03",
+        "name": "亚细亚大楼",
+        "latitude": 31.2355318,
+        "longitude": 121.487015
+      },
+      {
+        "code": "SHR05_04",
+        "name": "十六铺码头",
+        "latitude": 31.2305882,
+        "longitude": 121.4937792
+      },
+      {
+        "code": "SHR05_05",
+        "name": "震旦美术馆",
+        "latitude": 31.2365031,
+        "longitude": 121.495396
+      },
+      {
+        "code": "SHR05_06",
+        "name": "内园",
+        "latitude": 31.2284167,
+        "longitude": 121.4880671
+      },
+      {
+        "code": "SHR05_07",
+        "name": "黄埔江观光区",
+        "latitude": 31.234014,
+        "longitude": 121.4889934
+      },
+      {
+        "code": "SHR05_08",
+        "name": "小南门警钟楼",
+        "latitude": 31.2178928,
+        "longitude": 121.4934426
+      },
+      {
+        "code": "SHR05_09",
+        "name": "空中数字花园",
+        "latitude": 31.2288669,
+        "longitude": 121.4936994
+      },
+      {
+        "code": "SHR05_10",
+        "name": "童涵春堂中药博物馆",
+        "latitude": 31.2290756,
+        "longitude": 121.486519
+      },
+      {
+        "code": "SHR05_11",
+        "name": "玄扈台",
+        "latitude": 31.2276445,
+        "longitude": 121.489787
+      },
+      {
+        "code": "SHR05_12",
+        "name": "华商纱布交易所旧址",
+        "latitude": 31.2332915,
+        "longitude": 121.4828132
+      },
+      {
+        "code": "SHR05_13",
+        "name": "太古洋行大楼",
+        "latitude": 31.2327422,
+        "longitude": 121.4896382
+      },
+      {
+        "code": "SHR05_14",
+        "name": "法国邮船公司大楼",
+        "latitude": 31.2344116,
+        "longitude": 121.4879334
+      },
+      {
+        "code": "SHR05_15",
+        "name": "上海中心大厦",
+        "latitude": 31.2354554,
+        "longitude": 121.5004394
+      },
+      {
+        "code": "SHR05_16",
+        "name": "老上海茶楼",
+        "latitude": 31.2269519,
+        "longitude": 121.485522
+      },
+      {
+        "code": "SHR05_17",
+        "name": "上海城隍庙",
+        "latitude": 31.2278759,
+        "longitude": 121.4881711
+      },
+      {
+        "code": "SHR05_18",
+        "name": "十六铺",
+        "latitude": 31.2283676,
+        "longitude": 121.4954101
+      },
+      {
+        "code": "SHR05_19",
+        "name": "九曲桥",
+        "latitude": 31.2287331,
+        "longitude": 121.4873825
+      }
+    ]
+  },
+  {
+    "name": "SHR06_SHOPPING_Route",
+    "label": "南京路步行街精细导航",
+    "city": "上海",
+    "category": "shopping",
+    "anchor_destination_id": "osm-way-27041875",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "shuttle",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "SHR06_GATE",
+        "name": "南京路步行街",
+        "latitude": 31.234412,
+        "longitude": 121.475321
+      },
+      {
+        "code": "SHR06_01",
+        "name": "1930风情街",
+        "latitude": 31.2337024,
+        "longitude": 121.4710198
+      },
+      {
+        "code": "SHR06_02",
+        "name": "上海杜莎夫人蜡像馆",
+        "latitude": 31.2365391,
+        "longitude": 121.4689971
+      },
+      {
+        "code": "SHR06_03",
+        "name": "四明公所",
+        "latitude": 31.2277051,
+        "longitude": 121.4783343
+      },
+      {
+        "code": "SHR06_04",
+        "name": "东方饭店",
+        "latitude": 31.2324474,
+        "longitude": 121.4730194
+      },
+      {
+        "code": "SHR06_05",
+        "name": "公共租界总巡捕房旧址",
+        "latitude": 31.2367102,
+        "longitude": 121.482244
+      },
+      {
+        "code": "SHR06_06",
+        "name": "新永安大楼",
+        "latitude": 31.237136,
+        "longitude": 121.474268
+      },
+      {
+        "code": "SHR06_07",
+        "name": "公共租界工部局旧址",
+        "latitude": 31.2379216,
+        "longitude": 121.4822883
+      },
+      {
+        "code": "SHR06_08",
+        "name": "东海大楼",
+        "latitude": 31.2384432,
+        "longitude": 121.4795971
+      },
+      {
+        "code": "SHR06_09",
+        "name": "国际饭店",
+        "latitude": 31.2353607,
+        "longitude": 121.4672285
+      },
+      {
+        "code": "SHR06_10",
+        "name": "原西侨青年会",
+        "latitude": 31.2355881,
+        "longitude": 121.4675053
+      },
+      {
+        "code": "SHR06_11",
+        "name": "华安大楼",
+        "latitude": 31.2360854,
+        "longitude": 121.468192
+      },
+      {
+        "code": "SHR06_12",
+        "name": "南京大戏院",
+        "latitude": 31.2292405,
+        "longitude": 121.4733075
+      },
+      {
+        "code": "SHR06_13",
+        "name": "华商纱布交易所旧址",
+        "latitude": 31.2332915,
+        "longitude": 121.4828132
+      },
+      {
+        "code": "SHR06_14",
+        "name": "大新百货大楼",
+        "latitude": 31.236892,
+        "longitude": 121.4703038
+      },
+      {
+        "code": "SHR06_15",
+        "name": "上海古城墙遗址",
+        "latitude": 31.229165,
+        "longitude": 121.4797753
+      },
+      {
+        "code": "SHR06_16",
+        "name": "老闸捕房旧址",
+        "latitude": 31.2379285,
+        "longitude": 121.4711735
+      },
+      {
+        "code": "SHR06_17",
+        "name": "春美术馆",
+        "latitude": 31.2339838,
+        "longitude": 121.4742416
+      },
+      {
+        "code": "SHR06_18",
+        "name": "人民公园",
+        "latitude": 31.2338603,
+        "longitude": 121.4687153
+      },
+      {
+        "code": "SHR06_19",
+        "name": "上海城市规划展示馆",
+        "latitude": 31.2333709,
+        "longitude": 121.4708818
+      }
+    ]
+  },
+  {
+    "name": "SHR07_CAMPUS_Route",
+    "label": "上海交通大学(徐汇校区)精细导航",
+    "city": "上海",
+    "category": "campus",
+    "anchor_destination_id": "featured-8",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "bike",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "SHR07_GATE",
+        "name": "上海交通大学(徐汇校区)",
+        "latitude": 31.202694,
+        "longitude": 121.432728
+      },
+      {
+        "code": "SHR07_01",
+        "name": "Bazaar compatible program",
+        "latitude": 31.2038348,
+        "longitude": 121.4164872
+      },
+      {
+        "code": "SHR07_02",
+        "name": "刘海粟美术馆",
+        "latitude": 31.2113561,
+        "longitude": 121.4146186
+      },
+      {
+        "code": "SHR07_03",
+        "name": "Chinese Cooking Workshop",
+        "latitude": 31.210527,
+        "longitude": 121.4464448
+      },
+      {
+        "code": "SHR07_04",
+        "name": "上海宣传画艺术中心",
+        "latitude": 31.2173452,
+        "longitude": 121.4293519
+      },
+      {
+        "code": "SHR07_05",
+        "name": "张乐平",
+        "latitude": 31.2143935,
+        "longitude": 121.4374341
+      },
+      {
+        "code": "SHR07_06",
+        "name": "陆汉斌打字机博物馆",
+        "latitude": 31.216309,
+        "longitude": 121.4294103
+      },
+      {
+        "code": "SHR07_07",
+        "name": "马相伯像",
+        "latitude": 31.1946105,
+        "longitude": 121.4314506
+      },
+      {
+        "code": "SHR07_08",
+        "name": "东方乐器博物馆",
+        "latitude": 31.2053614,
+        "longitude": 121.4398783
+      },
+      {
+        "code": "SHR07_09",
+        "name": "普希金雕像",
+        "latitude": 31.2107632,
+        "longitude": 121.4471703
+      },
+      {
+        "code": "SHR07_10",
+        "name": "上海电影博物馆",
+        "latitude": 31.1880906,
+        "longitude": 121.4336552
+      },
+      {
+        "code": "SHR07_11",
+        "name": "谢晋",
+        "latitude": 31.1880465,
+        "longitude": 121.433375
+      },
+      {
+        "code": "SHR07_12",
+        "name": "盛宣怀住宅",
+        "latitude": 31.2104246,
+        "longitude": 121.4412672
+      },
+      {
+        "code": "SHR07_13",
+        "name": "宏恩医院",
+        "latitude": 31.219993,
+        "longitude": 121.4367558
+      },
+      {
+        "code": "SHR07_14",
+        "name": "黄佐临像",
+        "latitude": 31.2153678,
+        "longitude": 121.4365234
+      },
+      {
+        "code": "SHR07_15",
+        "name": "熊佛西像",
+        "latitude": 31.2187347,
+        "longitude": 121.4355075
+      },
+      {
+        "code": "SHR07_16",
+        "name": "清风园",
+        "latitude": 31.2121525,
+        "longitude": 121.4157676
+      },
+      {
+        "code": "SHR07_17",
+        "name": "刘海粟像",
+        "latitude": 31.2112697,
+        "longitude": 121.4149958
+      },
+      {
+        "code": "SHR07_18",
+        "name": "徐家汇公园",
+        "latitude": 31.1994755,
+        "longitude": 121.4377772
+      },
+      {
+        "code": "SHR07_19",
+        "name": "番禺绿地",
+        "latitude": 31.1976952,
+        "longitude": 121.4220146
+      }
+    ]
+  },
+  {
+    "name": "GZR08_SCENIC_Route",
+    "label": "广州塔精细导航",
     "city": "广州",
-    "supports_routing": false,
-    "nodes": []
+    "category": "scenic",
+    "anchor_destination_id": "osm-node-12255401847",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "shuttle",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "GZR08_GATE",
+        "name": "广州塔",
+        "latitude": 23.10857,
+        "longitude": 113.319256
+      },
+      {
+        "code": "GZR08_01",
+        "name": "惺亭",
+        "latitude": 23.1003158,
+        "longitude": 113.2931647
+      },
+      {
+        "code": "GZR08_02",
+        "name": "孙中山像",
+        "latitude": 23.0999098,
+        "longitude": 113.3017493
+      },
+      {
+        "code": "GZR08_03",
+        "name": "冼星海像",
+        "latitude": 23.1102295,
+        "longitude": 113.3005424
+      },
+      {
+        "code": "GZR08_04",
+        "name": "珠江啤酒博物馆",
+        "latitude": 23.108751,
+        "longitude": 113.3375512
+      },
+      {
+        "code": "GZR08_05",
+        "name": "Now",
+        "latitude": 23.1189829,
+        "longitude": 113.3149809
+      },
+      {
+        "code": "GZR08_06",
+        "name": "萌宠乐园",
+        "latitude": 23.1341081,
+        "longitude": 113.318999
+      },
+      {
+        "code": "GZR08_07",
+        "name": "畔江花园",
+        "latitude": 23.1008501,
+        "longitude": 113.3423164
+      },
+      {
+        "code": "GZR08_08",
+        "name": "杨箕大块石",
+        "latitude": 23.1292802,
+        "longitude": 113.3068777
+      },
+      {
+        "code": "GZR08_09",
+        "name": "Prismatic light",
+        "latitude": 23.1251419,
+        "longitude": 113.3192348
+      },
+      {
+        "code": "GZR08_10",
+        "name": "Firefighters",
+        "latitude": 23.1232457,
+        "longitude": 113.3191175
+      },
+      {
+        "code": "GZR08_11",
+        "name": "Flower balloon",
+        "latitude": 23.124871,
+        "longitude": 113.3192246
+      },
+      {
+        "code": "GZR08_12",
+        "name": "海心沙亚运公园",
+        "latitude": 23.1140096,
+        "longitude": 113.3198451
+      },
+      {
+        "code": "GZR08_13",
+        "name": "越秀南粤先贤公园",
+        "latitude": 23.1130208,
+        "longitude": 113.3116132
+      },
+      {
+        "code": "GZR08_14",
+        "name": "珠江公园",
+        "latitude": 23.1226511,
+        "longitude": 113.3337111
+      },
+      {
+        "code": "GZR08_15",
+        "name": "传祺公园",
+        "latitude": 23.1132906,
+        "longitude": 113.3077287
+      },
+      {
+        "code": "GZR08_16",
+        "name": "广州会展公园",
+        "latitude": 23.1060305,
+        "longitude": 113.3483301
+      },
+      {
+        "code": "GZR08_17",
+        "name": "广东省博物馆",
+        "latitude": 23.1174149,
+        "longitude": 113.3214228
+      },
+      {
+        "code": "GZR08_18",
+        "name": "广州发展公园",
+        "latitude": 23.1122607,
+        "longitude": 113.3008333
+      },
+      {
+        "code": "GZR08_19",
+        "name": "花城广场",
+        "latitude": 23.122579,
+        "longitude": 113.319181
+      }
+    ]
   },
   {
-    "name": "Shenzhen_City_View",
-    "label": "深圳城市精选地图",
+    "name": "GZR09_SCENIC_Route",
+    "label": "陈家祠精细导航",
+    "city": "广州",
+    "category": "scenic",
+    "anchor_destination_id": "osm-way-520935699",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "shuttle",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "GZR09_GATE",
+        "name": "陈家祠",
+        "latitude": 23.12583,
+        "longitude": 113.244218
+      },
+      {
+        "code": "GZR09_01",
+        "name": "荔湾博物馆",
+        "latitude": 23.1224018,
+        "longitude": 113.2305374
+      },
+      {
+        "code": "GZR09_02",
+        "name": "孙中山像",
+        "latitude": 23.1354729,
+        "longitude": 113.2593142
+      },
+      {
+        "code": "GZR09_03",
+        "name": "上下九商业步行街",
+        "latitude": 23.1175043,
+        "longitude": 113.242931
+      },
+      {
+        "code": "GZR09_04",
+        "name": "广州市革命历史博物馆",
+        "latitude": 23.1271846,
+        "longitude": 113.2593339
+      },
+      {
+        "code": "GZR09_05",
+        "name": "广州起义纪念馆",
+        "latitude": 23.1269931,
+        "longitude": 113.2591399
+      },
+      {
+        "code": "GZR09_06",
+        "name": "广州市禁毒教育馆",
+        "latitude": 23.1246806,
+        "longitude": 113.2325091
+      },
+      {
+        "code": "GZR09_07",
+        "name": "詹天佑像",
+        "latitude": 23.1120003,
+        "longitude": 113.2328433
+      },
+      {
+        "code": "GZR09_08",
+        "name": "芙蓉洲",
+        "latitude": 23.1407368,
+        "longitude": 113.2478638
+      },
+      {
+        "code": "GZR09_09",
+        "name": "流花西苑",
+        "latitude": 23.1388219,
+        "longitude": 113.2387135
+      },
+      {
+        "code": "GZR09_10",
+        "name": "云鹤华表",
+        "latitude": 23.134968,
+        "longitude": 113.2586692
+      },
+      {
+        "code": "GZR09_11",
+        "name": "瘗发塔",
+        "latitude": 23.1323513,
+        "longitude": 113.2511127
+      },
+      {
+        "code": "GZR09_12",
+        "name": "菩提树",
+        "latitude": 23.1323398,
+        "longitude": 113.2512859
+      },
+      {
+        "code": "GZR09_13",
+        "name": "北方多闻天王",
+        "latitude": 23.1315381,
+        "longitude": 113.2508646
+      },
+      {
+        "code": "GZR09_14",
+        "name": "东方持国天王",
+        "latitude": 23.131531,
+        "longitude": 113.2510075
+      },
+      {
+        "code": "GZR09_15",
+        "name": "韦驮天像",
+        "latitude": 23.131555,
+        "longitude": 113.2509385
+      },
+      {
+        "code": "GZR09_16",
+        "name": "弥勒佛像",
+        "latitude": 23.13152,
+        "longitude": 113.2509368
+      },
+      {
+        "code": "GZR09_17",
+        "name": "木鱼",
+        "latitude": 23.132011,
+        "longitude": 113.2514797
+      },
+      {
+        "code": "GZR09_18",
+        "name": "西方广目天王",
+        "latitude": 23.1315029,
+        "longitude": 113.250859
+      },
+      {
+        "code": "GZR09_19",
+        "name": "南方增长天王",
+        "latitude": 23.1314962,
+        "longitude": 113.2510067
+      }
+    ]
+  },
+  {
+    "name": "GZR10_SHOPPING_Route",
+    "label": "天环广场精细导航",
+    "city": "广州",
+    "category": "shopping",
+    "anchor_destination_id": "featured-11",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "shuttle",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "GZR10_GATE",
+        "name": "天环广场",
+        "latitude": 23.132429,
+        "longitude": 113.322389
+      },
+      {
+        "code": "GZR10_01",
+        "name": "Now",
+        "latitude": 23.1189829,
+        "longitude": 113.3149809
+      },
+      {
+        "code": "GZR10_02",
+        "name": "萌宠乐园",
+        "latitude": 23.1341081,
+        "longitude": 113.318999
+      },
+      {
+        "code": "GZR10_03",
+        "name": "杨箕大块石",
+        "latitude": 23.1292802,
+        "longitude": 113.3068777
+      },
+      {
+        "code": "GZR10_04",
+        "name": "Prismatic light",
+        "latitude": 23.1251419,
+        "longitude": 113.3192348
+      },
+      {
+        "code": "GZR10_05",
+        "name": "Firefighters",
+        "latitude": 23.1232457,
+        "longitude": 113.3191175
+      },
+      {
+        "code": "GZR10_06",
+        "name": "Flower balloon",
+        "latitude": 23.124871,
+        "longitude": 113.3192246
+      },
+      {
+        "code": "GZR10_07",
+        "name": "珠江公园",
+        "latitude": 23.1226511,
+        "longitude": 113.3337111
+      },
+      {
+        "code": "GZR10_08",
+        "name": "广东省博物馆",
+        "latitude": 23.1174149,
+        "longitude": 113.3214228
+      },
+      {
+        "code": "GZR10_09",
+        "name": "花城广场",
+        "latitude": 23.122579,
+        "longitude": 113.319181
+      },
+      {
+        "code": "GZR10_10",
+        "name": "暨南大学(石牌校区)",
+        "latitude": 23.133503,
+        "longitude": 113.3418832
+      },
+      {
+        "code": "GZR10_11",
+        "name": "广州体育学院(主校区)",
+        "latitude": 23.1459759,
+        "longitude": 113.3138326
+      },
+      {
+        "code": "GZR10_12",
+        "name": "聚清园",
+        "latitude": 23.1400143,
+        "longitude": 113.3393089
+      },
+      {
+        "code": "GZR10_13",
+        "name": "口袋公园",
+        "latitude": 23.132574,
+        "longitude": 113.3083835
+      },
+      {
+        "code": "GZR10_14",
+        "name": "广州大道中口袋公园",
+        "latitude": 23.1189222,
+        "longitude": 113.3105868
+      },
+      {
+        "code": "GZR10_15",
+        "name": "花港观鱼",
+        "latitude": 23.143901,
+        "longitude": 113.3273358
+      },
+      {
+        "code": "GZR10_16",
+        "name": "体育西横街桃花园",
+        "latitude": 23.1308233,
+        "longitude": 113.3208633
+      },
+      {
+        "code": "GZR10_17",
+        "name": "藤本园",
+        "latitude": 23.1236203,
+        "longitude": 113.3318987
+      },
+      {
+        "code": "GZR10_18",
+        "name": "天河体育中心口袋公园",
+        "latitude": 23.1432648,
+        "longitude": 113.3221409
+      },
+      {
+        "code": "GZR10_19",
+        "name": "广州东站广场",
+        "latitude": 23.147052,
+        "longitude": 113.3193153
+      }
+    ]
+  },
+  {
+    "name": "GZR11_CAMPUS_Route",
+    "label": "中山大学(南校园)精细导航",
+    "city": "广州",
+    "category": "campus",
+    "anchor_destination_id": "featured-12",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "bike",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "GZR11_GATE",
+        "name": "中山大学(南校园)",
+        "latitude": 23.096296,
+        "longitude": 113.299251
+      },
+      {
+        "code": "GZR11_01",
+        "name": "惺亭",
+        "latitude": 23.1003158,
+        "longitude": 113.2931647
+      },
+      {
+        "code": "GZR11_02",
+        "name": "孙中山像",
+        "latitude": 23.0999098,
+        "longitude": 113.3017493
+      },
+      {
+        "code": "GZR11_03",
+        "name": "冼星海像",
+        "latitude": 23.1102295,
+        "longitude": 113.3005424
+      },
+      {
+        "code": "GZR11_04",
+        "name": "Now",
+        "latitude": 23.1189829,
+        "longitude": 113.3149809
+      },
+      {
+        "code": "GZR11_05",
+        "name": "中共三大会议办公楼",
+        "latitude": 23.120994,
+        "longitude": 113.2899274
+      },
+      {
+        "code": "GZR11_06",
+        "name": "开山祖师李明徹像",
+        "latitude": 23.0876191,
+        "longitude": 113.2895085
+      },
+      {
+        "code": "GZR11_07",
+        "name": "海心沙亚运公园",
+        "latitude": 23.1140096,
+        "longitude": 113.3198451
+      },
+      {
+        "code": "GZR11_08",
+        "name": "东山湖公园",
+        "latitude": 23.1178233,
+        "longitude": 113.286209
+      },
+      {
+        "code": "GZR11_09",
+        "name": "越秀南粤先贤公园",
+        "latitude": 23.1130208,
+        "longitude": 113.3116132
+      },
+      {
+        "code": "GZR11_10",
+        "name": "传祺公园",
+        "latitude": 23.1132906,
+        "longitude": 113.3077287
+      },
+      {
+        "code": "GZR11_11",
+        "name": "晓港公园",
+        "latitude": 23.099495,
+        "longitude": 113.2752646
+      },
+      {
+        "code": "GZR11_12",
+        "name": "广州发展公园",
+        "latitude": 23.1122607,
+        "longitude": 113.3008333
+      },
+      {
+        "code": "GZR11_13",
+        "name": "中山大学(广州校区南校园)",
+        "latitude": 23.0995864,
+        "longitude": 113.2925062
+      },
+      {
+        "code": "GZR11_14",
+        "name": "林则徐纪念公园",
+        "latitude": 23.1145714,
+        "longitude": 113.2814448
+      },
+      {
+        "code": "GZR11_15",
+        "name": "赤岗塔公园",
+        "latitude": 23.1040961,
+        "longitude": 113.3182234
+      },
+      {
+        "code": "GZR11_16",
+        "name": "广东华侨博物馆",
+        "latitude": 23.1111966,
+        "longitude": 113.3004394
+      },
+      {
+        "code": "GZR11_17",
+        "name": "二沙体育公园",
+        "latitude": 23.1113189,
+        "longitude": 113.3066232
+      },
+      {
+        "code": "GZR11_18",
+        "name": "海印公园",
+        "latitude": 23.1091692,
+        "longitude": 113.2826328
+      },
+      {
+        "code": "GZR11_19",
+        "name": "中共三大会址纪念馆",
+        "latitude": 23.1216915,
+        "longitude": 113.2906285
+      }
+    ]
+  },
+  {
+    "name": "SZR12_SCENIC_Route",
+    "label": "世界之窗精细导航",
     "city": "深圳",
-    "supports_routing": false,
-    "nodes": []
+    "category": "scenic",
+    "anchor_destination_id": "osm-way-236402460",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "shuttle",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "SZR12_GATE",
+        "name": "世界之窗",
+        "latitude": 22.536195,
+        "longitude": 113.974539
+      },
+      {
+        "code": "SZR12_01",
+        "name": "富士山微缩模型",
+        "latitude": 22.5369428,
+        "longitude": 113.9722937
+      },
+      {
+        "code": "SZR12_02",
+        "name": "悉尼歌剧院微缩模型",
+        "latitude": 22.534146,
+        "longitude": 113.9707393
+      },
+      {
+        "code": "SZR12_03",
+        "name": "科隆主教座堂微缩模型",
+        "latitude": 22.5354838,
+        "longitude": 113.969996
+      },
+      {
+        "code": "SZR12_04",
+        "name": "猴园",
+        "latitude": 22.5326205,
+        "longitude": 113.980372
+      },
+      {
+        "code": "SZR12_05",
+        "name": "埃及门",
+        "latitude": 22.5381309,
+        "longitude": 113.9691853
+      },
+      {
+        "code": "SZR12_06",
+        "name": "凡尔赛宫微缩模型",
+        "latitude": 22.5358557,
+        "longitude": 113.9697483
+      },
+      {
+        "code": "SZR12_07",
+        "name": "比萨斜塔微缩模型",
+        "latitude": 22.5355395,
+        "longitude": 113.9697424
+      },
+      {
+        "code": "SZR12_08",
+        "name": "伦敦塔桥微缩模型",
+        "latitude": 22.5364314,
+        "longitude": 113.969513
+      },
+      {
+        "code": "SZR12_09",
+        "name": "英国国会大厦微缩模型",
+        "latitude": 22.5362484,
+        "longitude": 113.9696113
+      },
+      {
+        "code": "SZR12_10",
+        "name": "白金汉宫微缩模型",
+        "latitude": 22.5363181,
+        "longitude": 113.9697774
+      },
+      {
+        "code": "SZR12_11",
+        "name": "冬宫微缩模型",
+        "latitude": 22.5367087,
+        "longitude": 113.9697134
+      },
+      {
+        "code": "SZR12_12",
+        "name": "科威特水塔微缩模型",
+        "latitude": 22.5362253,
+        "longitude": 113.970194
+      },
+      {
+        "code": "SZR12_13",
+        "name": "斯顿亨治“环状列石”微缩模型",
+        "latitude": 22.5361565,
+        "longitude": 113.9699256
+      },
+      {
+        "code": "SZR12_14",
+        "name": "阿尔罕布拉宫狮子院微缩模型",
+        "latitude": 22.5360283,
+        "longitude": 113.9701705
+      },
+      {
+        "code": "SZR12_15",
+        "name": "仰光大金塔微缩模型",
+        "latitude": 22.537247,
+        "longitude": 113.9708064
+      },
+      {
+        "code": "SZR12_16",
+        "name": "婆罗浮屠微缩模型",
+        "latitude": 22.5375222,
+        "longitude": 113.9713211
+      },
+      {
+        "code": "SZR12_17",
+        "name": "吴哥窑微缩模型",
+        "latitude": 22.5373997,
+        "longitude": 113.9711043
+      },
+      {
+        "code": "SZR12_18",
+        "name": "景福宫微缩模型",
+        "latitude": 22.5381174,
+        "longitude": 113.9712888
+      },
+      {
+        "code": "SZR12_19",
+        "name": "泰王宫微缩模型",
+        "latitude": 22.5377995,
+        "longitude": 113.9710859
+      }
+    ]
+  },
+  {
+    "name": "SZR13_SCENIC_Route",
+    "label": "深圳湾公园精细导航",
+    "city": "深圳",
+    "category": "scenic",
+    "anchor_destination_id": "featured-14",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "shuttle",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "SZR13_GATE",
+        "name": "深圳湾公园",
+        "latitude": 22.514367,
+        "longitude": 113.949867
+      },
+      {
+        "code": "SZR13_01",
+        "name": "第26届世界大学生夏季运动会主火炬塔",
+        "latitude": 22.520655,
+        "longitude": 113.949122
+      },
+      {
+        "code": "SZR13_02",
+        "name": "我是IT人",
+        "latitude": 22.5131535,
+        "longitude": 113.9415331
+      },
+      {
+        "code": "SZR13_03",
+        "name": "弄潮儿",
+        "latitude": 22.5165802,
+        "longitude": 113.9438591
+      },
+      {
+        "code": "SZR13_04",
+        "name": "领航者",
+        "latitude": 22.5165,
+        "longitude": 113.9442121
+      },
+      {
+        "code": "SZR13_05",
+        "name": "拓荒者",
+        "latitude": 22.5166611,
+        "longitude": 113.9435146
+      },
+      {
+        "code": "SZR13_06",
+        "name": "本地郎",
+        "latitude": 22.5177491,
+        "longitude": 113.9443356
+      },
+      {
+        "code": "SZR13_07",
+        "name": "鹏城丽人",
+        "latitude": 22.5178207,
+        "longitude": 113.9432346
+      },
+      {
+        "code": "SZR13_08",
+        "name": "孔雀亭",
+        "latitude": 22.510457,
+        "longitude": 113.9450798
+      },
+      {
+        "code": "SZR13_09",
+        "name": "红·蓝马甲",
+        "latitude": 22.5103122,
+        "longitude": 113.9427781
+      },
+      {
+        "code": "SZR13_10",
+        "name": "圆周率之歌",
+        "latitude": 22.5105202,
+        "longitude": 113.9444493
+      },
+      {
+        "code": "SZR13_11",
+        "name": "外来妹",
+        "latitude": 22.5175456,
+        "longitude": 113.9449049
+      },
+      {
+        "code": "SZR13_12",
+        "name": "Luna",
+        "latitude": 22.5184089,
+        "longitude": 113.9417739
+      },
+      {
+        "code": "SZR13_13",
+        "name": "智慧之门",
+        "latitude": 22.5163576,
+        "longitude": 113.9452436
+      },
+      {
+        "code": "SZR13_14",
+        "name": "金色海归",
+        "latitude": 22.517766,
+        "longitude": 113.943211
+      },
+      {
+        "code": "SZR13_15",
+        "name": "弯月山谷",
+        "latitude": 22.5087944,
+        "longitude": 113.9488106
+      },
+      {
+        "code": "SZR13_16",
+        "name": "流花山",
+        "latitude": 22.5152575,
+        "longitude": 113.9491764
+      },
+      {
+        "code": "SZR13_17",
+        "name": "大运火炬塔纪念广场",
+        "latitude": 22.5200049,
+        "longitude": 113.9498244
+      },
+      {
+        "code": "SZR13_18",
+        "name": "小沙山",
+        "latitude": 22.5225676,
+        "longitude": 113.9518846
+      },
+      {
+        "code": "SZR13_19",
+        "name": "人才星光桥",
+        "latitude": 22.5132924,
+        "longitude": 113.946443
+      }
+    ]
+  },
+  {
+    "name": "SZR14_SHOPPING_Route",
+    "label": "万象天地精细导航",
+    "city": "深圳",
+    "category": "shopping",
+    "anchor_destination_id": "featured-15",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "shuttle",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "SZR14_GATE",
+        "name": "万象天地",
+        "latitude": 22.541506,
+        "longitude": 113.954773
+      },
+      {
+        "code": "SZR14_01",
+        "name": "富士山微缩模型",
+        "latitude": 22.5369428,
+        "longitude": 113.9722937
+      },
+      {
+        "code": "SZR14_02",
+        "name": "悉尼歌剧院微缩模型",
+        "latitude": 22.534146,
+        "longitude": 113.9707393
+      },
+      {
+        "code": "SZR14_03",
+        "name": "科隆主教座堂微缩模型",
+        "latitude": 22.5354838,
+        "longitude": 113.969996
+      },
+      {
+        "code": "SZR14_04",
+        "name": "尼亚加拉大瀑布微缩模型",
+        "latitude": 22.5370377,
+        "longitude": 113.966105
+      },
+      {
+        "code": "SZR14_05",
+        "name": "自由女神像微缩模型",
+        "latitude": 22.5383151,
+        "longitude": 113.9649176
+      },
+      {
+        "code": "SZR14_06",
+        "name": "复活节岛巨人石像微缩模型",
+        "latitude": 22.5384307,
+        "longitude": 113.9645394
+      },
+      {
+        "code": "SZR14_07",
+        "name": "金字塔探秘",
+        "latitude": 22.5363332,
+        "longitude": 113.9666187
+      },
+      {
+        "code": "SZR14_08",
+        "name": "海豚塑像",
+        "latitude": 22.5432436,
+        "longitude": 113.9619865
+      },
+      {
+        "code": "SZR14_09",
+        "name": "救世基督像",
+        "latitude": 22.5383777,
+        "longitude": 113.9638392
+      },
+      {
+        "code": "SZR14_10",
+        "name": "墨西哥凝神武士像微缩模型",
+        "latitude": 22.5380354,
+        "longitude": 113.9644715
+      },
+      {
+        "code": "SZR14_11",
+        "name": "王阳明",
+        "latitude": 22.5375673,
+        "longitude": 113.9376467
+      },
+      {
+        "code": "SZR14_12",
+        "name": "埃及门",
+        "latitude": 22.5381309,
+        "longitude": 113.9691853
+      },
+      {
+        "code": "SZR14_13",
+        "name": "凡尔赛宫微缩模型",
+        "latitude": 22.5358557,
+        "longitude": 113.9697483
+      },
+      {
+        "code": "SZR14_14",
+        "name": "比萨斜塔微缩模型",
+        "latitude": 22.5355395,
+        "longitude": 113.9697424
+      },
+      {
+        "code": "SZR14_15",
+        "name": "曼哈顿高层建筑群微缩模型",
+        "latitude": 22.5379781,
+        "longitude": 113.9649355
+      },
+      {
+        "code": "SZR14_16",
+        "name": "白宫微缩模型",
+        "latitude": 22.5378644,
+        "longitude": 113.965224
+      },
+      {
+        "code": "SZR14_17",
+        "name": "美国国会大厦微缩模型",
+        "latitude": 22.5377107,
+        "longitude": 113.9655766
+      },
+      {
+        "code": "SZR14_18",
+        "name": "林肯纪念堂微缩模型",
+        "latitude": 22.5376965,
+        "longitude": 113.9650202
+      },
+      {
+        "code": "SZR14_19",
+        "name": "杰弗逊纪念堂微缩模型",
+        "latitude": 22.5375316,
+        "longitude": 113.9652306
+      }
+    ]
+  },
+  {
+    "name": "SZR15_CAMPUS_Route",
+    "label": "深圳大学精细导航",
+    "city": "深圳",
+    "category": "campus",
+    "anchor_destination_id": "featured-16",
+    "supports_routing": true,
+    "navigation_radius_m": 3000,
+    "transport_modes": [
+      "walk",
+      "bike",
+      "mixed"
+    ],
+    "nodes": [
+      {
+        "code": "SZR15_GATE",
+        "name": "深圳大学",
+        "latitude": 22.53332,
+        "longitude": 113.93041
+      },
+      {
+        "code": "SZR15_01",
+        "name": "自由男神",
+        "latitude": 22.5446776,
+        "longitude": 113.9282104
+      },
+      {
+        "code": "SZR15_02",
+        "name": "天鹅",
+        "latitude": 22.5338588,
+        "longitude": 113.9291625
+      },
+      {
+        "code": "SZR15_03",
+        "name": "虹",
+        "latitude": 22.5352091,
+        "longitude": 113.9264015
+      },
+      {
+        "code": "SZR15_04",
+        "name": "王阳明",
+        "latitude": 22.5375673,
+        "longitude": 113.9376467
+      },
+      {
+        "code": "SZR15_05",
+        "name": "海王波塞冬",
+        "latitude": 22.5187755,
+        "longitude": 113.9217277
+      },
+      {
+        "code": "SZR15_06",
+        "name": "日晷",
+        "latitude": 22.5359363,
+        "longitude": 113.9294346
+      },
+      {
+        "code": "SZR15_07",
+        "name": "廉政社区公园",
+        "latitude": 22.545495,
+        "longitude": 113.9267799
+      },
+      {
+        "code": "SZR15_08",
+        "name": "和弦",
+        "latitude": 22.5457854,
+        "longitude": 113.9332633
+      },
+      {
+        "code": "SZR15_09",
+        "name": "荔香公园",
+        "latitude": 22.5397398,
+        "longitude": 113.9245959
+      },
+      {
+        "code": "SZR15_10",
+        "name": "文心广场街心花园",
+        "latitude": 22.5216008,
+        "longitude": 113.9266825
+      },
+      {
+        "code": "SZR15_11",
+        "name": "文心公园",
+        "latitude": 22.5242102,
+        "longitude": 113.9254689
+      },
+      {
+        "code": "SZR15_12",
+        "name": "南山博物馆",
+        "latitude": 22.5380438,
+        "longitude": 113.9189803
+      },
+      {
+        "code": "SZR15_13",
+        "name": "科技公园",
+        "latitude": 22.5263412,
+        "longitude": 113.9394018
+      },
+      {
+        "code": "SZR15_14",
+        "name": "虚拟大学园社区公园",
+        "latitude": 22.5330138,
+        "longitude": 113.939978
+      },
+      {
+        "code": "SZR15_15",
+        "name": "高新南社区公园",
+        "latitude": 22.5387186,
+        "longitude": 113.9429008
+      },
+      {
+        "code": "SZR15_16",
+        "name": "红花岭社区公园",
+        "latitude": 22.5423628,
+        "longitude": 113.9180449
+      },
+      {
+        "code": "SZR15_17",
+        "name": "马家龙街心公园",
+        "latitude": 22.5463885,
+        "longitude": 113.9238207
+      },
+      {
+        "code": "SZR15_18",
+        "name": "南头古城博物馆",
+        "latitude": 22.5439096,
+        "longitude": 113.9150583
+      },
+      {
+        "code": "SZR15_19",
+        "name": "麻岭和弦公园",
+        "latitude": 22.5462854,
+        "longitude": 113.9326278
+      }
+    ]
   },
   {
     "name": "Chengdu_City_View",

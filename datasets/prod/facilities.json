@@ -1,211 +1,902 @@
 [
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_01",
-    "name": "影桥酒店",
-    "facility_type": "hotel",
-    "latitude": 39.9656232,
-    "longitude": 116.3564861
+    "code": "LEGACY_facility_building_265030101",
+    "name": "学生发展中心",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "服务中心",
+    "latitude": 39.96208872,
+    "longitude": 116.35162546,
+    "legacy_id": "building_265030101",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_02",
-    "name": "金狮麟酒店",
+    "code": "LEGACY_facility_building_265030102",
+    "name": "Maan Coffee",
     "facility_type": "restaurant",
-    "latitude": 39.9659344,
-    "longitude": 116.3567103
+    "normalized_type": "restaurant",
+    "facility_label": "咖啡馆",
+    "latitude": 39.9623063,
+    "longitude": 116.35133026000001,
+    "legacy_id": "building_265030102",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_03",
-    "name": "中国工商银行",
-    "facility_type": "bank",
-    "latitude": 39.9689417,
-    "longitude": 116.363373
+    "code": "LEGACY_facility_building_344376258",
+    "name": "宏途书店",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.95824918,
+    "longitude": 116.35055038,
+    "legacy_id": "building_344376258",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_04",
-    "name": "海友良品",
-    "facility_type": "hotel",
-    "latitude": 39.9669283,
-    "longitude": 116.3591721
+    "code": "LEGACY_facility_building_399006367",
+    "name": "中国移动通信",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.96006585714286,
+    "longitude": 116.34908215714286,
+    "legacy_id": "building_399006367",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_05",
-    "name": "游泳馆",
-    "facility_type": "yes",
-    "latitude": 39.9604626,
-    "longitude": 116.3545368
+    "code": "LEGACY_facility_building_399008788",
+    "name": "中国邮政储蓄银行（鸿通楼）",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.96058582,
+    "longitude": 116.34911328000001,
+    "legacy_id": "building_399008788",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_06",
-    "name": "招生就业处",
-    "facility_type": "yes",
-    "latitude": 39.9633868,
-    "longitude": 116.3503857
+    "code": "BUPT_LIB",
+    "name": "图书馆",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "图书馆",
+    "latitude": 39.961481430769226,
+    "longitude": 116.35203784615383,
+    "legacy_id": "building_399008790",
+    "source_dataset": "tourism-system-main",
+    "legacy_code": "LEGACY_facility_building_399008790",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_07",
-    "name": "鱼味小馆",
+    "code": "LEGACY_facility_building_399009425",
+    "name": "可信网络通信协同创新中心",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.95920425,
+    "longitude": 116.35275739999999,
+    "legacy_id": "building_399009425",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_building_399013934",
+    "name": "综合食堂",
     "facility_type": "restaurant",
-    "latitude": 39.9637034,
-    "longitude": 116.3504776
+    "normalized_type": "restaurant",
+    "facility_label": "食堂",
+    "latitude": 39.9625994,
+    "longitude": 116.35035106000001,
+    "legacy_id": "building_399013934",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_08",
-    "name": "陈垣校长像",
-    "facility_type": "artwork",
-    "latitude": 39.9583842,
-    "longitude": 116.3611375
+    "code": "LEGACY_facility_building_399015106",
+    "name": "学生活动中心",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "服务中心",
+    "latitude": 39.962739799999994,
+    "longitude": 116.35114136,
+    "legacy_id": "building_399015106",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_09",
-    "name": "Isaac Newton",
-    "facility_type": "artwork",
-    "latitude": 39.9621793,
-    "longitude": 116.3510936
+    "code": "LEGACY_facility_building_399017728",
+    "name": "综合服务楼",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "服务中心",
+    "latitude": 39.962813677777774,
+    "longitude": 116.35178936666665,
+    "legacy_id": "building_399017728",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_10",
-    "name": "白鹿江西餐厅",
+    "code": "LEGACY_facility_building_399017729",
+    "name": "北邮科技酒店",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.96309349999999,
+    "longitude": 116.34905789999999,
+    "legacy_id": "building_399017729",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_building_399017963",
+    "name": "外包楼",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.963363300000005,
+    "longitude": 116.3490404,
+    "legacy_id": "building_399017963",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_building_399018200",
+    "name": "北京邮电大学学生餐厅",
     "facility_type": "restaurant",
-    "latitude": 39.9636972,
-    "longitude": 116.359826
+    "normalized_type": "restaurant",
+    "facility_label": "食堂",
+    "latitude": 39.96202798,
+    "longitude": 116.35289636,
+    "legacy_id": "building_399018200",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_11",
-    "name": "乐育超市",
+    "code": "LEGACY_facility_building_582551389",
+    "name": "教工餐厅",
+    "facility_type": "restaurant",
+    "normalized_type": "restaurant",
+    "facility_label": "食堂",
+    "latitude": 39.962238899999996,
+    "longitude": 116.35207751428571,
+    "legacy_id": "building_582551389",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_building_582551392",
+    "name": "北邮邮驿站",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.963480679999996,
+    "longitude": 116.35119979999999,
+    "legacy_id": "building_582551392",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_building_959801254",
+    "name": "北京中仁中医医院",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "医院",
+    "latitude": 39.95684784,
+    "longitude": 116.35440557999998,
+    "legacy_id": "building_959801254",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_11834538799",
+    "name": "京东物流",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.963389,
+    "longitude": 116.35231,
+    "legacy_id": "facility_11834538799",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_1816255835",
+    "name": "电话亭",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.9568428,
+    "longitude": 116.3492157,
+    "legacy_id": "facility_1816255835",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_2463866303",
+    "name": "邮局",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "邮局",
+    "latitude": 39.9599047,
+    "longitude": 116.3492655,
+    "legacy_id": "facility_2463866303",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_2463866312",
+    "name": "毛主席像",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.9598167,
+    "longitude": 116.3506977,
+    "legacy_id": "facility_2463866312",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_3511264385",
+    "name": "零壹时光咖啡馆",
+    "facility_type": "restaurant",
+    "normalized_type": "restaurant",
+    "facility_label": "咖啡馆",
+    "latitude": 39.9582958,
+    "longitude": 116.3505065,
+    "legacy_id": "facility_3511264385",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_3511264386",
+    "name": "南区超市",
     "facility_type": "supermarket",
-    "latitude": 39.9608618,
-    "longitude": 116.3615349
+    "normalized_type": "supermarket",
+    "facility_label": "超市",
+    "latitude": 39.9581307,
+    "longitude": 116.3510136,
+    "legacy_id": "facility_3511264386",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_12",
-    "name": "学生第六食堂(留学生食堂)",
+    "code": "LEGACY_facility_3511264387",
+    "name": "中国移动",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.9580455,
+    "longitude": 116.3510298,
+    "legacy_id": "facility_3511264387",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_3511264388",
+    "name": "二手书店",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "书店",
+    "latitude": 39.9579667,
+    "longitude": 116.3510448,
+    "legacy_id": "facility_3511264388",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_4238854716",
+    "name": "马记粤式快餐",
     "facility_type": "restaurant",
-    "latitude": 39.9598828,
-    "longitude": 116.3632713
+    "normalized_type": "restaurant",
+    "facility_label": "饭店",
+    "latitude": 39.9568094,
+    "longitude": 116.3538842,
+    "legacy_id": "facility_4238854716",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_13",
-    "name": "八喜日本料理",
-    "facility_type": "restaurant",
-    "latitude": 39.962164,
-    "longitude": 116.3639603
+    "code": "LEGACY_facility_5184510886",
+    "name": "Isaac Newton",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.9621727,
+    "longitude": 116.3510789,
+    "legacy_id": "facility_5184510886",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_14",
-    "name": "爱德堡西餐咖啡吧",
-    "facility_type": "restaurant",
-    "latitude": 39.962026,
-    "longitude": 116.3639774
-  },
-  {
-    "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_15",
+    "code": "LEGACY_facility_6041100036",
     "name": "楼上楼茶餐厅",
     "facility_type": "restaurant",
+    "normalized_type": "restaurant",
+    "facility_label": "饭店",
     "latitude": 39.961991,
-    "longitude": 116.352893
+    "longitude": 116.352893,
+    "legacy_id": "facility_6041100036",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_16",
-    "name": "正宗西安羊肉泡馍",
+    "code": "LEGACY_facility_6146512085",
+    "name": "麦当劳",
     "facility_type": "restaurant",
-    "latitude": 39.9659902,
-    "longitude": 116.3550325
+    "normalized_type": "restaurant",
+    "facility_label": "饭店",
+    "latitude": 39.9622611,
+    "longitude": 116.3513657,
+    "legacy_id": "facility_6146512085",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_17",
-    "name": "潮汕渔村",
-    "facility_type": "restaurant",
-    "latitude": 39.9660301,
-    "longitude": 116.355241
-  },
-  {
-    "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_18",
-    "name": "LAKER'S（北太平庄店）",
-    "facility_type": "restaurant",
-    "latitude": 39.9656946,
-    "longitude": 116.3550117
-  },
-  {
-    "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_19",
-    "name": "福口居京味涮肉",
-    "facility_type": "restaurant",
-    "latitude": 39.9659585,
-    "longitude": 116.3572677
-  },
-  {
-    "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_20",
-    "name": "汤本味赣苑",
-    "facility_type": "restaurant",
-    "latitude": 39.9656376,
-    "longitude": 116.3549357
-  },
-  {
-    "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_21",
+    "code": "LEGACY_facility_7426396546",
     "name": "便利蜂",
-    "facility_type": "convenience",
+    "facility_type": "supermarket",
+    "normalized_type": "supermarket",
+    "facility_label": "商店",
     "latitude": 39.9633892,
-    "longitude": 116.349096
+    "longitude": 116.349096,
+    "legacy_id": "facility_7426396546",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_22",
-    "name": "中国移动",
-    "facility_type": "telecommunication",
-    "latitude": 39.9670889,
-    "longitude": 116.3690874
+    "code": "LEGACY_facility_8810354632",
+    "name": "音乐喷泉",
+    "facility_type": "service",
+    "normalized_type": "service",
+    "facility_label": "其他",
+    "latitude": 39.9598892,
+    "longitude": 116.3516116,
+    "legacy_id": "facility_8810354632",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_23",
-    "name": "中国邮政储蓄银行",
-    "facility_type": "bank",
-    "latitude": 39.9670872,
-    "longitude": 116.3693281
+    "code": "BUPT_GATE",
+    "name": "北京邮电大学南门",
+    "facility_type": "transit",
+    "normalized_type": "transit",
+    "facility_label": "公交站",
+    "latitude": 39.9566845,
+    "longitude": 116.35254,
+    "legacy_id": "facility_9699353706",
+    "source_dataset": "tourism-system-main",
+    "legacy_code": "LEGACY_facility_9699353706",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_24",
-    "name": "北影",
+    "code": "LEGACY_facility_9699368112",
+    "name": "明光桥北",
+    "facility_type": "transit",
+    "normalized_type": "transit",
+    "facility_label": "公交站",
+    "latitude": 39.9571803,
+    "longitude": 116.3491248,
+    "legacy_id": "facility_9699368112",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_9699368113",
+    "name": "明光桥北",
+    "facility_type": "transit",
+    "normalized_type": "transit",
+    "facility_label": "公交站",
+    "latitude": 39.9575295,
+    "longitude": 116.3491188,
+    "legacy_id": "facility_9699368113",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_265030100_032",
+    "name": "国际汉语培训中心厕所",
     "facility_type": "toilets",
-    "latitude": 39.9667746,
-    "longitude": 116.3545808
+    "normalized_type": "restroom",
+    "facility_label": "厕所",
+    "latitude": 39.962958068048856,
+    "longitude": 116.34978492857958,
+    "legacy_id": "toilet_facility_265030100_032",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_25",
-    "name": "京东物流",
-    "facility_type": "post_office",
-    "latitude": 39.9635481,
-    "longitude": 116.3522194
+    "code": "LEGACY_facility_toilet_facility_265030101_025",
+    "name": "学生发展中心厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "厕所",
+    "latitude": 39.96213948629392,
+    "longitude": 116.35159048295596,
+    "legacy_id": "toilet_facility_265030101_025",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "BUPT_Main_Campus",
-    "code": "BUPT_F_26",
-    "name": "档案馆",
-    "facility_type": "library",
-    "latitude": 39.9617412,
-    "longitude": 116.3518934
+    "code": "LEGACY_facility_toilet_facility_265030103_009",
+    "name": "留学生2号公寓厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.96255692344086,
+    "longitude": 116.34904070636742,
+    "legacy_id": "toilet_facility_265030103_009",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_265030104_008",
+    "name": "学生13号公寓厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.961846480222626,
+    "longitude": 116.34910563591549,
+    "legacy_id": "toilet_facility_265030104_008",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_265030105_011",
+    "name": "学生5号公寓厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.96214888478495,
+    "longitude": 116.34964707196607,
+    "legacy_id": "toilet_facility_265030105_011",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_265030106_010",
+    "name": "学生3号公寓厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.96148899987272,
+    "longitude": 116.34948925106154,
+    "legacy_id": "toilet_facility_265030106_010",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_265030107_013",
+    "name": "学生8号公寓厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.962000211158276,
+    "longitude": 116.35038775734213,
+    "legacy_id": "toilet_facility_265030107_013",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_265030108_012",
+    "name": "学生4号公寓厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.96155112611205,
+    "longitude": 116.35035287670391,
+    "legacy_id": "toilet_facility_265030108_012",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_265030109_006",
+    "name": "学生1号公寓厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.96111710677171,
+    "longitude": 116.34962342124993,
+    "legacy_id": "toilet_facility_265030109_006",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_265030110_007",
+    "name": "学生2号公寓厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.96110221036271,
+    "longitude": 116.35051937411079,
+    "legacy_id": "toilet_facility_265030110_007",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_344376267_001",
+    "name": "4号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.95677285689617,
+    "longitude": 116.34989771895478,
+    "legacy_id": "toilet_facility_344376267_001",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_344376268_002",
+    "name": "10号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.95681498701959,
+    "longitude": 116.35112290360571,
+    "legacy_id": "toilet_facility_344376268_002",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_344376665_015",
+    "name": "4号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.9577966413355,
+    "longitude": 116.35193775350211,
+    "legacy_id": "toilet_facility_344376665_015",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_344376666_014",
+    "name": "5号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.95735804109802,
+    "longitude": 116.35188471143604,
+    "legacy_id": "toilet_facility_344376666_014",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399015104_033",
+    "name": "学生6号公寓厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "厕所",
+    "latitude": 39.963412145078266,
+    "longitude": 116.35209934522945,
+    "legacy_id": "toilet_facility_399015104_033",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399015106_026",
+    "name": "学生活动中心厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "厕所",
+    "latitude": 39.96271437187907,
+    "longitude": 116.35112448308564,
+    "legacy_id": "toilet_facility_399015106_026",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399018201_030",
+    "name": "家属27号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "厕所",
+    "latitude": 39.962604080032044,
+    "longitude": 116.35370348268341,
+    "legacy_id": "toilet_facility_399018201_030",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399018202_027",
+    "name": "家属28号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "厕所",
+    "latitude": 39.96175200402402,
+    "longitude": 116.35380717188447,
+    "legacy_id": "toilet_facility_399018202_027",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399018593_028",
+    "name": "学生29号公寓厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "厕所",
+    "latitude": 39.96146285868539,
+    "longitude": 116.35439745866934,
+    "legacy_id": "toilet_facility_399018593_028",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399018595_035",
+    "name": "25号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "厕所",
+    "latitude": 39.963046255698714,
+    "longitude": 116.35427842530996,
+    "legacy_id": "toilet_facility_399018595_035",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399018596_031",
+    "name": "26号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "厕所",
+    "latitude": 39.9622883440812,
+    "longitude": 116.35436247226934,
+    "legacy_id": "toilet_facility_399018596_031",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399038556_018",
+    "name": "宿舍楼厕所18",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.95781203871549,
+    "longitude": 116.35281611501108,
+    "legacy_id": "toilet_facility_399038556_018",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399038557_016",
+    "name": "21号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.9573275653987,
+    "longitude": 116.3527514083538,
+    "legacy_id": "toilet_facility_399038557_016",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399038558_017",
+    "name": "13号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.9575292505151,
+    "longitude": 116.3533400532414,
+    "legacy_id": "toilet_facility_399038558_017",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399038559_022",
+    "name": "北京交通大学附属中学分校厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.957844105977586,
+    "longitude": 116.35399885002651,
+    "legacy_id": "toilet_facility_399038559_022",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399038560_024",
+    "name": "宿舍楼厕所24",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.958165434766016,
+    "longitude": 116.35395289788082,
+    "legacy_id": "toilet_facility_399038560_024",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399038561_019",
+    "name": "19号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.95857563966967,
+    "longitude": 116.3528755731374,
+    "legacy_id": "toilet_facility_399038561_019",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399038562_020",
+    "name": "科学会堂厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.96001988395051,
+    "longitude": 116.3527088286168,
+    "legacy_id": "toilet_facility_399038562_020",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399041101_003",
+    "name": "11号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.956783307446315,
+    "longitude": 116.35219118577645,
+    "legacy_id": "toilet_facility_399041101_003",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399041103_023",
+    "name": "宿舍楼厕所23",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.95783563035878,
+    "longitude": 116.35479878074288,
+    "legacy_id": "toilet_facility_399041103_023",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399041104_021",
+    "name": "北京交通大学附属中学分校厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.957637255811804,
+    "longitude": 116.35380705086314,
+    "legacy_id": "toilet_facility_399041104_021",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399042378_034",
+    "name": "23号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "厕所",
+    "latitude": 39.96340202476338,
+    "longitude": 116.35275563925929,
+    "legacy_id": "toilet_facility_399042378_034",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399042379_036",
+    "name": "24号楼厕所",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "厕所",
+    "latitude": 39.96345314861042,
+    "longitude": 116.35374516995121,
+    "legacy_id": "toilet_facility_399042379_036",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399046290_029",
+    "name": "宿舍楼厕所29",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "厕所",
+    "latitude": 39.961923490134616,
+    "longitude": 116.35451442947888,
+    "legacy_id": "toilet_facility_399046290_029",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399046291_004",
+    "name": "宿舍楼厕所4",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.95684388471927,
+    "longitude": 116.35355553229238,
+    "legacy_id": "toilet_facility_399046291_004",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
+  },
+  {
+    "scene_name": "BUPT_Main_Campus",
+    "code": "LEGACY_facility_toilet_facility_399046293_005",
+    "name": "宿舍楼厕所5",
+    "facility_type": "toilets",
+    "normalized_type": "restroom",
+    "facility_label": "洗手间",
+    "latitude": 39.95706343045838,
+    "longitude": 116.35382684679337,
+    "legacy_id": "toilet_facility_399046293_005",
+    "source_dataset": "tourism-system-main",
+    "route_node_type": "facility"
   },
   {
     "scene_name": "Summer_Palace",
@@ -414,5 +1105,1445 @@
     "facility_type": "attraction",
     "latitude": 39.9858911,
     "longitude": 116.2690576
+  },
+  {
+    "scene_name": "BJR01_SCENIC_Route",
+    "code": "BJR01_F_01",
+    "name": "故宫餐厅",
+    "facility_type": "restaurant",
+    "latitude": 39.9169219,
+    "longitude": 116.3922372
+  },
+  {
+    "scene_name": "BJR01_SCENIC_Route",
+    "code": "BJR01_F_02",
+    "name": "海底捞火锅",
+    "facility_type": "restaurant",
+    "latitude": 39.9145985,
+    "longitude": 116.4056349
+  },
+  {
+    "scene_name": "BJR01_SCENIC_Route",
+    "code": "BJR01_F_03",
+    "name": "诗意栖居咖啡馆",
+    "facility_type": "cafe",
+    "latitude": 39.9130605,
+    "longitude": 116.3966694
+  },
+  {
+    "scene_name": "BJR01_SCENIC_Route",
+    "code": "BJR01_F_04",
+    "name": "黑芝麻厨房",
+    "facility_type": "restaurant",
+    "latitude": 39.9227934,
+    "longitude": 116.394631
+  },
+  {
+    "scene_name": "BJR01_SCENIC_Route",
+    "code": "BJR01_F_05",
+    "name": "麦当劳",
+    "facility_type": "fast_food",
+    "latitude": 39.913364,
+    "longitude": 116.4054006
+  },
+  {
+    "scene_name": "BJR01_SCENIC_Route",
+    "code": "BJR01_F_06",
+    "name": "四季民福",
+    "facility_type": "restaurant",
+    "latitude": 39.9169902,
+    "longitude": 116.4026358
+  },
+  {
+    "scene_name": "BJR01_SCENIC_Route",
+    "code": "BJR01_F_07",
+    "name": "必胜客",
+    "facility_type": "restaurant",
+    "latitude": 39.9147845,
+    "longitude": 116.4046609
+  },
+  {
+    "scene_name": "BJR01_SCENIC_Route",
+    "code": "BJR01_F_08",
+    "name": "米线",
+    "facility_type": "restaurant",
+    "latitude": 39.9151779,
+    "longitude": 116.4046074
+  },
+  {
+    "scene_name": "BJR01_SCENIC_Route",
+    "code": "BJR01_F_09",
+    "name": "漫咖啡",
+    "facility_type": "cafe",
+    "latitude": 39.9153482,
+    "longitude": 116.4056181
+  },
+  {
+    "scene_name": "BJR01_SCENIC_Route",
+    "code": "BJR01_F_10",
+    "name": "金街小巷餐馆",
+    "facility_type": "restaurant",
+    "latitude": 39.9147678,
+    "longitude": 116.4023183
+  },
+  {
+    "scene_name": "BJR01_SCENIC_Route",
+    "code": "BJR01_F_11",
+    "name": "冰角咖啡店",
+    "facility_type": "cafe",
+    "latitude": 39.9167594,
+    "longitude": 116.389017
+  },
+  {
+    "scene_name": "BJR01_SCENIC_Route",
+    "code": "BJR01_F_12",
+    "name": "Caffé bene",
+    "facility_type": "cafe",
+    "latitude": 39.9145315,
+    "longitude": 116.4046658
+  },
+  {
+    "scene_name": "BJR02_SHOPPING_Route",
+    "code": "BJR02_F_01",
+    "name": "Iqiyi",
+    "facility_type": "cafe",
+    "latitude": 39.9314345,
+    "longitude": 116.4493255
+  },
+  {
+    "scene_name": "BJR02_SHOPPING_Route",
+    "code": "BJR02_F_02",
+    "name": "L'Isola Italian Restaurant",
+    "facility_type": "restaurant",
+    "latitude": 39.9315469,
+    "longitude": 116.4520067
+  },
+  {
+    "scene_name": "BJR02_SHOPPING_Route",
+    "code": "BJR02_F_03",
+    "name": "麦当劳",
+    "facility_type": "fast_food",
+    "latitude": 39.9328225,
+    "longitude": 116.448832
+  },
+  {
+    "scene_name": "BJR02_SHOPPING_Route",
+    "code": "BJR02_F_04",
+    "name": "星巴克",
+    "facility_type": "cafe",
+    "latitude": 39.9328092,
+    "longitude": 116.4489094
+  },
+  {
+    "scene_name": "BJR02_SHOPPING_Route",
+    "code": "BJR02_F_05",
+    "name": "麻辣诱惑",
+    "facility_type": "restaurant",
+    "latitude": 39.9330396,
+    "longitude": 116.4481455
+  },
+  {
+    "scene_name": "BJR02_SHOPPING_Route",
+    "code": "BJR02_F_06",
+    "name": "Ganges",
+    "facility_type": "restaurant",
+    "latitude": 39.9329847,
+    "longitude": 116.4474304
+  },
+  {
+    "scene_name": "BJR02_SHOPPING_Route",
+    "code": "BJR02_F_07",
+    "name": "大董烤鸭团结湖分店",
+    "facility_type": "restaurant",
+    "latitude": 39.9313007,
+    "longitude": 116.4562015
+  },
+  {
+    "scene_name": "BJR02_SHOPPING_Route",
+    "code": "BJR02_F_08",
+    "name": "The Tree",
+    "facility_type": "restaurant",
+    "latitude": 39.9352031,
+    "longitude": 116.4475395
+  },
+  {
+    "scene_name": "BJR02_SHOPPING_Route",
+    "code": "BJR02_F_09",
+    "name": "Luga's Pho Pho",
+    "facility_type": "restaurant",
+    "latitude": 39.9347066,
+    "longitude": 116.4478008
+  },
+  {
+    "scene_name": "BJR02_SHOPPING_Route",
+    "code": "BJR02_F_10",
+    "name": "Kokomo",
+    "facility_type": "bar",
+    "latitude": 39.9347744,
+    "longitude": 116.4482063
+  },
+  {
+    "scene_name": "BJR02_SHOPPING_Route",
+    "code": "BJR02_F_11",
+    "name": "赛百味",
+    "facility_type": "fast_food",
+    "latitude": 39.9419043,
+    "longitude": 116.4489827
+  },
+  {
+    "scene_name": "BJR02_SHOPPING_Route",
+    "code": "BJR02_F_12",
+    "name": "Muse",
+    "facility_type": "restaurant",
+    "latitude": 39.9347476,
+    "longitude": 116.4481071
+  },
+  {
+    "scene_name": "BJR03_CAMPUS_Route",
+    "code": "BJR03_F_01",
+    "name": "Paradiso Coffee",
+    "facility_type": "cafe",
+    "latitude": 40.0092,
+    "longitude": 116.32692
+  },
+  {
+    "scene_name": "BJR03_CAMPUS_Route",
+    "code": "BJR03_F_02",
+    "name": "二食堂",
+    "facility_type": "restaurant",
+    "latitude": 40.0011529,
+    "longitude": 116.335662
+  },
+  {
+    "scene_name": "BJR03_CAMPUS_Route",
+    "code": "BJR03_F_03",
+    "name": "Jazz Cafe",
+    "facility_type": "cafe",
+    "latitude": 39.998366,
+    "longitude": 116.3245699
+  },
+  {
+    "scene_name": "BJR03_CAMPUS_Route",
+    "code": "BJR03_F_04",
+    "name": "安家小厨",
+    "facility_type": "cafe",
+    "latitude": 40.0031627,
+    "longitude": 116.3219967
+  },
+  {
+    "scene_name": "BJR03_CAMPUS_Route",
+    "code": "BJR03_F_05",
+    "name": "芝兰园餐厅",
+    "facility_type": "restaurant",
+    "latitude": 40.0090419,
+    "longitude": 116.3276577
+  },
+  {
+    "scene_name": "BJR03_CAMPUS_Route",
+    "code": "BJR03_F_06",
+    "name": "清青快餐",
+    "facility_type": "fast_food",
+    "latitude": 40.0046431,
+    "longitude": 116.3218859
+  },
+  {
+    "scene_name": "BJR03_CAMPUS_Route",
+    "code": "BJR03_F_07",
+    "name": "Hundred Years Cafe",
+    "facility_type": "cafe",
+    "latitude": 39.9991714,
+    "longitude": 116.3213996
+  },
+  {
+    "scene_name": "BJR03_CAMPUS_Route",
+    "code": "BJR03_F_08",
+    "name": "79Bar",
+    "facility_type": "cafe",
+    "latitude": 39.9983263,
+    "longitude": 116.3273789
+  },
+  {
+    "scene_name": "BJR03_CAMPUS_Route",
+    "code": "BJR03_F_09",
+    "name": "星巴克",
+    "facility_type": "cafe",
+    "latitude": 40.0040907,
+    "longitude": 116.3180951
+  },
+  {
+    "scene_name": "BJR03_CAMPUS_Route",
+    "code": "BJR03_F_10",
+    "name": "蒙楼咖啡（新清华学堂店）",
+    "facility_type": "cafe",
+    "latitude": 40.0001009,
+    "longitude": 116.3230765
+  },
+  {
+    "scene_name": "BJR03_CAMPUS_Route",
+    "code": "BJR03_F_11",
+    "name": "清青牛拉",
+    "facility_type": "restaurant",
+    "latitude": 40.0054826,
+    "longitude": 116.3205694
+  },
+  {
+    "scene_name": "BJR03_CAMPUS_Route",
+    "code": "BJR03_F_12",
+    "name": "有理咖（紫荆公寓店）",
+    "facility_type": "cafe",
+    "latitude": 40.0092044,
+    "longitude": 116.3271405
+  },
+  {
+    "scene_name": "SHR04_SCENIC_Route",
+    "code": "SHR04_F_01",
+    "name": "船长酒吧",
+    "facility_type": "bar",
+    "latitude": 31.2373006,
+    "longitude": 121.4849665
+  },
+  {
+    "scene_name": "SHR04_SCENIC_Route",
+    "code": "SHR04_F_02",
+    "name": "Hooters",
+    "facility_type": "restaurant",
+    "latitude": 31.2379261,
+    "longitude": 121.4939193
+  },
+  {
+    "scene_name": "SHR04_SCENIC_Route",
+    "code": "SHR04_F_03",
+    "name": "米氏西餐厅",
+    "facility_type": "restaurant",
+    "latitude": 31.2364221,
+    "longitude": 121.4864006
+  },
+  {
+    "scene_name": "SHR04_SCENIC_Route",
+    "code": "SHR04_F_04",
+    "name": "魅力上海",
+    "facility_type": "bar",
+    "latitude": 31.2365,
+    "longitude": 121.4863416
+  },
+  {
+    "scene_name": "SHR04_SCENIC_Route",
+    "code": "SHR04_F_05",
+    "name": "麦当劳",
+    "facility_type": "fast_food",
+    "latitude": 31.2405521,
+    "longitude": 121.4974666
+  },
+  {
+    "scene_name": "SHR04_SCENIC_Route",
+    "code": "SHR04_F_06",
+    "name": "花马天堂云南餐厅",
+    "facility_type": "restaurant",
+    "latitude": 31.2345742,
+    "longitude": 121.4865899
+  },
+  {
+    "scene_name": "SHR04_SCENIC_Route",
+    "code": "SHR04_F_07",
+    "name": "KEV Bar",
+    "facility_type": "bar",
+    "latitude": 31.2403725,
+    "longitude": 121.4851904
+  },
+  {
+    "scene_name": "SHR04_SCENIC_Route",
+    "code": "SHR04_F_08",
+    "name": "Choir酒吧",
+    "facility_type": "bar",
+    "latitude": 31.2373438,
+    "longitude": 121.4851905
+  },
+  {
+    "scene_name": "SHR04_SCENIC_Route",
+    "code": "SHR04_F_09",
+    "name": "上海姥姥家常饭馆",
+    "facility_type": "restaurant",
+    "latitude": 31.2373758,
+    "longitude": 121.4845225
+  },
+  {
+    "scene_name": "SHR04_SCENIC_Route",
+    "code": "SHR04_F_10",
+    "name": "House of Blues & Jazz",
+    "facility_type": "restaurant",
+    "latitude": 31.2374682,
+    "longitude": 121.4848219
+  },
+  {
+    "scene_name": "SHR04_SCENIC_Route",
+    "code": "SHR04_F_11",
+    "name": "Yang's Dumplings",
+    "facility_type": "restaurant",
+    "latitude": 31.2418839,
+    "longitude": 121.4967244
+  },
+  {
+    "scene_name": "SHR04_SCENIC_Route",
+    "code": "SHR04_F_12",
+    "name": "Huan Tase Chinese Fast Food",
+    "facility_type": "restaurant",
+    "latitude": 31.2417751,
+    "longitude": 121.4967001
+  },
+  {
+    "scene_name": "SHR05_SCENIC_Route",
+    "code": "SHR05_F_01",
+    "name": "南翔馒头店",
+    "facility_type": "restaurant",
+    "latitude": 31.2285341,
+    "longitude": 121.4871017
+  },
+  {
+    "scene_name": "SHR05_SCENIC_Route",
+    "code": "SHR05_F_02",
+    "name": "肯德基",
+    "facility_type": "fast_food",
+    "latitude": 31.229269,
+    "longitude": 121.4868114
+  },
+  {
+    "scene_name": "SHR05_SCENIC_Route",
+    "code": "SHR05_F_03",
+    "name": "UFF",
+    "facility_type": "fast_food",
+    "latitude": 31.2297186,
+    "longitude": 121.4867578
+  },
+  {
+    "scene_name": "SHR05_SCENIC_Route",
+    "code": "SHR05_F_04",
+    "name": "麦当劳",
+    "facility_type": "fast_food",
+    "latitude": 31.230039,
+    "longitude": 121.4857861
+  },
+  {
+    "scene_name": "SHR05_SCENIC_Route",
+    "code": "SHR05_F_05",
+    "name": "萨莉亚",
+    "facility_type": "restaurant",
+    "latitude": 31.2240973,
+    "longitude": 121.485524
+  },
+  {
+    "scene_name": "SHR05_SCENIC_Route",
+    "code": "SHR05_F_06",
+    "name": "星巴克",
+    "facility_type": "cafe",
+    "latitude": 31.2282521,
+    "longitude": 121.4872011
+  },
+  {
+    "scene_name": "SHR05_SCENIC_Route",
+    "code": "SHR05_F_07",
+    "name": "吴越人家",
+    "facility_type": "restaurant",
+    "latitude": 31.2297214,
+    "longitude": 121.4868043
+  },
+  {
+    "scene_name": "SHR05_SCENIC_Route",
+    "code": "SHR05_F_08",
+    "name": "松鶴樓",
+    "facility_type": "restaurant",
+    "latitude": 31.2304078,
+    "longitude": 121.4929931
+  },
+  {
+    "scene_name": "SHR05_SCENIC_Route",
+    "code": "SHR05_F_09",
+    "name": "Dairy Queen",
+    "facility_type": "fast_food",
+    "latitude": 31.2282826,
+    "longitude": 121.4874065
+  },
+  {
+    "scene_name": "SHR05_SCENIC_Route",
+    "code": "SHR05_F_10",
+    "name": "争鲜",
+    "facility_type": "restaurant",
+    "latitude": 31.2284369,
+    "longitude": 121.4866945
+  },
+  {
+    "scene_name": "SHR05_SCENIC_Route",
+    "code": "SHR05_F_11",
+    "name": "El Willy",
+    "facility_type": "restaurant",
+    "latitude": 31.2326792,
+    "longitude": 121.4895923
+  },
+  {
+    "scene_name": "SHR05_SCENIC_Route",
+    "code": "SHR05_F_12",
+    "name": "老城隍庙小吃广场",
+    "facility_type": "food_court",
+    "latitude": 31.2279058,
+    "longitude": 121.4872322
+  },
+  {
+    "scene_name": "SHR06_SHOPPING_Route",
+    "code": "SHR06_F_01",
+    "name": "麦当劳",
+    "facility_type": "fast_food",
+    "latitude": 31.2373423,
+    "longitude": 121.4724746
+  },
+  {
+    "scene_name": "SHR06_SHOPPING_Route",
+    "code": "SHR06_F_02",
+    "name": "必胜客",
+    "facility_type": "restaurant",
+    "latitude": 31.2378562,
+    "longitude": 121.4766473
+  },
+  {
+    "scene_name": "SHR06_SHOPPING_Route",
+    "code": "SHR06_F_03",
+    "name": "吉野家",
+    "facility_type": "fast_food",
+    "latitude": 31.2379812,
+    "longitude": 121.4768656
+  },
+  {
+    "scene_name": "SHR06_SHOPPING_Route",
+    "code": "SHR06_F_04",
+    "name": "天惠天",
+    "facility_type": "restaurant",
+    "latitude": 31.2381544,
+    "longitude": 121.4763448
+  },
+  {
+    "scene_name": "SHR06_SHOPPING_Route",
+    "code": "SHR06_F_05",
+    "name": "赛百味",
+    "facility_type": "fast_food",
+    "latitude": 31.2368897,
+    "longitude": 121.4721637
+  },
+  {
+    "scene_name": "SHR06_SHOPPING_Route",
+    "code": "SHR06_F_06",
+    "name": "肯德基",
+    "facility_type": "fast_food",
+    "latitude": 31.237866,
+    "longitude": 121.4752428
+  },
+  {
+    "scene_name": "SHR06_SHOPPING_Route",
+    "code": "SHR06_F_07",
+    "name": "国际饭店",
+    "facility_type": "restaurant",
+    "latitude": 31.2354192,
+    "longitude": 121.4671723
+  },
+  {
+    "scene_name": "SHR06_SHOPPING_Route",
+    "code": "SHR06_F_08",
+    "name": "星巴克",
+    "facility_type": "cafe",
+    "latitude": 31.2366523,
+    "longitude": 121.4713668
+  },
+  {
+    "scene_name": "SHR06_SHOPPING_Route",
+    "code": "SHR06_F_09",
+    "name": "Gloria Jean's",
+    "facility_type": "cafe",
+    "latitude": 31.2275747,
+    "longitude": 121.4736036
+  },
+  {
+    "scene_name": "SHR06_SHOPPING_Route",
+    "code": "SHR06_F_10",
+    "name": "新旺茶餐厅",
+    "facility_type": "restaurant",
+    "latitude": 31.237738,
+    "longitude": 121.479677
+  },
+  {
+    "scene_name": "SHR06_SHOPPING_Route",
+    "code": "SHR06_F_11",
+    "name": "The Press",
+    "facility_type": "restaurant",
+    "latitude": 31.237527,
+    "longitude": 121.479702
+  },
+  {
+    "scene_name": "SHR06_SHOPPING_Route",
+    "code": "SHR06_F_12",
+    "name": "老盛兴汤包店",
+    "facility_type": "restaurant",
+    "latitude": 31.237527,
+    "longitude": 121.479973
+  },
+  {
+    "scene_name": "SHR07_CAMPUS_Route",
+    "code": "SHR07_F_01",
+    "name": "Wagas",
+    "facility_type": "cafe",
+    "latitude": 31.1962667,
+    "longitude": 121.4323992
+  },
+  {
+    "scene_name": "SHR07_CAMPUS_Route",
+    "code": "SHR07_F_02",
+    "name": "星巴克",
+    "facility_type": "cafe",
+    "latitude": 31.1972929,
+    "longitude": 121.4320939
+  },
+  {
+    "scene_name": "SHR07_CAMPUS_Route",
+    "code": "SHR07_F_03",
+    "name": "沙县小吃",
+    "facility_type": "restaurant",
+    "latitude": 31.2022111,
+    "longitude": 121.4256477
+  },
+  {
+    "scene_name": "SHR07_CAMPUS_Route",
+    "code": "SHR07_F_04",
+    "name": "炉烩",
+    "facility_type": "pub",
+    "latitude": 31.2077105,
+    "longitude": 121.4334754
+  },
+  {
+    "scene_name": "SHR07_CAMPUS_Route",
+    "code": "SHR07_F_05",
+    "name": "Park Tavern",
+    "facility_type": "restaurant",
+    "latitude": 31.1988667,
+    "longitude": 121.4359494
+  },
+  {
+    "scene_name": "SHR07_CAMPUS_Route",
+    "code": "SHR07_F_06",
+    "name": "Pie Society",
+    "facility_type": "restaurant",
+    "latitude": 31.2063593,
+    "longitude": 121.4259023
+  },
+  {
+    "scene_name": "SHR07_CAMPUS_Route",
+    "code": "SHR07_F_07",
+    "name": "MOST Restaurant",
+    "facility_type": "restaurant",
+    "latitude": 31.2084023,
+    "longitude": 121.4370255
+  },
+  {
+    "scene_name": "SHR07_CAMPUS_Route",
+    "code": "SHR07_F_08",
+    "name": "巾帼园三层",
+    "facility_type": "bar",
+    "latitude": 31.1989649,
+    "longitude": 121.4350687
+  },
+  {
+    "scene_name": "SHR07_CAMPUS_Route",
+    "code": "SHR07_F_09",
+    "name": "法学院咖啡厅",
+    "facility_type": "cafe",
+    "latitude": 31.2011585,
+    "longitude": 121.4277819
+  },
+  {
+    "scene_name": "SHR07_CAMPUS_Route",
+    "code": "SHR07_F_10",
+    "name": "Juice bar",
+    "facility_type": "cafe",
+    "latitude": 31.2017488,
+    "longitude": 121.4293179
+  },
+  {
+    "scene_name": "SHR07_CAMPUS_Route",
+    "code": "SHR07_F_11",
+    "name": "70後飯吧",
+    "facility_type": "restaurant",
+    "latitude": 31.1970253,
+    "longitude": 121.4363137
+  },
+  {
+    "scene_name": "SHR07_CAMPUS_Route",
+    "code": "SHR07_F_12",
+    "name": "肯德基",
+    "facility_type": "fast_food",
+    "latitude": 31.197013,
+    "longitude": 121.4363369
+  },
+  {
+    "scene_name": "GZR08_SCENIC_Route",
+    "code": "GZR08_F_01",
+    "name": "肯德基",
+    "facility_type": "fast_food",
+    "latitude": 23.1031488,
+    "longitude": 113.3220997
+  },
+  {
+    "scene_name": "GZR08_SCENIC_Route",
+    "code": "GZR08_F_02",
+    "name": "星巴克",
+    "facility_type": "cafe",
+    "latitude": 23.1027919,
+    "longitude": 113.3221055
+  },
+  {
+    "scene_name": "GZR08_SCENIC_Route",
+    "code": "GZR08_F_03",
+    "name": "海心沙2号",
+    "facility_type": "restaurant",
+    "latitude": 23.1143301,
+    "longitude": 113.3225383
+  },
+  {
+    "scene_name": "GZR08_SCENIC_Route",
+    "code": "GZR08_F_04",
+    "name": "炳胜品味珠江新城店",
+    "facility_type": "restaurant",
+    "latitude": 23.1175786,
+    "longitude": 113.3229635
+  },
+  {
+    "scene_name": "GZR08_SCENIC_Route",
+    "code": "GZR08_F_05",
+    "name": "Enjoy",
+    "facility_type": "cafe",
+    "latitude": 23.1175629,
+    "longitude": 113.3170339
+  },
+  {
+    "scene_name": "GZR08_SCENIC_Route",
+    "code": "GZR08_F_06",
+    "name": "麦当劳",
+    "facility_type": "fast_food",
+    "latitude": 23.1083997,
+    "longitude": 113.3191017
+  },
+  {
+    "scene_name": "GZR08_SCENIC_Route",
+    "code": "GZR08_F_07",
+    "name": "大益茶",
+    "facility_type": "cafe",
+    "latitude": 23.0999526,
+    "longitude": 113.3220642
+  },
+  {
+    "scene_name": "GZR08_SCENIC_Route",
+    "code": "GZR08_F_08",
+    "name": "广州鸿景茗点酒楼",
+    "facility_type": "restaurant",
+    "latitude": 23.1015024,
+    "longitude": 113.3221484
+  },
+  {
+    "scene_name": "GZR08_SCENIC_Route",
+    "code": "GZR08_F_09",
+    "name": "Coffeeology",
+    "facility_type": "cafe",
+    "latitude": 23.1193108,
+    "longitude": 113.3187894
+  },
+  {
+    "scene_name": "GZR08_SCENIC_Route",
+    "code": "GZR08_F_10",
+    "name": "Dairy Queen",
+    "facility_type": "fast_food",
+    "latitude": 23.0985001,
+    "longitude": 113.3157332
+  },
+  {
+    "scene_name": "GZR08_SCENIC_Route",
+    "code": "GZR08_F_11",
+    "name": "金苑海鲜酒家",
+    "facility_type": "restaurant",
+    "latitude": 23.0985656,
+    "longitude": 113.3177598
+  },
+  {
+    "scene_name": "GZR08_SCENIC_Route",
+    "code": "GZR08_F_12",
+    "name": "瑞幸咖啡",
+    "facility_type": "cafe",
+    "latitude": 23.0991456,
+    "longitude": 113.3162238
+  },
+  {
+    "scene_name": "GZR09_SCENIC_Route",
+    "code": "GZR09_F_01",
+    "name": "真功夫",
+    "facility_type": "fast_food",
+    "latitude": 23.1285254,
+    "longitude": 113.2494929
+  },
+  {
+    "scene_name": "GZR09_SCENIC_Route",
+    "code": "GZR09_F_02",
+    "name": "麦当劳",
+    "facility_type": "fast_food",
+    "latitude": 23.1285074,
+    "longitude": 113.2508232
+  },
+  {
+    "scene_name": "GZR09_SCENIC_Route",
+    "code": "GZR09_F_03",
+    "name": "肯德基",
+    "facility_type": "fast_food",
+    "latitude": 23.1276562,
+    "longitude": 113.2500985
+  },
+  {
+    "scene_name": "GZR09_SCENIC_Route",
+    "code": "GZR09_F_04",
+    "name": "必胜客",
+    "facility_type": "restaurant",
+    "latitude": 23.1276524,
+    "longitude": 113.2502184
+  },
+  {
+    "scene_name": "GZR09_SCENIC_Route",
+    "code": "GZR09_F_05",
+    "name": "回民饭店",
+    "facility_type": "restaurant",
+    "latitude": 23.1277022,
+    "longitude": 113.2494151
+  },
+  {
+    "scene_name": "GZR09_SCENIC_Route",
+    "code": "GZR09_F_06",
+    "name": "星洲大椰",
+    "facility_type": "restaurant",
+    "latitude": 23.1241232,
+    "longitude": 113.2483562
+  },
+  {
+    "scene_name": "GZR09_SCENIC_Route",
+    "code": "GZR09_F_07",
+    "name": "容意发牛杂店",
+    "facility_type": "restaurant",
+    "latitude": 23.12073,
+    "longitude": 113.2492522
+  },
+  {
+    "scene_name": "GZR09_SCENIC_Route",
+    "code": "GZR09_F_08",
+    "name": "星巴克",
+    "facility_type": "cafe",
+    "latitude": 23.126932,
+    "longitude": 113.2426675
+  },
+  {
+    "scene_name": "GZR09_SCENIC_Route",
+    "code": "GZR09_F_09",
+    "name": "食盈碗仔翅",
+    "facility_type": "restaurant",
+    "latitude": 23.1325468,
+    "longitude": 113.2457123
+  },
+  {
+    "scene_name": "GZR09_SCENIC_Route",
+    "code": "GZR09_F_10",
+    "name": "云腾砂锅粥",
+    "facility_type": "restaurant",
+    "latitude": 23.1263243,
+    "longitude": 113.240451
+  },
+  {
+    "scene_name": "GZR09_SCENIC_Route",
+    "code": "GZR09_F_11",
+    "name": "向群饭店",
+    "facility_type": "restaurant",
+    "latitude": 23.1243807,
+    "longitude": 113.2462282
+  },
+  {
+    "scene_name": "GZR09_SCENIC_Route",
+    "code": "GZR09_F_12",
+    "name": "永记沙湾甜品",
+    "facility_type": "restaurant",
+    "latitude": 23.1257501,
+    "longitude": 113.2517984
+  },
+  {
+    "scene_name": "GZR10_SHOPPING_Route",
+    "code": "GZR10_F_01",
+    "name": "麦当劳",
+    "facility_type": "fast_food",
+    "latitude": 23.1349259,
+    "longitude": 113.3158265
+  },
+  {
+    "scene_name": "GZR10_SHOPPING_Route",
+    "code": "GZR10_F_02",
+    "name": "椒堂米粉",
+    "facility_type": "restaurant",
+    "latitude": 23.1316749,
+    "longitude": 113.3254713
+  },
+  {
+    "scene_name": "GZR10_SHOPPING_Route",
+    "code": "GZR10_F_03",
+    "name": "真过瘾新疆大盘鸡",
+    "facility_type": "restaurant",
+    "latitude": 23.1317877,
+    "longitude": 113.3165907
+  },
+  {
+    "scene_name": "GZR10_SHOPPING_Route",
+    "code": "GZR10_F_04",
+    "name": "喜茶",
+    "facility_type": "cafe",
+    "latitude": 23.134868,
+    "longitude": 113.3266642
+  },
+  {
+    "scene_name": "GZR10_SHOPPING_Route",
+    "code": "GZR10_F_05",
+    "name": "星巴克",
+    "facility_type": "cafe",
+    "latitude": 23.1354043,
+    "longitude": 113.3185344
+  },
+  {
+    "scene_name": "GZR10_SHOPPING_Route",
+    "code": "GZR10_F_06",
+    "name": "奈雪的茶",
+    "facility_type": "cafe",
+    "latitude": 23.1341008,
+    "longitude": 113.3218632
+  },
+  {
+    "scene_name": "GZR10_SHOPPING_Route",
+    "code": "GZR10_F_07",
+    "name": "CoCo都可",
+    "facility_type": "cafe",
+    "latitude": 23.1339517,
+    "longitude": 113.3174015
+  },
+  {
+    "scene_name": "GZR10_SHOPPING_Route",
+    "code": "GZR10_F_08",
+    "name": "蜜雪冰城",
+    "facility_type": "cafe",
+    "latitude": 23.1331398,
+    "longitude": 113.3150286
+  },
+  {
+    "scene_name": "GZR10_SHOPPING_Route",
+    "code": "GZR10_F_09",
+    "name": "味千拉面",
+    "facility_type": "restaurant",
+    "latitude": 23.1347922,
+    "longitude": 113.3172954
+  },
+  {
+    "scene_name": "GZR10_SHOPPING_Route",
+    "code": "GZR10_F_10",
+    "name": "瑞幸咖啡",
+    "facility_type": "cafe",
+    "latitude": 23.1348288,
+    "longitude": 113.3178725
+  },
+  {
+    "scene_name": "GZR10_SHOPPING_Route",
+    "code": "GZR10_F_11",
+    "name": "寿司郎",
+    "facility_type": "restaurant",
+    "latitude": 23.1353792,
+    "longitude": 113.3239219
+  },
+  {
+    "scene_name": "GZR10_SHOPPING_Route",
+    "code": "GZR10_F_12",
+    "name": "摩打食堂",
+    "facility_type": "restaurant",
+    "latitude": 23.1340599,
+    "longitude": 113.3270234
+  },
+  {
+    "scene_name": "GZR11_CAMPUS_Route",
+    "code": "GZR11_F_01",
+    "name": "地下饭堂",
+    "facility_type": "restaurant",
+    "latitude": 23.1016342,
+    "longitude": 113.3011344
+  },
+  {
+    "scene_name": "GZR11_CAMPUS_Route",
+    "code": "GZR11_F_02",
+    "name": "第二饭堂",
+    "facility_type": "restaurant",
+    "latitude": 23.1013121,
+    "longitude": 113.3009337
+  },
+  {
+    "scene_name": "GZR11_CAMPUS_Route",
+    "code": "GZR11_F_03",
+    "name": "新疆饭堂",
+    "facility_type": "restaurant",
+    "latitude": 23.1016353,
+    "longitude": 113.3008538
+  },
+  {
+    "scene_name": "GZR11_CAMPUS_Route",
+    "code": "GZR11_F_04",
+    "name": "第一饭堂",
+    "facility_type": "restaurant",
+    "latitude": 23.1009532,
+    "longitude": 113.3009314
+  },
+  {
+    "scene_name": "GZR11_CAMPUS_Route",
+    "code": "GZR11_F_05",
+    "name": "教师饭堂",
+    "facility_type": "restaurant",
+    "latitude": 23.101161,
+    "longitude": 113.30092
+  },
+  {
+    "scene_name": "GZR11_CAMPUS_Route",
+    "code": "GZR11_F_06",
+    "name": "麦当劳",
+    "facility_type": "fast_food",
+    "latitude": 23.0932087,
+    "longitude": 113.2924132
+  },
+  {
+    "scene_name": "GZR11_CAMPUS_Route",
+    "code": "GZR11_F_07",
+    "name": "蜜雪冰城",
+    "facility_type": "cafe",
+    "latitude": 23.0900726,
+    "longitude": 113.3017905
+  },
+  {
+    "scene_name": "GZR11_CAMPUS_Route",
+    "code": "GZR11_F_08",
+    "name": "肯德基",
+    "facility_type": "fast_food",
+    "latitude": 23.0980258,
+    "longitude": 113.3009631
+  },
+  {
+    "scene_name": "GZR11_CAMPUS_Route",
+    "code": "GZR11_F_09",
+    "name": "瑞幸咖啡",
+    "facility_type": "cafe",
+    "latitude": 23.0914174,
+    "longitude": 113.2947153
+  },
+  {
+    "scene_name": "GZR11_CAMPUS_Route",
+    "code": "GZR11_F_10",
+    "name": "大家乐",
+    "facility_type": "fast_food",
+    "latitude": 23.0982516,
+    "longitude": 113.3009432
+  },
+  {
+    "scene_name": "GZR11_CAMPUS_Route",
+    "code": "GZR11_F_11",
+    "name": "塔斯汀",
+    "facility_type": "fast_food",
+    "latitude": 23.0982291,
+    "longitude": 113.3018841
+  },
+  {
+    "scene_name": "GZR11_CAMPUS_Route",
+    "code": "GZR11_F_12",
+    "name": "彩点",
+    "facility_type": "restaurant",
+    "latitude": 23.0981348,
+    "longitude": 113.3009392
+  },
+  {
+    "scene_name": "SZR12_SCENIC_Route",
+    "code": "SZR12_F_01",
+    "name": "肯德基",
+    "facility_type": "fast_food",
+    "latitude": 22.5407209,
+    "longitude": 113.968942
+  },
+  {
+    "scene_name": "SZR12_SCENIC_Route",
+    "code": "SZR12_F_02",
+    "name": "Honeymoon Dessert",
+    "facility_type": "cafe",
+    "latitude": 22.540607,
+    "longitude": 113.9692563
+  },
+  {
+    "scene_name": "SZR12_SCENIC_Route",
+    "code": "SZR12_F_03",
+    "name": "V-Palace",
+    "facility_type": "bar",
+    "latitude": 22.5400506,
+    "longitude": 113.9721708
+  },
+  {
+    "scene_name": "SZR12_SCENIC_Route",
+    "code": "SZR12_F_04",
+    "name": "红坊烧烤",
+    "facility_type": "fast_food",
+    "latitude": 22.5350237,
+    "longitude": 113.9634993
+  },
+  {
+    "scene_name": "SZR12_SCENIC_Route",
+    "code": "SZR12_F_05",
+    "name": "风味小吃",
+    "facility_type": "restaurant",
+    "latitude": 22.5341813,
+    "longitude": 113.9819813
+  },
+  {
+    "scene_name": "SZR12_SCENIC_Route",
+    "code": "SZR12_F_06",
+    "name": "星巴克",
+    "facility_type": "cafe",
+    "latitude": 22.5389438,
+    "longitude": 113.9797642
+  },
+  {
+    "scene_name": "SZR12_SCENIC_Route",
+    "code": "SZR12_F_07",
+    "name": "遇见小面",
+    "facility_type": "restaurant",
+    "latitude": 22.5416385,
+    "longitude": 113.9683468
+  },
+  {
+    "scene_name": "SZR12_SCENIC_Route",
+    "code": "SZR12_F_08",
+    "name": "1点点",
+    "facility_type": "cafe",
+    "latitude": 22.5413434,
+    "longitude": 113.9673811
+  },
+  {
+    "scene_name": "SZR12_SCENIC_Route",
+    "code": "SZR12_F_09",
+    "name": "瑞幸咖啡",
+    "facility_type": "cafe",
+    "latitude": 22.5412245,
+    "longitude": 113.9677291
+  },
+  {
+    "scene_name": "SZR12_SCENIC_Route",
+    "code": "SZR12_F_10",
+    "name": "麦当劳",
+    "facility_type": "fast_food",
+    "latitude": 22.5405631,
+    "longitude": 113.9687993
+  },
+  {
+    "scene_name": "SZR12_SCENIC_Route",
+    "code": "SZR12_F_11",
+    "name": "gaga",
+    "facility_type": "restaurant",
+    "latitude": 22.5405915,
+    "longitude": 113.9695617
+  },
+  {
+    "scene_name": "SZR12_SCENIC_Route",
+    "code": "SZR12_F_12",
+    "name": "西贝莜面村",
+    "facility_type": "restaurant",
+    "latitude": 22.540187,
+    "longitude": 113.9710123
+  },
+  {
+    "scene_name": "SZR13_SCENIC_Route",
+    "code": "SZR13_F_01",
+    "name": "平成屋",
+    "facility_type": "restaurant",
+    "latitude": 22.5210961,
+    "longitude": 113.9418149
+  },
+  {
+    "scene_name": "SZR13_SCENIC_Route",
+    "code": "SZR13_F_02",
+    "name": "pLeace",
+    "facility_type": "restaurant",
+    "latitude": 22.5209277,
+    "longitude": 113.9417947
+  },
+  {
+    "scene_name": "SZR13_SCENIC_Route",
+    "code": "SZR13_F_03",
+    "name": "布朗石西班牙餐厅",
+    "facility_type": "restaurant",
+    "latitude": 22.5214022,
+    "longitude": 113.9418517
+  },
+  {
+    "scene_name": "SZR13_SCENIC_Route",
+    "code": "SZR13_F_04",
+    "name": "LAVO",
+    "facility_type": "bar",
+    "latitude": 22.5210953,
+    "longitude": 113.9425134
+  },
+  {
+    "scene_name": "SZR13_SCENIC_Route",
+    "code": "SZR13_F_05",
+    "name": "gaga",
+    "facility_type": "restaurant",
+    "latitude": 22.5189656,
+    "longitude": 113.9417162
+  },
+  {
+    "scene_name": "SZR13_SCENIC_Route",
+    "code": "SZR13_F_06",
+    "name": "星巴克",
+    "facility_type": "cafe",
+    "latitude": 22.5185865,
+    "longitude": 113.9411348
+  },
+  {
+    "scene_name": "SZR13_SCENIC_Route",
+    "code": "SZR13_F_07",
+    "name": "% Arabica",
+    "facility_type": "cafe",
+    "latitude": 22.518204,
+    "longitude": 113.9410148
+  },
+  {
+    "scene_name": "SZR13_SCENIC_Route",
+    "code": "SZR13_F_08",
+    "name": "Manner Coffee",
+    "facility_type": "cafe",
+    "latitude": 22.5189947,
+    "longitude": 113.9409603
+  },
+  {
+    "scene_name": "SZR13_SCENIC_Route",
+    "code": "SZR13_F_09",
+    "name": "tea'stone",
+    "facility_type": "cafe",
+    "latitude": 22.5174002,
+    "longitude": 113.941112
+  },
+  {
+    "scene_name": "SZR13_SCENIC_Route",
+    "code": "SZR13_F_10",
+    "name": "港风堂茶餐厅",
+    "facility_type": "restaurant",
+    "latitude": 22.5062537,
+    "longitude": 113.9432513
+  },
+  {
+    "scene_name": "SZR13_SCENIC_Route",
+    "code": "SZR13_F_11",
+    "name": "七月柿",
+    "facility_type": "restaurant",
+    "latitude": 22.5212037,
+    "longitude": 113.9420002
+  },
+  {
+    "scene_name": "SZR13_SCENIC_Route",
+    "code": "SZR13_F_12",
+    "name": "北湾鹭港书咖",
+    "facility_type": "cafe",
+    "latitude": 22.5217357,
+    "longitude": 113.9575339
+  },
+  {
+    "scene_name": "SZR14_SHOPPING_Route",
+    "code": "SZR14_F_01",
+    "name": "肯德基",
+    "facility_type": "fast_food",
+    "latitude": 22.5425758,
+    "longitude": 113.9497616
+  },
+  {
+    "scene_name": "SZR14_SHOPPING_Route",
+    "code": "SZR14_F_02",
+    "name": "Chinese Food",
+    "facility_type": "cafe",
+    "latitude": 22.5421229,
+    "longitude": 113.9487733
+  },
+  {
+    "scene_name": "SZR14_SHOPPING_Route",
+    "code": "SZR14_F_03",
+    "name": "老汉口热干面",
+    "facility_type": "fast_food",
+    "latitude": 22.5415572,
+    "longitude": 113.9621404
+  },
+  {
+    "scene_name": "SZR14_SHOPPING_Route",
+    "code": "SZR14_F_04",
+    "name": "麦当劳",
+    "facility_type": "fast_food",
+    "latitude": 22.5407562,
+    "longitude": 113.9481135
+  },
+  {
+    "scene_name": "SZR14_SHOPPING_Route",
+    "code": "SZR14_F_05",
+    "name": "面點王",
+    "facility_type": "restaurant",
+    "latitude": 22.5402033,
+    "longitude": 113.9479998
+  },
+  {
+    "scene_name": "SZR14_SHOPPING_Route",
+    "code": "SZR14_F_06",
+    "name": "椒游老坛黑鱼",
+    "facility_type": "restaurant",
+    "latitude": 22.5388227,
+    "longitude": 113.9619838
+  },
+  {
+    "scene_name": "SZR14_SHOPPING_Route",
+    "code": "SZR14_F_07",
+    "name": "Shake Shack",
+    "facility_type": "fast_food",
+    "latitude": 22.545057,
+    "longitude": 113.9498049
+  },
+  {
+    "scene_name": "SZR14_SHOPPING_Route",
+    "code": "SZR14_F_08",
+    "name": "茉莉奶白",
+    "facility_type": "cafe",
+    "latitude": 22.5446415,
+    "longitude": 113.9518377
+  },
+  {
+    "scene_name": "SZR14_SHOPPING_Route",
+    "code": "SZR14_F_09",
+    "name": "% Arabica",
+    "facility_type": "cafe",
+    "latitude": 22.5443774,
+    "longitude": 113.9503575
+  },
+  {
+    "scene_name": "SZR14_SHOPPING_Route",
+    "code": "SZR14_F_10",
+    "name": "丘大叔",
+    "facility_type": "cafe",
+    "latitude": 22.5448534,
+    "longitude": 113.9511965
+  },
+  {
+    "scene_name": "SZR14_SHOPPING_Route",
+    "code": "SZR14_F_11",
+    "name": "瑞幸咖啡",
+    "facility_type": "cafe",
+    "latitude": 22.5423529,
+    "longitude": 113.9512172
+  },
+  {
+    "scene_name": "SZR14_SHOPPING_Route",
+    "code": "SZR14_F_12",
+    "name": "阿嬷手作",
+    "facility_type": "cafe",
+    "latitude": 22.5445297,
+    "longitude": 113.9511976
+  },
+  {
+    "scene_name": "SZR15_CAMPUS_Route",
+    "code": "SZR15_F_01",
+    "name": "迪街咖啡",
+    "facility_type": "cafe",
+    "latitude": 22.530462,
+    "longitude": 113.9241107
+  },
+  {
+    "scene_name": "SZR15_CAMPUS_Route",
+    "code": "SZR15_F_02",
+    "name": "2楼西餐厅",
+    "facility_type": "cafe",
+    "latitude": 22.5374125,
+    "longitude": 113.9292581
+  },
+  {
+    "scene_name": "SZR15_CAMPUS_Route",
+    "code": "SZR15_F_03",
+    "name": "西北牛肉麵大王",
+    "facility_type": "restaurant",
+    "latitude": 22.5277396,
+    "longitude": 113.9328919
+  },
+  {
+    "scene_name": "SZR15_CAMPUS_Route",
+    "code": "SZR15_F_04",
+    "name": "味乐韩国料理",
+    "facility_type": "restaurant",
+    "latitude": 22.5349373,
+    "longitude": 113.9242527
+  },
+  {
+    "scene_name": "SZR15_CAMPUS_Route",
+    "code": "SZR15_F_05",
+    "name": "伊兰兴手工牛肉面（粤海店）",
+    "facility_type": "restaurant",
+    "latitude": 22.5369696,
+    "longitude": 113.9362793
+  },
+  {
+    "scene_name": "SZR15_CAMPUS_Route",
+    "code": "SZR15_F_06",
+    "name": "星巴克",
+    "facility_type": "cafe",
+    "latitude": 22.5294541,
+    "longitude": 113.9350947
+  },
+  {
+    "scene_name": "SZR15_CAMPUS_Route",
+    "code": "SZR15_F_07",
+    "name": "木屋烧烤",
+    "facility_type": "restaurant",
+    "latitude": 22.5293477,
+    "longitude": 113.92508
+  },
+  {
+    "scene_name": "SZR15_CAMPUS_Route",
+    "code": "SZR15_F_08",
+    "name": "瑞幸咖啡",
+    "facility_type": "cafe",
+    "latitude": 22.5298491,
+    "longitude": 113.9282502
+  },
+  {
+    "scene_name": "SZR15_CAMPUS_Route",
+    "code": "SZR15_F_09",
+    "name": "教工餐厅",
+    "facility_type": "restaurant",
+    "latitude": 22.5374642,
+    "longitude": 113.9292296
+  },
+  {
+    "scene_name": "SZR15_CAMPUS_Route",
+    "code": "SZR15_F_10",
+    "name": "晨风餐厅（老西南餐厅）",
+    "facility_type": "restaurant",
+    "latitude": 22.5311376,
+    "longitude": 113.9265473
+  },
+  {
+    "scene_name": "SZR15_CAMPUS_Route",
+    "code": "SZR15_F_11",
+    "name": "凯风餐厅（新西南餐厅）",
+    "facility_type": "restaurant",
+    "latitude": 22.5312146,
+    "longitude": 113.9259641
+  },
+  {
+    "scene_name": "SZR15_CAMPUS_Route",
+    "code": "SZR15_F_12",
+    "name": "听山餐厅",
+    "facility_type": "restaurant",
+    "latitude": 22.5317183,
+    "longitude": 113.9291174
   }
 ]

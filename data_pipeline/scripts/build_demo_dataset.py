@@ -10,6 +10,7 @@ from random import Random
 
 ROOT = Path(__file__).resolve().parents[2]
 RAW_DIR = ROOT / "datasets" / "raw"
+SOURCE_MAPS_DIR = ROOT / "datasets" / "source_maps"
 PROD_DIR = ROOT / "datasets" / "prod"
 PUBLIC_MEDIA_DIR = ROOT / "frontend" / "public" / "media"
 PROD_DIR.mkdir(parents=True, exist_ok=True)
@@ -738,11 +739,7 @@ def normalize_destination(element: dict, city: str) -> dict | None:
         "longitude": float(lon),
         "rating": None,
         "heat": None,
-        "tags": [
-            tag
-            for tag in [tags.get("tourism"), tags.get("amenity"), tags.get("leisure")]
-            if tag
-        ],
+        "tags": [tag for tag in [tags.get("tourism"), tags.get("amenity"), tags.get("leisure")] if tag],
         "description": description,
         "image_url": local_media_path("system", "explore.svg"),
         "image_source_name": "项目内置本地封面图",
@@ -835,9 +832,7 @@ def generate_scene(
         )
     scene = {"name": scene_name, "nodes": nodes}
     edges = []
-    all_codes = [node["code"] for node in nodes] + [
-        facility["code"] for facility in facilities
-    ]
+    all_codes = [node["code"] for node in nodes] + [facility["code"] for facility in facilities]
     for idx, source in enumerate(all_codes):
         for target in all_codes[idx + 1 : idx + 4]:
             dist = 120 + (idx % 7) * 35 + rand.randint(0, 25)
@@ -852,17 +847,13 @@ def generate_scene(
                         "walk_speed": 1.1,
                         "bike_speed": 3.5,
                         "shuttle_speed": 4.8,
-                        "allowed_modes": ["walk", "mixed"]
-                        if idx % 4
-                        else ["walk", "bike", "mixed"],
+                        "allowed_modes": ["walk", "mixed"] if idx % 4 else ["walk", "bike", "mixed"],
                     }
                 )
     return scene, facilities, edges
 
 
-def rename_node_code(
-    scene: dict, edges: list[dict], old_code: str, new_code: str
-) -> None:
+def rename_node_code(scene: dict, edges: list[dict], old_code: str, new_code: str) -> None:
     for node in scene["nodes"]:
         if node["code"] == old_code:
             node["code"] = new_code
@@ -880,9 +871,7 @@ def scene_from_raw(
     fallback_buildings: list[str],
     fallback_facilities: list[tuple[str, str]],
 ) -> tuple[dict, list[dict], list[dict]]:
-    raw_points = [
-        normalize_raw_point(item) for item in load_raw(raw_name).get("elements", [])
-    ]
+    raw_points = [normalize_raw_point(item) for item in load_raw(raw_name).get("elements", [])]
     raw_points = [item for item in raw_points if item is not None]
     unique_points = dedupe_by_name(
         [
@@ -956,14 +945,10 @@ def scene_from_raw(
                     "walk_speed": 1.1,
                     "bike_speed": 3.5,
                     "shuttle_speed": 4.8,
-                    "allowed_modes": ["walk", "mixed"]
-                    if idx % 5
-                    else ["walk", "bike", "mixed"],
+                    "allowed_modes": ["walk", "mixed"] if idx % 5 else ["walk", "bike", "mixed"],
                 }
             )
-    backbone = sorted(
-        all_points, key=lambda item: (item["latitude"], item["longitude"])
-    )
+    backbone = sorted(all_points, key=lambda item: (item["latitude"], item["longitude"]))
     for left, right in zip(backbone, backbone[1:]):
         dist = round(
             max(
@@ -993,11 +978,547 @@ def scene_from_raw(
     return scene, facilities, edges
 
 
-def load_raw(name: str) -> dict:
-    path = RAW_DIR / name
-    if not path.exists():
-        return {"elements": []}
+BUPT_CODE_ALIASES = {
+    "LEGACY_facility_9699353706": "BUPT_GATE",
+    "LEGACY_facility_building_399008790": "BUPT_LIB",
+}
+
+
+def load_source_map(name: str) -> dict:
+    path = SOURCE_MAPS_DIR / name
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def remap_bupt_code(code: str) -> str:
+    return BUPT_CODE_ALIASES.get(code, code)
+
+
+def with_bupt_code_alias(item: dict) -> dict:
+    code = remap_bupt_code(item["code"])
+    result = {**item, "code": code}
+    if code != item["code"]:
+        result["legacy_code"] = item["code"]
+    return result
+
+
+def build_bupt_scene_from_source_map() -> tuple[dict, list[dict], list[dict], list[dict]]:
+    source_map = load_source_map("bupt_campus_map.json")
+    scene_name = source_map["scene_name"]
+
+    scene_nodes = []
+    for node in source_map["nodes"]:
+        if node["node_type"] == "facility":
+            continue
+        scene_node = {
+            "code": remap_bupt_code(node["code"]),
+            "name": node["name"],
+            "latitude": node["latitude"],
+            "longitude": node["longitude"],
+            "route_node_type": node["node_type"],
+            "legacy_id": node.get("legacy_id"),
+            "source_dataset": node.get("source_dataset"),
+        }
+        if scene_node["code"] != node["code"]:
+            scene_node["legacy_code"] = node["code"]
+        scene_nodes.append(scene_node)
+
+    buildings = []
+    for building in source_map["buildings"]:
+        normalized = with_bupt_code_alias(building)
+        buildings.append(
+            {
+                **normalized,
+                "scene_name": scene_name,
+                "route_node_type": "building",
+            }
+        )
+
+    facilities = []
+    for facility in source_map["facilities"]:
+        normalized = with_bupt_code_alias(facility)
+        facilities.append(
+            {
+                **normalized,
+                "scene_name": scene_name,
+                "route_node_type": "facility",
+            }
+        )
+
+    edges = []
+    for edge in source_map["edges"]:
+        allowed_modes = set(edge.get("allowed_modes") or ["walk"])
+        allowed_modes.add("mixed")
+        if "bike" in allowed_modes:
+            allowed_modes.add("taxi")
+        edges.append(
+            {
+                **edge,
+                "scene_name": scene_name,
+                "source_code": remap_bupt_code(edge["source_code"]),
+                "target_code": remap_bupt_code(edge["target_code"]),
+                "allowed_modes": sorted(allowed_modes),
+                "taxi_speed": float(
+                    edge.get("shuttle_speed") or edge.get("bike_speed") or edge.get("walk_speed") or 4.8
+                ),
+            }
+        )
+
+    scene = {
+        "name": scene_name,
+        "label": source_map.get("label", "北京邮电大学校园"),
+        "city": "北京",
+        "category": "campus",
+        "supports_routing": True,
+        "navigation_radius_m": 1800,
+        "transport_modes": ["walk", "bike", "taxi", "mixed"],
+        "nodes": scene_nodes,
+        "source_map": "datasets/source_maps/bupt_campus_map.json",
+        "map_import_summary": source_map.get("import_summary", {}),
+    }
+    return scene, facilities, edges, buildings
+
+
+FEATURED_SCENE_CONFIG = {
+    "故宫博物院": ("Forbidden_City", "FORBID", "故宫博物院精细导航"),
+    "颐和园": ("Summer_Palace", "SUMMER", "颐和园景区"),
+    "三里屯": ("Beijing_Sanlitun", "SANLI", "三里屯商圈精细导航"),
+    "清华大学": ("Tsinghua_University", "TSING", "清华大学校园精细导航"),
+    "外滩": ("Shanghai_Bund", "BUND", "外滩滨江精细导航"),
+    "豫园": ("Shanghai_Yuyuan", "YUYUAN", "豫园景区精细导航"),
+    "南京路步行街": ("Shanghai_Nanjing_Road", "NJROAD", "南京路步行街精细导航"),
+    "上海交通大学(徐汇校区)": ("Shanghai_Jiaotong_Xuhui", "SJTU", "上海交通大学徐汇校区精细导航"),
+    "广州塔": ("Guangzhou_Canton_Tower", "CANTON", "广州塔景区精细导航"),
+    "陈家祠": ("Guangzhou_Chen_Clan", "CHEN", "陈家祠景区精细导航"),
+    "天环广场": ("Guangzhou_Parc_Central", "PARC", "天环广场商圈精细导航"),
+    "中山大学(南校园)": ("Guangzhou_Sun_Yat_Sen", "SYSU", "中山大学南校园精细导航"),
+    "世界之窗": ("Shenzhen_Window_World", "WINDOW", "世界之窗景区精细导航"),
+    "深圳湾公园": ("Shenzhen_Bay_Park", "BAY", "深圳湾公园精细导航"),
+    "万象天地": ("Shenzhen_MixC_World", "MIXC", "万象天地商圈精细导航"),
+    "深圳大学": ("Shenzhen_University", "SZU", "深圳大学校园精细导航"),
+}
+
+
+FACILITY_FALLBACKS = [
+    ("游客服务中心", "visitor_center"),
+    ("公共厕所A", "restroom"),
+    ("公共厕所B", "restroom"),
+    ("餐饮点", "restaurant"),
+    ("咖啡休息点", "cafe"),
+    ("便利商店", "shop"),
+    ("超市", "supermarket"),
+    ("售票咨询点", "ticket"),
+    ("医疗服务点", "hospital"),
+    ("无障碍服务点", "accessibility"),
+    ("充电驿站", "charging"),
+    ("休憩亭", "rest_area"),
+]
+
+
+def geo_distance_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    mean_lat = math.radians((lat1 + lat2) / 2)
+    lat_m = (lat1 - lat2) * 111_320
+    lon_m = (lon1 - lon2) * 111_320 * max(math.cos(mean_lat), 0.2)
+    return math.hypot(lat_m, lon_m)
+
+
+def scene_code_for_featured(destination: dict) -> tuple[str, str, str]:
+    configured = FEATURED_SCENE_CONFIG.get(destination["name"])
+    if configured:
+        return configured
+    compact = "".join(ch for ch in destination["name"] if ch.isalnum())[:10].upper()
+    return f"{destination['city']}_{compact}", compact or "SCENE", f"{destination['name']}精细导航"
+
+
+def nearby_raw_points(city_code: str, anchor: dict, radius_m: float, raw_kind: str) -> list[dict]:
+    raw = load_raw(f"{city_code}_{raw_kind}_osm.json")
+    points = [normalize_raw_point(item) for item in raw.get("elements", [])]
+    candidates = []
+    seen: set[str] = set()
+    for point in points:
+        if point is None:
+            continue
+        distance = geo_distance_m(anchor["latitude"], anchor["longitude"], point["latitude"], point["longitude"])
+        if distance > radius_m:
+            continue
+        key = point["name"].strip().lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        candidates.append({**point, "distance_m": distance})
+    candidates.sort(key=lambda item: item["distance_m"])
+    return candidates
+
+
+def _offset_point(anchor: dict, index: int, distance_m: float = 140.0) -> tuple[float, float]:
+    angle = index * 2.399963229728653
+    lat_offset = math.sin(angle) * distance_m / 111_320
+    lon_offset = math.cos(angle) * distance_m / (111_320 * max(math.cos(math.radians(anchor["latitude"])), 0.2))
+    return anchor["latitude"] + lat_offset, anchor["longitude"] + lon_offset
+
+
+def build_featured_scene(destination: dict, city_code: str) -> tuple[dict, list[dict], list[dict]]:
+    scene_name, prefix, label = scene_code_for_featured(destination)
+    radius_m = 800.0
+    destination_points: list[dict] = []
+    food_points: list[dict] = []
+    while radius_m <= 3000:
+        destination_points = nearby_raw_points(city_code, destination, radius_m, "destinations")
+        food_points = nearby_raw_points(city_code, destination, radius_m, "foods")
+        if len(destination_points) >= 19 and len(food_points) >= 6:
+            break
+        radius_m += 400.0
+
+    nodes = [
+        {
+            "code": f"{prefix}_GATE",
+            "name": f"{destination['name']}入口",
+            "latitude": destination["latitude"],
+            "longitude": destination["longitude"],
+        }
+    ]
+    for idx, point in enumerate(destination_points[:19], start=1):
+        nodes.append(
+            {
+                "code": f"{prefix}_{idx:02d}",
+                "name": point["name"],
+                "latitude": point["latitude"],
+                "longitude": point["longitude"],
+            }
+        )
+    while len(nodes) < 20:
+        latitude, longitude = _offset_point(destination, len(nodes))
+        nodes.append(
+            {
+                "code": f"{prefix}_{len(nodes):02d}",
+                "name": f"{destination['name']}游览点{len(nodes)}",
+                "latitude": latitude,
+                "longitude": longitude,
+            }
+        )
+
+    facilities = []
+    facility_candidates = [*food_points[:6], *destination_points[19:28]]
+    for idx, point in enumerate(facility_candidates[:12], start=1):
+        facilities.append(
+            {
+                "scene_name": scene_name,
+                "code": f"{prefix}_F_{idx:02d}",
+                "name": point["name"],
+                "facility_type": point.get("raw_type", "restaurant"),
+                "latitude": point["latitude"],
+                "longitude": point["longitude"],
+            }
+        )
+    for fallback_index, (name, facility_type) in enumerate(FACILITY_FALLBACKS, start=1):
+        if len(facilities) >= 12:
+            break
+        latitude, longitude = _offset_point(destination, len(facilities) + fallback_index, distance_m=90.0)
+        facilities.append(
+            {
+                "scene_name": scene_name,
+                "code": f"{prefix}_F_{len(facilities) + 1:02d}",
+                "name": f"{destination['name']}{name}",
+                "facility_type": facility_type,
+                "latitude": latitude,
+                "longitude": longitude,
+            }
+        )
+
+    edges: list[dict] = []
+    all_points = nodes + facilities
+    for idx, source in enumerate(all_points):
+        nearest = sorted(
+            (
+                (
+                    geo_distance_m(
+                        source["latitude"],
+                        source["longitude"],
+                        target["latitude"],
+                        target["longitude"],
+                    ),
+                    target,
+                )
+                for target in all_points
+                if target["code"] != source["code"]
+            ),
+            key=lambda item: item[0],
+        )[:4]
+        for neighbor_index, (distance, target) in enumerate(nearest):
+            allowed_modes = ["walk", "mixed"]
+            if destination["category"] in {"campus", "shopping"} or neighbor_index == 0:
+                allowed_modes.append("bike")
+            if destination["category"] == "scenic" and idx % 5 == 0:
+                allowed_modes.append("shuttle")
+            if "bike" in allowed_modes or "shuttle" in allowed_modes:
+                allowed_modes.append("taxi")
+            edges.append(
+                {
+                    "scene_name": scene_name,
+                    "source_code": source["code"],
+                    "target_code": target["code"],
+                    "distance": round(max(distance, 35.0), 1),
+                    "congestion": round(0.58 + rand.random() * 0.4, 2),
+                    "walk_speed": 1.1,
+                    "bike_speed": 3.5,
+                    "shuttle_speed": 4.8,
+                    "taxi_speed": 5.2,
+                    "allowed_modes": sorted(set(allowed_modes)),
+                }
+            )
+
+    backbone = sorted(all_points, key=lambda item: (item["latitude"], item["longitude"]))
+    for left, right in zip(backbone, backbone[1:]):
+        distance = round(
+            max(geo_distance_m(left["latitude"], left["longitude"], right["latitude"], right["longitude"]), 35.0), 1
+        )
+        for source, target in ((left, right), (right, left)):
+            edges.append(
+                {
+                    "scene_name": scene_name,
+                    "source_code": source["code"],
+                    "target_code": target["code"],
+                    "distance": distance,
+                    "congestion": 0.84,
+                    "walk_speed": 1.1,
+                    "bike_speed": 3.5,
+                    "shuttle_speed": 4.8,
+                    "taxi_speed": 5.2,
+                    "allowed_modes": ["bike", "mixed", "taxi", "walk"],
+                }
+            )
+
+    scene = {
+        "name": scene_name,
+        "label": label,
+        "city": destination["city"],
+        "category": destination["category"],
+        "anchor_destination_id": destination["source_id"],
+        "supports_routing": True,
+        "transport_modes": ["walk", "bike", "taxi", "mixed"]
+        + (["shuttle"] if destination["category"] == "scenic" else []),
+        "navigation_radius_m": int(radius_m),
+        "nodes": nodes,
+    }
+    return scene, facilities, edges
+
+
+FOUR_CITY_CODES = {
+    "北京": "beijing",
+    "上海": "shanghai",
+    "广州": "guangzhou",
+    "深圳": "shenzhen",
+}
+
+FOUR_CITY_PREFIXES = {
+    "北京": "BJ",
+    "上海": "SH",
+    "广州": "GZ",
+    "深圳": "SZ",
+}
+
+FALLBACK_FACILITY_TYPES = [
+    ("游客中心", "visitor_center"),
+    ("公共厕所", "restroom"),
+    ("便利店", "shop"),
+    ("餐饮点", "restaurant"),
+    ("咖啡点", "cafe"),
+    ("服务台", "service"),
+    ("文创商店", "shop"),
+    ("饮水处", "water"),
+    ("医疗点", "hospital"),
+    ("导览租赁点", "guide"),
+    ("休息区", "rest_area"),
+    ("交通接驳点", "transport"),
+]
+
+
+def _nearby_raw_points(city_code: str, raw_name: str, anchor: dict, radius_m: float) -> list[dict]:
+    raw_points = [
+        normalize_raw_point(item) for item in load_raw(f"{city_code}_{raw_name}_osm.json").get("elements", [])
+    ]
+    raw_points = [item for item in raw_points if item is not None]
+    nearby = [
+        item
+        for item in raw_points
+        if geo_distance_m(anchor["latitude"], anchor["longitude"], item["latitude"], item["longitude"]) <= radius_m
+    ]
+    return dedupe_by_name(nearby)
+
+
+def _select_nearby_points(city_code: str, raw_name: str, anchor: dict, minimum: int) -> list[dict]:
+    selected: list[dict] = []
+    for radius_m in (800, 1200, 2000, 3000):
+        selected = _nearby_raw_points(city_code, raw_name, anchor, radius_m)
+        if len(selected) >= minimum:
+            return selected
+    return selected
+
+
+def _offset_point(anchor: dict, index: int, distance_m: float = 65.0) -> tuple[float, float]:
+    angle = index * 2.399963229728653
+    latitude = anchor["latitude"] + math.sin(angle) * distance_m / 111_320
+    longitude = anchor["longitude"] + math.cos(angle) * distance_m / (
+        111_320 * max(math.cos(math.radians(anchor["latitude"])), 0.2)
+    )
+    return latitude, longitude
+
+
+def _build_featured_scene(
+    featured: dict,
+    scene_index: int,
+) -> tuple[dict, list[dict], list[dict], list[dict]]:
+    city = featured["city"]
+    city_code = FOUR_CITY_CODES[city]
+    prefix = f"{FOUR_CITY_PREFIXES[city]}R{scene_index:02d}"
+    scene_name = f"{prefix}_{featured['category'].upper()}_Route"
+
+    raw_destinations = _select_nearby_points(city_code, "destinations", featured, minimum=19)
+    raw_facilities = _select_nearby_points(city_code, "foods", featured, minimum=12)
+    raw_destinations = [item for item in raw_destinations if item["name"] != featured["name"]]
+
+    nodes = [
+        {
+            "code": f"{prefix}_GATE",
+            "name": featured["name"],
+            "latitude": featured["latitude"],
+            "longitude": featured["longitude"],
+        }
+    ]
+    for idx, item in enumerate(raw_destinations[:19], start=1):
+        nodes.append(
+            {
+                "code": f"{prefix}_{idx:02d}",
+                "name": item["name"],
+                "latitude": item["latitude"],
+                "longitude": item["longitude"],
+            }
+        )
+    while len(nodes) < 20:
+        latitude, longitude = _offset_point(featured, len(nodes), distance_m=90 + len(nodes) * 12)
+        nodes.append(
+            {
+                "code": f"{prefix}_{len(nodes):02d}",
+                "name": f"{featured['name']}导览点{len(nodes)}",
+                "latitude": latitude,
+                "longitude": longitude,
+            }
+        )
+
+    facilities = []
+    for idx, item in enumerate(raw_facilities[:12], start=1):
+        facilities.append(
+            {
+                "scene_name": scene_name,
+                "code": f"{prefix}_F_{idx:02d}",
+                "name": item["name"],
+                "facility_type": item.get("raw_type", "restaurant"),
+                "latitude": item["latitude"],
+                "longitude": item["longitude"],
+            }
+        )
+    while len(facilities) < 12:
+        label, facility_type = FALLBACK_FACILITY_TYPES[len(facilities) % len(FALLBACK_FACILITY_TYPES)]
+        latitude, longitude = _offset_point(featured, len(facilities) + 30, distance_m=130 + len(facilities) * 10)
+        facilities.append(
+            {
+                "scene_name": scene_name,
+                "code": f"{prefix}_F_{len(facilities) + 1:02d}",
+                "name": f"{featured['name']}{label}",
+                "facility_type": facility_type,
+                "latitude": latitude,
+                "longitude": longitude,
+            }
+        )
+
+    scene = {
+        "name": scene_name,
+        "label": f"{featured['name']}精细导航",
+        "city": city,
+        "category": featured["category"],
+        "anchor_destination_id": featured["source_id"],
+        "supports_routing": True,
+        "navigation_radius_m": 3000,
+        "transport_modes": ["walk", "bike", "mixed"]
+        if featured["category"] == "campus"
+        else ["walk", "shuttle", "mixed"],
+        "nodes": nodes,
+    }
+
+    all_points = nodes + facilities
+    edges = []
+    for idx, source in enumerate(all_points):
+        nearest = sorted(
+            (
+                (
+                    geo_distance_m(source["latitude"], source["longitude"], target["latitude"], target["longitude"]),
+                    target,
+                )
+                for target in all_points
+                if target["code"] != source["code"]
+            ),
+            key=lambda item: item[0],
+        )[:4]
+        for distance, target in nearest:
+            allowed_modes = (
+                ["walk", "bike", "mixed"]
+                if featured["category"] == "campus" or idx % 5 == 0
+                else ["walk", "shuttle", "mixed"]
+            )
+            edges.append(
+                {
+                    "scene_name": scene_name,
+                    "source_code": source["code"],
+                    "target_code": target["code"],
+                    "distance": round(max(distance, 35.0), 1),
+                    "congestion": round(0.65 + rand.random() * 0.35, 2),
+                    "walk_speed": 1.1,
+                    "bike_speed": 3.5,
+                    "shuttle_speed": 4.8,
+                    "allowed_modes": allowed_modes,
+                }
+            )
+
+    backbone = sorted(all_points, key=lambda item: (item["latitude"], item["longitude"]))
+    for left, right in zip(backbone, backbone[1:]):
+        distance = round(
+            max(geo_distance_m(left["latitude"], left["longitude"], right["latitude"], right["longitude"]), 35), 1
+        )
+        for source, target in ((left, right), (right, left)):
+            edges.append(
+                {
+                    "scene_name": scene_name,
+                    "source_code": source["code"],
+                    "target_code": target["code"],
+                    "distance": distance,
+                    "congestion": 0.9,
+                    "walk_speed": 1.1,
+                    "bike_speed": 3.5,
+                    "shuttle_speed": 4.8,
+                    "allowed_modes": ["walk", "bike", "shuttle", "mixed"],
+                }
+            )
+
+    buildings = [{**node, "scene_name": scene_name, "building_type": "navigation_point"} for node in nodes]
+    return scene, facilities, edges, buildings
+
+
+def build_featured_navigation_scenes(
+    featured_destinations: list[dict],
+) -> tuple[list[dict], list[dict], list[dict], list[dict]]:
+    scenes = []
+    facilities = []
+    edges = []
+    buildings = []
+    featured_items = [
+        item for item in featured_destinations if item["city"] in FOUR_CITY_CODES and item["name"] != "颐和园"
+    ]
+    for index, featured in enumerate(featured_items, start=1):
+        scene, scene_facilities, scene_edges, scene_buildings = _build_featured_scene(featured, index)
+        scenes.append(scene)
+        facilities.extend(scene_facilities)
+        edges.extend(scene_edges)
+        buildings.extend(scene_buildings)
+    return scenes, facilities, edges, buildings
 
 
 def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
@@ -1092,17 +1613,20 @@ def build_foods(featured_destinations: list[dict]) -> list[dict]:
             city_destinations.setdefault(city, []).append(dest)
 
     CITY_CODES_MAP = {
-        "北京": "beijing", "上海": "shanghai", "广州": "guangzhou",
-        "深圳": "shenzhen", "成都": "chengdu", "南京": "nanjing", "苏州": "suzhou",
+        "北京": "beijing",
+        "上海": "shanghai",
+        "广州": "guangzhou",
+        "深圳": "shenzhen",
+        "成都": "chengdu",
+        "南京": "nanjing",
+        "苏州": "suzhou",
     }
 
     food_idx = len(items) + 1
     # 3. 从各城市 OSM 美食数据中生成
     for city, code in CITY_CODES_MAP.items():
         raw = load_raw(f"{code}_foods_osm.json")
-        raw_points = [
-            normalize_raw_point(item) for item in raw.get("elements", [])
-        ]
+        raw_points = [normalize_raw_point(item) for item in raw.get("elements", [])]
         raw_points = [p for p in raw_points if p is not None]
         # 去重
         seen: set[str] = set()
@@ -1145,10 +1669,7 @@ def build_foods(featured_destinations: list[dict]) -> list[dict]:
             nearest_dest = None
             min_dist = float("inf")
             for dest in dests:
-                d = haversine_distance(
-                    p["latitude"], p["longitude"],
-                    dest.get("latitude", 0), dest.get("longitude", 0)
-                )
+                d = haversine_distance(p["latitude"], p["longitude"], dest.get("latitude", 0), dest.get("longitude", 0))
                 if d < min_dist:
                     min_dist = d
                     nearest_dest = dest
@@ -1350,7 +1871,7 @@ def main() -> None:
     all_destinations, featured_destinations = merge_featured_metadata(all_destinations)
     all_destinations.sort(key=lambda item: (item["city"], item["category"], item["name"]))
 
-    bupt_buildings = [
+    _bupt_buildings = [
         "南门",
         "图书馆",
         "主楼",
@@ -1372,7 +1893,7 @@ def main() -> None:
         "信息楼",
         "创新实践基地",
     ]
-    bupt_facilities = [
+    _bupt_facilities = [
         ("第一食堂", "canteen"),
         ("第二食堂", "canteen"),
         ("超市", "market"),
@@ -1400,13 +1921,7 @@ def main() -> None:
         ("邮局服务点", "post"),
         ("饮水站", "water"),
     ]
-    bupt_scene, bupt_scene_facilities, bupt_edges = scene_from_raw(
-        "BUPT_Main_Campus", "BUPT", "bupt_scene.json", bupt_buildings, bupt_facilities
-    )
-    rename_node_code(
-        bupt_scene, bupt_edges, bupt_scene["nodes"][0]["code"], "BUPT_GATE"
-    )
-    rename_node_code(bupt_scene, bupt_edges, bupt_scene["nodes"][1]["code"], "BUPT_LIB")
+    bupt_scene, bupt_scene_facilities, bupt_edges, bupt_scene_buildings = build_bupt_scene_from_source_map()
 
     summer_buildings = [
         "东宫门",
@@ -1464,43 +1979,34 @@ def main() -> None:
         summer_buildings,
         summer_facilities,
     )
+    featured_scenes, featured_scene_facilities, featured_scene_edges, featured_scene_buildings = (
+        build_featured_navigation_scenes(featured_destinations)
+    )
+    summer_featured = next((item for item in featured_destinations if item["name"] == "颐和园"), {})
 
     scenes = [
         {
             "name": "BUPT_Main_Campus",
             "label": "北京邮电大学校园",
             "city": "北京",
+            "category": "campus",
             "supports_routing": True,
+            "navigation_radius_m": 1800,
+            "transport_modes": ["walk", "bike", "mixed"],
             "nodes": bupt_scene["nodes"],
         },
         {
             "name": "Summer_Palace",
             "label": "颐和园景区",
             "city": "北京",
+            "category": "scenic",
+            "anchor_destination_id": summer_featured.get("source_id", "osm-node-4822625121"),
             "supports_routing": True,
+            "navigation_radius_m": 3000,
+            "transport_modes": ["walk", "shuttle", "mixed"],
             "nodes": summer_scene["nodes"],
         },
-        {
-            "name": "Shanghai_City_View",
-            "label": "上海城市精选地图",
-            "city": "上海",
-            "supports_routing": False,
-            "nodes": [],
-        },
-        {
-            "name": "Guangzhou_City_View",
-            "label": "广州城市精选地图",
-            "city": "广州",
-            "supports_routing": False,
-            "nodes": [],
-        },
-        {
-            "name": "Shenzhen_City_View",
-            "label": "深圳城市精选地图",
-            "city": "深圳",
-            "supports_routing": False,
-            "nodes": [],
-        },
+        *featured_scenes,
         {
             "name": "Chengdu_City_View",
             "label": "成都城市精选地图",
@@ -1523,16 +2029,13 @@ def main() -> None:
             "nodes": [],
         },
     ]
-    buildings = [
-        {**node, "scene_name": bupt_scene["name"], "building_type": "landmark"}
-        for node in bupt_scene["nodes"]
-    ]
+    buildings = bupt_scene_buildings
     buildings += [
-        {**node, "scene_name": summer_scene["name"], "building_type": "landmark"}
-        for node in summer_scene["nodes"]
+        {**node, "scene_name": summer_scene["name"], "building_type": "landmark"} for node in summer_scene["nodes"]
     ]
-    facilities = bupt_scene_facilities + summer_scene_facilities
-    edges = bupt_edges + summer_edges
+    buildings += featured_scene_buildings
+    facilities = bupt_scene_facilities + summer_scene_facilities + featured_scene_facilities
+    edges = bupt_edges + summer_edges + featured_scene_edges
     foods = build_foods(featured_destinations)
     ensure_local_media(featured_destinations, foods)
     featured_by_name = {item["name"]: item for item in featured_destinations}
@@ -1541,12 +2044,8 @@ def main() -> None:
             destination.update(
                 {
                     "image_url": featured_by_name[destination["name"]]["image_url"],
-                    "image_source_name": featured_by_name[destination["name"]][
-                        "image_source_name"
-                    ],
-                    "image_source_url": featured_by_name[destination["name"]][
-                        "image_source_url"
-                    ],
+                    "image_source_name": featured_by_name[destination["name"]]["image_source_name"],
+                    "image_source_url": featured_by_name[destination["name"]]["image_source_url"],
                 }
             )
     users = build_users()
@@ -1557,6 +2056,11 @@ def main() -> None:
             "name": "OpenStreetMap Overpass",
             "file": "datasets/raw/*.json",
             "content": "北京目的地与样板场景真实点位",
+        },
+        {
+            "name": "Legacy BUPT campus map snapshot",
+            "file": "datasets/source_maps/bupt_campus_map.json",
+            "content": "从 tourism-system-main 一次性导入并规范化的北邮校园路口、建筑、设施和道路边数据",
         },
         {
             "name": "Trip.com / TripAdvisor / 马蜂窝",
@@ -1577,30 +2081,14 @@ def main() -> None:
         json.dumps(featured_destinations, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-    (PROD_DIR / "scenes.json").write_text(
-        json.dumps(scenes, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    (PROD_DIR / "buildings.json").write_text(
-        json.dumps(buildings, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    (PROD_DIR / "facilities.json").write_text(
-        json.dumps(facilities, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    (PROD_DIR / "edges.json").write_text(
-        json.dumps(edges, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    (PROD_DIR / "foods.json").write_text(
-        json.dumps(foods, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    (PROD_DIR / "users.json").write_text(
-        json.dumps(users, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    (PROD_DIR / "sessions.json").write_text(
-        json.dumps([], ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    (PROD_DIR / "diaries.json").write_text(
-        json.dumps(diaries, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
+    (PROD_DIR / "scenes.json").write_text(json.dumps(scenes, ensure_ascii=False, indent=2), encoding="utf-8")
+    (PROD_DIR / "buildings.json").write_text(json.dumps(buildings, ensure_ascii=False, indent=2), encoding="utf-8")
+    (PROD_DIR / "facilities.json").write_text(json.dumps(facilities, ensure_ascii=False, indent=2), encoding="utf-8")
+    (PROD_DIR / "edges.json").write_text(json.dumps(edges, ensure_ascii=False, indent=2), encoding="utf-8")
+    (PROD_DIR / "foods.json").write_text(json.dumps(foods, ensure_ascii=False, indent=2), encoding="utf-8")
+    (PROD_DIR / "users.json").write_text(json.dumps(users, ensure_ascii=False, indent=2), encoding="utf-8")
+    (PROD_DIR / "sessions.json").write_text(json.dumps([], ensure_ascii=False, indent=2), encoding="utf-8")
+    (PROD_DIR / "diaries.json").write_text(json.dumps(diaries, ensure_ascii=False, indent=2), encoding="utf-8")
     (PROD_DIR / "data_sources.json").write_text(
         json.dumps(data_sources, ensure_ascii=False, indent=2), encoding="utf-8"
     )
@@ -1617,9 +2105,7 @@ def main() -> None:
         "users": len(users),
         "diaries": len(diaries),
     }
-    (PROD_DIR / "summary.json").write_text(
-        json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
+    (PROD_DIR / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 
