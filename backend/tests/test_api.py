@@ -46,7 +46,15 @@ def test_single_route_endpoint_returns_path(client):
     assert payload["navigation_summary"]
     assert payload["resolved_start_code"] == "BUPT_GATE"
     assert "alternatives" in payload
-    assert any(node["route_node_type"] == "road" for node in payload["route_nodes"])
+    assert payload["route_source"] == "local"
+    assert payload["route_source_label"] == "本地算法"
+    assert payload["algorithm_path_codes"] == payload["path_codes"]
+    assert "external_provider" not in payload
+    assert "provider_distance_m" not in payload
+    assert "provider_estimated_minutes" not in payload
+    assert "external_fallback_reason" not in payload
+    assert payload["route_geometry"]
+    assert payload["route_polyline"]
     assert all(code in {node["code"] for node in payload["route_nodes"]} for code in payload["path_codes"])
 
 

@@ -11,6 +11,10 @@ from app.services.routing_service import RoutePlanningService
 from app.services.search_service import SearchService
 
 
+def local_route_service() -> RoutePlanningService:
+    return RoutePlanningService(get_json_repository())
+
+
 def test_topk_selector_works():
     items = [{"name": "a", "score": 1}, {"name": "b", "score": 3}, {"name": "c", "score": 2}]
     selector = TopKSelector(lambda item: item["score"])
@@ -168,7 +172,7 @@ def test_nearby_facility_restroom_category_matches_toilets_data():
 
 
 def test_taxi_mode_uses_vehicle_speed_on_mixed_roads():
-    service = RoutePlanningService(get_json_repository())
+    service = local_route_service()
 
     walk = service.plan_single("BUPT_Main_Campus", "BUPT_GATE", "BUPT_LIB", "time", "walk")
     taxi = service.plan_single("BUPT_Main_Campus", "BUPT_GATE", "BUPT_LIB", "time", "taxi")
@@ -177,19 +181,34 @@ def test_taxi_mode_uses_vehicle_speed_on_mixed_roads():
     assert taxi["estimated_minutes"] < walk["estimated_minutes"]
 
 
-def test_single_route_uses_road_nodes_instead_of_poi_transit_chain():
-    service = RoutePlanningService(get_json_repository())
+def test_single_route_returns_algorithm_path_and_geometry():
+    service = local_route_service()
     result = service.plan_single("BUPT_Main_Campus", "BUPT_GATE", "BUPT_LIB", "time", "walk")
 
     assert result["path_codes"][0] == "BUPT_GATE"
     assert result["path_codes"][-1] == "BUPT_LIB"
-    assert all(code.startswith("__road__") for code in result["path_codes"][1:-1])
-    assert result["total_distance_m"] < 1800
-    assert any(node["route_node_type"] == "road" for node in result["route_nodes"])
+    assert result["total_distance_m"] > 0
+    assert result["route_source"] == "local"
+    assert result["algorithm_path_codes"] == result["path_codes"]
+    assert result["route_geometry"]
+    assert all(code in {node["code"] for node in result["route_nodes"]} for code in result["path_codes"])
+
+
+def test_single_route_is_local_algorithm_only():
+    service = RoutePlanningService(get_json_repository())
+    result = service.plan_single("BUPT_Main_Campus", "BUPT_GATE", "BUPT_LIB", "time", "walk")
+
+    assert result["route_source"] == "local"
+    assert result["route_source_label"] == "本地算法"
+    assert result["algorithm_path_codes"] == result["path_codes"]
+    assert "external_provider" not in result
+    assert "provider_distance_m" not in result
+    assert "provider_estimated_minutes" not in result
+    assert "external_fallback_reason" not in result
 
 
 def test_wander_route_returns_closed_loop_with_auto_stops():
-    service = RoutePlanningService(get_json_repository())
+    service = local_route_service()
     result = service.plan_wander(
         scene_name="BUPT_Main_Campus",
         start_code="BUPT_GATE",
@@ -205,7 +224,7 @@ def test_wander_route_returns_closed_loop_with_auto_stops():
 
 
 def test_plan_multi_empty_targets_returns_origin_only():
-    service = RoutePlanningService(get_json_repository())
+    service = local_route_service()
     result = service.plan_multi("BUPT_Main_Campus", "BUPT_GATE", [], "distance", "walk")
 
     assert result["path_codes"] == ["BUPT_GATE"]

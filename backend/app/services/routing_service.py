@@ -141,6 +141,17 @@ class RoutePlanningService:
             f"按{self._strategy_label(strategy)} + {self._transport_label(transport_mode)}策略生成。"
         )
 
+    def _route_geometry_for_path(self, scene_name: str, path_codes: list[str]) -> list[dict]:
+        graph = self.graph_builder.get_scene_graph(scene_name)
+        geometry = []
+        for code in path_codes:
+            coords = graph.coords.get(code)
+            if coords is None:
+                continue
+            latitude, longitude = coords
+            geometry.append({"latitude": latitude, "longitude": longitude})
+        return geometry
+
     def _expand_segments(self, graph: Graph, ordered_codes: list[str], strategy: str, transport_mode: str) -> list[str]:
         expanded: list[str] = []
         for left, right in zip(ordered_codes, ordered_codes[1:]):
@@ -173,6 +184,11 @@ class RoutePlanningService:
             "scenic_score": metrics["scenic_score"],
             "segments": segments,
             "route_nodes": self.graph_builder.route_nodes_for_path(scene_name, path_codes),
+            "route_geometry": self._route_geometry_for_path(scene_name, path_codes),
+            "route_polyline": self._route_geometry_for_path(scene_name, path_codes),
+            "route_source": "local",
+            "route_source_label": "本地算法",
+            "algorithm_path_codes": [*path_codes],
         }
 
     def plan_single(
@@ -449,6 +465,11 @@ class RoutePlanningService:
             "navigation_summary": self._navigation_summary(strategy, transport_mode, full_path, metrics),
             "segments": segments,
             "route_nodes": self.graph_builder.route_nodes_for_path(scene_name, full_path),
+            "route_geometry": self._route_geometry_for_path(scene_name, full_path),
+            "route_polyline": self._route_geometry_for_path(scene_name, full_path),
+            "route_source": "local",
+            "route_source_label": "本地算法",
+            "algorithm_path_codes": [*full_path],
             "resolved_start_code": resolved_start_code,
             "resolved_start_name": names.get(resolved_start_code, resolved_start_code),
         }
