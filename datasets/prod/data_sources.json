@@ -5,6 +5,11 @@
     "content": "北京目的地与样板场景真实点位"
   },
   {
+    "name": "Legacy BUPT campus map snapshot",
+    "file": "datasets/source_maps/bupt_campus_map.json",
+    "content": "从 tourism-system-main 一次性导入并规范化的北邮校园路口、建筑、设施和道路边数据"
+  },
+  {
     "name": "Trip.com / TripAdvisor / 马蜂窝",
     "file": "datasets/prod/featured_destinations.json, datasets/prod/foods.json",
     "content": "四城精选目的地与美食的评分和热度来源"

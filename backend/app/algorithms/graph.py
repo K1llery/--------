@@ -61,7 +61,7 @@ class Graph:
 
     def edge_travel_seconds(self, edge: Edge, transport_mode: str) -> float:
         speed = max(self._speed_for_mode(edge, transport_mode), 0.1)
-        return edge.distance / speed * max(edge.congestion, 0.45)
+        return edge.distance / (speed * max(edge.congestion, 0.25))
 
     def _edge_weight(self, source: str, edge: Edge, strategy: str, transport_mode: str) -> float:
         travel_seconds = self.edge_travel_seconds(edge, transport_mode)
@@ -69,7 +69,7 @@ class Graph:
         if strategy == "time":
             return travel_seconds
         if strategy == "congestion":
-            return travel_seconds * (1 + max(edge.congestion - 0.8, 0) * 3.5) + edge.distance * 0.05
+            return travel_seconds * (1 + max(0.85 - edge.congestion, 0) * 3.5) + edge.distance * 0.05
         if strategy == "scenic":
             return max(edge.distance * (1 + edge.congestion * 0.12) - scenic_bonus, 8.0)
         return edge.distance
