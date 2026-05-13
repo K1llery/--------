@@ -9,9 +9,10 @@
 | Hash 精确查询 | `backend/app/algorithms/search.py` | 按名称或 ID 做精确索引查找。 | 构建 `O(n)`，查询均摊 `O(1)` |
 | Trie 前缀查询 | `backend/app/algorithms/search.py` | 支持目的地名称前缀检索。 | 插入 `O(L)`，查询 `O(P + R)` |
 | 倒排索引 | `backend/app/algorithms/search.py` | 支持多关键词联合检索。 | 构建 `O(T)`，查询为倒排集合交集 |
+| 本地有向图建模 | `backend/app/services/graph_builder.py` + `datasets/source_maps/bupt_campus_map.json` | 北邮样板使用路口、建筑、设施作为顶点，道路作为有向边，边包含距离、拥挤度、速度和交通方式约束。 | 构图 `O(V + E)` |
 | Dijkstra/A* | `backend/app/algorithms/graph.py` | 支持 distance/time/congestion/scenic 策略的最短路。 | `O(E log V)` |
 | 单源距离表 | `backend/app/algorithms/graph.py` | 一次计算起点到所有节点距离，供设施排序和多点路线复用。 | `O(E log V)` |
-| POI 道路吸附 | `backend/app/services/graph_builder.py` | 将景点、建筑和设施吸附到运行时道路节点，最短路只沿道路层展开。 | `O(P * R)` |
+| POI 道路吸附 | `backend/app/services/graph_builder.py` | 无显式路网的四城样板会生成运行时道路层；北邮样板直接使用导入的 `intersection` 路口节点。 | `O(P * R)` |
 | Held-Karp | `backend/app/algorithms/tsp.py` | 目标点较少时求精确多点闭环。 | `O(m^2 2^m)`，另有 `m` 次最短路预计算 |
 | Nearest Neighbor + 2-opt | `backend/app/algorithms/tsp.py` | 目标点较多时构造近似闭环并局部优化。 | 典型 `O(i * m^2)`，另有最短路预计算 |
 | Huffman | `backend/app/algorithms/compression.py` | 对日记文本做可逆压缩、解压和压缩率展示。 | 构树约 `O(n log s)`，解码 `O(n)` |
@@ -32,6 +33,7 @@
 - 查询不能退化为 `O(n)` 线性扫描；名称、类别、关键字和全文检索应走索引结构。
 - 推荐和美食场景只需要前 10 项时，应使用 Top-K 或 Quickselect，避免全量排序。
 - 地图抽象为有向图，交叉口、景点、建筑物和服务设施可作为顶点。
+- 北邮 `BUPT_Main_Campus` 的真实路网来自项目内 `datasets/source_maps/bupt_campus_map.json`；`tourism-system-main` 只是一次性导入来源，最终运行和数据生成不依赖该目录。
 - 指定地点和最近设施到达路线先将 POI 吸附到道路层，再使用最短路径算法；自动漫游和多目标闭环不能只依赖 `n!` 枚举，需要精确或近似优化策略。
 - 场所查询的距离必须是道路图距离，不能使用经纬度直线距离替代。
 - 日记压缩必须是无损压缩，并能验证解压一致性。
