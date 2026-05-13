@@ -6,6 +6,7 @@ import type {
   IndoorBuilding,
   IndoorRouteResult,
   MultiRouteResult,
+  SceneEdge,
   Scene,
   SingleRouteResult,
   TravelPlan,
@@ -87,7 +88,7 @@ export interface SceneDetailResponse {
   scene: Scene;
   buildings: any[];
   facilities: Facility[];
-  edges: any[];
+  edges: SceneEdge[];
 }
 
 /** 旅行计划列表响应 */

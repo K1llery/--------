@@ -29,7 +29,13 @@
     </div>
 
     <!-- 地图 -->
-    <RouteMap :nodes="mapNodes" :path="displayPathCodes" :current-location="currentLocation" />
+    <RouteMap
+      :nodes="mapNodes"
+      :path="displayPathCodes"
+      :polyline="displayRoutePolyline"
+      :edges="loader.edges.value"
+      :current-location="currentLocation"
+    />
 
     <!-- 状态卡片 -->
     <div class="grid grid-cols-2 gap-4">
@@ -49,8 +55,8 @@
     <div v-if="routeError" class="alert-soft-error">{{ routeError }}</div>
 
     <template v-if="supportsRouting">
-      <!-- 模式选择：随便逛逛 / 去指定地点 / 找最近设施 -->
-      <div class="grid grid-cols-3 gap-4" aria-label="路线规划模式">
+      <!-- 模式选择：随便逛逛 / 去指定地点 / 多点游览 / 找最近设施 -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4" aria-label="路线规划模式">
         <button
           v-for="item in modeOptions"
           :key="item.key"
@@ -102,6 +108,20 @@
               </select>
             </label>
 
+            <label v-if="routeMode === 'multi'" class="space-y-1 col-span-2">
+              <span class="field-label">途经地点</span>
+              <select
+                v-model="multiTargetCodes"
+                class="soft-control text-sm min-h-32"
+                multiple
+                size="5"
+              >
+                <option v-for="node in placeOptions" :key="node.code" :value="node.code">
+                  {{ node.name }}
+                </option>
+              </select>
+            </label>
+
             <label v-if="routeMode === 'facility'" class="space-y-1">
               <span class="field-label">设施类型</span>
               <select v-model="facilityType" class="soft-control text-sm">
@@ -124,7 +144,7 @@
               </select>
             </label>
 
-            <label v-if="routeMode === 'destination'" class="space-y-1">
+            <label v-if="routeMode === 'destination' || routeMode === 'multi'" class="space-y-1">
               <span class="field-label">路线策略</span>
               <select v-model="strategy" class="soft-control text-sm">
                 <option v-for="item in strategyOptions" :key="item.value" :value="item.value">
@@ -171,6 +191,13 @@
             <span class="stat-pill">{{ activeRoute.total_distance_m }} m</span>
             <span class="stat-pill">{{ activeRoute.estimated_minutes }} 分钟</span>
             <span class="stat-pill">{{ activeRoute.transport_mode_label }}</span>
+            <span class="stat-pill">{{ activeRoute.route_source_label || "本地算法" }}</span>
+            <span class="stat-pill"
+              >算法路径
+              {{ activeRoute.algorithm_path_codes?.length ?? activeRoute.path_codes.length }}
+              点</span
+            >
+            <span class="stat-pill">路网边 {{ loader.edges.value.length }} 条</span>
           </div>
           <p v-if="activeRoute.resolved_start_name" class="text-xs text-gray-400">
             实际起点：{{ activeRoute.resolved_start_name }}
@@ -184,6 +211,12 @@
             class="text-xs text-gray-400"
           >
             停靠：{{ planner.wanderRoute.value.ordered_stop_names.join(" → ") }}
+          </p>
+          <p
+            v-if="planner.multiRoute.value?.ordered_stop_names?.length && routeMode === 'multi'"
+            class="text-xs text-gray-400"
+          >
+            停靠：{{ planner.multiRoute.value.ordered_stop_names.join(" → ") }}
           </p>
         </aside>
       </section>
@@ -239,6 +272,12 @@
           </li>
         </ol>
       </section>
+
+      <IndoorRoutePanel
+        v-if="currentIndoorBuildings.length"
+        :buildings="currentIndoorBuildings"
+        @route-error="routeError = $event"
+      />
     </template>
 
     <div v-else class="alert-soft-info">
@@ -252,12 +291,18 @@ import { computed, onMounted, ref, watch } from "vue";
 
 import RouteMap from "../components/RouteMap.vue";
 import LocationCapture from "../components/route/LocationCapture.vue";
+import IndoorRoutePanel from "../components/route/IndoorRoutePanel.vue";
 import { useRoutePlanner } from "../composables/useRoutePlanner";
 import { useSceneLoader } from "../composables/useSceneLoader";
 import { useAuthStore } from "../stores/auth";
-import type { MultiRouteResult, RouteSegment, SingleRouteResult } from "../types/models";
+import type {
+  IndoorBuilding,
+  MultiRouteResult,
+  RouteSegment,
+  SingleRouteResult,
+} from "../types/models";
 
-type RouteMode = "" | "wander" | "destination" | "facility";
+type RouteMode = "" | "wander" | "destination" | "multi" | "facility";
 type RouteModeOption = {
   key: Exclude<RouteMode, "">;
   label: string;
@@ -276,6 +321,7 @@ const selectedSceneName = ref("BUPT_Main_Campus");
 const routeMode = ref<RouteMode>("");
 const startCode = ref("");
 const endCode = ref("");
+const multiTargetCodes = ref<string[]>([]);
 const transportMode = ref("walk");
 const strategy = ref("time");
 const durationMinutes = ref(35);
@@ -298,6 +344,12 @@ const modeOptions: RouteModeOption[] = [
     caption: "输入起点和目的地生成最短路径",
   },
   {
+    key: "multi",
+    label: "多点游览",
+    title: "规划闭环路线",
+    caption: "选择多个点位后自动排序并返回起点",
+  },
+  {
     key: "facility",
     label: "找最近设施",
     title: "厕所/餐厅/服务点",
@@ -308,7 +360,9 @@ const modeOptions: RouteModeOption[] = [
 const transportOptions = [
   { value: "walk", label: "步行" },
   { value: "bike", label: "骑行" },
+  { value: "shuttle", label: "电瓶车" },
   { value: "taxi", label: "打车" },
+  { value: "mixed", label: "混合" },
 ];
 
 const strategyOptions = [
@@ -338,6 +392,10 @@ const currentScene = computed(() =>
 const currentSceneLabel = computed(() => currentScene.value?.label ?? "当前场景");
 
 const supportsRouting = computed(() => currentScene.value?.supports_routing ?? false);
+
+const currentIndoorBuildings = computed<IndoorBuilding[]>(() =>
+  loader.indoorBuildings.value.filter((item) => item.scene_name === selectedSceneName.value),
+);
 
 const placeOptions = computed(() => [
   ...(loader.scene.value?.nodes ?? []),
@@ -381,12 +439,21 @@ const activeRoute = computed<SingleRouteResult | MultiRouteResult | null>(() => 
       ) ?? planner.singleRoute.value
     );
   }
-  return planner.facilityRoute.value || planner.wanderRoute.value || planner.singleRoute.value;
+  return (
+    planner.facilityRoute.value ||
+    planner.wanderRoute.value ||
+    planner.multiRoute.value ||
+    planner.singleRoute.value
+  );
 });
 
 const activeSegments = computed<RouteSegment[]>(() => activeRoute.value?.segments ?? []);
 
 const displayPathCodes = computed<string[]>(() => activeRoute.value?.path_codes ?? []);
+
+const displayRoutePolyline = computed(
+  () => activeRoute.value?.route_polyline ?? activeRoute.value?.route_geometry ?? [],
+);
 
 const activeNavigationSummary = computed(() => activeRoute.value?.navigation_summary ?? "");
 
@@ -397,6 +464,7 @@ const activeAlternatives = computed<SingleRouteResult[]>(
 const activeModeTitle = computed(() => {
   if (routeMode.value === "wander") return "随便逛逛";
   if (routeMode.value === "destination") return "去指定地点";
+  if (routeMode.value === "multi") return "多点游览";
   if (routeMode.value === "facility") return "找最近设施";
   return "";
 });
@@ -407,28 +475,36 @@ const activeTransportLabel = computed(
 
 const submitLabel = computed(() => {
   if (routeMode.value === "wander") return "生成漫游路线";
+  if (routeMode.value === "multi") return "生成多点闭环";
   if (routeMode.value === "facility") return "查找最近设施";
   return "生成到达路线";
 });
 
 const isPlanning = computed(
-  () => planner.singleLoading.value || planner.wanderLoading.value || planner.facilityLoading.value,
+  () =>
+    planner.singleLoading.value ||
+    planner.multiLoading.value ||
+    planner.wanderLoading.value ||
+    planner.facilityLoading.value,
 );
 
 const resultKicker = computed(() => {
   if (planner.wanderRoute.value) return "Wander Route";
+  if (planner.multiRoute.value) return "Multi-stop Route";
   if (planner.facilityRoute.value) return "Nearest Facility";
   return "Destination Route";
 });
 
 const resultTitle = computed(() => {
   if (planner.wanderRoute.value) return planner.wanderRoute.value.optimization_label;
+  if (planner.multiRoute.value) return planner.multiRoute.value.optimization_label;
   if (planner.facilityRoute.value?.facility) return planner.facilityRoute.value.facility.name;
   return activeRoute.value?.strategy_label ?? "路线结果";
 });
 
 const resultSubtitle = computed(() => {
   if (planner.wanderRoute.value) return "自动闭环路线已生成。";
+  if (planner.multiRoute.value) return "多点闭环路线已生成。";
   if (planner.facilityRoute.value) return "已按道路距离找到最近设施。";
   return "已生成指定地点到达路线。";
 });
@@ -446,6 +522,15 @@ const syncDefaults = () => {
   if (!options.some((item) => item.code === endCode.value)) {
     endCode.value = options.find((item) => item.code !== startCode.value)?.code ?? startCode.value;
   }
+  multiTargetCodes.value = multiTargetCodes.value.filter((code) =>
+    options.some((item) => item.code === code),
+  );
+  if (!multiTargetCodes.value.length) {
+    multiTargetCodes.value = options
+      .filter((item) => item.code !== startCode.value)
+      .slice(0, 3)
+      .map((item) => item.code);
+  }
 };
 
 watch(placeOptions, syncDefaults, { immediate: true });
@@ -459,6 +544,9 @@ const selectMode = (mode: Exclude<RouteMode, "">) => {
     transportMode.value = "walk";
   } else if (mode === "destination") {
     strategy.value = "time";
+  } else if (mode === "multi") {
+    strategy.value = "scenic";
+    syncDefaults();
   } else if (mode === "facility") {
     strategy.value = "time";
     facilityType.value = "restroom";
@@ -512,6 +600,12 @@ const handleGenerateRoute = async () => {
       end_code: endCode.value,
       strategy: strategy.value,
     });
+  } else if (routeMode.value === "multi") {
+    await planner.planMulti({
+      ...baseRoutePayload(),
+      target_codes: multiTargetCodes.value,
+      strategy: strategy.value,
+    });
   }
 
   if (planner.error.value) routeError.value = planner.error.value;
@@ -529,6 +623,7 @@ const handleSceneChange = async () => {
   if (!supportsRouting.value) {
     loader.scene.value = { nodes: [] };
     loader.facilities.value = [];
+    loader.edges.value = [];
     return;
   }
 

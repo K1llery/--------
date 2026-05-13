@@ -54,7 +54,23 @@ export interface SceneNode {
   name: string;
   latitude: number;
   longitude: number;
-  route_node_type?: string;
+  route_node_type?: "place" | "building" | "facility" | "intersection" | "road" | string;
+}
+
+/** 场景边 */
+export interface SceneEdge {
+  scene_name: string;
+  source_code: string;
+  target_code: string;
+  distance: number;
+  congestion: number;
+  allowed_modes?: string[];
+}
+
+/** 地理坐标点 */
+export interface GeoPoint {
+  latitude: number;
+  longitude: number;
 }
 
 /** 场景 */
@@ -62,7 +78,11 @@ export interface Scene {
   name: string;
   label: string;
   city: string;
+  category?: string;
+  anchor_destination_id?: string;
   supports_routing: boolean;
+  navigation_radius_m?: number;
+  transport_modes?: string[];
   nodes: SceneNode[];
 }
 
@@ -85,7 +105,10 @@ export interface RouteSegment {
 export interface SingleRouteResult {
   path_codes: string[];
   path_names: string[];
+  algorithm_path_codes?: string[];
   route_nodes: SceneNode[];
+  route_geometry?: GeoPoint[];
+  route_polyline?: GeoPoint[];
   total_distance_m: number;
   estimated_minutes: number;
   strategy: string;
@@ -100,6 +123,8 @@ export interface SingleRouteResult {
   resolved_start_code: string;
   resolved_start_name: string;
   alternatives: SingleRouteResult[];
+  route_source?: string;
+  route_source_label?: string;
   route_intent?: string;
   facility?: Facility;
   search_radius_m?: number;
@@ -109,7 +134,10 @@ export interface SingleRouteResult {
 export interface MultiRouteResult {
   path_codes: string[];
   path_names: string[];
+  algorithm_path_codes?: string[];
   route_nodes: SceneNode[];
+  route_geometry?: GeoPoint[];
+  route_polyline?: GeoPoint[];
   ordered_stop_codes: string[];
   ordered_stop_names: string[];
   total_distance_m: number;
@@ -124,6 +152,8 @@ export interface MultiRouteResult {
   segments: RouteSegment[];
   resolved_start_code: string;
   resolved_start_name: string;
+  route_source?: string;
+  route_source_label?: string;
   route_intent?: string;
   duration_minutes?: number;
   suggested_stop_codes?: string[];
