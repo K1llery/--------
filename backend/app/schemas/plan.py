@@ -15,7 +15,7 @@ class TimeSlots(BaseModel):
 
 class DayPlan(BaseModel):
     date: str
-    city: str
+    city: str = ""
     time_slots: TimeSlots
 
 

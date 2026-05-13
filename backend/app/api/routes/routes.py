@@ -38,8 +38,9 @@ def _tsp_greedy_two_opt(points: list[dict]) -> tuple[list[str], float]:
     if n <= 2:
         ordered = [p["source_id"] for p in points]
         total = sum(
-            _haversine_km(points[i]["latitude"], points[i]["longitude"],
-                          points[i + 1]["latitude"], points[i + 1]["longitude"])
+            _haversine_km(
+                points[i]["latitude"], points[i]["longitude"], points[i + 1]["latitude"], points[i + 1]["longitude"]
+            )
             for i in range(n - 1)
         )
         return ordered, total
@@ -49,8 +50,10 @@ def _tsp_greedy_two_opt(points: list[dict]) -> tuple[list[str], float]:
     for i in range(n):
         for j in range(i + 1, n):
             d = _haversine_km(
-                points[i]["latitude"], points[i]["longitude"],
-                points[j]["latitude"], points[j]["longitude"],
+                points[i]["latitude"],
+                points[i]["longitude"],
+                points[j]["latitude"],
+                points[j]["longitude"],
             )
             dist[i][j] = d
             dist[j][i] = d
@@ -85,7 +88,7 @@ def _tsp_greedy_two_opt(points: list[dict]) -> tuple[list[str], float]:
                 else:
                     after = dist[order[i - 1]][order[j]]
                 if after < before:
-                    order[i:j + 1] = reversed(order[i:j + 1])
+                    order[i : j + 1] = reversed(order[i : j + 1])
                     improved = True
 
     total = sum(dist[order[i]][order[i + 1]] for i in range(n - 1))
@@ -162,12 +165,14 @@ def optimize_order(
     for sid in payload.destination_ids:
         d = all_dests.get(sid)
         if d and d.get("latitude") is not None and d.get("longitude") is not None:
-            points.append({
-                "source_id": sid,
-                "latitude": float(d["latitude"]),
-                "longitude": float(d["longitude"]),
-                "name": d.get("name", sid),
-            })
+            points.append(
+                {
+                    "source_id": sid,
+                    "latitude": float(d["latitude"]),
+                    "longitude": float(d["longitude"]),
+                    "name": d.get("name", sid),
+                }
+            )
 
     if len(points) < 2:
         ordered = [p["source_id"] for p in points]

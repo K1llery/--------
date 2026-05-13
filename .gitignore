@@ -8,6 +8,7 @@ __pycache__/
 # Virtual environments
 .venv/
 backend/.venv/
+backend/venv/
 
 # IDE / Editor
 .DS_Store
@@ -45,6 +46,10 @@ frontend/public/media/system/
 *.sqlite3
 *.db
 storage/
+storage/*.log
+storage/*.err.log
+storage/*.db-wal
+storage/*.db-shm
 
 # Environment variables (may contain secrets)
 frontend/.env
@@ -53,5 +58,8 @@ backend/.env
 
 # Runtime generated media
 backend/static/media/generated/
+tools/__pycache__/
+docs/superpowers/plans/
+tourism-system-main/
 node_modules/
 eslint.config.mjs

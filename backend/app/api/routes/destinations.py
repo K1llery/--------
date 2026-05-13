@@ -10,8 +10,8 @@ router = APIRouter()
 
 
 @router.get("")
-def list_destinations() -> list[dict]:
-    return get_json_repository().destinations()
+def list_destinations(repository: DatasetRepository = Depends(get_repository)) -> list[dict]:
+    return repository.destinations()
 
 
 @router.get("/featured")
