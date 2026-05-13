@@ -20,6 +20,17 @@ class GraphBuilder:
         self._scene_code_sets: dict[str, set[str]] = {}
 
     @staticmethod
+    def _route_node_type(item: dict, fallback: str) -> str:
+        node_type = item.get("route_node_type") or item.get("node_type") or fallback
+        if node_type in {"place", "building", "facility", "intersection", "road"}:
+            return node_type
+        return fallback
+
+    @staticmethod
+    def _is_infrastructure_node(node_type: str) -> bool:
+        return node_type in {"road", "intersection"}
+
+    @staticmethod
     def _node_scenic_score(name: str, raw_type: str | None = None) -> float:
         scenic_keywords = ("门", "湖", "桥", "殿", "宫", "园", "亭", "馆", "阁", "景", "广场", "主楼", "图书馆")
         if any(keyword in name for keyword in scenic_keywords):
@@ -63,6 +74,39 @@ class GraphBuilder:
         scene = next((item for item in self.repository.scenes() if item["name"] == scene_name), {"nodes": []})
         facilities = [item for item in self.repository.facilities() if item["scene_name"] == scene_name]
         return scene.get("nodes", []), facilities
+
+    def _scene_edges(self, scene_name: str) -> list[dict]:
+        return [item for item in self.repository.edges() if item.get("scene_name") == scene_name]
+
+    @staticmethod
+    def _edge_speeds(edge: dict) -> dict[str, float]:
+        speeds = {
+            "walk": float(edge.get("walk_speed") or 1.1),
+            "bike": float(edge.get("bike_speed") or 3.5),
+            "shuttle": float(edge.get("shuttle_speed") or 4.8),
+            "mixed": float(edge.get("shuttle_speed") or edge.get("bike_speed") or 4.0),
+        }
+        if "taxi_speed" in edge:
+            speeds["taxi"] = float(edge["taxi_speed"])
+        return speeds
+
+    def _add_repository_edges(self, scene_name: str, graph: Graph) -> bool:
+        added = False
+        for edge in self._scene_edges(scene_name):
+            source = edge.get("source_code")
+            target = edge.get("target_code")
+            if source not in graph.coords or target not in graph.coords:
+                continue
+            graph.add_edge(
+                source=source,
+                target=target,
+                distance=float(edge.get("distance") or 0.0),
+                congestion=float(edge.get("congestion") or 0.8),
+                transport_speeds=self._edge_speeds(edge),
+                modes=set(edge.get("allowed_modes") or ["walk", "mixed"]),
+            )
+            added = True
+        return added
 
     def _add_road_layer(
         self,
@@ -135,7 +179,7 @@ class GraphBuilder:
                 scenic_score=self._node_scenic_score(node["name"]),
             )
             names[node["code"]] = node["name"]
-            route_node_types[node["code"]] = "place"
+            route_node_types[node["code"]] = self._route_node_type(node, "place")
         for facility in facilities:
             graph.add_node(
                 facility["code"],
@@ -144,8 +188,10 @@ class GraphBuilder:
                 scenic_score=self._node_scenic_score(facility["name"], facility.get("facility_type")),
             )
             names[facility["code"]] = facility["name"]
-            route_node_types[facility["code"]] = "facility"
-        self._add_road_layer(scene_name, graph, [*scene_nodes, *facilities], names, route_node_types)
+            route_node_types[facility["code"]] = self._route_node_type(facility, "facility")
+        has_repository_edges = self._add_repository_edges(scene_name, graph)
+        if not has_repository_edges:
+            self._add_road_layer(scene_name, graph, [*scene_nodes, *facilities], names, route_node_types)
         self._graphs[scene_name] = graph
         self._name_maps[scene_name] = {**self._name_maps.get(scene_name, {}), **names}
         self._route_node_types[scene_name] = route_node_types

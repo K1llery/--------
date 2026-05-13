@@ -100,13 +100,15 @@ class RoutePlanningService:
             to_name = names.get(target, target)
             source_type = self.graph_builder.get_route_node_type(scene_name, source)
             target_type = self.graph_builder.get_route_node_type(scene_name, target)
-            if source_type != "road" and target_type == "road":
+            source_is_infrastructure = self.graph_builder._is_infrastructure_node(source_type)
+            target_is_infrastructure = self.graph_builder._is_infrastructure_node(target_type)
+            if not source_is_infrastructure and target_is_infrastructure:
                 instruction = f"从{from_name}接入附近道路，约{distance_m}米，预计{minutes}分钟。"
-            elif source_type == "road" and target_type == "road":
+            elif source_is_infrastructure and target_is_infrastructure:
                 instruction = (
                     f"{self._transport_label(transport_mode)}沿道路继续前行，约{distance_m}米，预计{minutes}分钟。{tip}"
                 )
-            elif source_type == "road" and target_type != "road":
+            elif source_is_infrastructure and not target_is_infrastructure:
                 instruction = f"离开道路抵达{to_name}，约{distance_m}米，预计{minutes}分钟。"
             else:
                 instruction = (

@@ -56,6 +56,7 @@ def test_single_route_endpoint_returns_path(client):
     assert payload["route_geometry"]
     assert payload["route_polyline"]
     assert len(payload["path_codes"]) > 2
+    assert any(node["route_node_type"] == "intersection" for node in payload["route_nodes"][1:-1])
     assert all(code in {node["code"] for node in payload["route_nodes"]} for code in payload["path_codes"])
 
 
@@ -65,12 +66,12 @@ def test_single_route_can_resolve_start_from_current_location(client):
         json={
             "scene_name": "BUPT_Main_Campus",
             "start_code": "BUPT_LIB",
-            "end_code": "BUPT_05",
+            "end_code": "BUPT_LIB",
             "strategy": "distance",
             "transport_mode": "walk",
             "prefer_nearest_start": True,
-            "start_latitude": 39.96007,
-            "start_longitude": 116.36408,
+            "start_latitude": 39.9566845,
+            "start_longitude": 116.35254,
         },
     )
     assert response.status_code == 200

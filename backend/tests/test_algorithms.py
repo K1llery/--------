@@ -197,6 +197,7 @@ def test_single_route_returns_algorithm_path_and_geometry():
     assert all(
         graph.edge_between(source, target) for source, target in zip(result["path_codes"], result["path_codes"][1:])
     )
+    assert any(node["route_node_type"] == "intersection" for node in result["route_nodes"][1:-1])
     assert all(code in {node["code"] for node in result["route_nodes"]} for code in result["path_codes"])
 
 
