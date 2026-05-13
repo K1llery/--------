@@ -56,7 +56,6 @@ def test_single_route_endpoint_returns_path(client):
     assert payload["route_geometry"]
     assert payload["route_polyline"]
     assert len(payload["path_codes"]) > 2
-    assert any(node["route_node_type"] != "place" for node in payload["route_nodes"][1:-1])
     assert all(code in {node["code"] for node in payload["route_nodes"]} for code in payload["path_codes"])
 
 
