@@ -26,6 +26,10 @@
           {{ scene.label }}
         </option>
       </select>
+      <label v-if="supportsRouting" class="route-toggle cursor-pointer">
+        <input v-model="showGraphEvidence" type="checkbox" />
+        <span>{{ showGraphEvidence ? "隐藏路网证据" : "显示路网证据" }}</span>
+      </label>
     </div>
 
     <!-- 地图 -->
@@ -33,6 +37,7 @@
       :nodes="mapNodes"
       :path="displayPathCodes"
       :polyline="displayRoutePolyline"
+      :show-graph-evidence="showGraphEvidence"
       :edges="loader.edges.value"
       :current-location="currentLocation"
     />
@@ -329,6 +334,7 @@ const facilityType = ref("restroom");
 const radius = ref(1500);
 const useCurrentLocation = ref(false);
 const routeError = ref("");
+const showGraphEvidence = ref(false);
 
 const modeOptions: RouteModeOption[] = [
   {

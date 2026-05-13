@@ -24,6 +24,7 @@ const props = defineProps<{
   }>;
   path: string[];
   polyline?: Array<{ latitude: number; longitude: number }>;
+  showGraphEvidence?: boolean;
   edges?: Array<{
     source_code: string;
     target_code: string;
@@ -52,26 +53,28 @@ const renderMap = () => {
   roadsLayer?.clearLayers();
   currentLocationLayer?.clearLayers();
 
-  props.edges?.forEach((edge) => {
-    const source = nodeMap.get(edge.source_code);
-    const target = nodeMap.get(edge.target_code);
-    if (!source || !target) return;
-    const congestion = edge.congestion ?? 0.8;
-    const color = congestion >= 0.9 ? "#d7a757" : congestion >= 0.75 ? "#9ec5a2" : "#b9c4cf";
-    roadsLayer?.addLayer(
-      L.polyline(
-        [
-          [source.latitude, source.longitude],
-          [target.latitude, target.longitude],
-        ],
-        {
-          color,
-          weight: 2,
-          opacity: 0.28,
-        },
-      ),
-    );
-  });
+  if (props.showGraphEvidence) {
+    props.edges?.forEach((edge) => {
+      const source = nodeMap.get(edge.source_code);
+      const target = nodeMap.get(edge.target_code);
+      if (!source || !target) return;
+      const congestion = edge.congestion ?? 0.8;
+      const color = congestion >= 0.9 ? "#d7a757" : congestion >= 0.75 ? "#9ec5a2" : "#b9c4cf";
+      roadsLayer?.addLayer(
+        L.polyline(
+          [
+            [source.latitude, source.longitude],
+            [target.latitude, target.longitude],
+          ],
+          {
+            color,
+            weight: 2,
+            opacity: 0.28,
+          },
+        ),
+      );
+    });
+  }
 
   props.nodes.forEach((node) => {
     const index = pathIndex.get(node.code);
@@ -80,6 +83,8 @@ const renderMap = () => {
     const isStart = index === 0;
     const isEnd = index === props.path.length - 1 && props.path.length > 1;
     const isOnPath = index !== undefined;
+    if (isIntersection && !isOnPath && !props.showGraphEvidence) return;
+
     const markerColor = isStart
       ? "#1475c4"
       : isEnd
@@ -194,7 +199,14 @@ onMounted(() => {
 });
 
 watch(
-  () => [props.nodes, props.path, props.polyline, props.edges, props.currentLocation],
+  () => [
+    props.nodes,
+    props.path,
+    props.polyline,
+    props.showGraphEvidence,
+    props.edges,
+    props.currentLocation,
+  ],
   () => {
     renderMap();
   },
