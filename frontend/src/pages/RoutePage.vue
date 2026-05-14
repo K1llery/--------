@@ -1,292 +1,351 @@
 <template>
-  <div class="bg-white rounded-3xl card-elevated p-6 space-y-5">
-    <!-- 页面标题 -->
-    <div class="flex items-start justify-between gap-4 flex-wrap">
-      <div>
-        <h2 class="text-xl font-bold text-gray-900">地图导航</h2>
-        <p class="text-sm text-gray-500 mt-1">你想怎么做？</p>
-      </div>
-      <button
-        v-if="activeRoute"
-        class="btn-soft-secondary text-sm"
-        type="button"
-        @click="handleSaveRoute"
-      >
-        收藏路线
-      </button>
-    </div>
-
-    <!-- 城市/场景筛选 -->
-    <div class="flex flex-wrap gap-3 p-4 bg-gray-50 rounded-2xl">
-      <select v-model="selectedCity" class="soft-control text-sm" @change="handleCityChange">
-        <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
-      </select>
-      <select v-model="selectedSceneName" class="soft-control text-sm" @change="handleSceneChange">
-        <option v-for="scene in visibleScenes" :key="scene.name" :value="scene.name">
-          {{ scene.label }}
-        </option>
-      </select>
-      <label v-if="supportsRouting" class="route-toggle cursor-pointer">
-        <input v-model="showGraphEvidence" type="checkbox" />
-        <span>{{ showGraphEvidence ? "隐藏路网证据" : "显示路网证据" }}</span>
-      </label>
-    </div>
-
-    <!-- 地图 -->
-    <RouteMap
-      :nodes="mapNodes"
-      :path="displayPathCodes"
-      :polyline="displayRoutePolyline"
-      :show-graph-evidence="showGraphEvidence"
-      :edges="loader.edges.value"
-      :current-location="currentLocation"
-    />
-
-    <!-- 状态卡片 -->
-    <div class="grid grid-cols-2 gap-4">
-      <div class="card-elevated p-4">
-        <h3 class="text-sm font-bold text-gray-900">{{ currentSceneLabel }}</h3>
-        <p class="text-xs text-gray-500 mt-1">{{ currentSceneMessage }}</p>
-      </div>
-      <div class="card-elevated p-4">
-        <h3 class="text-sm font-bold text-gray-900">{{ activeNavigationSummary || "等待规划" }}</h3>
-        <p class="text-xs text-gray-500 mt-1">
-          {{ activeRoute ? resultSubtitle : "选择一个行动方式后开始生成路线。" }}
-        </p>
-      </div>
-    </div>
-
-    <!-- 错误提示 -->
-    <div v-if="routeError" class="alert-soft-error">{{ routeError }}</div>
-
-    <template v-if="supportsRouting">
-      <!-- 模式选择：随便逛逛 / 去指定地点 / 多点游览 / 找最近设施 -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4" aria-label="路线规划模式">
+  <div class="route-page space-y-6">
+    <section class="card-elevated rounded-[28px] p-6 lg:p-7">
+      <div class="flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <p class="home-section-kicker">导航工作台</p>
+          <h2 class="text-2xl font-bold text-slate-950 mt-1">地图导航</h2>
+          <p class="text-sm text-slate-500 mt-2 leading-7 max-w-3xl">
+            围绕当前城市和场景完成路线规划、设施查询与算法讲解，地图优先展示，操作区集中在下方和右侧。
+          </p>
+        </div>
         <button
-          v-for="item in modeOptions"
-          :key="item.key"
+          v-if="activeRoute"
+          class="btn-soft-secondary text-sm inline-flex items-center gap-2"
           type="button"
-          class="card-elevated p-4 text-left glow-border cursor-pointer"
-          :class="{ 'ring-2 ring-primary-300': routeMode === item.key }"
-          @click="selectMode(item.key)"
+          @click="handleSaveRoute"
         >
-          <span
-            class="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-teal-700 bg-teal-50 mb-2"
-            >{{ item.label }}</span
-          >
-          <strong class="block text-base font-bold text-gray-900">{{ item.title }}</strong>
-          <small class="text-xs text-gray-500 mt-1 block line-clamp-2">{{ item.caption }}</small>
+          收藏当前路线
         </button>
       </div>
 
-      <!-- 规划器：表单 + 结果 -->
-      <section v-if="routeMode" class="grid lg:grid-cols-[1.1fr_0.9fr] gap-4 items-start">
-        <!-- 左侧：表单 -->
-        <div class="card-elevated p-5 space-y-4">
-          <div class="flex items-center justify-between">
-            <h3 class="text-base font-bold text-gray-900">{{ activeModeTitle }}</h3>
-            <span class="text-xs text-gray-400">{{ activeTransportLabel }}</span>
+      <div class="route-toolbar mt-5">
+        <select v-model="selectedCity" class="soft-control text-sm" @change="handleCityChange">
+          <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
+        </select>
+        <select v-model="selectedSceneName" class="soft-control text-sm" @change="handleSceneChange">
+          <option v-for="scene in visibleScenes" :key="scene.name" :value="scene.name">
+            {{ scene.label }}
+          </option>
+        </select>
+        <label v-if="supportsRouting" class="route-toggle route-toggle-pro cursor-pointer">
+          <input v-model="showGraphEvidence" type="checkbox" />
+          <span>{{ showGraphEvidence ? "隐藏路网证据" : "显示路网证据" }}</span>
+        </label>
+      </div>
+
+      <div class="grid lg:grid-cols-[minmax(0,1.35fr)_320px] gap-5 mt-5 items-start">
+        <div class="route-map-stage">
+          <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+            <div>
+              <h3 class="text-base font-bold text-slate-950">{{ currentSceneLabel }}</h3>
+              <p class="text-sm text-slate-500 mt-1">{{ currentSceneMessage }}</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="route-summary-chip">
+                {{ supportsRouting ? "支持精细导航" : "当前仅支持地图浏览" }}
+              </span>
+              <span class="route-summary-chip route-summary-chip-accent">
+                {{ activeRoute?.route_source_label || "本地算法" }}
+              </span>
+            </div>
           </div>
-
-          <LocationCapture ref="locationCaptureRef" v-model="useCurrentLocation" />
-
-          <form class="grid grid-cols-2 gap-3" @submit.prevent="handleGenerateRoute">
-            <label class="space-y-1">
-              <span class="field-label">当前位置</span>
-              <select
-                v-model="startCode"
-                class="soft-control text-sm"
-                :disabled="useCurrentLocation"
-              >
-                <option v-for="node in placeOptions" :key="node.code" :value="node.code">
-                  {{ node.name }}
-                </option>
-              </select>
-            </label>
-
-            <label v-if="routeMode === 'destination'" class="space-y-1">
-              <span class="field-label">目的地</span>
-              <select v-model="endCode" class="soft-control text-sm">
-                <option v-for="node in placeOptions" :key="node.code" :value="node.code">
-                  {{ node.name }}
-                </option>
-              </select>
-            </label>
-
-            <label v-if="routeMode === 'multi'" class="space-y-1 col-span-2">
-              <span class="field-label">途经地点</span>
-              <select
-                v-model="multiTargetCodes"
-                class="soft-control text-sm min-h-32"
-                multiple
-                size="5"
-              >
-                <option v-for="node in placeOptions" :key="node.code" :value="node.code">
-                  {{ node.name }}
-                </option>
-              </select>
-            </label>
-
-            <label v-if="routeMode === 'facility'" class="space-y-1">
-              <span class="field-label">设施类型</span>
-              <select v-model="facilityType" class="soft-control text-sm">
-                <option
-                  v-for="facility in facilityTypeOptions"
-                  :key="facility.value"
-                  :value="facility.value"
-                >
-                  {{ facility.label }}
-                </option>
-              </select>
-            </label>
-
-            <label class="space-y-1">
-              <span class="field-label">交通方式</span>
-              <select v-model="transportMode" class="soft-control text-sm">
-                <option v-for="item in transportOptions" :key="item.value" :value="item.value">
-                  {{ item.label }}
-                </option>
-              </select>
-            </label>
-
-            <label v-if="routeMode === 'destination' || routeMode === 'multi'" class="space-y-1">
-              <span class="field-label">路线策略</span>
-              <select v-model="strategy" class="soft-control text-sm">
-                <option v-for="item in strategyOptions" :key="item.value" :value="item.value">
-                  {{ item.label }}
-                </option>
-              </select>
-            </label>
-
-            <label v-if="routeMode === 'wander'" class="space-y-1">
-              <span class="field-label">可用时长</span>
-              <select v-model.number="durationMinutes" class="soft-control text-sm">
-                <option :value="25">25 分钟</option>
-                <option :value="35">35 分钟</option>
-                <option :value="50">50 分钟</option>
-                <option :value="75">75 分钟</option>
-              </select>
-            </label>
-
-            <label v-if="routeMode === 'facility'" class="space-y-1">
-              <span class="field-label">查找半径</span>
-              <select v-model.number="radius" class="soft-control text-sm">
-                <option :value="600">600 米</option>
-                <option :value="1000">1000 米</option>
-                <option :value="1500">1500 米</option>
-                <option :value="2500">2500 米</option>
-              </select>
-            </label>
-
-            <button class="btn-soft-primary w-full col-span-2" type="submit" :disabled="isPlanning">
-              {{ isPlanning ? "生成中..." : submitLabel }}
-            </button>
-          </form>
+          <RouteMap
+            :nodes="mapNodes"
+            :path="displayPathCodes"
+            :polyline="displayRoutePolyline"
+            :show-graph-evidence="showGraphEvidence"
+            :edges="loader.edges.value"
+            :current-location="currentLocation"
+          />
         </div>
 
-        <!-- 右侧：结果 -->
-        <aside v-if="activeRoute" class="card-elevated sticky top-4 p-5 space-y-3">
-          <span
-            class="inline-block px-2 py-0.5 rounded-full text-xs font-extrabold text-amber-700 bg-amber-50"
-            >{{ resultKicker }}</span
-          >
-          <h3 class="text-lg font-bold text-gray-900">{{ resultTitle }}</h3>
-          <p class="text-sm text-gray-500">{{ activeRoute.explanation }}</p>
-          <div class="flex flex-wrap gap-2">
-            <span class="stat-pill">{{ activeRoute.total_distance_m }} m</span>
-            <span class="stat-pill">{{ activeRoute.estimated_minutes }} 分钟</span>
-            <span class="stat-pill">{{ activeRoute.transport_mode_label }}</span>
-            <span class="stat-pill">{{ activeRoute.route_source_label || "本地算法" }}</span>
-            <span class="stat-pill"
-              >算法路径
-              {{ activeRoute.algorithm_path_codes?.length ?? activeRoute.path_codes.length }}
-              点</span
-            >
-            <span class="stat-pill">路网边 {{ loader.edges.value.length }} 条</span>
-          </div>
-          <p v-if="activeRoute.resolved_start_name" class="text-xs text-gray-400">
-            实际起点：{{ activeRoute.resolved_start_name }}
-          </p>
-          <p v-if="planner.facilityRoute.value?.facility" class="text-xs text-gray-400">
-            最近设施：{{ planner.facilityRoute.value.facility.name }} ·
-            {{ planner.facilityRoute.value.facility.facility_label }}
-          </p>
-          <p
-            v-if="planner.wanderRoute.value?.ordered_stop_names?.length"
-            class="text-xs text-gray-400"
-          >
-            停靠：{{ planner.wanderRoute.value.ordered_stop_names.join(" → ") }}
-          </p>
-          <p
-            v-if="planner.multiRoute.value?.ordered_stop_names?.length && routeMode === 'multi'"
-            class="text-xs text-gray-400"
-          >
-            停靠：{{ planner.multiRoute.value.ordered_stop_names.join(" → ") }}
-          </p>
-        </aside>
-      </section>
-
-      <!-- 备选路线 -->
-      <section v-if="activeAlternatives.length" class="space-y-3">
-        <div class="flex items-center justify-between">
-          <h3 class="text-base font-bold text-gray-900">备选路线</h3>
-          <span class="text-xs text-gray-400">点击卡片切换地图高亮</span>
-        </div>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-          <article
-            v-for="item in activeAlternatives"
-            :key="item.strategy"
-            class="card-elevated p-4 cursor-pointer glow-border"
-            :class="{
-              'ring-2 ring-primary-300':
-                planner.selectedAlternativeStrategy.value === item.strategy,
-            }"
-            @click="planner.selectedAlternativeStrategy.value = item.strategy"
-          >
-            <h4 class="text-sm font-bold text-gray-900">{{ item.strategy_label }}</h4>
-            <p class="text-xs text-gray-500 mt-1">
-              {{ item.total_distance_m }} m · {{ item.estimated_minutes }} 分钟
+        <aside class="space-y-4">
+          <article class="route-insight-card">
+            <span class="route-panel-kicker">当前场景</span>
+            <h3>{{ currentSceneLabel }}</h3>
+            <p>{{ currentSceneMessage }}</p>
+          </article>
+          <article class="route-insight-card">
+            <span class="route-panel-kicker">导航状态</span>
+            <h3>{{ activeNavigationSummary || "等待规划" }}</h3>
+            <p>
+              {{
+                activeRoute
+                  ? resultSubtitle
+                  : "先选择一种规划模式，再生成路线。地图会始终保留为首屏工作区域。"
+              }}
             </p>
           </article>
-        </div>
-      </section>
+          <article class="route-insight-card" v-if="activeRoute">
+            <span class="route-panel-kicker">关键指标</span>
+            <div class="grid grid-cols-2 gap-3 mt-3">
+              <div class="route-metric-tile">
+                <strong>{{ activeRoute.total_distance_m }}</strong>
+                <span>总距离 / 米</span>
+              </div>
+              <div class="route-metric-tile">
+                <strong>{{ activeRoute.estimated_minutes }}</strong>
+                <span>预计时间 / 分钟</span>
+              </div>
+              <div class="route-metric-tile">
+                <strong>{{ activeRoute.algorithm_path_codes?.length ?? activeRoute.path_codes.length }}</strong>
+                <span>算法路径点数</span>
+              </div>
+              <div class="route-metric-tile">
+                <strong>{{ loader.edges.value.length }}</strong>
+                <span>路网边数</span>
+              </div>
+            </div>
+          </article>
+        </aside>
+      </div>
+    </section>
 
-      <!-- 分段导航 -->
-      <section v-if="activeSegments.length" class="space-y-3">
-        <div class="flex items-center justify-between">
-          <h3 class="text-base font-bold text-gray-900">分段导航</h3>
-          <span class="text-xs text-gray-400">按顺序执行即可完成整段行程</span>
-        </div>
-        <ol class="timeline-list">
-          <li
-            v-for="segment in activeSegments"
-            :key="`segment-${segment.index}-${segment.from_code}-${segment.to_code}`"
-            class="timeline-item !bg-gray-50"
-          >
-            <span class="timeline-index">{{ segment.index }}</span>
-            <div class="timeline-content">
-              <strong class="text-sm font-bold text-gray-900"
-                >{{ segment.from_name }} → {{ segment.to_name }}</strong
+    <div v-if="routeError" class="alert-soft-error">{{ routeError }}</div>
+
+    <template v-if="supportsRouting">
+      <section class="grid xl:grid-cols-[minmax(0,1.08fr)_360px] gap-5 items-start">
+        <div class="space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4" aria-label="路线规划模式">
+            <button
+              v-for="item in modeOptions"
+              :key="item.key"
+              type="button"
+              class="route-mode-card"
+              :class="{ 'route-mode-card-active': routeMode === item.key }"
+              @click="selectMode(item.key)"
+            >
+              <span class="route-mode-card-tag">{{ item.label }}</span>
+              <strong>{{ item.title }}</strong>
+              <small>{{ item.caption }}</small>
+            </button>
+          </div>
+
+          <section v-if="routeMode" class="card-elevated rounded-[24px] p-5 lg:p-6 space-y-4">
+            <div class="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <span class="route-panel-kicker">规划设置</span>
+                <h3 class="text-lg font-bold text-slate-950 mt-1">{{ activeModeTitle }}</h3>
+              </div>
+              <span class="route-summary-chip">{{ activeTransportLabel }}</span>
+            </div>
+
+            <LocationCapture ref="locationCaptureRef" v-model="useCurrentLocation" />
+
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-4" @submit.prevent="handleGenerateRoute">
+              <label class="space-y-1">
+                <span class="field-label">当前位置</span>
+                <select
+                  v-model="startCode"
+                  class="soft-control text-sm"
+                  :disabled="useCurrentLocation"
+                >
+                  <option v-for="node in placeOptions" :key="node.code" :value="node.code">
+                    {{ node.name }}
+                  </option>
+                </select>
+              </label>
+
+              <label v-if="routeMode === 'destination'" class="space-y-1">
+                <span class="field-label">目的地</span>
+                <select v-model="endCode" class="soft-control text-sm">
+                  <option v-for="node in placeOptions" :key="node.code" :value="node.code">
+                    {{ node.name }}
+                  </option>
+                </select>
+              </label>
+
+              <label v-if="routeMode === 'multi'" class="space-y-1 md:col-span-2">
+                <span class="field-label">途经地点</span>
+                <select
+                  v-model="multiTargetCodes"
+                  class="soft-control text-sm min-h-32"
+                  multiple
+                  size="5"
+                >
+                  <option v-for="node in placeOptions" :key="node.code" :value="node.code">
+                    {{ node.name }}
+                  </option>
+                </select>
+              </label>
+
+              <label v-if="routeMode === 'facility'" class="space-y-1">
+                <span class="field-label">设施类型</span>
+                <select v-model="facilityType" class="soft-control text-sm">
+                  <option
+                    v-for="facility in facilityTypeOptions"
+                    :key="facility.value"
+                    :value="facility.value"
+                  >
+                    {{ facility.label }}
+                  </option>
+                </select>
+              </label>
+
+              <label class="space-y-1">
+                <span class="field-label">交通方式</span>
+                <select v-model="transportMode" class="soft-control text-sm">
+                  <option v-for="item in transportOptions" :key="item.value" :value="item.value">
+                    {{ item.label }}
+                  </option>
+                </select>
+              </label>
+
+              <label v-if="routeMode === 'destination' || routeMode === 'multi'" class="space-y-1">
+                <span class="field-label">路线策略</span>
+                <select v-model="strategy" class="soft-control text-sm">
+                  <option v-for="item in strategyOptions" :key="item.value" :value="item.value">
+                    {{ item.label }}
+                  </option>
+                </select>
+              </label>
+
+              <label v-if="routeMode === 'wander'" class="space-y-1">
+                <span class="field-label">可用时长</span>
+                <select v-model.number="durationMinutes" class="soft-control text-sm">
+                  <option :value="25">25 分钟</option>
+                  <option :value="35">35 分钟</option>
+                  <option :value="50">50 分钟</option>
+                  <option :value="75">75 分钟</option>
+                </select>
+              </label>
+
+              <label v-if="routeMode === 'facility'" class="space-y-1">
+                <span class="field-label">查找半径</span>
+                <select v-model.number="radius" class="soft-control text-sm">
+                  <option :value="600">600 米</option>
+                  <option :value="1000">1000 米</option>
+                  <option :value="1500">1500 米</option>
+                  <option :value="2500">2500 米</option>
+                </select>
+              </label>
+
+              <button class="btn-soft-primary w-full md:col-span-2" type="submit" :disabled="isPlanning">
+                {{ isPlanning ? "正在生成路线..." : submitLabel }}
+              </button>
+            </form>
+          </section>
+
+          <section v-if="activeAlternatives.length" class="card-elevated rounded-[24px] p-5 space-y-4">
+            <div class="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <span class="route-panel-kicker">备选路线</span>
+                <h3 class="text-lg font-bold text-slate-950 mt-1">切换不同策略结果</h3>
+              </div>
+              <span class="text-xs text-slate-400">点击卡片即可高亮地图中的路线</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
+              <article
+                v-for="item in activeAlternatives"
+                :key="item.strategy"
+                class="route-alt-card"
+                :class="{
+                  'route-alt-card-active':
+                    planner.selectedAlternativeStrategy.value === item.strategy,
+                }"
+                @click="planner.selectedAlternativeStrategy.value = item.strategy"
               >
-              <p class="text-xs text-gray-500 mt-0.5">{{ segment.instruction }}</p>
-              <p class="text-xs text-gray-400 mt-0.5">
-                {{ segment.distance_m }} 米 · {{ segment.estimated_minutes }} 分钟 · 累计
-                {{ segment.cumulative_distance_m }} 米
+                <h4>{{ item.strategy_label }}</h4>
+                <p>{{ item.total_distance_m }} 米 · {{ item.estimated_minutes }} 分钟</p>
+              </article>
+            </div>
+          </section>
+
+          <section v-if="activeSegments.length" class="card-elevated rounded-[24px] p-5 space-y-4">
+            <div class="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <span class="route-panel-kicker">分段导航</span>
+                <h3 class="text-lg font-bold text-slate-950 mt-1">按顺序执行即可完成整段行程</h3>
+              </div>
+            </div>
+            <ol class="timeline-list">
+              <li
+                v-for="segment in activeSegments"
+                :key="`segment-${segment.index}-${segment.from_code}-${segment.to_code}`"
+                class="timeline-item !bg-slate-50"
+              >
+                <span class="timeline-index">{{ segment.index }}</span>
+                <div class="timeline-content">
+                  <strong class="text-sm font-bold text-slate-900">
+                    {{ segment.from_name }} → {{ segment.to_name }}
+                  </strong>
+                  <p class="text-xs text-slate-500 mt-0.5">{{ segment.instruction }}</p>
+                  <p class="text-xs text-slate-400 mt-0.5">
+                    {{ segment.distance_m }} 米 · {{ segment.estimated_minutes }} 分钟 · 累计
+                    {{ segment.cumulative_distance_m }} 米
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </section>
+        </div>
+
+        <aside class="space-y-5">
+          <section
+            v-if="activeRoute"
+            class="card-elevated rounded-[24px] p-5 sticky top-18 space-y-4 route-result-card"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <span class="route-panel-kicker">{{ resultKicker }}</span>
+                <h3 class="text-xl font-bold text-slate-950 mt-1">{{ resultTitle }}</h3>
+              </div>
+              <span class="route-summary-chip route-summary-chip-accent">
+                {{ activeRoute.route_source_label || "本地算法" }}
+              </span>
+            </div>
+
+            <p class="text-sm text-slate-600 leading-7">{{ activeRoute.explanation }}</p>
+
+            <div class="flex flex-wrap gap-2">
+              <span class="route-summary-chip">{{ activeRoute.total_distance_m }} 米</span>
+              <span class="route-summary-chip">{{ activeRoute.estimated_minutes }} 分钟</span>
+              <span class="route-summary-chip">{{ activeRoute.transport_mode_label }}</span>
+              <span class="route-summary-chip">
+                算法路径 {{ activeRoute.algorithm_path_codes?.length ?? activeRoute.path_codes.length }} 点
+              </span>
+              <span class="route-summary-chip">路网边 {{ loader.edges.value.length }} 条</span>
+            </div>
+
+            <div class="space-y-2 text-sm text-slate-500">
+              <p v-if="activeRoute.resolved_start_name">
+                实际起点：{{ activeRoute.resolved_start_name }}
+              </p>
+              <p v-if="planner.facilityRoute.value?.facility">
+                最近设施：{{ planner.facilityRoute.value.facility.name }} ·
+                {{ planner.facilityRoute.value.facility.facility_label }}
+              </p>
+              <p v-if="planner.wanderRoute.value?.ordered_stop_names?.length">
+                停靠：{{ planner.wanderRoute.value.ordered_stop_names.join(" → ") }}
+              </p>
+              <p
+                v-if="planner.multiRoute.value?.ordered_stop_names?.length && routeMode === 'multi'"
+              >
+                停靠：{{ planner.multiRoute.value.ordered_stop_names.join(" → ") }}
               </p>
             </div>
-          </li>
-        </ol>
-      </section>
+          </section>
 
-      <IndoorRoutePanel
-        v-if="currentIndoorBuildings.length"
-        :buildings="currentIndoorBuildings"
-        @route-error="routeError = $event"
-      />
+          <section v-else class="card-elevated rounded-[24px] p-5 space-y-3">
+            <span class="route-panel-kicker">结果面板</span>
+            <h3 class="text-lg font-bold text-slate-950">等待生成路线</h3>
+            <p class="text-sm text-slate-500 leading-7">
+              先选择一种模式并填写起点、终点或设施条件，系统会在同一张地图上给出结果。
+            </p>
+          </section>
+
+          <IndoorRoutePanel
+            v-if="currentIndoorBuildings.length"
+            :buildings="currentIndoorBuildings"
+            @route-error="routeError = $event"
+          />
+        </aside>
+      </section>
     </template>
 
     <div v-else class="alert-soft-info">
-      {{ selectedCity }}当前支持城市地图浏览与精选地点查看，精细导航即将上线。
+      {{ selectedCity }} 当前支持城市地图浏览与精选地点查看，精细导航暂未覆盖到该场景。
     </div>
   </div>
 </template>
@@ -341,25 +400,25 @@ const modeOptions: RouteModeOption[] = [
     key: "wander",
     label: "随便逛逛",
     title: "自动安排一圈",
-    caption: "按时长挑选附近点位并回到起点",
+    caption: "按照可用时长挑选附近点位，并回到起点。",
   },
   {
     key: "destination",
     label: "去指定地点",
-    title: "查到达方法",
-    caption: "输入起点和目的地生成最短路径",
+    title: "生成到达路线",
+    caption: "输入起点和目的地，生成适合当前策略的路线。",
   },
   {
     key: "multi",
     label: "多点游览",
     title: "规划闭环路线",
-    caption: "选择多个点位后自动排序并返回起点",
+    caption: "选择多个点位后自动排序，并回到起点。",
   },
   {
     key: "facility",
     label: "找最近设施",
-    title: "厕所/餐厅/服务点",
-    caption: "按道路距离找最近可达设施",
+    title: "设施到达查询",
+    caption: "按图距离查找最近的厕所、餐厅和服务点。",
   },
 ];
 
@@ -375,7 +434,7 @@ const strategyOptions = [
   { value: "distance", label: "最短距离" },
   { value: "time", label: "最快到达" },
   { value: "congestion", label: "避开拥堵" },
-  { value: "scenic", label: "轻松逛/打卡优先" },
+  { value: "scenic", label: "打卡优先" },
 ];
 
 const facilityTypeOptions = [
@@ -396,7 +455,6 @@ const currentScene = computed(() =>
 );
 
 const currentSceneLabel = computed(() => currentScene.value?.label ?? "当前场景");
-
 const supportsRouting = computed(() => currentScene.value?.supports_routing ?? false);
 
 const currentIndoorBuildings = computed<IndoorBuilding[]>(() =>
@@ -407,32 +465,6 @@ const placeOptions = computed(() => [
   ...(loader.scene.value?.nodes ?? []),
   ...loader.facilities.value,
 ]);
-
-const mapNodes = computed(() => {
-  const visibleNodes = supportsRouting.value
-    ? placeOptions.value
-    : loader.featuredDestinations.value
-        .filter((item) => item.city === selectedCity.value)
-        .map((item) => ({
-          code: item.source_id,
-          name: item.name,
-          latitude: item.latitude,
-          longitude: item.longitude,
-        }));
-  const nodeMap = new Map(visibleNodes.map((item) => [item.code, item]));
-  activeRoute.value?.route_nodes?.forEach((node) => {
-    nodeMap.set(node.code, node);
-  });
-  return [...nodeMap.values()];
-});
-
-const currentSceneMessage = computed(() =>
-  supportsRouting.value
-    ? `${mapNodes.value.length} 个点位可规划。`
-    : `${mapNodes.value.length} 个精选地点可浏览。`,
-);
-
-const currentLocation = computed(() => locationCaptureRef.value?.currentLocation ?? null);
 
 const activeRoute = computed<SingleRouteResult | MultiRouteResult | null>(() => {
   if (
@@ -445,6 +477,7 @@ const activeRoute = computed<SingleRouteResult | MultiRouteResult | null>(() => 
       ) ?? planner.singleRoute.value
     );
   }
+
   return (
     planner.facilityRoute.value ||
     planner.wanderRoute.value ||
@@ -453,16 +486,39 @@ const activeRoute = computed<SingleRouteResult | MultiRouteResult | null>(() => 
   );
 });
 
+const mapNodes = computed(() => {
+  const visibleNodes = supportsRouting.value
+    ? placeOptions.value
+    : loader.featuredDestinations.value
+        .filter((item) => item.city === selectedCity.value)
+        .map((item) => ({
+          code: item.source_id,
+          name: item.name,
+          latitude: item.latitude,
+          longitude: item.longitude,
+        }));
+
+  const nodeMap = new Map(visibleNodes.map((item) => [item.code, item]));
+  activeRoute.value?.route_nodes?.forEach((node) => {
+    nodeMap.set(node.code, node);
+  });
+
+  return [...nodeMap.values()];
+});
+
+const currentSceneMessage = computed(() =>
+  supportsRouting.value
+    ? `当前共有 ${mapNodes.value.length} 个可规划点位。`
+    : `当前共有 ${mapNodes.value.length} 个精选地点可浏览。`,
+);
+
+const currentLocation = computed(() => locationCaptureRef.value?.currentLocation ?? null);
 const activeSegments = computed<RouteSegment[]>(() => activeRoute.value?.segments ?? []);
-
 const displayPathCodes = computed<string[]>(() => activeRoute.value?.path_codes ?? []);
-
 const displayRoutePolyline = computed(
   () => activeRoute.value?.route_polyline ?? activeRoute.value?.route_geometry ?? [],
 );
-
 const activeNavigationSummary = computed(() => activeRoute.value?.navigation_summary ?? "");
-
 const activeAlternatives = computed<SingleRouteResult[]>(
   () => planner.singleRoute.value?.alternatives ?? [],
 );
@@ -495,10 +551,10 @@ const isPlanning = computed(
 );
 
 const resultKicker = computed(() => {
-  if (planner.wanderRoute.value) return "Wander Route";
-  if (planner.multiRoute.value) return "Multi-stop Route";
-  if (planner.facilityRoute.value) return "Nearest Facility";
-  return "Destination Route";
+  if (planner.wanderRoute.value) return "随便逛逛";
+  if (planner.multiRoute.value) return "多点游览";
+  if (planner.facilityRoute.value) return "最近设施";
+  return "到达路线";
 });
 
 const resultTitle = computed(() => {
@@ -509,10 +565,10 @@ const resultTitle = computed(() => {
 });
 
 const resultSubtitle = computed(() => {
-  if (planner.wanderRoute.value) return "自动闭环路线已生成。";
-  if (planner.multiRoute.value) return "多点闭环路线已生成。";
-  if (planner.facilityRoute.value) return "已按道路距离找到最近设施。";
-  return "已生成指定地点到达路线。";
+  if (planner.wanderRoute.value) return "系统已经为当前场景生成一条闭环漫游路线。";
+  if (planner.multiRoute.value) return "系统已经为当前点位生成多点闭环路线。";
+  if (planner.facilityRoute.value) return "系统已经按图距离查找到最近设施。";
+  return "系统已经生成指定地点的到达路线。";
 });
 
 const syncDefaults = () => {
@@ -522,15 +578,19 @@ const syncDefaults = () => {
     endCode.value = "";
     return;
   }
+
   if (!options.some((item) => item.code === startCode.value)) {
     startCode.value = options[0].code;
   }
+
   if (!options.some((item) => item.code === endCode.value)) {
     endCode.value = options.find((item) => item.code !== startCode.value)?.code ?? startCode.value;
   }
+
   multiTargetCodes.value = multiTargetCodes.value.filter((code) =>
     options.some((item) => item.code === code),
   );
+
   if (!multiTargetCodes.value.length) {
     multiTargetCodes.value = options
       .filter((item) => item.code !== startCode.value)
@@ -545,6 +605,7 @@ const selectMode = (mode: Exclude<RouteMode, "">) => {
   routeMode.value = mode;
   routeError.value = "";
   planner.reset();
+
   if (mode === "wander") {
     strategy.value = "scenic";
     transportMode.value = "walk";
@@ -559,19 +620,15 @@ const selectMode = (mode: Exclude<RouteMode, "">) => {
   }
 };
 
-const getLocationPayload = () => {
-  return (
-    locationCaptureRef.value?.locationPayload() ?? {
-      prefer_nearest_start: false,
-      start_latitude: null,
-      start_longitude: null,
-    }
-  );
-};
+const getLocationPayload = () =>
+  locationCaptureRef.value?.locationPayload() ?? {
+    prefer_nearest_start: false,
+    start_latitude: null,
+    start_longitude: null,
+  };
 
-const ensureLocationReady = async (): Promise<boolean> => {
-  return locationCaptureRef.value?.ensureReady() ?? true;
-};
+const ensureLocationReady = async (): Promise<boolean> =>
+  locationCaptureRef.value?.ensureReady() ?? true;
 
 const baseRoutePayload = () => ({
   scene_name: selectedSceneName.value,
@@ -583,8 +640,9 @@ const baseRoutePayload = () => ({
 const handleGenerateRoute = async () => {
   routeError.value = "";
   const ready = await ensureLocationReady();
+
   if (!ready) {
-    routeError.value = "无法获取当前位置，请改为手动起点或重试定位。";
+    routeError.value = "无法获取当前位置，请改为手动选择起点，或重新尝试定位。";
     return;
   }
 
@@ -614,7 +672,9 @@ const handleGenerateRoute = async () => {
     });
   }
 
-  if (planner.error.value) routeError.value = planner.error.value;
+  if (planner.error.value) {
+    routeError.value = planner.error.value;
+  }
 };
 
 const handleCityChange = async () => {
@@ -640,10 +700,12 @@ const handleSceneChange = async () => {
 const handleSaveRoute = async () => {
   const route = activeRoute.value;
   if (!route) return;
+
   if (!auth.isLoggedIn) {
     auth.openAuthModal("login");
     return;
   }
+
   await auth.saveRouteFavorite({
     scene_name: selectedSceneName.value,
     strategy: route.strategy,

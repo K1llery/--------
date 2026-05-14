@@ -1,58 +1,30 @@
 <template>
   <div class="space-y-6">
-    <!-- Hero -->
-    <section class="relative bg-white rounded-3xl card-elevated overflow-hidden">
-      <!-- Floating blobs -->
-      <div class="gradient-blob w-72 h-72 bg-primary-400 -top-20 -left-20" />
-      <div
-        class="gradient-blob w-56 h-56 bg-accent-400 -bottom-16 right-10"
-        style="animation-delay: -3s"
-      />
-      <div class="relative grid lg:grid-cols-2 gap-0">
-        <!-- Copy -->
-        <div class="p-8 lg:p-10 flex flex-col justify-center">
-          <span
-            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-50 text-primary-700 text-xs font-semibold w-fit mb-4"
-          >
-            <svg
-              class="w-3.5 h-3.5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"
-              />
-            </svg>
-            City Picks
-          </span>
-          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
-            北上广深高校与景区，<br class="hidden sm:block" />一站式安排行程
-          </h2>
-          <p class="mt-3 text-gray-500 text-base leading-relaxed">
-            从热门地标、城市商圈到经典校园，先挑城市，再看精选目的地、美食与路线。
-          </p>
-          <!-- City tabs -->
-          <div class="flex flex-wrap gap-2 mt-6">
-            <button
-              v-for="city in cities"
-              :key="city"
-              class="btn-press px-4 py-2 rounded-2xl text-sm font-medium transition-all duration-200"
-              :class="
-                selectedCity === city
-                  ? 'bg-gradient-to-r from-primary-600 to-accent-500 text-white shadow-lg shadow-primary-500/30'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              "
-              @click="selectedCity = city"
-            >
-              {{ city }}
-            </button>
+    <section class="relative overflow-hidden rounded-[28px] card-elevated home-hero-shell">
+      <div class="home-hero-grid">
+        <div class="p-7 lg:p-10 flex flex-col justify-center gap-6">
+          <div class="flex items-center gap-3">
+            <span class="home-brand-badge">
+              <img :src="brandLogoUrl" alt="优途" class="home-brand-badge-logo" />
+            </span>
+            <div>
+              <p class="text-xs font-semibold tracking-[0.18em] text-sky-700 uppercase m-0">
+                优途
+              </p>
+              <p class="text-sm text-slate-500 mt-1 mb-0">城市探索与路线规划</p>
+            </div>
           </div>
-          <!-- Actions -->
-          <div class="flex flex-wrap gap-3 mt-6">
+
+          <div class="space-y-3">
+            <h1 class="text-3xl lg:text-[3.1rem] font-bold text-slate-950 leading-tight">
+              用更清晰的路线和场景入口，安排你的城市探索
+            </h1>
+            <p class="max-w-2xl text-base lg:text-lg text-slate-600 leading-8">
+              在北京、上海、广州、深圳之间切换，统一浏览目的地、美食、设施和路线规划，把校园与城市旅行都放进一套顺手的工具里。
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
             <RouterLink
               to="/destinations"
               v-ripple
@@ -64,7 +36,7 @@
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="1.8"
               >
                 <path
                   stroke-linecap="round"
@@ -77,187 +49,196 @@
               to="/routes"
               v-ripple
               class="btn-soft-secondary inline-flex items-center gap-2 text-sm"
-              >查看地图</RouterLink
             >
+              开始导航
+            </RouterLink>
             <button
               v-if="!auth.isLoggedIn"
-              class="text-sm text-primary-600 font-medium hover:text-primary-700 transition-colors"
+              class="home-text-action"
+              type="button"
               @click="auth.openAuthModal('login')"
             >
-              登录保存行程 →
+              登录后同步你的收藏与路线
             </button>
           </div>
-        </div>
-        <!-- Hero image -->
-        <div class="relative min-h-[300px] lg:min-h-[400px] bg-gray-100 hero-shimmer">
-          <RealImage
-            v-if="heroDestination"
-            :src="heroDestination.image_url"
-            :alt="heroDestination.name"
-            :name="heroDestination.name"
-            :city="heroDestination.city"
-            :latitude="heroDestination.latitude"
-            :longitude="heroDestination.longitude"
-            :source-url="heroDestination.source_url"
-            class="absolute inset-0 w-full h-full object-cover"
-          />
-          <div
-            v-if="heroDestination"
-            class="absolute left-4 right-4 bottom-4 p-4 rounded-2xl bg-white/80 backdrop-blur-lg border-0 shadow-md shadow-gray-200/50 shadow-lg"
-          >
-            <p class="text-xs text-primary-600 font-semibold">
-              {{ heroDestination.city }} ·
-              {{ categoryLabel(heroDestination.category) }}
-            </p>
-            <h3 class="text-lg font-bold text-gray-900 mt-0.5">
-              {{ heroDestination.name }}
-            </h3>
-            <p class="text-sm text-gray-500 mt-1 line-clamp-2">
-              {{ heroDestination.description }}
-            </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <article class="home-metric-card">
+              <span>覆盖城市</span>
+              <strong>{{ cities.length }}</strong>
+              <small>北京、上海、广州、深圳</small>
+            </article>
+            <article class="home-metric-card">
+              <span>精选地点</span>
+              <strong>{{ featured.length }}</strong>
+              <small>持续用于推荐、搜索与路线规划</small>
+            </article>
+            <article class="home-metric-card">
+              <span>{{ auth.isLoggedIn ? "我的收藏" : "核心能力" }}</span>
+              <strong>{{ auth.isLoggedIn ? auth.favoriteDestinationCount + auth.favoriteRouteCount : 5 }}</strong>
+              <small>
+                {{ auth.isLoggedIn ? "地点收藏与路线快照已接入" : "推荐、导航、设施、规划、日记" }}
+              </small>
+            </article>
           </div>
+        </div>
+
+        <div class="relative min-h-[340px] lg:min-h-[480px]">
+          <div class="home-hero-visual">
+            <RealImage
+              v-if="heroDestination"
+              :src="heroDestination.image_url"
+              :alt="heroDestination.name"
+              :name="heroDestination.name"
+              :city="heroDestination.city"
+              :latitude="heroDestination.latitude"
+              :longitude="heroDestination.longitude"
+              :source-url="heroDestination.source_url"
+              class="absolute inset-0 h-full w-full object-cover"
+            />
+            <div v-if="heroDestination" class="home-hero-overlay">
+              <div class="home-hero-overlay-top">
+                <span class="home-hero-chip">{{ heroDestination.city }}</span>
+                <span class="home-hero-chip home-hero-chip-accent">
+                  {{ categoryLabel(heroDestination.category) }}
+                </span>
+              </div>
+              <div>
+                <h2 class="text-xl font-bold text-white">{{ heroDestination.name }}</h2>
+                <p class="mt-2 text-sm leading-6 text-white/82 line-clamp-3">
+                  {{ heroDestination.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <aside class="home-hero-sidecard">
+            <p class="text-xs font-semibold tracking-[0.16em] uppercase text-sky-700 m-0">
+              今日推荐城市
+            </p>
+            <h3 class="text-lg font-bold text-slate-900 mt-2 mb-1">{{ selectedCity }}</h3>
+            <p class="text-sm text-slate-500 leading-6 m-0">
+              先看精选地点，再切进地图导航和附近设施，整条体验会更连贯。
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <button
+                v-for="city in cities"
+                :key="city"
+                class="home-city-chip"
+                :class="{ 'home-city-chip-active': selectedCity === city }"
+                @click="selectedCity = city"
+              >
+                {{ city }}
+              </button>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
-    <!-- My Favorites -->
-    <section v-if="auth.isLoggedIn" v-reveal class="bg-white rounded-3xl card-elevated p-6">
-      <div class="flex items-start gap-3">
-        <span class="section-accent h-6 mt-1" />
+
+    <section v-reveal class="card-elevated rounded-[24px] p-6">
+      <div class="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h2 class="text-lg font-bold text-gray-900">我的收藏</h2>
-          <p class="text-sm text-gray-500 mt-1">当前账号的收藏信息会保留在本地。</p>
+          <p class="home-section-kicker">城市入口</p>
+          <h2 class="text-xl font-bold text-slate-950 mt-1">从场景开始组织路线与地点</h2>
+          <p class="text-sm text-slate-500 mt-2">
+            每个城市都可以直接进入目的地浏览、地图导航和设施查询，不需要重复找入口。
+          </p>
         </div>
+        <RouterLink to="/search" class="home-inline-link">去搜索地点</RouterLink>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5 stagger-children">
-        <div
-          class="group relative overflow-hidden p-5 rounded-2xl bg-gradient-to-br from-primary-50 via-white to-primary-50/30 border-0 shadow-md shadow-gray-200/50 hover:shadow-lg hover:shadow-primary-500/10 transition-all"
-        >
-          <div
-            class="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-primary-200/30 blur-xl group-hover:bg-primary-300/40 transition-colors"
-          />
-          <div class="relative flex items-start gap-3">
-            <div
-              class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center shadow-lg shadow-primary-500/25 flex-shrink-0"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-                />
-              </svg>
-            </div>
-            <div class="min-w-0">
-              <p class="text-2xl font-bold text-primary-700 leading-none">
-                {{ auth.favoriteDestinationCount }}
-              </p>
-              <p class="text-xs text-gray-500 mt-2">已收藏目的地</p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="group relative overflow-hidden p-5 rounded-2xl bg-gradient-to-br from-accent-50 via-white to-accent-50/30 border-0 shadow-md shadow-gray-200/50 hover:shadow-lg hover:shadow-accent-500/10 transition-all"
-        >
-          <div
-            class="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-accent-200/30 blur-xl group-hover:bg-accent-300/40 transition-colors"
-          />
-          <div class="relative flex items-start gap-3">
-            <div
-              class="w-10 h-10 rounded-2xl bg-gradient-to-br from-accent-500 to-accent-600 text-white flex items-center justify-center shadow-lg shadow-accent-500/25 flex-shrink-0"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934a1.12 1.12 0 0 1-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689A1.125 1.125 0 0 0 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934a1.12 1.12 0 0 1 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z"
-                />
-              </svg>
-            </div>
-            <div class="min-w-0">
-              <p class="text-2xl font-bold text-accent-600 leading-none">
-                {{ auth.favoriteRouteCount }}
-              </p>
-              <p class="text-xs text-gray-500 mt-2">已收藏路线</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Cities -->
-    <section v-reveal="100" class="bg-white rounded-3xl card-elevated p-6">
-      <div class="flex items-start gap-3">
-        <span class="section-accent h-6 mt-1" />
-        <div>
-          <h2 class="text-lg font-bold text-gray-900">热门城市</h2>
-          <p class="text-sm text-gray-500 mt-1">切换城市后，首页推荐和地图浏览都会联动更新。</p>
-        </div>
-      </div>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-5 stagger-children">
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-5">
         <button
           v-for="city in cityCards"
           :key="city.name"
           v-tilt
-          class="text-left p-4 rounded-2xl border-0 shadow-md shadow-gray-200/50 transition-all duration-200"
-          :class="
-            selectedCity === city.name
-              ? 'bg-primary-50 shadow-md shadow-primary-500/10'
-              : 'bg-white hover:shadow-sm'
-          "
+          class="home-city-card"
+          :class="{ 'home-city-card-active': selectedCity === city.name }"
           @click="selectedCity = city.name"
         >
-          <h3 class="font-semibold text-gray-900">{{ city.name }}</h3>
-          <p class="text-sm text-gray-500 mt-1">{{ city.tagline }}</p>
-          <p class="text-xs text-primary-600 font-medium mt-2">{{ city.count }} 个精选地点</p>
+          <div class="home-city-card-top">
+            <strong>{{ city.name }}</strong>
+            <span>{{ city.count }} 个精选地点</span>
+          </div>
+          <p>{{ city.tagline }}</p>
+          <div class="home-city-card-footer">
+            <span>浏览推荐</span>
+            <span>查看路线</span>
+          </div>
         </button>
       </div>
     </section>
-    <!-- Featured preview -->
-    <section v-reveal="200" class="bg-white rounded-3xl card-elevated p-6">
-      <div class="flex items-start justify-between gap-4">
-        <div class="flex items-start gap-3">
-          <span class="section-accent h-6 mt-1" />
-          <div>
-            <h2 class="text-lg font-bold text-gray-900">{{ selectedCity }}精选预览</h2>
-            <p class="text-sm text-gray-500 mt-1">先看最值得逛的景点、商圈和校园</p>
-          </div>
+
+    <section v-reveal="120" class="card-elevated rounded-[24px] p-6">
+      <div class="flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <p class="home-section-kicker">核心能力</p>
+          <h2 class="text-xl font-bold text-slate-950 mt-1">把推荐、导航和规划收成一套工具</h2>
+          <p class="text-sm text-slate-500 mt-2">
+            首页直接说明平台能做什么，避免看起来像一组松散页面。
+          </p>
         </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4 mt-5">
         <RouterLink
-          to="/destinations"
-          class="group inline-flex items-center gap-1 text-sm text-primary-600 font-medium hover:text-primary-700 transition-colors whitespace-nowrap"
+          v-for="item in capabilityCards"
+          :key="item.title"
+          :to="item.to"
+          class="home-capability-card"
         >
-          查看全部
-          <svg
-            class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-            />
-          </svg>
+          <span class="home-capability-index">{{ item.index }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+          <span class="home-capability-link">{{ item.action }}</span>
         </RouterLink>
       </div>
+    </section>
+
+    <section
+      v-if="auth.isLoggedIn"
+      v-reveal="180"
+      class="card-elevated rounded-[24px] p-6 home-personal-shell"
+    >
+      <div class="flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <p class="home-section-kicker">我的优途</p>
+          <h2 class="text-xl font-bold text-slate-950 mt-1">把收藏、路线和计划接回到你的账号</h2>
+          <p class="text-sm text-slate-500 mt-2">
+            已登录状态优先展示个人信息，让首页有真正的个性化感，而不是统一静态内容。
+          </p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
+        <article class="home-personal-card">
+          <span>收藏地点</span>
+          <strong>{{ auth.favoriteDestinationCount }}</strong>
+          <p>已保存到账号，讲解时可以随时打开。</p>
+        </article>
+        <article class="home-personal-card">
+          <span>收藏路线</span>
+          <strong>{{ auth.favoriteRouteCount }}</strong>
+          <p>路线规划结果可以直接沉淀为可复用快照。</p>
+        </article>
+        <article class="home-personal-card">
+          <span>推荐动作</span>
+          <strong>继续规划</strong>
+          <p>优先从地图导航页继续完成校园或城市路线演示。</p>
+        </article>
+      </div>
+    </section>
+
+    <section v-reveal="220" class="card-elevated rounded-[24px] p-6">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="home-section-kicker">{{ selectedCity }}精选预览</p>
+          <h2 class="text-xl font-bold text-slate-950 mt-1">先看值得去的地点，再决定路线</h2>
+          <p class="text-sm text-slate-500 mt-2">
+            当前城市的精选地点会优先展示，方便从推荐直接切到路线与收藏。
+          </p>
+        </div>
+        <RouterLink to="/destinations" class="home-inline-link">查看全部</RouterLink>
+      </div>
+
       <div v-if="loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
         <SkeletonCard v-for="n in 4" :key="n" />
       </div>
@@ -270,10 +251,10 @@
           v-for="item in featuredPreview"
           :key="item.source_id"
           v-tilt
-          class="group rounded-2xl bg-white overflow-hidden cursor-pointer glow-border shadow-md shadow-gray-200/50 transition-all duration-300"
+          class="home-preview-card group"
           @click="store.selectDestination(item)"
         >
-          <div class="relative h-40 bg-gray-100 overflow-hidden">
+          <div class="relative h-44 overflow-hidden bg-slate-100">
             <RealImage
               :src="item.image_url"
               :alt="item.name"
@@ -282,22 +263,17 @@
               :latitude="item.latitude"
               :longitude="item.longitude"
               :source-url="item.source_url"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
           </div>
           <div class="p-4">
-            <h3 class="font-semibold text-gray-900 text-sm">{{ item.name }}</h3>
-            <p class="text-xs text-gray-500 mt-1">
+            <h3 class="text-base font-bold text-slate-900">{{ item.name }}</h3>
+            <p class="text-sm text-slate-500 mt-1">
               {{ categoryLabel(item.category) }} · {{ item.city }}
             </p>
-            <div class="flex gap-2 mt-2">
-              <span
-                class="text-xs px-2 py-0.5 rounded-full bg-primary-50 text-primary-600 font-medium"
-                >评分 {{ item.rating ?? "—" }}</span
-              >
-              <span class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600"
-                >热度 {{ item.heat ?? "—" }}</span
-              >
+            <div class="flex flex-wrap gap-2 mt-3">
+              <span class="home-score-pill">评分 {{ item.rating ?? "—" }}</span>
+              <span class="home-heat-pill">热度 {{ item.heat ?? "—" }}</span>
             </div>
           </div>
         </article>
@@ -305,44 +281,91 @@
     </section>
   </div>
 </template>
+
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
-import EmptyState from "../components/EmptyState.vue";
+
 import RealImage from "../components/RealImage.vue";
 import SkeletonCard from "../components/SkeletonCard.vue";
 import { useAuthStore } from "../stores/auth";
 import { useTravelStore } from "../stores/travel";
+
+const brandLogoUrl = "/brands/youtu.png";
 const store = useTravelStore();
 const auth = useAuthStore();
 const selectedCity = ref("北京");
 const cities = ["北京", "上海", "广州", "深圳"];
+
 const featured = computed(() => store.destinations.items);
 const loading = computed(() => store.destinations.loading);
 const error = computed(() => store.destinations.error);
+
 const cityCards = computed(() =>
   cities.map((city) => ({
     name: city,
     count: featured.value.filter((item) => item.city === city).length,
     tagline:
       city === "北京"
-        ? "皇家古迹与高校密集"
+        ? "皇家古迹、城市地标与高校校园集中分布。"
         : city === "上海"
-          ? "江景地标与都市校园"
+          ? "江景地标、商圈与都市校园切换自然。"
           : city === "广州"
-            ? "岭南风貌与商圈漫游"
-            : "海滨创意与城市新景",
+            ? "岭南风貌、商圈漫游与生活服务更完整。"
+            : "滨海城市、创意街区与现代园区结合明显。",
   })),
 );
+
+const capabilityCards = [
+  {
+    index: "01",
+    title: "目的地推荐",
+    description: "按城市浏览景点、商圈和校园，快速形成候选列表。",
+    action: "查看推荐",
+    to: "/destinations",
+  },
+  {
+    index: "02",
+    title: "地图导航",
+    description: "基于本地图结构完成路线规划、设施查询和讲解演示。",
+    action: "进入导航",
+    to: "/routes",
+  },
+  {
+    index: "03",
+    title: "设施查询",
+    description: "按场景查看周边设施，支持从当前路线继续衔接使用。",
+    action: "查附近设施",
+    to: "/facilities",
+  },
+  {
+    index: "04",
+    title: "旅游规划",
+    description: "把地点和路线组织成可复用的个性化行程计划。",
+    action: "开始规划",
+    to: "/plan",
+  },
+  {
+    index: "05",
+    title: "旅游日记",
+    description: "保留内容分享入口，形成从推荐到记录的完整闭环。",
+    action: "查看日记",
+    to: "/diaries",
+  },
+];
+
 const featuredPreview = computed(() =>
   featured.value.filter((item) => item.city === selectedCity.value).slice(0, 4),
 );
+
 const heroDestination = computed(() => featuredPreview.value[0] ?? featured.value[0] ?? null);
+
 const categoryLabel = (value: string) => {
-  if (value === "shopping") return "商场/商圈";
+  if (value === "shopping") return "商场 / 商圈";
   if (value === "campus") return "校园";
   return "景点";
 };
+
 onMounted(() => {
   store.loadFeaturedDestinations(false);
 });

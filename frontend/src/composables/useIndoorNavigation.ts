@@ -3,6 +3,14 @@ import { ref } from "vue";
 import { api } from "../api/client";
 import type { IndoorRouteResult } from "../types/models";
 
+type ApiFailure = {
+  response?: {
+    data?: {
+      detail?: string;
+    };
+  };
+};
+
 export function useIndoorNavigation() {
   const indoorRoute = ref<IndoorRouteResult | null>(null);
   const indoorLoading = ref(false);
@@ -16,6 +24,7 @@ export function useIndoorNavigation() {
     if (!selectedBuildingCode.value || !startNodeCode.value || !endNodeCode.value) {
       return "当前场景缺少可用的室内导航点位。";
     }
+
     indoorLoading.value = true;
     try {
       const { data } = await api.post<IndoorRouteResult>("/indoor/route", {
@@ -27,8 +36,8 @@ export function useIndoorNavigation() {
       });
       indoorRoute.value = data;
       return null;
-    } catch (err: any) {
-      return err?.response?.data?.detail || "室内导航失败，请稍后重试。";
+    } catch (err: unknown) {
+      return (err as ApiFailure)?.response?.data?.detail || "室内导航失败，请稍后重试。";
     } finally {
       indoorLoading.value = false;
     }

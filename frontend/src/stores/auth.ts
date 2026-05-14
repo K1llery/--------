@@ -1,15 +1,24 @@
 import { defineStore } from "pinia";
 
 import { api } from "../api/client";
+import type { RouteSnapshot, User } from "../types/models";
 
 type AuthMode = "login" | "register";
+
+type ApiFailure = {
+  response?: {
+    data?: {
+      detail?: string;
+    };
+  };
+};
 
 const TOKEN_KEY = "travel_local_token";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     token: localStorage.getItem(TOKEN_KEY) || "",
-    user: null as any | null,
+    user: null as User | null,
     loading: false,
     error: "",
     modalOpen: false,
@@ -31,7 +40,7 @@ export const useAuthStore = defineStore("auth", {
       this.modalOpen = false;
       this.error = "";
     },
-    setSession(token: string, user: any) {
+    setSession(token: string, user: User) {
       this.token = token;
       this.user = user;
       localStorage.setItem(TOKEN_KEY, token);
@@ -49,7 +58,7 @@ export const useAuthStore = defineStore("auth", {
       try {
         const { data } = await api.get("/auth/me");
         this.user = data.user;
-      } catch (error) {
+      } catch {
         this.clearSession();
       }
     },
@@ -60,8 +69,8 @@ export const useAuthStore = defineStore("auth", {
         const { data } = await api.post("/auth/login", payload);
         this.setSession(data.token, data.user);
         this.closeAuthModal();
-      } catch (error: any) {
-        this.error = error?.response?.data?.detail || "登录失败，请检查账号密码。";
+      } catch (error: unknown) {
+        this.error = (error as ApiFailure)?.response?.data?.detail || "登录失败，请检查账号密码。";
       } finally {
         this.loading = false;
       }
@@ -73,8 +82,8 @@ export const useAuthStore = defineStore("auth", {
         const { data } = await api.post("/auth/register", payload);
         this.setSession(data.token, data.user);
         this.closeAuthModal();
-      } catch (error: any) {
-        this.error = error?.response?.data?.detail || "注册失败，请稍后再试。";
+      } catch (error: unknown) {
+        this.error = (error as ApiFailure)?.response?.data?.detail || "注册失败，请稍后再试。";
       } finally {
         this.loading = false;
       }
@@ -93,7 +102,7 @@ export const useAuthStore = defineStore("auth", {
       this.user = data.user;
       return data.favorited as boolean;
     },
-    async saveRouteFavorite(snapshot: Record<string, any>) {
+    async saveRouteFavorite(snapshot: Record<string, unknown> | RouteSnapshot) {
       const { data } = await api.post("/auth/favorites/routes", snapshot);
       this.user = data.user;
     },

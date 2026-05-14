@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
 
 import { api } from "../api/client";
-import type { TravelPlan } from "../types/models";
 import type { PlanListResponse } from "../types/api";
+import type { TravelPlan } from "../types/models";
 
 interface PlanState {
   items: TravelPlan[];
@@ -10,6 +10,16 @@ interface PlanState {
   error: string;
   selected: TravelPlan | null;
 }
+
+type PlanPayload = {
+  title: string;
+  days: TravelPlan["days"];
+};
+
+type PlanUpdatePayload = {
+  title?: string;
+  days?: TravelPlan["days"];
+};
 
 export const usePlanStore = defineStore("plans", {
   state: (): PlanState => ({
@@ -42,7 +52,7 @@ export const usePlanStore = defineStore("plans", {
         return null;
       }
     },
-    async createPlan(payload: { title: string; days: any[] }): Promise<TravelPlan | null> {
+    async createPlan(payload: PlanPayload): Promise<TravelPlan | null> {
       try {
         const { data } = await api.post<TravelPlan>("/plans", payload);
         this.items.unshift(data);
@@ -52,11 +62,11 @@ export const usePlanStore = defineStore("plans", {
         return null;
       }
     },
-    async updatePlan(planId: number, payload: { title?: string; days?: any[] }): Promise<TravelPlan | null> {
+    async updatePlan(planId: number, payload: PlanUpdatePayload): Promise<TravelPlan | null> {
       try {
         const { data } = await api.put<TravelPlan>(`/plans/${planId}`, payload);
-        const idx = this.items.findIndex((p) => p.id === planId);
-        if (idx >= 0) this.items[idx] = data;
+        const index = this.items.findIndex((plan) => plan.id === planId);
+        if (index >= 0) this.items[index] = data;
         if (this.selected?.id === planId) this.selected = data;
         return data;
       } catch {
@@ -67,7 +77,7 @@ export const usePlanStore = defineStore("plans", {
     async deletePlan(planId: number): Promise<boolean> {
       try {
         await api.delete(`/plans/${planId}`);
-        this.items = this.items.filter((p) => p.id !== planId);
+        this.items = this.items.filter((plan) => plan.id !== planId);
         if (this.selected?.id === planId) this.selected = null;
         return true;
       } catch {

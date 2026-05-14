@@ -1,19 +1,20 @@
 <template>
-  <div class="space-y-6">
-    <!-- 页面标题 -->
-    <div class="bg-white rounded-3xl card-elevated p-6">
+  <div class="plan-page space-y-6">
+    <section class="card-elevated rounded-[28px] p-6 lg:p-7">
       <div class="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h2 class="text-xl font-bold text-gray-900">旅游规划</h2>
-          <p class="text-sm text-gray-500 mt-1">设计多日行程，安排每天的游览计划。</p>
+          <p class="home-section-kicker">行程规划</p>
+          <h2 class="text-2xl font-bold text-slate-950 mt-1">旅游规划</h2>
+          <p class="text-sm text-slate-500 mt-2 leading-7 max-w-3xl">
+            以多日行程为单位安排每天的上午、下午和晚上，支持路线优化和附近美食补充，形成可保存的个性化计划。
+          </p>
         </div>
         <button class="btn-soft-primary text-sm" @click="startCreate">
           {{ isEditing ? "取消新建" : "新建计划" }}
         </button>
       </div>
-    </div>
+    </section>
 
-    <!-- 错误提示 -->
     <div v-if="planStore.error" class="alert-soft-error flex items-center justify-between gap-3">
       <span>{{ planStore.error }}</span>
       <button class="text-sm font-bold opacity-60 hover:opacity-100" @click="planStore.error = ''">
@@ -21,102 +22,120 @@
       </button>
     </div>
 
-    <!-- 主内容区：左侧计划列表 + 右侧详情/编辑器 -->
-    <div class="grid lg:grid-cols-[340px_1fr] gap-6">
-      <!-- 左侧：计划列表 -->
-      <div class="bg-white rounded-3xl card-elevated p-5 space-y-4">
-        <h3 class="text-base font-bold text-gray-900">我的计划</h3>
+    <div class="grid xl:grid-cols-[320px_minmax(0,1fr)] gap-6 items-start">
+      <aside class="card-elevated rounded-[24px] p-5 space-y-4">
+        <div>
+          <span class="route-panel-kicker">我的计划</span>
+          <h3 class="text-lg font-bold text-slate-950 mt-1">已保存的行程</h3>
+          <p class="text-sm text-slate-500 mt-2">
+            左侧保留你已创建的旅游计划，右侧负责查看详情或编辑。
+          </p>
+        </div>
 
-        <div v-if="planStore.loading" class="text-sm text-gray-500 text-center py-8">加载中...</div>
-        <div
-          v-else-if="planStore.items.length === 0"
-          class="text-sm text-gray-400 text-center py-8"
-        >
-          暂无计划，点击上方"新建计划"开始
+        <div class="grid grid-cols-2 gap-3">
+          <div class="route-metric-tile">
+            <strong>{{ planStore.items.length }}</strong>
+            <span>计划数量</span>
+          </div>
+          <div class="route-metric-tile">
+            <strong>{{ selectedPlanDays }}</strong>
+            <span>当前天数</span>
+          </div>
+        </div>
+
+        <div v-if="planStore.loading" class="text-sm text-slate-500 text-center py-8">加载中...</div>
+        <div v-else-if="planStore.items.length === 0" class="text-sm text-slate-400 text-center py-8">
+          暂无计划，点击右上角“新建计划”开始安排行程。
         </div>
         <div v-else class="space-y-3">
           <article
             v-for="plan in planStore.items"
             :key="plan.id"
-            class="card-elevated p-4 cursor-pointer glow-border transition-all duration-200"
-            :class="{ 'ring-2 ring-primary-300': planStore.selected?.id === plan.id && !isEditing }"
+            class="plan-list-card"
+            :class="{ 'plan-list-card-active': planStore.selected?.id === plan.id && !isEditing }"
             @click="selectPlan(plan)"
           >
-            <h4 class="text-sm font-bold text-gray-900">{{ plan.title }}</h4>
-            <p class="text-xs text-gray-500 mt-1">
-              {{ plan.days.length }} 天 · {{ plan.days[0]?.date }} ~
-              {{ plan.days[plan.days.length - 1]?.date }}
-            </p>
-            <p class="text-xs text-gray-400 mt-0.5">{{ plan.updated_at }}</p>
+            <div class="flex items-start justify-between gap-3">
+              <div class="min-w-0">
+                <h4 class="text-sm font-bold text-slate-900 truncate">{{ plan.title }}</h4>
+                <p class="text-xs text-slate-500 mt-1">
+                  {{ plan.days.length }} 天 · {{ plan.days[0]?.date }} ~
+                  {{ plan.days[plan.days.length - 1]?.date }}
+                </p>
+              </div>
+              <span class="route-summary-chip">{{ plan.days.length }} 天</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-2 truncate">{{ plan.updated_at }}</p>
           </article>
         </div>
-      </div>
+      </aside>
 
-      <!-- 右侧：详情 / 编辑器 -->
-      <div class="bg-white rounded-3xl card-elevated p-6 space-y-5">
-        <!-- 未选中状态 -->
-        <div v-if="!planStore.selected && !isEditing" class="text-center py-16">
-          <p class="text-gray-400 text-sm">从左侧选择一个计划，或点击"新建计划"</p>
+      <section class="space-y-5">
+        <div v-if="!planStore.selected && !isEditing" class="card-elevated rounded-[24px] p-8 text-center">
+          <span class="route-panel-kicker">详情面板</span>
+          <h3 class="text-lg font-bold text-slate-950 mt-2">先选择一个计划，或直接新建</h3>
+          <p class="text-sm text-slate-500 leading-7 mt-3">
+            右侧会展示当前计划的每日安排，进入编辑模式后可以调整日期、城市、景点、路线优化和美食补充。
+          </p>
         </div>
 
-        <!-- 编辑模式 -->
-        <div v-else-if="isEditing" class="space-y-5">
-          <div class="flex items-center justify-between">
-            <h3 class="text-base font-bold text-gray-900">
-              {{ editingPlan.id ? "编辑计划" : "新建计划" }}
-            </h3>
-          </div>
+        <template v-else-if="isEditing">
+          <section class="card-elevated rounded-[24px] p-5 lg:p-6 space-y-5">
+            <div class="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <span class="route-panel-kicker">编辑模式</span>
+                <h3 class="text-xl font-bold text-slate-950 mt-1">
+                  {{ editingPlan.id ? "编辑计划" : "新建计划" }}
+                </h3>
+              </div>
+              <span class="route-summary-chip">
+                {{ editingPlan.days.length ? `${editingPlan.days.length} 天行程` : "等待设置日期" }}
+              </span>
+            </div>
 
-          <!-- 计划标题 -->
-          <div>
-            <label class="field-label">计划名称</label>
-            <input
-              v-model="editingPlan.title"
-              class="soft-control w-full"
-              placeholder="例如：北京三日游"
-            />
-          </div>
-
-          <!-- 日期范围 -->
-          <div class="grid grid-cols-2 gap-4">
             <div>
-              <label class="field-label">开始日期</label>
+              <label class="field-label">计划名称</label>
               <input
-                v-model="startDate"
-                type="date"
+                v-model="editingPlan.title"
                 class="soft-control w-full"
-                @change="generateDays"
+                placeholder="例如：北京三日游"
               />
             </div>
-            <div>
-              <label class="field-label">结束日期</label>
-              <input
-                v-model="endDate"
-                type="date"
-                class="soft-control w-full"
-                @change="generateDays"
-              />
-            </div>
-          </div>
 
-          <!-- 每日行程 -->
-          <div class="space-y-4">
-            <div
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="field-label">开始日期</label>
+                <input
+                  v-model="startDate"
+                  type="date"
+                  class="soft-control w-full"
+                  @change="generateDays"
+                />
+              </div>
+              <div>
+                <label class="field-label">结束日期</label>
+                <input
+                  v-model="endDate"
+                  type="date"
+                  class="soft-control w-full"
+                  @change="generateDays"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section v-if="editingPlan.days.length" class="space-y-4">
+            <article
               v-for="(day, dayIndex) in editingPlan.days"
               :key="dayIndex"
-              class="card-elevated p-4 space-y-3"
+              class="card-elevated rounded-[24px] p-5 space-y-4"
             >
-              <!-- 每天头部：第X天 + 日期 + 城市选择 -->
               <div class="flex items-center gap-3 flex-wrap">
-                <span
-                  class="px-2 py-0.5 rounded-full bg-primary-50 text-primary-700 text-xs font-bold"
-                >
-                  第 {{ dayIndex + 1 }} 天
-                </span>
-                <span class="text-gray-500 text-xs">{{ day.date }}</span>
+                <span class="route-summary-chip">第 {{ dayIndex + 1 }} 天</span>
+                <span class="text-sm text-slate-500">{{ day.date }}</span>
                 <select
                   v-model="day.city"
-                  class="soft-control text-sm ml-auto min-w-[120px]"
+                  class="soft-control text-sm ml-auto min-w-[140px]"
                   @change="onCityChange(day)"
                 >
                   <option value="">选择城市</option>
@@ -126,29 +145,25 @@
                 </select>
               </div>
 
-              <!-- 路线优化提示 -->
               <div
                 v-if="optimizationResult[dayIndex]"
-                class="text-xs text-green-600 bg-green-50 rounded-lg px-3 py-2"
+                class="text-xs text-emerald-700 bg-emerald-50 rounded-xl px-3 py-2"
               >
                 路线已优化：{{ optimizationResult[dayIndex].label }}，总距离约
                 {{ optimizationResult[dayIndex].total_distance_km }} km
               </div>
 
-              <!-- 三个时段 -->
-              <div class="space-y-2">
-                <div v-for="slot in timeSlots" :key="slot.key" class="space-y-2">
-                  <div class="flex items-center gap-3">
-                    <span class="text-xs font-medium w-16 shrink-0" :class="slot.colorClass">
-                      {{ slot.label }}
-                    </span>
+              <div class="space-y-3">
+                <div v-for="slot in timeSlots" :key="slot.key" class="plan-slot-card">
+                  <div class="plan-slot-row">
+                    <span class="plan-slot-label" :class="slot.colorClass">{{ slot.label }}</span>
                     <select
                       v-model="day.time_slots[slot.key].destination_id"
                       class="soft-control flex-1 text-sm"
                       :disabled="!day.city"
                       @change="onDestinationChange(day, slot.key)"
                     >
-                      <option value="">{{ day.city ? "不安排" : "先选城市" }}</option>
+                      <option value="">{{ day.city ? "暂不安排" : "先选城市" }}</option>
                       <option
                         v-for="dest in destinationsForCity(day.city)"
                         :key="dest.source_id"
@@ -161,17 +176,13 @@
                       v-if="day.city && day.time_slots[slot.key].destination_id"
                       v-model="day.time_slots[slot.key].notes"
                       class="soft-control flex-1 text-sm"
-                      placeholder="备注，如预约方式"
+                      placeholder="备注，例如预约方式、集合点"
                     />
                   </div>
 
-                  <!-- 时段美食推荐按钮 -->
-                  <div
-                    v-if="day.time_slots[slot.key].destination_id"
-                    class="flex items-center gap-2 pl-20"
-                  >
+                  <div v-if="day.time_slots[slot.key].destination_id" class="flex items-center gap-2 pl-[5rem]">
                     <button
-                      class="btn-soft-secondary text-[10px] px-2 py-0.5"
+                      class="btn-soft-secondary text-[11px] px-3 py-1"
                       :disabled="loadingSlotFoods[`${dayIndex}-${slot.key}`]"
                       @click="toggleFoodsForSlot(dayIndex, slot.key)"
                     >
@@ -185,131 +196,122 @@
                     </button>
                   </div>
 
-                  <!-- 时段美食推荐面板 -->
-                  <div v-if="slotFoods[`${dayIndex}-${slot.key}`]?.length" class="pl-20 space-y-2">
-                    <p class="text-xs text-gray-500 font-medium">附近美食推荐</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      <div
-                        v-for="food in slotFoods[`${dayIndex}-${slot.key}`]"
-                        :key="food.id || food.name"
-                        class="card-elevated p-3 text-sm flex items-center justify-between gap-2"
-                      >
-                        <div class="min-w-0">
-                          <p class="font-medium text-gray-800 truncate">{{ food.name }}</p>
-                          <p class="text-xs text-gray-400">
-                            {{ food.cuisine }} · 评分{{ food.rating ?? "-" }} · 距{{
-                              food.distance_km ?? "?"
-                            }}km
-                          </p>
-                        </div>
-                        <button
-                          class="text-[10px] px-1.5 py-0.5 rounded bg-primary-50 text-primary-700 hover:bg-primary-100 shrink-0"
-                          @click="addFoodToSlot(dayIndex, food, slot.key)"
-                        >
-                          加入
-                        </button>
+                  <div
+                    v-if="slotFoods[`${dayIndex}-${slot.key}`]?.length"
+                    class="pl-[5rem] grid grid-cols-1 lg:grid-cols-2 gap-2"
+                  >
+                    <article
+                      v-for="food in slotFoods[`${dayIndex}-${slot.key}`]"
+                      :key="food.id || food.name"
+                      class="plan-food-card"
+                    >
+                      <div class="min-w-0">
+                        <p class="font-medium text-slate-800 truncate">{{ food.name }}</p>
+                        <p class="text-xs text-slate-400">
+                          {{ food.cuisine || "美食推荐" }} · 评分 {{ food.rating ?? "-" }} · 距离
+                          {{ food.distance_km ?? "?" }} km
+                        </p>
                       </div>
-                    </div>
+                      <button
+                        class="text-[10px] px-2 py-1 rounded bg-primary-50 text-primary-700 hover:bg-primary-100 shrink-0"
+                        @click="addFoodToSlot(dayIndex, food, slot.key)"
+                      >
+                        加入备注
+                      </button>
+                    </article>
                   </div>
                 </div>
               </div>
 
-              <!-- 路线优化按钮 -->
-              <div class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
+              <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-100">
                 <button
                   class="btn-soft-primary text-xs"
                   :disabled="optimizing || getDayDestinationIds(day).length < 2"
                   @click="optimizeDayRoute(dayIndex)"
                 >
-                  {{ optimizing ? "优化中..." : "优化路线" }}
+                  {{ optimizing ? "优化中..." : "优化当天路线" }}
+                </button>
+              </div>
+            </article>
+          </section>
+
+          <section class="card-elevated rounded-[24px] p-5">
+            <div class="flex flex-wrap gap-3">
+              <button class="btn-soft-primary" :disabled="saving" @click="savePlan">
+                {{ saving ? "保存中..." : "保存计划" }}
+              </button>
+              <button class="btn-soft-secondary" @click="cancelEdit">取消</button>
+            </div>
+          </section>
+        </template>
+
+        <template v-else-if="planStore.selected">
+          <section class="card-elevated rounded-[24px] p-5 lg:p-6 space-y-5">
+            <div class="flex items-start justify-between gap-4 flex-wrap">
+              <div>
+                <span class="route-panel-kicker">计划详情</span>
+                <h3 class="text-xl font-bold text-slate-950 mt-1">{{ planStore.selected.title }}</h3>
+                <p class="text-sm text-slate-500 mt-2">
+                  {{ planStore.selected.days.length }} 天行程 ·
+                  {{ planStore.selected.days[0]?.date }} ~
+                  {{ planStore.selected.days[planStore.selected.days.length - 1]?.date }}
+                </p>
+                <p class="text-xs text-slate-400 mt-1">创建于 {{ planStore.selected.created_at }}</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button class="btn-soft-primary text-sm" @click="startEdit">编辑</button>
+                <button class="btn-soft-secondary text-sm text-red-500" @click="deleteCurrentPlan">
+                  删除
                 </button>
               </div>
             </div>
-          </div>
 
-          <!-- 操作按钮 -->
-          <div class="flex flex-wrap gap-3">
-            <button class="btn-soft-primary" :disabled="saving" @click="savePlan">
-              {{ saving ? "保存中..." : "保存计划" }}
-            </button>
-            <button class="btn-soft-secondary" @click="cancelEdit">取消</button>
-          </div>
-        </div>
-
-        <!-- 查看模式 -->
-        <div v-else-if="planStore.selected" class="space-y-5">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900">{{ planStore.selected.title }}</h3>
-              <p class="text-xs text-gray-500 mt-1">
-                {{ planStore.selected.days.length }} 天行程 ·
-                {{ planStore.selected.days[0]?.date }} ~
-                {{ planStore.selected.days[planStore.selected.days.length - 1]?.date }}
-              </p>
-              <p class="text-xs text-gray-400 mt-0.5">创建于 {{ planStore.selected.created_at }}</p>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <button class="btn-soft-primary text-sm" @click="startEdit">编辑</button>
-              <button class="btn-soft-secondary text-sm text-red-500" @click="deleteCurrentPlan">
-                删除
-              </button>
-            </div>
-          </div>
-
-          <!-- 每日行程展示 -->
-          <div class="space-y-4">
-            <div
-              v-for="(day, dayIndex) in planStore.selected.days"
-              :key="dayIndex"
-              class="card-elevated p-4 space-y-3"
-            >
-              <div class="flex items-center gap-3">
-                <span
-                  class="px-2 py-0.5 rounded-full bg-primary-50 text-primary-700 text-xs font-bold"
-                >
-                  第 {{ dayIndex + 1 }} 天
-                </span>
-                <span class="text-gray-500 text-xs">{{ day.date }}</span>
-                <span
-                  v-if="day.city"
-                  class="ml-auto text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600"
-                >
-                  {{ day.city }}
-                </span>
-              </div>
-
-              <div class="space-y-2">
-                <div v-for="slot in timeSlots" :key="slot.key" class="flex items-start gap-3">
-                  <span class="text-xs font-medium w-16 shrink-0 pt-0.5" :class="slot.colorClass">
-                    {{ slot.label }}
+            <div class="space-y-4">
+              <article
+                v-for="(day, dayIndex) in planStore.selected.days"
+                :key="dayIndex"
+                class="card-elevated rounded-[20px] p-4 space-y-3"
+              >
+                <div class="flex items-center gap-3 flex-wrap">
+                  <span class="route-summary-chip">第 {{ dayIndex + 1 }} 天</span>
+                  <span class="text-sm text-slate-500">{{ day.date }}</span>
+                  <span v-if="day.city" class="route-summary-chip route-summary-chip-accent ml-auto">
+                    {{ day.city }}
                   </span>
-                  <div v-if="day.time_slots[slot.key]?.destination_name" class="flex-1">
-                    <p class="text-sm font-medium text-gray-800">
-                      {{ day.time_slots[slot.key]!.destination_name }}
-                    </p>
-                    <p v-if="day.time_slots[slot.key]!.notes" class="text-xs text-gray-400 mt-0.5">
-                      {{ day.time_slots[slot.key]!.notes }}
-                    </p>
-                  </div>
-                  <span v-else class="text-xs text-gray-300 italic">不安排</span>
                 </div>
-              </div>
+
+                <div class="space-y-3">
+                  <div v-for="slot in timeSlots" :key="slot.key" class="plan-slot-view">
+                    <span class="plan-slot-label" :class="slot.colorClass">{{ slot.label }}</span>
+                    <div v-if="day.time_slots[slot.key]?.destination_name" class="flex-1">
+                      <p class="text-sm font-medium text-slate-800">
+                        {{ day.time_slots[slot.key]!.destination_name }}
+                      </p>
+                      <p v-if="day.time_slots[slot.key]!.notes" class="text-xs text-slate-400 mt-1">
+                        {{ day.time_slots[slot.key]!.notes }}
+                      </p>
+                    </div>
+                    <span v-else class="text-xs text-slate-300 italic">暂不安排</span>
+                  </div>
+                </div>
+              </article>
             </div>
-          </div>
-        </div>
-      </div>
+          </section>
+        </template>
+      </section>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref, watch } from "vue";
+import { computed, reactive, ref, watch, onMounted } from "vue";
+
+import { api } from "../api/client";
 import { useAuthStore } from "../stores/auth";
 import { usePlanStore } from "../stores/plans";
 import { useTravelStore } from "../stores/travel";
-import { api } from "../api/client";
-import type { TimeSlotEntry, TimeSlots, TravelPlan, Food } from "../types/models";
 import type { NearbyFoodResponse, OptimizeOrderResponse } from "../types/api";
+import type { Food, TimeSlotEntry, TravelPlan } from "../types/models";
 
 const auth = useAuthStore();
 const planStore = usePlanStore();
@@ -321,11 +323,8 @@ const optimizing = ref(false);
 const startDate = ref("");
 const endDate = ref("");
 
-// 美食推荐（按 dayIndex + slotKey 粒度）
 const slotFoods = ref<Record<string, Food[]>>({});
 const loadingSlotFoods = ref<Record<string, boolean>>({});
-
-// 优化结果
 const optimizationResult = ref<Record<number, { total_distance_km: number; label: string }>>({});
 
 const timeSlots = [
@@ -350,12 +349,6 @@ const emptyTimeSlot = (): TimeSlotEntry => ({
   notes: "",
 });
 
-const emptyTimeSlots = (): TimeSlots => ({
-  morning: emptyTimeSlot(),
-  afternoon: emptyTimeSlot(),
-  evening: emptyTimeSlot(),
-});
-
 const editingPlan = reactive<{
   id: number | null;
   title: string;
@@ -371,10 +364,12 @@ const availableCities = computed(() => {
   return [...new Set(cities)].sort();
 });
 
+const selectedPlanDays = computed(() => planStore.selected?.days.length ?? 0);
+
 const destinationsForCity = (city: string) =>
   travelStore.destinations.items.filter((d) => d.city === city);
 
-const makeDay = (date: string, city: string = ""): EditingDay => ({
+const makeDay = (date: string, city = ""): EditingDay => ({
   date,
   city,
   time_slots: {
@@ -386,6 +381,7 @@ const makeDay = (date: string, city: string = ""): EditingDay => ({
 
 const generateDays = () => {
   if (!startDate.value || !endDate.value) return;
+
   const start = new Date(startDate.value);
   const end = new Date(endDate.value);
   if (start > end) return;
@@ -393,12 +389,14 @@ const generateDays = () => {
   const defaultCity = availableCities.value[0] ?? "";
   const days: EditingDay[] = [];
   const current = new Date(start);
+
   while (current <= end) {
     const dateStr = current.toISOString().split("T")[0];
     const existing = editingPlan.days.find((d) => d.date === dateStr);
     days.push(existing ?? makeDay(dateStr, defaultCity));
     current.setDate(current.getDate() + 1);
   }
+
   editingPlan.days = days;
 };
 
@@ -414,6 +412,7 @@ const onDestinationChange = (day: EditingDay, slotKey: "morning" | "afternoon" |
     day.time_slots[slotKey] = emptyTimeSlot();
     return;
   }
+
   const dest = travelStore.destinations.items.find((d) => d.source_id === destId);
   if (dest) {
     day.time_slots[slotKey] = {
@@ -436,10 +435,21 @@ const planToEditingPlan = (plan: TravelPlan) => {
       evening: d.time_slots.evening ?? emptyTimeSlot(),
     },
   }));
+
   if (plan.days.length > 0) {
     startDate.value = plan.days[0].date;
-    endDate.value = plan.days[plan.days.length - 1].date;
+    endDate.value = plan.days[plan.days.length - 1]?.date ?? plan.days[0].date;
   }
+};
+
+const resetEditingState = () => {
+  editingPlan.id = null;
+  editingPlan.title = "";
+  editingPlan.days = [];
+  startDate.value = "";
+  endDate.value = "";
+  slotFoods.value = {};
+  optimizationResult.value = {};
 };
 
 const startCreate = () => {
@@ -447,14 +457,11 @@ const startCreate = () => {
     auth.openAuthModal("login");
     return;
   }
+
   isEditing.value = !isEditing.value;
   if (isEditing.value) {
     planStore.selected = null;
-    editingPlan.id = null;
-    editingPlan.title = "";
-    editingPlan.days = [];
-    startDate.value = "";
-    endDate.value = "";
+    resetEditingState();
   }
 };
 
@@ -466,11 +473,7 @@ const startEdit = () => {
 
 const cancelEdit = () => {
   isEditing.value = false;
-  editingPlan.id = null;
-  editingPlan.title = "";
-  editingPlan.days = [];
-  startDate.value = "";
-  endDate.value = "";
+  resetEditingState();
 };
 
 const selectPlan = async (plan: TravelPlan) => {
@@ -484,6 +487,7 @@ const savePlan = async () => {
     auth.openAuthModal("login");
     return;
   }
+
   saving.value = true;
   try {
     const payload = {
@@ -525,6 +529,7 @@ const savePlan = async () => {
         planStore.selected = created;
       }
     }
+
     isEditing.value = false;
   } finally {
     saving.value = false;
@@ -537,7 +542,6 @@ const deleteCurrentPlan = async () => {
   await planStore.deletePlan(planStore.selected.id);
 };
 
-// 获取当天已选的所有目的地ID（有重复城市的情况，但目前设计是一天一城）
 const getDayDestinationIds = (day: EditingDay): string[] => {
   const ids: string[] = [];
   for (const slot of ["morning", "afternoon", "evening"] as const) {
@@ -547,22 +551,22 @@ const getDayDestinationIds = (day: EditingDay): string[] => {
   return ids;
 };
 
-// 路线优化
 const optimizeDayRoute = async (dayIndex: number) => {
   const day = editingPlan.days[dayIndex];
   const ids = getDayDestinationIds(day);
   if (ids.length < 2) {
-    alert("一天内至少选择2个景点才能优化路线");
+    alert("一天内至少选择 2 个目的地，才能优化路线。");
     return;
   }
+
   optimizing.value = true;
   try {
     const { data } = await api.post<OptimizeOrderResponse>("/routes/optimize-order", {
       destination_ids: ids,
     });
-    // 按返回顺序重新排列
+
     const ordered = data.ordered_ids;
-    for (let i = 0; i < ordered.length; i++) {
+    for (let i = 0; i < ordered.length; i += 1) {
       const slotKey = (["morning", "afternoon", "evening"] as const)[i];
       const dest = travelStore.destinations.items.find((d) => d.source_id === ordered[i]);
       if (dest && slotKey) {
@@ -573,27 +577,28 @@ const optimizeDayRoute = async (dayIndex: number) => {
         };
       }
     }
-    // 清空多余slot
-    for (let i = ordered.length; i < 3; i++) {
+
+    for (let i = ordered.length; i < 3; i += 1) {
       const slotKey = (["morning", "afternoon", "evening"] as const)[i];
       if (slotKey) day.time_slots[slotKey] = emptyTimeSlot();
     }
+
     optimizationResult.value[dayIndex] = {
       total_distance_km: data.total_distance_km,
       label: data.optimization_label,
     };
   } catch {
-    alert("路线优化失败，请稍后重试");
+    alert("路线优化失败，请稍后重试。");
   } finally {
     optimizing.value = false;
   }
 };
 
-// 加载某个时段附近美食
 const loadFoodsForSlot = async (dayIndex: number, slotKey: "morning" | "afternoon" | "evening") => {
   const day = editingPlan.days[dayIndex];
   const id = day.time_slots[slotKey].destination_id;
   if (!id) return;
+
   const dest = travelStore.destinations.items.find((d) => d.source_id === id);
   if (!dest?.latitude || !dest?.longitude) return;
 
@@ -611,7 +616,6 @@ const loadFoodsForSlot = async (dayIndex: number, slotKey: "morning" | "afternoo
   }
 };
 
-// 切换美食推荐面板的显示/隐藏
 const toggleFoodsForSlot = (dayIndex: number, slotKey: "morning" | "afternoon" | "evening") => {
   const key = `${dayIndex}-${slotKey}`;
   if (slotFoods.value[key]?.length) {
@@ -621,7 +625,6 @@ const toggleFoodsForSlot = (dayIndex: number, slotKey: "morning" | "afternoon" |
   }
 };
 
-// 将美食加入时段（保留景点信息，在备注中追加美食）
 const addFoodToSlot = (
   dayIndex: number,
   food: Food,
@@ -629,7 +632,10 @@ const addFoodToSlot = (
 ) => {
   const day = editingPlan.days[dayIndex];
   const current = day.time_slots[slotKey];
-  const foodNote = `美食推荐：${food.name}（${food.cuisine || ""} · 评分${food.rating ?? "-"} · 距${food.distance_km ?? "?"}km）`;
+  const foodNote = `美食推荐：${food.name}，${food.cuisine || "附近餐饮"} · 评分 ${
+    food.rating ?? "-"
+  } · 距离 ${food.distance_km ?? "?"} km`;
+
   day.time_slots[slotKey] = {
     ...current,
     notes: current.notes ? `${current.notes}；${foodNote}` : foodNote,
@@ -643,7 +649,6 @@ onMounted(async () => {
   }
 });
 
-// 监听登录态变化：session 恢复后自动加载计划，刷新页面后不丢失
 watch(
   () => auth.isLoggedIn,
   (loggedIn) => {

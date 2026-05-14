@@ -2,11 +2,19 @@ import { ref } from "vue";
 
 import { api } from "../api/client";
 import type {
+  MultiRouteResult,
   NearbyFacilityRouteResult,
   SingleRouteResult,
-  MultiRouteResult,
   WanderRouteResult,
 } from "../types/models";
+
+type ApiFailure = {
+  response?: {
+    data?: {
+      detail?: string;
+    };
+  };
+};
 
 export function useRoutePlanner() {
   const singleRoute = ref<SingleRouteResult | null>(null);
@@ -27,11 +35,12 @@ export function useRoutePlanner() {
     wanderRoute.value = null;
     facilityRoute.value = null;
     selectedAlternativeStrategy.value = "";
+
     try {
       const { data } = await api.post<SingleRouteResult>("/routes/single", payload);
       singleRoute.value = data;
-    } catch (err: any) {
-      error.value = err?.response?.data?.detail || "路线规划失败，请稍后重试。";
+    } catch (err: unknown) {
+      error.value = (err as ApiFailure)?.response?.data?.detail || "路线规划失败，请稍后重试。";
     } finally {
       singleLoading.value = false;
     }
@@ -44,11 +53,12 @@ export function useRoutePlanner() {
     wanderRoute.value = null;
     facilityRoute.value = null;
     selectedAlternativeStrategy.value = "";
+
     try {
       const { data } = await api.post<MultiRouteResult>("/routes/multi", payload);
       multiRoute.value = data;
-    } catch (err: any) {
-      error.value = err?.response?.data?.detail || "多点路线规划失败，请稍后重试。";
+    } catch (err: unknown) {
+      error.value = (err as ApiFailure)?.response?.data?.detail || "多点路线规划失败，请稍后重试。";
     } finally {
       multiLoading.value = false;
     }
@@ -61,11 +71,12 @@ export function useRoutePlanner() {
     multiRoute.value = null;
     facilityRoute.value = null;
     selectedAlternativeStrategy.value = "";
+
     try {
       const { data } = await api.post<WanderRouteResult>("/routes/wander", payload);
       wanderRoute.value = data;
-    } catch (err: any) {
-      error.value = err?.response?.data?.detail || "漫游路线生成失败，请稍后重试。";
+    } catch (err: unknown) {
+      error.value = (err as ApiFailure)?.response?.data?.detail || "漫游路线生成失败，请稍后重试。";
     } finally {
       wanderLoading.value = false;
     }
@@ -78,14 +89,13 @@ export function useRoutePlanner() {
     multiRoute.value = null;
     wanderRoute.value = null;
     selectedAlternativeStrategy.value = "";
+
     try {
-      const { data } = await api.post<NearbyFacilityRouteResult>(
-        "/routes/nearby-facility",
-        payload,
-      );
+      const { data } = await api.post<NearbyFacilityRouteResult>("/routes/nearby-facility", payload);
       facilityRoute.value = data;
-    } catch (err: any) {
-      error.value = err?.response?.data?.detail || "最近设施路线生成失败，请稍后重试。";
+    } catch (err: unknown) {
+      error.value =
+        (err as ApiFailure)?.response?.data?.detail || "最近设施路线生成失败，请稍后重试。";
     } finally {
       facilityLoading.value = false;
     }

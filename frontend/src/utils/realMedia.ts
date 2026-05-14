@@ -8,6 +8,15 @@ type MediaResolveInput = {
   searchHint?: string | null;
 };
 
+type SummaryPayload = {
+  thumbnail?: {
+    source?: string;
+  };
+  originalimage?: {
+    source?: string;
+  };
+};
+
 const STORAGE_KEY = "travel-real-media-cache-v1";
 const WIKIPEDIA_TIMEOUT_MS = 2200;
 const cache = new Map<string, string>();
@@ -68,7 +77,7 @@ function isBuiltinImage(src?: string | null): boolean {
 function normalizeTitle(text: string): string {
   return text
     .trim()
-    .replace(/[（(].*?[)）]/g, "")
+    .replace(/[(（].*?[)）]/g, "")
     .replace(/\s+/g, " ")
     .replace(/\u00a0/g, " ");
 }
@@ -132,7 +141,7 @@ function seededPhotoUrl(seed: string): string {
   return `https://picsum.photos/seed/${safeSeed}/1200/720`;
 }
 
-async function fetchJsonWithTimeout(url: string): Promise<any> {
+async function fetchJsonWithTimeout(url: string): Promise<SummaryPayload | null> {
   const controller = new AbortController();
   const timer = window.setTimeout(() => controller.abort(), WIKIPEDIA_TIMEOUT_MS);
   try {
@@ -144,7 +153,7 @@ async function fetchJsonWithTimeout(url: string): Promise<any> {
       },
     });
     if (!response.ok) return null;
-    return await response.json();
+    return (await response.json()) as SummaryPayload;
   } catch {
     return null;
   } finally {
@@ -184,6 +193,7 @@ export async function resolveRealMedia(input: MediaResolveInput): Promise<string
       saveCache();
       return zhImage;
     }
+
     const enImage = await fetchWikipediaThumbnail(title, "en");
     if (enImage) {
       cache.set(key, enImage);

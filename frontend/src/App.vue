@@ -1,42 +1,31 @@
 <template>
   <div class="app-shell">
-    <!-- Sidebar -->
     <aside class="app-sidebar">
-      <!-- Brand -->
       <div class="app-brand">
-        <div class="app-brand-mark">
-          <div class="app-brand-icon">
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="1.8"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"
-              />
-            </svg>
-          </div>
-          <span>城市漫游</span>
-        </div>
+        <RouterLink to="/" class="app-brand-mark">
+          <span class="app-brand-logo-shell">
+            <img :src="brandLogoUrl" alt="优途" class="app-brand-logo" />
+          </span>
+          <span class="app-brand-copy">
+            <strong>优途</strong>
+            <small>城市探索与路线规划</small>
+          </span>
+        </RouterLink>
       </div>
-      <!-- Nav -->
+
       <nav class="app-nav">
         <RouterLink
           v-for="item in navItems"
           :key="item.to"
           :to="item.to"
           class="app-nav-link"
-          :class="[$route.path === item.to ? 'app-nav-link-active' : 'app-nav-link-idle']"
+          :class="[route.path === item.to ? 'app-nav-link-active' : 'app-nav-link-idle']"
         >
           <component :is="item.icon" class="app-nav-icon" />
           {{ item.label }}
         </RouterLink>
       </nav>
-      <!-- Account -->
+
       <div class="app-sidebar-account">
         <template v-if="auth.isLoggedIn">
           <div class="app-user-card">
@@ -46,7 +35,7 @@
             <div class="app-user-meta">
               <p>{{ auth.user?.display_name }}</p>
               <span>
-                {{ auth.favoriteDestinationCount }} 收藏 · {{ auth.favoriteRouteCount }} 路线
+                {{ auth.favoriteDestinationCount }} 个收藏地点 · {{ auth.favoriteRouteCount }} 条路线
               </span>
             </div>
           </div>
@@ -59,29 +48,37 @@
             退出登录
           </button>
         </template>
+        <template v-else>
+          <div class="app-sidebar-guest">
+            <p>登录后可同步收藏、路线和计划。</p>
+            <div class="app-sidebar-guest-actions">
+              <button class="app-shell-button" type="button" @click="auth.openAuthModal('login')">
+                登录
+              </button>
+              <button
+                class="app-shell-button app-shell-button-ghost"
+                type="button"
+                @click="auth.openAuthModal('register')"
+              >
+                注册
+              </button>
+            </div>
+          </div>
+        </template>
       </div>
     </aside>
-    <!-- Mobile header -->
+
     <div class="app-mobile-shell">
       <div class="app-mobile-header">
-        <div class="app-mobile-brand">
-          <div class="app-brand-icon app-brand-icon-mobile">
-            <svg
-              class="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="1.8"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"
-              />
-            </svg>
-          </div>
-          <span>城市漫游</span>
-        </div>
+        <RouterLink to="/" class="app-mobile-brand" @click="mobileMenuOpen = false">
+          <span class="app-brand-logo-shell app-brand-logo-shell-mobile">
+            <img :src="brandLogoUrl" alt="优途" class="app-brand-logo" />
+          </span>
+          <span class="app-brand-copy">
+            <strong>优途</strong>
+            <small>城市探索与路线规划</small>
+          </span>
+        </RouterLink>
         <button
           class="app-icon-button"
           type="button"
@@ -105,7 +102,7 @@
           </svg>
         </button>
       </div>
-      <!-- Mobile nav dropdown -->
+
       <Transition name="page-fade-slide">
         <nav v-if="mobileMenuOpen" class="app-mobile-nav">
           <RouterLink
@@ -113,7 +110,7 @@
             :key="item.to"
             :to="item.to"
             class="app-mobile-nav-link"
-            :class="[$route.path === item.to ? 'app-nav-link-active' : 'app-nav-link-idle']"
+            :class="[route.path === item.to ? 'app-nav-link-active' : 'app-nav-link-idle']"
             @click="mobileMenuOpen = false"
           >
             <component :is="item.icon" class="app-nav-icon" />
@@ -122,10 +119,14 @@
         </nav>
       </Transition>
     </div>
-    <!-- Main content -->
+
     <main class="app-main">
-      <!-- Top bar -->
       <header class="app-topbar">
+        <div class="app-topbar-context">
+          <p>优途</p>
+          <strong>{{ currentNavLabel }}</strong>
+        </div>
+
         <div ref="topbarToolsRef" class="app-topbar-tools" @click.stop>
           <button
             class="app-topbar-link"
@@ -155,6 +156,7 @@
             <IconChat class="app-topbar-icon" />
             消息
           </button>
+
           <template v-if="auth.isLoggedIn">
             <span class="app-topbar-tool app-topbar-user">
               <IconUser class="app-topbar-icon" />
@@ -179,6 +181,7 @@
               免费注册
             </button>
           </template>
+
           <Transition name="app-popover">
             <div
               v-if="activeTopbarPanel"
@@ -189,30 +192,30 @@
                 <div class="app-popover-header">
                   <div>
                     <p>收藏中心</p>
-                    <span>你的目的地与路线快照会汇总在这里。</span>
+                    <span>你的地点收藏和路线快照会汇总在这里，方便答辩时快速切换。</span>
                   </div>
                   <strong>{{ auth.favoriteDestinationCount + auth.favoriteRouteCount }}</strong>
                 </div>
                 <div class="app-favorite-grid">
                   <div>
                     <strong>{{ auth.favoriteDestinationCount }}</strong>
-                    <span>目的地收藏</span>
+                    <span>收藏地点</span>
                   </div>
                   <div>
                     <strong>{{ auth.favoriteRouteCount }}</strong>
-                    <span>路线收藏</span>
+                    <span>收藏路线</span>
                   </div>
                 </div>
                 <p
                   v-if="auth.favoriteDestinationCount + auth.favoriteRouteCount === 0"
                   class="app-popover-empty"
                 >
-                  还没有收藏内容。讲解时可以先收藏一个目的地或路线，这里会实时更新。
+                  还没有收藏内容。你可以先收藏一个目的地或路线，这里会实时更新。
                 </p>
                 <div class="app-popover-actions">
-                  <RouterLink to="/destinations" @click="closeTopbarPanel">去目的地推荐</RouterLink>
-                  <RouterLink to="/routes" @click="closeTopbarPanel">去地图导航</RouterLink>
-                  <RouterLink to="/" @click="closeTopbarPanel">查看我的收藏</RouterLink>
+                  <RouterLink to="/destinations" @click="closeTopbarPanel">去看目的地</RouterLink>
+                  <RouterLink to="/routes" @click="closeTopbarPanel">打开地图导航</RouterLink>
+                  <RouterLink to="/" @click="closeTopbarPanel">返回首页</RouterLink>
                 </div>
               </template>
 
@@ -220,9 +223,9 @@
                 <div class="app-popover-header">
                   <div>
                     <p>通知中心</p>
-                    <span>演示路线、收藏和好友提醒的聚合入口。</span>
+                    <span>这里保留收藏同步、演示提醒和互动反馈等产品通知入口。</span>
                   </div>
-                  <strong>3</strong>
+                  <strong>{{ demoNotifications.length }}</strong>
                 </div>
                 <div class="app-notice-list">
                   <div
@@ -243,7 +246,7 @@
                 <div class="app-popover-header">
                   <div>
                     <p>好友消息</p>
-                    <span>前端交互雏形，后续可接真实好友接口。</span>
+                    <span>保留社交模块的演示入口，后续可以接真实接口。</span>
                   </div>
                   <strong>{{ currentFriendMessages.length }}</strong>
                 </div>
@@ -293,123 +296,49 @@
           </Transition>
         </div>
       </header>
+
       <div class="app-content">
-        <RouterView v-slot="{ Component, route }">
+        <RouterView v-slot="{ Component, route: currentRoute }">
           <Transition name="page-fade-slide" mode="out-in">
-            <component :is="Component" :key="route.fullPath" />
+            <component :is="Component" :key="currentRoute.fullPath" />
           </Transition>
         </RouterView>
       </div>
     </main>
-    <AuthModal /> <ToastContainer />
+
+    <AuthModal />
+    <ToastContainer />
   </div>
 </template>
+
 <script setup lang="ts">
 import { computed, h, onBeforeUnmount, onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
+
 import AuthModal from "./components/AuthModal.vue";
 import ToastContainer from "./components/ToastContainer.vue";
 import { useAuthStore } from "./stores/auth";
 import { useToastStore } from "./stores/toast";
+
+const brandLogoUrl = "/brands/youtu.png";
 const auth = useAuthStore();
 const toast = useToastStore();
+const route = useRoute();
 const mobileMenuOpen = ref(false);
+
 type TopbarPanel = "favorites" | "notifications" | "messages";
 type DemoMessage = {
   id: number;
   from: "friend" | "me";
   text: string;
 };
+
 const topbarToolsRef = ref<HTMLElement | null>(null);
 const activeTopbarPanel = ref<TopbarPanel | null>(null);
 const selectedFriendId = ref("chen");
 const messageDraft = ref("");
-const MESSAGE_STORAGE_KEY = "travel_demo_friend_messages";
-const demoFriends = [
-  { id: "chen", name: "陈同学", avatar: "陈", status: "想看故宫路线" },
-  { id: "lin", name: "林同学", avatar: "林", status: "刚收藏了美食点" },
-  { id: "zhou", name: "周同学", avatar: "周", status: "约周末校园漫游" },
-];
-const demoNotifications = [
-  {
-    title: "收藏同步提醒",
-    detail: "目的地和路线收藏会在登录后同步到当前账号。",
-  },
-  {
-    title: "路线讲解准备",
-    detail: "地图导航里的收藏路线可作为中期演示素材。",
-  },
-  {
-    title: "好友消息预览",
-    detail: "消息入口展示社交模块雏形，后续可接真实接口。",
-  },
-];
-const defaultMessages: Record<string, DemoMessage[]> = {
-  chen: [
-    { id: 1, from: "friend", text: "下午讲解时可以先演示收藏，再切到路线。" },
-    { id: 2, from: "me", text: "好，我把右上角入口做成可点击面板。" },
-  ],
-  lin: [{ id: 1, from: "friend", text: "我想看北京周边美食推荐，能一起发路线吗？" }],
-  zhou: [{ id: 1, from: "friend", text: "周末如果去北邮校园，我可以直接跟着路线走。" }],
-};
-const loadDemoMessages = () => {
-  if (typeof window === "undefined") return defaultMessages;
-  try {
-    const cached = window.localStorage.getItem(MESSAGE_STORAGE_KEY);
-    return cached ? { ...defaultMessages, ...JSON.parse(cached) } : defaultMessages;
-  } catch (error) {
-    return defaultMessages;
-  }
-};
-const friendMessages = ref<Record<string, DemoMessage[]>>(loadDemoMessages());
-const currentFriendMessages = computed(() => friendMessages.value[selectedFriendId.value] || []);
-const persistDemoMessages = () => {
-  if (typeof window === "undefined") return;
-  window.localStorage.setItem(MESSAGE_STORAGE_KEY, JSON.stringify(friendMessages.value));
-};
-const closeTopbarPanel = () => {
-  activeTopbarPanel.value = null;
-};
-const toggleTopbarPanel = (panel: TopbarPanel) => {
-  activeTopbarPanel.value = activeTopbarPanel.value === panel ? null : panel;
-};
-const handleFavoritesClick = () => {
-  if (!auth.isLoggedIn) {
-    closeTopbarPanel();
-    toast.info("登录后查看收藏中心");
-    auth.openAuthModal("login");
-    return;
-  }
-  toggleTopbarPanel("favorites");
-};
-const handleMessagesClick = () => {
-  if (!auth.isLoggedIn) {
-    closeTopbarPanel();
-    toast.info("登录后查看好友消息");
-    auth.openAuthModal("login");
-    return;
-  }
-  toggleTopbarPanel("messages");
-};
-const sendDemoMessage = () => {
-  const text = messageDraft.value.trim();
-  if (!text) return;
-  const nextMessage = {
-    id: Date.now(),
-    from: "me" as const,
-    text,
-  };
-  friendMessages.value = {
-    ...friendMessages.value,
-    [selectedFriendId.value]: [...currentFriendMessages.value, nextMessage],
-  };
-  messageDraft.value = "";
-  persistDemoMessages();
-};
-const handleDocumentClick = (event: MouseEvent) => {
-  if (!topbarToolsRef.value?.contains(event.target as Node)) {
-    closeTopbarPanel();
-  }
-};
+const messageStorageKey = "travel_demo_friend_messages";
+
 const createTopbarIcon = (pathData: string) =>
   h(
     "svg",
@@ -428,6 +357,7 @@ const createTopbarIcon = (pathData: string) =>
       }),
     ],
   );
+
 const IconBookmark = () =>
   createTopbarIcon(
     "M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z",
@@ -453,19 +383,12 @@ const IconLogout = () =>
     "M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9",
   );
 const IconSend = () =>
-  createTopbarIcon(
-    "M6 12 3.269 3.125A59.768 59.768 0 0 1 21.485 12 59.77 59.77 0 0 1 3.27 20.875L6 12Zm0 0h7.5",
-  );
+  createTopbarIcon("M6 12 3.269 3.125A59.768 59.768 0 0 1 21.485 12 59.77 59.77 0 0 1 3.27 20.875L6 12Zm0 0h7.5");
+
 const IconHome = () =>
   h(
     "svg",
-    {
-      class: "w-[18px] h-[18px]",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      stroke: "currentColor",
-      "stroke-width": "1.5",
-    },
+    { class: "w-[18px] h-[18px]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", "stroke-width": "1.5" },
     [
       h("path", {
         "stroke-linecap": "round",
@@ -477,13 +400,7 @@ const IconHome = () =>
 const IconMap = () =>
   h(
     "svg",
-    {
-      class: "w-[18px] h-[18px]",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      stroke: "currentColor",
-      "stroke-width": "1.5",
-    },
+    { class: "w-[18px] h-[18px]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", "stroke-width": "1.5" },
     [
       h("path", {
         "stroke-linecap": "round",
@@ -495,19 +412,9 @@ const IconMap = () =>
 const IconPin = () =>
   h(
     "svg",
-    {
-      class: "w-[18px] h-[18px]",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      stroke: "currentColor",
-      "stroke-width": "1.5",
-    },
+    { class: "w-[18px] h-[18px]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", "stroke-width": "1.5" },
     [
-      h("path", {
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round",
-        d: "M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z",
-      }),
+      h("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" }),
       h("path", {
         "stroke-linecap": "round",
         "stroke-linejoin": "round",
@@ -518,13 +425,7 @@ const IconPin = () =>
 const IconSearch = () =>
   h(
     "svg",
-    {
-      class: "w-[18px] h-[18px]",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      stroke: "currentColor",
-      "stroke-width": "1.5",
-    },
+    { class: "w-[18px] h-[18px]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", "stroke-width": "1.5" },
     [
       h("path", {
         "stroke-linecap": "round",
@@ -536,13 +437,7 @@ const IconSearch = () =>
 const IconBuilding = () =>
   h(
     "svg",
-    {
-      class: "w-[18px] h-[18px]",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      stroke: "currentColor",
-      "stroke-width": "1.5",
-    },
+    { class: "w-[18px] h-[18px]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", "stroke-width": "1.5" },
     [
       h("path", {
         "stroke-linecap": "round",
@@ -554,13 +449,7 @@ const IconBuilding = () =>
 const IconUtensils = () =>
   h(
     "svg",
-    {
-      class: "w-[18px] h-[18px]",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      stroke: "currentColor",
-      "stroke-width": "1.5",
-    },
+    { class: "w-[18px] h-[18px]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", "stroke-width": "1.5" },
     [
       h("path", {
         "stroke-linecap": "round",
@@ -572,13 +461,7 @@ const IconUtensils = () =>
 const IconBook = () =>
   h(
     "svg",
-    {
-      class: "w-[18px] h-[18px]",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      stroke: "currentColor",
-      "stroke-width": "1.5",
-    },
+    { class: "w-[18px] h-[18px]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", "stroke-width": "1.5" },
     [
       h("path", {
         "stroke-linecap": "round",
@@ -590,13 +473,7 @@ const IconBook = () =>
 const IconCalendar = () =>
   h(
     "svg",
-    {
-      class: "w-[18px] h-[18px]",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      stroke: "currentColor",
-      "stroke-width": "1.5",
-    },
+    { class: "w-[18px] h-[18px]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", "stroke-width": "1.5" },
     [
       h("path", {
         "stroke-linecap": "round",
@@ -605,6 +482,7 @@ const IconCalendar = () =>
       }),
     ],
   );
+
 const navItems = [
   { label: "首页", to: "/", icon: IconHome },
   { label: "目的地推荐", to: "/destinations", icon: IconPin },
@@ -615,11 +493,117 @@ const navItems = [
   { label: "旅游日记", to: "/diaries", icon: IconBook },
   { label: "旅游规划", to: "/plan", icon: IconCalendar },
 ];
+
+const currentNavLabel = computed(
+  () => navItems.find((item) => item.to === route.path)?.label ?? "个性化旅游平台",
+);
+
+const demoFriends = [
+  { id: "chen", name: "陈同学", avatar: "陈", status: "想看故宫路线" },
+  { id: "lin", name: "林同学", avatar: "林", status: "刚收藏了一个美食点" },
+  { id: "zhou", name: "周同学", avatar: "周", status: "约周末校园漫游" },
+];
+
+const demoNotifications = [
+  {
+    title: "收藏同步提醒",
+    detail: "登录后，地点收藏和路线快照会同步到当前账号。",
+  },
+  {
+    title: "路线讲解准备",
+    detail: "地图导航里的收藏路线可以直接作为课程演示素材。",
+  },
+  {
+    title: "好友互动入口",
+    detail: "消息模块保留了社交入口，后续可以接真实接口。",
+  },
+];
+
+const defaultMessages: Record<string, DemoMessage[]> = {
+  chen: [
+    { id: 1, from: "friend", text: "下午讲解时可以先演示收藏，再切到路线。" },
+    { id: 2, from: "me", text: "好，我把入口做成了更清晰的产品工具栏。" },
+  ],
+  lin: [{ id: 1, from: "friend", text: "我想看北京周边美食推荐，能一起发路线吗？" }],
+  zhou: [{ id: 1, from: "friend", text: "如果周末去北邮校园，我可以直接跟着路线走吗？" }],
+};
+
+const loadDemoMessages = () => {
+  if (typeof window === "undefined") return defaultMessages;
+  try {
+    const cached = window.localStorage.getItem(messageStorageKey);
+    return cached ? { ...defaultMessages, ...JSON.parse(cached) } : defaultMessages;
+  } catch {
+    return defaultMessages;
+  }
+};
+
+const friendMessages = ref<Record<string, DemoMessage[]>>(loadDemoMessages());
+const currentFriendMessages = computed(() => friendMessages.value[selectedFriendId.value] || []);
+
+const persistDemoMessages = () => {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(messageStorageKey, JSON.stringify(friendMessages.value));
+};
+
+const closeTopbarPanel = () => {
+  activeTopbarPanel.value = null;
+};
+
+const toggleTopbarPanel = (panel: TopbarPanel) => {
+  activeTopbarPanel.value = activeTopbarPanel.value === panel ? null : panel;
+};
+
+const handleFavoritesClick = () => {
+  if (!auth.isLoggedIn) {
+    closeTopbarPanel();
+    toast.info("登录后查看收藏中心");
+    auth.openAuthModal("login");
+    return;
+  }
+  toggleTopbarPanel("favorites");
+};
+
+const handleMessagesClick = () => {
+  if (!auth.isLoggedIn) {
+    closeTopbarPanel();
+    toast.info("登录后查看好友消息");
+    auth.openAuthModal("login");
+    return;
+  }
+  toggleTopbarPanel("messages");
+};
+
+const sendDemoMessage = () => {
+  const text = messageDraft.value.trim();
+  if (!text) return;
+
+  const nextMessage = {
+    id: Date.now(),
+    from: "me" as const,
+    text,
+  };
+
+  friendMessages.value = {
+    ...friendMessages.value,
+    [selectedFriendId.value]: [...currentFriendMessages.value, nextMessage],
+  };
+  messageDraft.value = "";
+  persistDemoMessages();
+};
+
+const handleDocumentClick = (event: MouseEvent) => {
+  if (!topbarToolsRef.value?.contains(event.target as Node)) {
+    closeTopbarPanel();
+  }
+};
+
 onMounted(() => {
   auth.bindUnauthorizedListener();
   auth.restoreSession();
   document.addEventListener("click", handleDocumentClick);
 });
+
 onBeforeUnmount(() => {
   document.removeEventListener("click", handleDocumentClick);
 });

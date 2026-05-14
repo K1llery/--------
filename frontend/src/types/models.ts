@@ -10,9 +10,11 @@ export interface Destination {
   longitude: number;
   rating: number | null;
   heat: number | null;
+  heat_metric?: string;
   tags?: string[];
   description?: string;
   image_url?: string;
+  image_source_name?: string;
   source_name?: string;
   source_url?: string;
 }
