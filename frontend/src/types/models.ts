@@ -23,17 +23,31 @@ export interface Destination {
 export interface Food {
   id: string;
   name: string;
+  source_id?: string;
   city?: string;
   cuisine?: string;
   rating: number | null;
   heat?: number | null;
   source_name?: string;
+  source_url?: string;
   image_url?: string;
+  image_source_name?: string;
   description?: string;
   address?: string;
+  destination_name?: string;
+  restaurant_name?: string;
+  canteen_name?: string;
+  window_name?: string;
+  venue_type?: "restaurant" | "canteen" | "window" | "cafe" | "snack" | "stall_group";
+  dishes?: string[];
+  aliases?: string[];
+  tags?: string[];
   latitude?: number;
   longitude?: number;
   distance_km?: number;
+  distance_m?: number;
+  recommend_score?: number;
+  rank_reasons?: string[];
 }
 
 /** 日记媒体项（图片或视频） */
