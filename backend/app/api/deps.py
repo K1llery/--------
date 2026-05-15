@@ -150,3 +150,13 @@ def get_current_user(
     if user is None:
         raise AuthenticationError("请先登录")
     return user
+
+
+def get_optional_user(
+    authorization: str | None = Header(default=None),
+    auth_service: AuthService = Depends(get_auth_service),
+) -> dict | None:
+    """Same as ``get_current_user`` but returns ``None`` instead of 401 when
+    no token is supplied. Useful for personalized but public endpoints."""
+    token = extract_token(authorization)
+    return auth_service.current_user(token)

@@ -39,6 +39,26 @@ const router = createRouter({
       component: () => import("../pages/DiaryPage.vue"),
     },
     {
+      path: "/diaries/new",
+      name: "diary-new",
+      component: () => import("../pages/diaries/DiaryEditorPage.vue"),
+    },
+    {
+      path: "/diaries/me",
+      name: "diary-me",
+      component: () => import("../pages/diaries/MyDiariesPage.vue"),
+    },
+    {
+      path: "/diaries/:id",
+      name: "diary-detail",
+      component: () => import("../pages/diaries/DiaryDetailPage.vue"),
+    },
+    {
+      path: "/diaries/:id/edit",
+      name: "diary-edit",
+      component: () => import("../pages/diaries/DiaryEditorPage.vue"),
+    },
+    {
       path: "/plan",
       name: "plan",
       component: () => import("../pages/PlanPage.vue"),

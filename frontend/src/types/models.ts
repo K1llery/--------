@@ -36,18 +36,41 @@ export interface Food {
   distance_km?: number;
 }
 
-/** 日记 */
+/** 日记媒体项（图片或视频） */
+export interface DiaryMedia {
+  id?: number;
+  type: "image" | "video";
+  url: string;
+  thumbnail_url?: string;
+  caption?: string;
+  order?: number;
+}
+
+/** 日记
+ *
+ * 字段命名约定：
+ * - `rating` 是历史字段，新代码请优先读 `rating_avg`（含义相同，后端两者都填）。
+ * - `media_urls` 是历史字段，新代码请优先读 `media`（结构化）。
+ *   两者目前后端都返回，未来可能只保留 `media`。`normalizeDiaryMedia` 已封装兜底。
+ */
 export interface Diary {
   id: number;
   title: string;
   destination_name: string;
   content: string;
   views: number;
+  /** @deprecated use `rating_avg` */
   rating: number;
+  rating_avg?: number;
+  rating_count?: number;
+  /** @deprecated use `media` */
   media_urls: string[];
+  media?: DiaryMedia[];
+  cover_image_url?: string;
   author_id?: number;
   author_name?: string;
   created_at?: string;
+  updated_at?: string;
 }
 
 /** 场景节点 */
