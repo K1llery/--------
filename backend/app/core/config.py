@@ -25,6 +25,10 @@ class Settings(BaseSettings):
     ai_timeout_seconds: float = 60.0
     generated_media_dir: Path = base_dir / "storage" / "media" / "generated"
     generated_media_url_prefix: str = "/media/generated"
+    upload_media_dir: Path = base_dir / "storage" / "media" / "uploads"
+    upload_media_url_prefix: str = "/media/uploads"
+    upload_image_max_bytes: int = 8 * 1024 * 1024  # 8 MB
+    upload_video_max_bytes: int = 64 * 1024 * 1024  # 64 MB
     model_config = SettingsConfigDict(env_prefix="TRAVEL_", extra="ignore", env_file=".env", env_file_encoding="utf-8")
 
     @field_validator("cors_origins", mode="before")

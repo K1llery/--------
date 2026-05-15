@@ -33,6 +33,12 @@ app.mount(
     StaticFiles(directory=settings.generated_media_dir),
     name="generated-media",
 )
+(settings.upload_media_dir / "diaries").mkdir(parents=True, exist_ok=True)
+app.mount(
+    settings.upload_media_url_prefix,
+    StaticFiles(directory=settings.upload_media_dir),
+    name="upload-media",
+)
 
 
 @app.get("/")
