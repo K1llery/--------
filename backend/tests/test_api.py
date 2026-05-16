@@ -26,6 +26,70 @@ def test_featured_destinations_include_scenic_and_shopping(client):
     assert all(item["source_url"] for item in data)
 
 
+def test_stats_overview_returns_requirement_progress_and_rankings(client):
+    response = client.get("/api/stats/overview")
+    assert response.status_code == 200
+    payload = response.json()
+
+    assert payload["counts"]["destinations"] >= 200
+    assert payload["counts"]["buildings"] >= 20
+    assert payload["counts"]["facilities"] >= 50
+    assert payload["counts"]["edges"] >= 200
+    assert payload["counts"]["users"] >= 10
+    assert payload["requirement_progress"]["destinations"]["passed"] is True
+    assert payload["requirement_progress"]["facility_types"]["actual"] >= 10
+    assert payload["top_destinations"]
+    assert payload["top_diaries"]
+    assert payload["top_foods"]
+    assert payload["distributions"]["destination_categories"]
+    assert payload["compression_summary"]["algorithm"] == "Huffman"
+
+
+def test_recommendation_evaluation_returns_bounded_metrics(client):
+    response = client.get("/api/stats/recommendation-evaluation", params={"top_k": 10})
+    assert response.status_code == 200
+    payload = response.json()
+
+    assert payload["top_k"] == 10
+    assert 0.0 <= payload["precision"] <= 1.0
+    assert 0.0 <= payload["recall"] <= 1.0
+    assert 0.0 <= payload["f1"] <= 1.0
+    assert payload["evaluated_user_count"] > 0
+    assert payload["samples"]
+    assert "TopKSelector" in payload["formula"]
+
+
+def test_destination_detail_view_and_rating_flow(client):
+    source_id = "osm-node-3884441391"
+
+    detail_response = client.get(f"/api/destinations/{source_id}")
+    assert detail_response.status_code == 200
+    detail = detail_response.json()
+    assert detail["source_id"] == source_id
+    assert detail["interaction_stats"]["total_views"] >= 0
+    assert isinstance(detail["nearby_foods"], list)
+    assert isinstance(detail["related_diaries"], list)
+
+    before_views = detail["interaction_stats"]["total_views"]
+    view_response = client.post(f"/api/destinations/{source_id}/view")
+    assert view_response.status_code == 200
+    assert view_response.json()["interaction_stats"]["total_views"] == before_views + 1
+
+    login_response = client.post("/api/auth/login", json={"username": "demo_user_1", "password": "demo123"})
+    assert login_response.status_code == 200
+    headers = {"Authorization": f"Bearer {login_response.json()['token']}"}
+    rate_response = client.post(
+        f"/api/destinations/{source_id}/rate",
+        json={"score": 4.6},
+        headers=headers,
+    )
+    assert rate_response.status_code == 200
+    rated = rate_response.json()
+    assert rated["interaction_stats"]["user_score"] == 4.6
+    assert rated["interaction_stats"]["rating_count"] >= 1
+    assert 1.0 <= rated["interaction_stats"]["rating_avg"] <= 5.0
+
+
 def test_single_route_endpoint_returns_path(client):
     response = client.post(
         "/api/routes/single",

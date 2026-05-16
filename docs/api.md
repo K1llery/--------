@@ -29,8 +29,18 @@
 |---|---|---|
 | `GET` | `/api/destinations` | 返回目的地列表。 |
 | `GET` | `/api/destinations/featured` | 返回精选目的地。 |
+| `GET` | `/api/destinations/{source_id}` | 返回目的地详情、互动统计、附近设施/美食和相关日记。 |
 | `POST` | `/api/destinations/recommend` | 返回个性化推荐。 |
 | `POST` | `/api/destinations/search` | 执行精确、前缀和关键词搜索。 |
+| `POST` | `/api/destinations/{source_id}/view` | 增加目的地浏览计数。 |
+| `POST` | `/api/destinations/{source_id}/rate` | 登录后为目的地评分。 |
+
+## 数据洞察
+
+| 方法 | 路径 | 职责 |
+|---|---|---|
+| `GET` | `/api/stats/overview` | 返回数据规模、课程阈值完成度、热门排行、分布和压缩摘要。 |
+| `GET` | `/api/stats/recommendation-evaluation` | 返回推荐系统 Top-K 的 Precision、Recall、F1 和样本命中说明。 |
 
 ## 路线与地图
 

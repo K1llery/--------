@@ -146,10 +146,7 @@ class DiaryRecommendService:
             has_counts = any(counts.values())
             global_mean = self._global_mean_rating(diaries)
             if has_counts:
-                scored = [
-                    (d, self._bayesian_score(d, counts=counts, global_mean=global_mean))
-                    for d in diaries
-                ]
+                scored = [(d, self._bayesian_score(d, counts=counts, global_mean=global_mean)) for d in diaries]
                 debug = {
                     "sort": "rating",
                     "reason": "贝叶斯平滑评分",
@@ -373,9 +370,7 @@ class DiarySearchService:
                 "scores": {},
             }
         else:
-            sorted_items, debug = self.recommender.sort(
-                base, normalized_sort, current_user=current_user
-            )
+            sorted_items, debug = self.recommender.sort(base, normalized_sort, current_user=current_user)
 
         total = len(sorted_items)
         start = (page - 1) * page_size

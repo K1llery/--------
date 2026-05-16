@@ -1,5 +1,6 @@
 import type {
   Destination,
+  DestinationDetail,
   Diary,
   Facility,
   Food,
@@ -81,6 +82,57 @@ export interface DestinationSearchResponse {
   exact: Destination | null;
   fuzzy: Destination[];
   featured: Destination[];
+}
+
+/** 目的地详情响应 */
+export type DestinationDetailResponse = DestinationDetail;
+
+/** 统计概览响应 */
+export interface StatsOverviewResponse {
+  counts: Record<string, number>;
+  requirement_progress: Record<
+    string,
+    {
+      actual: number;
+      required: number;
+      passed: boolean;
+      label: string;
+    }
+  >;
+  top_destinations: Destination[];
+  top_diaries: Diary[];
+  top_foods: Food[];
+  distributions: Record<string, Array<{ label: string; value: number }>>;
+  compression_summary: {
+    algorithm: string;
+    source: string;
+    item_count: number;
+    original_bits: number;
+    compressed_bits: number;
+    average_ratio: number;
+  };
+  algorithm_evidence: Array<{ name: string; implementation: string }>;
+}
+
+/** 推荐评估响应 */
+export interface RecommendationEvaluationResponse {
+  top_k: number;
+  precision: number;
+  recall: number;
+  f1: number;
+  evaluated_user_count: number;
+  samples: Array<{
+    user_id: number;
+    display_name: string;
+    interests: string[];
+    recommended_count: number;
+    relevant_count: number;
+    hit_count: number;
+    hit_names: string[];
+    precision: number;
+    recall: number;
+  }>;
+  formula: string;
 }
 
 /** 地图场景详情响应 */

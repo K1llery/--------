@@ -125,6 +125,13 @@
                 <span class="home-score-pill">评分 {{ displayMetric(item.rating) }}</span>
                 <span class="home-heat-pill">热度 {{ displayMetric(item.heat) }}</span>
               </div>
+              <RouterLink
+                class="destination-detail-link"
+                :to="destinationDetailPath(item.source_id)"
+                @click.stop
+              >
+                查看工作台详情
+              </RouterLink>
             </div>
           </article>
         </div>
@@ -184,6 +191,13 @@
           >
             {{ isFavorite(selected.source_id) ? "已收藏，点击取消" : "收藏目的地" }}
           </button>
+
+          <RouterLink
+            class="btn-soft-secondary w-full text-sm text-center"
+            :to="destinationDetailPath(selected.source_id)"
+          >
+            打开详情工作台
+          </RouterLink>
 
           <div class="text-xs text-slate-400 leading-6">
             <p class="m-0">
@@ -287,6 +301,7 @@ const ensureSelection = () => {
 const select = (item: Destination) => store.selectDestination(item);
 const load = (force = false) => store.loadFeaturedDestinations(force);
 const isFavorite = (sourceId: string) => auth.user?.favorite_destination_ids?.includes(sourceId);
+const destinationDetailPath = (sourceId: string) => `/destinations/${encodeURIComponent(sourceId)}`;
 
 const toggleFavorite = async (sourceId: string) => {
   if (!auth.isLoggedIn) {
@@ -333,3 +348,18 @@ onMounted(async () => {
   ensureSelection();
 });
 </script>
+
+<style scoped>
+.destination-detail-link {
+  display: inline-flex;
+  margin-top: 0.85rem;
+  color: #1475c4;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.destination-detail-link:hover {
+  color: #0f5f9f;
+  text-decoration: underline;
+}
+</style>

@@ -19,6 +19,23 @@ export interface Destination {
   source_url?: string;
 }
 
+/** 目的地互动统计 */
+export interface DestinationInteractionStats {
+  total_views: number;
+  rating_avg: number | null;
+  rating_count: number;
+  user_score: number | null;
+}
+
+/** 目的地详情 */
+export interface DestinationDetail extends Destination {
+  interaction_stats: DestinationInteractionStats;
+  nearby_facilities: Facility[];
+  nearby_foods: Food[];
+  related_diaries: Diary[];
+  algorithm_explanation: string;
+}
+
 /** 美食 */
 export interface Food {
   id: string;
@@ -327,5 +344,6 @@ export interface Facility {
   latitude: number;
   longitude: number;
   graph_distance?: number;
+  distance_km?: number;
   transport_mode?: string;
 }

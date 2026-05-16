@@ -14,6 +14,11 @@ const router = createRouter({
       component: () => import("../pages/DestinationPage.vue"),
     },
     {
+      path: "/destinations/:sourceId",
+      name: "destination-detail",
+      component: () => import("../pages/DestinationDetailPage.vue"),
+    },
+    {
       path: "/search",
       name: "search",
       component: () => import("../pages/SearchPage.vue"),
@@ -67,6 +72,11 @@ const router = createRouter({
       path: "/plan",
       name: "plan",
       component: () => import("../pages/PlanPage.vue"),
+    },
+    {
+      path: "/stats",
+      name: "stats",
+      component: () => import("../pages/StatsPage.vue"),
     },
   ],
 });

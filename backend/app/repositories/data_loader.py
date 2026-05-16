@@ -68,6 +68,12 @@ class DatasetRepository:
     def diary_ratings(self) -> list[dict[str, Any]]:
         return self._load_json("diary_ratings.json")
 
+    def destination_interactions(self) -> list[dict[str, Any]]:
+        return self._load_json("destination_interactions.json")
+
+    def save_destination_interactions(self, payload: list[dict[str, Any]]) -> None:
+        self._write_json("destination_interactions.json", payload)
+
     def users(self) -> list[dict[str, Any]]:
         return self._load_json("users.json")
 

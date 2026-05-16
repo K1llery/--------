@@ -17,10 +17,10 @@
 
           <div class="space-y-3">
             <h1 class="text-3xl lg:text-[3.1rem] font-bold text-slate-950 leading-tight">
-              用更清晰的路线和场景入口，安排你的城市探索
+              数据、地图和推荐解释集中在一个旅游工作台
             </h1>
             <p class="max-w-2xl text-base lg:text-lg text-slate-600 leading-8">
-              在北京、上海、广州、深圳之间切换，统一浏览目的地、美食、设施和路线规划，把校园与城市旅行都放进一套顺手的工具里。
+              首页直接展示课程验收规模、地图入口和推荐证据，从城市目的地一路衔接到路线、设施、美食和日记。
             </p>
           </div>
 
@@ -52,6 +52,13 @@
             >
               开始导航
             </RouterLink>
+            <RouterLink
+              to="/stats"
+              v-ripple
+              class="btn-soft-secondary inline-flex items-center gap-2 text-sm"
+            >
+              查看数据洞察
+            </RouterLink>
             <button
               v-if="!auth.isLoggedIn"
               class="home-text-action"
@@ -64,20 +71,20 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <article class="home-metric-card">
-              <span>覆盖城市</span>
-              <strong>{{ cities.length }}</strong>
-              <small>北京、上海、广州、深圳</small>
+              <span>目的地数据</span>
+              <strong>{{ overviewCount("destinations", featured.length) }}</strong>
+              <small>景点 / 校园 / 商圈统一检索</small>
             </article>
             <article class="home-metric-card">
-              <span>精选地点</span>
-              <strong>{{ featured.length }}</strong>
-              <small>持续用于推荐、搜索与路线规划</small>
+              <span>道路边</span>
+              <strong>{{ overviewCount("edges", 0) }}</strong>
+              <small>支撑本地最短路与多点规划</small>
             </article>
             <article class="home-metric-card">
-              <span>{{ auth.isLoggedIn ? "我的收藏" : "核心能力" }}</span>
-              <strong>{{ auth.isLoggedIn ? auth.favoriteDestinationCount + auth.favoriteRouteCount : 5 }}</strong>
+              <span>{{ auth.isLoggedIn ? "我的收藏" : "推荐评估" }}</span>
+              <strong>{{ auth.isLoggedIn ? auth.favoriteDestinationCount + auth.favoriteRouteCount : "F1" }}</strong>
               <small>
-                {{ auth.isLoggedIn ? "地点收藏与路线快照已接入" : "推荐、导航、设施、规划、日记" }}
+                {{ auth.isLoggedIn ? "地点收藏与路线快照已接入" : "数据洞察页展示 Precision / Recall" }}
               </small>
             </article>
           </div>
@@ -179,7 +186,7 @@
           </p>
         </div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4 mt-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 mt-5">
         <RouterLink
           v-for="item in capabilityCards"
           :key="item.title"
@@ -286,16 +293,19 @@
 import { computed, onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
 
+import { api } from "../api/client";
 import RealImage from "../components/RealImage.vue";
 import SkeletonCard from "../components/SkeletonCard.vue";
 import { useAuthStore } from "../stores/auth";
 import { useTravelStore } from "../stores/travel";
+import type { StatsOverviewResponse } from "../types/api";
 
 const brandLogoUrl = "/brands/youtu_logo.png";
 const store = useTravelStore();
 const auth = useAuthStore();
 const selectedCity = ref("北京");
 const cities = ["北京", "上海", "广州", "深圳"];
+const overview = ref<StatsOverviewResponse | null>(null);
 
 const featured = computed(() => store.destinations.items);
 const loading = computed(() => store.destinations.loading);
@@ -352,6 +362,13 @@ const capabilityCards = [
     action: "查看日记",
     to: "/diaries",
   },
+  {
+    index: "06",
+    title: "数据洞察",
+    description: "集中展示课程阈值、Top-K、F1 评估和算法证据。",
+    action: "看验收证据",
+    to: "/stats",
+  },
 ];
 
 const featuredPreview = computed(() =>
@@ -366,7 +383,15 @@ const categoryLabel = (value: string) => {
   return "景点";
 };
 
+const overviewCount = (key: string, fallback: number | string) => {
+  const value = overview.value?.counts[key];
+  return value === undefined ? fallback : value;
+};
+
 onMounted(() => {
   store.loadFeaturedDestinations(false);
+  api.get<StatsOverviewResponse>("/stats/overview").then(({ data }) => {
+    overview.value = data;
+  }).catch(() => undefined);
 });
 </script>

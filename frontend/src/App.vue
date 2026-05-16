@@ -19,7 +19,7 @@
           :key="item.to"
           :to="item.to"
           class="app-nav-link"
-          :class="[route.path === item.to ? 'app-nav-link-active' : 'app-nav-link-idle']"
+          :class="[isNavActive(item.to) ? 'app-nav-link-active' : 'app-nav-link-idle']"
         >
           <component :is="item.icon" class="app-nav-icon" />
           {{ item.label }}
@@ -110,7 +110,7 @@
             :key="item.to"
             :to="item.to"
             class="app-mobile-nav-link"
-            :class="[route.path === item.to ? 'app-nav-link-active' : 'app-nav-link-idle']"
+            :class="[isNavActive(item.to) ? 'app-nav-link-active' : 'app-nav-link-idle']"
             @click="mobileMenuOpen = false"
           >
             <component :is="item.icon" class="app-nav-icon" />
@@ -483,6 +483,19 @@ const IconCalendar = () =>
     ],
   );
 
+const IconStats = () =>
+  h(
+    "svg",
+    { class: "w-[18px] h-[18px]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", "stroke-width": "1.5" },
+    [
+      h("path", {
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        d: "M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75Zm6.75-6C9.75 6.504 10.254 6 10.875 6h2.25c.621 0 1.125.504 1.125 1.125v12.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V7.125Zm6.75-3C16.5 3.504 17.004 3 17.625 3h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z",
+      }),
+    ],
+  );
+
 const navItems = [
   { label: "首页", to: "/", icon: IconHome },
   { label: "目的地推荐", to: "/destinations", icon: IconPin },
@@ -492,10 +505,16 @@ const navItems = [
   { label: "美食推荐", to: "/foods", icon: IconUtensils },
   { label: "旅游日记", to: "/diaries", icon: IconBook },
   { label: "旅游规划", to: "/plan", icon: IconCalendar },
+  { label: "数据洞察", to: "/stats", icon: IconStats },
 ];
 
+const isNavActive = (to: string) => (to === "/" ? route.path === "/" : route.path === to || route.path.startsWith(`${to}/`));
+
 const currentNavLabel = computed(
-  () => navItems.find((item) => item.to === route.path)?.label ?? "个性化旅游平台",
+  () =>
+    navItems
+      .filter((item) => item.to === "/" || route.path === item.to || route.path.startsWith(`${item.to}/`))
+      .sort((left, right) => right.to.length - left.to.length)[0]?.label ?? "个性化旅游平台",
 );
 
 const demoFriends = [

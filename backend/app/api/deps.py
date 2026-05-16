@@ -9,13 +9,15 @@ from app.repositories.data_loader import DatasetRepository, get_repository
 from app.services.auth_service import AuthService
 from app.services.ai_service import AIService, BailianModelClient
 from app.services.diary_service import CompressionService, DiaryAIGCService, DiarySearchService
+from app.services.destination_service import DestinationInteractionService
 from app.services.facility_service import NearbyFacilityService
 from app.services.graph_builder import GraphBuilder
 from app.services.indoor_service import IndoorNavigationService
+from app.services.plan_service import PlanService
 from app.services.recommendation_service import RecommendationService
 from app.services.routing_service import RoutePlanningService
 from app.services.search_service import SearchService
-from app.services.plan_service import PlanService
+from app.services.stats_service import StatsService
 
 
 # ---------------------------------------------------------------------------
@@ -54,6 +56,11 @@ def _recommendation_service(repository: DatasetRepository) -> RecommendationServ
 
 
 @lru_cache
+def _destination_interaction_service(repository: DatasetRepository) -> DestinationInteractionService:
+    return DestinationInteractionService(repository, _recommendation_service(repository))
+
+
+@lru_cache
 def _facility_service(repository: DatasetRepository) -> NearbyFacilityService:
     return NearbyFacilityService(repository, _graph_builder(repository))
 
@@ -61,6 +68,11 @@ def _facility_service(repository: DatasetRepository) -> NearbyFacilityService:
 @lru_cache
 def _plan_service(repository: DatasetRepository) -> PlanService:
     return PlanService(repository)
+
+
+@lru_cache
+def _stats_service(repository: DatasetRepository) -> StatsService:
+    return StatsService(repository, _recommendation_service(repository))
 
 
 # ---------------------------------------------------------------------------
@@ -88,12 +100,22 @@ def get_recommendation_service(repository: DatasetRepository = Depends(get_repos
     return _recommendation_service(repository)
 
 
+def get_destination_interaction_service(
+    repository: DatasetRepository = Depends(get_repository),
+) -> DestinationInteractionService:
+    return _destination_interaction_service(repository)
+
+
 def get_facility_service(repository: DatasetRepository = Depends(get_repository)) -> NearbyFacilityService:
     return _facility_service(repository)
 
 
 def get_plan_service(repository: DatasetRepository = Depends(get_repository)) -> PlanService:
     return _plan_service(repository)
+
+
+def get_stats_service(repository: DatasetRepository = Depends(get_repository)) -> StatsService:
+    return _stats_service(repository)
 
 
 def get_compression_service() -> CompressionService:

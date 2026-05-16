@@ -88,6 +88,12 @@ class SQLiteRepository:
     def diary_ratings(self) -> list[dict[str, Any]]:
         return self._load_collection("diary_ratings")
 
+    def destination_interactions(self) -> list[dict[str, Any]]:
+        return self._load_collection("destination_interactions")
+
+    def save_destination_interactions(self, payload: list[dict[str, Any]]) -> None:
+        self._save_collection("destination_interactions", payload)
+
     def users(self) -> list[dict[str, Any]]:
         return self._load_collection("users")
 

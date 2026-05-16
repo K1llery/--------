@@ -15,6 +15,9 @@ export interface DiaryAnimationShot {
   media_url: string;
   transition: string;
   duration_seconds: number;
+  start_second: number;
+  visual_prompt?: string;
+  narration?: string;
 }
 
 export interface DiaryAnimationResult {

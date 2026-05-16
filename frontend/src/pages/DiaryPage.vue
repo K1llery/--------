@@ -41,7 +41,7 @@
       <DiaryFilterBar
         :search-type="searchType"
         :sort="sort"
-        @update:searchType="onSearchTypeChange"
+        @update:search-type="onSearchTypeChange"
         @update:sort="onSortChange"
       />
     </section>

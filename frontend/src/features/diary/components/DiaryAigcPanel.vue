@@ -53,6 +53,20 @@
         <strong class="text-slate-900">AI 旁白脚本：</strong>{{ result.narration_script }}
       </p>
 
+      <div class="diary-aigc-timeline" aria-label="AI 分镜时间轴">
+        <button
+          v-for="(shot, idx) in result.shots"
+          :key="`timeline-${shot.index}`"
+          type="button"
+          :class="{ 'diary-aigc-timeline-active': activeIndex === idx }"
+          :style="{ flexGrow: Math.max(1, shot.duration_seconds) }"
+          @click="setActive(idx)"
+        >
+          <span>{{ shot.start_second }}s</span>
+          <strong>{{ shot.duration_seconds }}s</strong>
+        </button>
+      </div>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <article
           v-for="(shot, idx) in result.shots"
@@ -239,5 +253,54 @@ onBeforeUnmount(stop);
 .diary-aigc-shot-body {
   min-width: 0;
   flex: 1;
+}
+
+.diary-aigc-timeline {
+  display: flex;
+  gap: 6px;
+  min-height: 54px;
+  padding: 8px;
+  border: 1px solid rgba(186, 216, 241, 0.95);
+  border-radius: 18px;
+  background: #f7fbff;
+}
+
+.diary-aigc-timeline button {
+  display: flex;
+  min-width: 54px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: #64748b;
+  background: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  transition:
+    background-color 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease;
+}
+
+.diary-aigc-timeline strong {
+  color: #172331;
+}
+
+.diary-aigc-timeline button:hover,
+.diary-aigc-timeline-active {
+  border-color: #1475c4 !important;
+  color: #1475c4 !important;
+  background: #e8f4ff !important;
+}
+
+@media (max-width: 640px) {
+  .diary-aigc-timeline {
+    overflow-x: auto;
+  }
+
+  .diary-aigc-timeline button {
+    flex: 0 0 72px !important;
+  }
 }
 </style>

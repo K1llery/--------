@@ -90,7 +90,7 @@ def update_diary(
     try:
         result = service.update(diary_id, current_user, payload.model_dump(exclude_none=True))
     except PermissionError:
-        raise HTTPException(status_code=403, detail="只有作者本人可以编辑")
+        raise HTTPException(status_code=403, detail="只有作者本人可以编辑") from None
     if result is None:
         raise HTTPException(status_code=404, detail="日记不存在")
     return result
@@ -105,7 +105,7 @@ def delete_diary(
     try:
         deleted = service.delete(diary_id, current_user)
     except PermissionError:
-        raise HTTPException(status_code=403, detail="只有作者本人可以删除")
+        raise HTTPException(status_code=403, detail="只有作者本人可以删除") from None
     if not deleted:
         raise HTTPException(status_code=404, detail="日记不存在")
     return Response(status_code=status.HTTP_204_NO_CONTENT)
@@ -185,11 +185,7 @@ async def upload_diary_media(
 ) -> dict:
     settings = get_settings()
     kind, ext = _classify_upload(file)
-    max_bytes = (
-        settings.upload_image_max_bytes
-        if kind == "image"
-        else settings.upload_video_max_bytes
-    )
+    max_bytes = settings.upload_image_max_bytes if kind == "image" else settings.upload_video_max_bytes
 
     payload = await file.read()
     size = len(payload)

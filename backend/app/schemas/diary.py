@@ -120,9 +120,7 @@ class DiaryListItemOut(BaseModel):
             result["media_urls"] = [m.get("url") for m in media if isinstance(m, dict) and m.get("url")]
         elif urls and not media:
             result["media"] = [
-                {"type": _infer_media_type(str(u)), "url": str(u), "order": i}
-                for i, u in enumerate(urls)
-                if u
+                {"type": _infer_media_type(str(u)), "url": str(u), "order": i} for i, u in enumerate(urls) if u
             ]
 
         return result
