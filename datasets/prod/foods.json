@@ -17,7 +17,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-01.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-01.svg"
+    "image_source_url": "/media/foods/food-01.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "四季民福烤鸭店(故宫店)"
   },
   {
     "name": "TRB Hutong",
@@ -37,7 +39,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-02.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-02.svg"
+    "image_source_url": "/media/foods/food-02.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "TRB Hutong"
   },
   {
     "name": "Ultraviolet by Paul Pairet",
@@ -57,7 +61,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-03.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-03.svg"
+    "image_source_url": "/media/foods/food-03.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Ultraviolet by Paul Pairet"
   },
   {
     "name": "Lost Heaven on the Bund",
@@ -77,7 +83,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-04.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-04.svg"
+    "image_source_url": "/media/foods/food-04.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Lost Heaven on the Bund"
   },
   {
     "name": "炳胜品味(珠江新城店)",
@@ -97,7 +105,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-05.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-05.svg"
+    "image_source_url": "/media/foods/food-05.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "炳胜品味(珠江新城店)"
   },
   {
     "name": "广州酒家(文昌总店)",
@@ -117,7 +127,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-06.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-06.svg"
+    "image_source_url": "/media/foods/food-06.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "广州酒家(文昌总店)"
   },
   {
     "name": "四季椰林椰子鸡(海岸城店)",
@@ -137,7 +149,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-07.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-07.svg"
+    "image_source_url": "/media/foods/food-07.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "四季椰林椰子鸡(海岸城店)"
   },
   {
     "name": "润园四季椰子鸡(欢乐海岸店)",
@@ -157,7 +171,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-08.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-08.svg"
+    "image_source_url": "/media/foods/food-08.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "润园四季椰子鸡(欢乐海岸店)"
   },
   {
     "source_id": "food-osm-9",
@@ -177,7 +193,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-09.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-09.svg"
+    "image_source_url": "/media/foods/food-09.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Under Renovation (used to be Bookworm)"
   },
   {
     "source_id": "food-osm-10",
@@ -197,7 +215,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-10.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-10.svg"
+    "image_source_url": "/media/foods/food-10.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Iqiyi"
   },
   {
     "source_id": "food-osm-11",
@@ -217,7 +237,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-11.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-11.svg"
+    "image_source_url": "/media/foods/food-11.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "马沙拉之香印度餐厅"
   },
   {
     "source_id": "food-osm-12",
@@ -237,7 +259,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-12.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-12.svg"
+    "image_source_url": "/media/foods/food-12.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Q Bar"
   },
   {
     "source_id": "food-osm-13",
@@ -257,7 +281,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-13.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-13.svg"
+    "image_source_url": "/media/foods/food-13.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "L'Isola Italian Restaurant"
   },
   {
     "source_id": "food-osm-14",
@@ -277,7 +303,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-14.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-14.svg"
+    "image_source_url": "/media/foods/food-14.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "麦当劳"
   },
   {
     "source_id": "food-osm-15",
@@ -297,7 +325,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-15.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-15.svg"
+    "image_source_url": "/media/foods/food-15.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "三元梅园"
   },
   {
     "source_id": "food-osm-16",
@@ -317,7 +347,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-16.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-16.svg"
+    "image_source_url": "/media/foods/food-16.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Tea shop"
   },
   {
     "source_id": "food-osm-17",
@@ -337,7 +369,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-17.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-17.svg"
+    "image_source_url": "/media/foods/food-17.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "滇池一家餐厅"
   },
   {
     "source_id": "food-osm-18",
@@ -357,7 +391,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-18.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-18.svg"
+    "image_source_url": "/media/foods/food-18.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "孔乙己酒家"
   },
   {
     "source_id": "food-osm-19",
@@ -377,7 +413,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-19.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-19.svg"
+    "image_source_url": "/media/foods/food-19.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "迷你站奶茶专门店"
   },
   {
     "source_id": "food-osm-20",
@@ -397,7 +435,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-20.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-20.svg"
+    "image_source_url": "/media/foods/food-20.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "孔亮火锅"
   },
   {
     "source_id": "food-osm-21",
@@ -417,7 +457,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-21.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-21.svg"
+    "image_source_url": "/media/foods/food-21.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "古宛斋"
   },
   {
     "source_id": "food-osm-22",
@@ -437,7 +479,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-22.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-22.svg"
+    "image_source_url": "/media/foods/food-22.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "李连贵熏肉大饼"
   },
   {
     "source_id": "food-osm-23",
@@ -457,7 +501,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-23.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-23.svg"
+    "image_source_url": "/media/foods/food-23.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "星巴克"
   },
   {
     "source_id": "food-osm-24",
@@ -477,7 +523,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-24.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-24.svg"
+    "image_source_url": "/media/foods/food-24.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "沸腾渔乡"
   },
   {
     "source_id": "food-osm-25",
@@ -497,7 +545,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-25.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-25.svg"
+    "image_source_url": "/media/foods/food-25.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "永和大王"
   },
   {
     "source_id": "food-osm-26",
@@ -517,7 +567,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-26.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-26.svg"
+    "image_source_url": "/media/foods/food-26.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "一品三笑"
   },
   {
     "source_id": "food-osm-27",
@@ -537,7 +589,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-27.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-27.svg"
+    "image_source_url": "/media/foods/food-27.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "比格披萨"
   },
   {
     "source_id": "food-osm-28",
@@ -557,7 +611,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-28.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-28.svg"
+    "image_source_url": "/media/foods/food-28.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "品奇"
   },
   {
     "source_id": "food-osm-29",
@@ -577,7 +633,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-29.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-29.svg"
+    "image_source_url": "/media/foods/food-29.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "肯德基"
   },
   {
     "source_id": "food-osm-30",
@@ -597,7 +655,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-30.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-30.svg"
+    "image_source_url": "/media/foods/food-30.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "羊蝎子"
   },
   {
     "source_id": "food-osm-31",
@@ -617,7 +677,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-31.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-31.svg"
+    "image_source_url": "/media/foods/food-31.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Pinnacle Plaza"
   },
   {
     "source_id": "food-osm-32",
@@ -637,7 +699,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-32.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-32.svg"
+    "image_source_url": "/media/foods/food-32.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "麻辣诱惑"
   },
   {
     "source_id": "food-osm-33",
@@ -657,7 +721,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-33.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-33.svg"
+    "image_source_url": "/media/foods/food-33.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "南城香"
   },
   {
     "source_id": "food-osm-34",
@@ -677,7 +743,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-34.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-34.svg"
+    "image_source_url": "/media/foods/food-34.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Zapata's"
   },
   {
     "source_id": "food-osm-35",
@@ -697,7 +765,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-35.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-35.svg"
+    "image_source_url": "/media/foods/food-35.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Shoulys Bistro"
   },
   {
     "source_id": "food-osm-36",
@@ -717,7 +787,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-36.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-36.svg"
+    "image_source_url": "/media/foods/food-36.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "The Journeys Cafe"
   },
   {
     "source_id": "food-osm-37",
@@ -737,7 +809,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-37.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-37.svg"
+    "image_source_url": "/media/foods/food-37.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "肯德基"
   },
   {
     "source_id": "food-osm-38",
@@ -757,7 +831,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-38.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-38.svg"
+    "image_source_url": "/media/foods/food-38.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "麦当劳"
   },
   {
     "source_id": "food-osm-39",
@@ -777,7 +853,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-39.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-39.svg"
+    "image_source_url": "/media/foods/food-39.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "必胜客"
   },
   {
     "source_id": "food-osm-40",
@@ -797,7 +875,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-40.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-40.svg"
+    "image_source_url": "/media/foods/food-40.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Asia Nudel"
   },
   {
     "source_id": "food-osm-41",
@@ -817,7 +897,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-41.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-41.svg"
+    "image_source_url": "/media/foods/food-41.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "南翔馒头"
   },
   {
     "source_id": "food-osm-42",
@@ -837,7 +919,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-42.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-42.svg"
+    "image_source_url": "/media/foods/food-42.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "吉野家"
   },
   {
     "source_id": "food-osm-43",
@@ -857,7 +941,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-43.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-43.svg"
+    "image_source_url": "/media/foods/food-43.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "天惠天"
   },
   {
     "source_id": "food-osm-44",
@@ -877,7 +963,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-44.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-44.svg"
+    "image_source_url": "/media/foods/food-44.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Wirtshaus / Music Bar"
   },
   {
     "source_id": "food-osm-45",
@@ -897,7 +985,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-45.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-45.svg"
+    "image_source_url": "/media/foods/food-45.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "星巴克"
   },
   {
     "source_id": "food-osm-46",
@@ -917,7 +1007,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-46.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-46.svg"
+    "image_source_url": "/media/foods/food-46.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "滴水洞"
   },
   {
     "source_id": "food-osm-47",
@@ -937,7 +1029,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-47.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-47.svg"
+    "image_source_url": "/media/foods/food-47.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "赛百味"
   },
   {
     "source_id": "food-osm-48",
@@ -957,7 +1051,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-48.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-48.svg"
+    "image_source_url": "/media/foods/food-48.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "丽华快餐"
   },
   {
     "source_id": "food-osm-49",
@@ -977,7 +1073,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-49.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-49.svg"
+    "image_source_url": "/media/foods/food-49.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "288 The Melting Pot"
   },
   {
     "source_id": "food-osm-50",
@@ -997,7 +1095,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-50.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-50.svg"
+    "image_source_url": "/media/foods/food-50.svg",
+    "venue_type": "cafe",
+    "restaurant_name": "第五街咖啡馆"
   },
   {
     "source_id": "food-osm-51",
@@ -1017,7 +1117,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-51.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-51.svg"
+    "image_source_url": "/media/foods/food-51.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "国际饭店"
   },
   {
     "source_id": "food-osm-52",
@@ -1037,7 +1139,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-52.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-52.svg"
+    "image_source_url": "/media/foods/food-52.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "东方既白"
   },
   {
     "source_id": "food-osm-53",
@@ -1057,7 +1161,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-53.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-53.svg"
+    "image_source_url": "/media/foods/food-53.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Kun Thai"
   },
   {
     "source_id": "food-osm-54",
@@ -1077,7 +1183,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-54.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-54.svg"
+    "image_source_url": "/media/foods/food-54.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Papas bierstube"
   },
   {
     "source_id": "food-osm-55",
@@ -1097,7 +1205,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-55.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-55.svg"
+    "image_source_url": "/media/foods/food-55.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Rose Bar"
   },
   {
     "source_id": "food-osm-56",
@@ -1117,7 +1227,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-56.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-56.svg"
+    "image_source_url": "/media/foods/food-56.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "船长酒吧"
   },
   {
     "source_id": "food-osm-57",
@@ -1137,7 +1249,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-57.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-57.svg"
+    "image_source_url": "/media/foods/food-57.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Paulaner"
   },
   {
     "source_id": "food-osm-58",
@@ -1157,7 +1271,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-58.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-58.svg"
+    "image_source_url": "/media/foods/food-58.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Lamesa"
   },
   {
     "source_id": "food-osm-59",
@@ -1177,7 +1293,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-59.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-59.svg"
+    "image_source_url": "/media/foods/food-59.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "星巴克"
   },
   {
     "source_id": "food-osm-60",
@@ -1197,7 +1315,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-60.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-60.svg"
+    "image_source_url": "/media/foods/food-60.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "麦当劳"
   },
   {
     "source_id": "food-osm-61",
@@ -1217,7 +1337,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-61.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-61.svg"
+    "image_source_url": "/media/foods/food-61.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "肯德基"
   },
   {
     "source_id": "food-osm-62",
@@ -1237,7 +1359,13 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-62.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-62.svg"
+    "image_source_url": "/media/foods/food-62.svg",
+    "venue_type": "canteen",
+    "canteen_name": "广州软件园食堂",
+    "tags": [
+      "校园餐饮",
+      "食堂"
+    ]
   },
   {
     "source_id": "food-osm-63",
@@ -1257,7 +1385,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-63.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-63.svg"
+    "image_source_url": "/media/foods/food-63.svg",
+    "venue_type": "cafe",
+    "restaurant_name": "名典咖啡语茶"
   },
   {
     "source_id": "food-osm-64",
@@ -1277,7 +1407,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-64.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-64.svg"
+    "image_source_url": "/media/foods/food-64.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "广东电视台餐厅"
   },
   {
     "source_id": "food-osm-65",
@@ -1297,7 +1429,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-65.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-65.svg"
+    "image_source_url": "/media/foods/food-65.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "黄鳝"
   },
   {
     "source_id": "food-osm-66",
@@ -1317,7 +1451,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-66.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-66.svg"
+    "image_source_url": "/media/foods/food-66.svg",
+    "venue_type": "cafe",
+    "restaurant_name": "瑞幸咖啡"
   },
   {
     "source_id": "food-osm-67",
@@ -1337,7 +1473,13 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-67.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-67.svg"
+    "image_source_url": "/media/foods/food-67.svg",
+    "venue_type": "canteen",
+    "canteen_name": "一食堂一楼",
+    "tags": [
+      "校园餐饮",
+      "食堂"
+    ]
   },
   {
     "source_id": "food-osm-68",
@@ -1357,7 +1499,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-68.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-68.svg"
+    "image_source_url": "/media/foods/food-68.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "百度外卖档扒饭套餐"
   },
   {
     "source_id": "food-osm-69",
@@ -1377,7 +1521,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-69.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-69.svg"
+    "image_source_url": "/media/foods/food-69.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Tschauze"
   },
   {
     "source_id": "food-osm-70",
@@ -1397,7 +1543,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-70.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-70.svg"
+    "image_source_url": "/media/foods/food-70.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "小肥羊"
   },
   {
     "source_id": "food-osm-71",
@@ -1417,7 +1565,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-71.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-71.svg"
+    "image_source_url": "/media/foods/food-71.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "明记海鲜城"
   },
   {
     "source_id": "food-osm-72",
@@ -1437,7 +1587,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-72.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-72.svg"
+    "image_source_url": "/media/foods/food-72.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Zum roten Hocker"
   },
   {
     "source_id": "food-osm-73",
@@ -1457,7 +1609,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-73.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-73.svg"
+    "image_source_url": "/media/foods/food-73.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Lazy Papa's"
   },
   {
     "source_id": "food-osm-74",
@@ -1477,7 +1631,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-74.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-74.svg"
+    "image_source_url": "/media/foods/food-74.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Pizzeria Montana"
   },
   {
     "source_id": "food-osm-75",
@@ -1497,7 +1653,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-75.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-75.svg"
+    "image_source_url": "/media/foods/food-75.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Rich Baby"
   },
   {
     "source_id": "food-osm-76",
@@ -1517,7 +1675,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-76.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-76.svg"
+    "image_source_url": "/media/foods/food-76.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Victoria Fashion Club"
   },
   {
     "source_id": "food-osm-77",
@@ -1537,7 +1697,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-77.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-77.svg"
+    "image_source_url": "/media/foods/food-77.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "陶陶居"
   },
   {
     "source_id": "food-osm-78",
@@ -1557,7 +1719,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-78.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-78.svg"
+    "image_source_url": "/media/foods/food-78.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "鹅公村"
   },
   {
     "source_id": "food-osm-79",
@@ -1577,7 +1741,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-79.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-79.svg"
+    "image_source_url": "/media/foods/food-79.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "意珍"
   },
   {
     "source_id": "food-osm-80",
@@ -1597,7 +1763,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-80.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-80.svg"
+    "image_source_url": "/media/foods/food-80.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "云居"
   },
   {
     "source_id": "food-osm-81",
@@ -1617,7 +1785,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-81.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-81.svg"
+    "image_source_url": "/media/foods/food-81.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "愉悦轩"
   },
   {
     "source_id": "food-osm-82",
@@ -1637,7 +1807,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-82.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-82.svg"
+    "image_source_url": "/media/foods/food-82.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "佰鲜汇"
   },
   {
     "source_id": "food-osm-83",
@@ -1657,7 +1829,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-83.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-83.svg"
+    "image_source_url": "/media/foods/food-83.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Lazy Mama's"
   },
   {
     "source_id": "food-osm-84",
@@ -1677,7 +1851,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-84.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-84.svg"
+    "image_source_url": "/media/foods/food-84.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "小田泰式雞飯店"
   },
   {
     "source_id": "food-osm-85",
@@ -1697,7 +1873,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-85.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-85.svg"
+    "image_source_url": "/media/foods/food-85.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "南島書蟲 BWC Lamma"
   },
   {
     "source_id": "food-osm-86",
@@ -1717,7 +1895,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-86.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-86.svg"
+    "image_source_url": "/media/foods/food-86.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "海風士多"
   },
   {
     "source_id": "food-osm-87",
@@ -1737,7 +1917,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-87.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-87.svg"
+    "image_source_url": "/media/foods/food-87.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "利昌士多"
   },
   {
     "source_id": "food-osm-88",
@@ -1757,7 +1939,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-88.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-88.svg"
+    "image_source_url": "/media/foods/food-88.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "上海三六九飯店 369 Restaurant Shanghai Food"
   },
   {
     "source_id": "food-osm-89",
@@ -1777,7 +1961,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-89.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-89.svg"
+    "image_source_url": "/media/foods/food-89.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "恒益商店"
   },
   {
     "source_id": "food-osm-90",
@@ -1797,7 +1983,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-90.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-90.svg"
+    "image_source_url": "/media/foods/food-90.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "吉野家 Yoshinoya"
   },
   {
     "source_id": "food-osm-91",
@@ -1817,7 +2005,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-91.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-91.svg"
+    "image_source_url": "/media/foods/food-91.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "小肥羊"
   },
   {
     "source_id": "food-osm-92",
@@ -1837,7 +2027,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-92.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-92.svg"
+    "image_source_url": "/media/foods/food-92.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "麦当劳"
   },
   {
     "source_id": "food-osm-93",
@@ -1857,7 +2049,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-93.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-93.svg"
+    "image_source_url": "/media/foods/food-93.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "肯德基"
   },
   {
     "source_id": "food-osm-94",
@@ -1877,7 +2071,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-94.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-94.svg"
+    "image_source_url": "/media/foods/food-94.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "McCafé"
   },
   {
     "source_id": "food-osm-95",
@@ -1897,7 +2093,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-95.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-95.svg"
+    "image_source_url": "/media/foods/food-95.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Herbal Tea Shop"
   },
   {
     "source_id": "food-osm-96",
@@ -1917,7 +2115,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-96.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-96.svg"
+    "image_source_url": "/media/foods/food-96.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Herbal Tea"
   },
   {
     "source_id": "food-osm-97",
@@ -1937,7 +2137,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-97.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-97.svg"
+    "image_source_url": "/media/foods/food-97.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Noodle Shop"
   },
   {
     "source_id": "food-osm-98",
@@ -1957,7 +2159,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-98.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-98.svg"
+    "image_source_url": "/media/foods/food-98.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "京華酒樓 Jing Hua Restaurant"
   },
   {
     "source_id": "food-osm-99",
@@ -1977,7 +2181,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-99.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-99.svg"
+    "image_source_url": "/media/foods/food-99.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Lychee Garden Chinese Restaurant"
   },
   {
     "source_id": "food-osm-100",
@@ -1997,7 +2203,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-100.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-100.svg"
+    "image_source_url": "/media/foods/food-100.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "星巴克 Starbucks"
   },
   {
     "source_id": "food-osm-101",
@@ -2017,7 +2225,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-101.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-101.svg"
+    "image_source_url": "/media/foods/food-101.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Paisano's Pizzeria"
   },
   {
     "source_id": "food-osm-102",
@@ -2037,7 +2247,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-102.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-102.svg"
+    "image_source_url": "/media/foods/food-102.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "龍江海景酒吧菜館 Lung Kong Seaview Restaurant"
   },
   {
     "source_id": "food-osm-103",
@@ -2057,7 +2269,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-103.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-103.svg"
+    "image_source_url": "/media/foods/food-103.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "建興亞婆豆腐花 Kin Hing Tofu Dessert"
   },
   {
     "source_id": "food-osm-104",
@@ -2077,7 +2291,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-104.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-104.svg"
+    "image_source_url": "/media/foods/food-104.svg",
+    "venue_type": "cafe",
+    "restaurant_name": "太平洋咖啡 Pacific Coffee"
   },
   {
     "source_id": "food-osm-105",
@@ -2097,7 +2313,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-105.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-105.svg"
+    "image_source_url": "/media/foods/food-105.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "美心Food² Maxim's Food²"
   },
   {
     "source_id": "food-osm-106",
@@ -2117,7 +2335,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-106.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-106.svg"
+    "image_source_url": "/media/foods/food-106.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Hoi Kee Roastie Specialist"
   },
   {
     "source_id": "food-osm-107",
@@ -2137,7 +2357,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-107.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-107.svg"
+    "image_source_url": "/media/foods/food-107.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "喜記避風塘炒辣蟹 Hee Kee Fried Crab Expert Ltd"
   },
   {
     "source_id": "food-osm-108",
@@ -2157,7 +2379,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-108.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-108.svg"
+    "image_source_url": "/media/foods/food-108.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "坤記煲仔小菜 Kwun Kee Claypot Specialist"
   },
   {
     "source_id": "food-osm-109",
@@ -2177,7 +2401,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-109.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-109.svg"
+    "image_source_url": "/media/foods/food-109.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "He's"
   },
   {
     "source_id": "food-osm-110",
@@ -2197,7 +2423,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-110.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-110.svg"
+    "image_source_url": "/media/foods/food-110.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "德克士"
   },
   {
     "source_id": "food-osm-111",
@@ -2217,7 +2445,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-111.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-111.svg"
+    "image_source_url": "/media/foods/food-111.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "自然鲜"
   },
   {
     "source_id": "food-osm-112",
@@ -2237,7 +2467,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-112.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-112.svg"
+    "image_source_url": "/media/foods/food-112.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "老家子"
   },
   {
     "source_id": "food-osm-113",
@@ -2257,7 +2489,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-113.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-113.svg"
+    "image_source_url": "/media/foods/food-113.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "红景地火锅"
   },
   {
     "source_id": "food-osm-114",
@@ -2277,7 +2511,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-114.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-114.svg"
+    "image_source_url": "/media/foods/food-114.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "码头故事老火锅"
   },
   {
     "source_id": "food-osm-115",
@@ -2297,7 +2533,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-115.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-115.svg"
+    "image_source_url": "/media/foods/food-115.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "土烧鸡公"
   },
   {
     "source_id": "food-osm-116",
@@ -2317,7 +2555,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-116.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-116.svg"
+    "image_source_url": "/media/foods/food-116.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "佳味面店"
   },
   {
     "source_id": "food-osm-117",
@@ -2337,7 +2577,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-117.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-117.svg"
+    "image_source_url": "/media/foods/food-117.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "顺发饭庄"
   },
   {
     "source_id": "food-osm-118",
@@ -2357,7 +2599,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-118.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-118.svg"
+    "image_source_url": "/media/foods/food-118.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "金万达茶坊"
   },
   {
     "source_id": "food-osm-119",
@@ -2377,7 +2621,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-119.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-119.svg"
+    "image_source_url": "/media/foods/food-119.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "打渔特色坊八里旗舰店"
   },
   {
     "source_id": "food-osm-120",
@@ -2397,7 +2643,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-120.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-120.svg"
+    "image_source_url": "/media/foods/food-120.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "美味面"
   },
   {
     "source_id": "food-osm-121",
@@ -2417,7 +2665,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-121.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-121.svg"
+    "image_source_url": "/media/foods/food-121.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "麦迪多"
   },
   {
     "source_id": "food-osm-122",
@@ -2437,7 +2687,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-122.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-122.svg"
+    "image_source_url": "/media/foods/food-122.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "传记老妈兔头"
   },
   {
     "source_id": "food-osm-123",
@@ -2457,7 +2709,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-123.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-123.svg"
+    "image_source_url": "/media/foods/food-123.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "廖排骨"
   },
   {
     "source_id": "food-osm-124",
@@ -2477,7 +2731,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-124.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-124.svg"
+    "image_source_url": "/media/foods/food-124.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "六婆串串香"
   },
   {
     "source_id": "food-osm-125",
@@ -2497,7 +2753,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-125.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-125.svg"
+    "image_source_url": "/media/foods/food-125.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "重庆霸道老火锅"
   },
   {
     "source_id": "food-osm-126",
@@ -2517,7 +2775,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-126.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-126.svg"
+    "image_source_url": "/media/foods/food-126.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "七里乡村鸭"
   },
   {
     "source_id": "food-osm-127",
@@ -2537,7 +2797,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-127.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-127.svg"
+    "image_source_url": "/media/foods/food-127.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "八里香啤酒广场"
   },
   {
     "source_id": "food-osm-128",
@@ -2557,7 +2819,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-128.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-128.svg"
+    "image_source_url": "/media/foods/food-128.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "808音乐空间"
   },
   {
     "source_id": "food-osm-129",
@@ -2577,7 +2841,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-129.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-129.svg"
+    "image_source_url": "/media/foods/food-129.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "萍聚茶坊"
   },
   {
     "source_id": "food-osm-130",
@@ -2597,7 +2863,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-130.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-130.svg"
+    "image_source_url": "/media/foods/food-130.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "山山茶坊"
   },
   {
     "source_id": "food-osm-131",
@@ -2617,7 +2885,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-131.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-131.svg"
+    "image_source_url": "/media/foods/food-131.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "大蓉和沙河店"
   },
   {
     "source_id": "food-osm-132",
@@ -2637,7 +2907,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-132.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-132.svg"
+    "image_source_url": "/media/foods/food-132.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "天缘茗茶"
   },
   {
     "source_id": "food-osm-133",
@@ -2657,7 +2929,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-133.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-133.svg"
+    "image_source_url": "/media/foods/food-133.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "蜀绣撰川菜馆"
   },
   {
     "source_id": "food-osm-134",
@@ -2677,7 +2951,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-134.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-134.svg"
+    "image_source_url": "/media/foods/food-134.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "江苏美术馆"
   },
   {
     "source_id": "food-osm-135",
@@ -2697,7 +2973,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-135.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-135.svg"
+    "image_source_url": "/media/foods/food-135.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "肯德基"
   },
   {
     "source_id": "food-osm-136",
@@ -2717,7 +2995,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-136.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-136.svg"
+    "image_source_url": "/media/foods/food-136.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "麦当劳"
   },
   {
     "source_id": "food-osm-137",
@@ -2737,7 +3017,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-137.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-137.svg"
+    "image_source_url": "/media/foods/food-137.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "必胜客"
   },
   {
     "source_id": "food-osm-138",
@@ -2757,7 +3039,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-138.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-138.svg"
+    "image_source_url": "/media/foods/food-138.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "星巴克"
   },
   {
     "source_id": "food-osm-139",
@@ -2777,7 +3061,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-139.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-139.svg"
+    "image_source_url": "/media/foods/food-139.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "中山陵大酒店"
   },
   {
     "source_id": "food-osm-140",
@@ -2797,7 +3083,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-140.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-140.svg"
+    "image_source_url": "/media/foods/food-140.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Party时代KTV"
   },
   {
     "source_id": "food-osm-141",
@@ -2817,7 +3105,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-141.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-141.svg"
+    "image_source_url": "/media/foods/food-141.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "味千拉面"
   },
   {
     "source_id": "food-osm-142",
@@ -2837,7 +3127,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-142.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-142.svg"
+    "image_source_url": "/media/foods/food-142.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "绿满园土菜馆"
   },
   {
     "source_id": "food-osm-143",
@@ -2857,7 +3149,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-143.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-143.svg"
+    "image_source_url": "/media/foods/food-143.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "稲菊"
   },
   {
     "source_id": "food-osm-144",
@@ -2877,7 +3171,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-144.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-144.svg"
+    "image_source_url": "/media/foods/food-144.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "苏客中式餐饮"
   },
   {
     "source_id": "food-osm-145",
@@ -2897,7 +3193,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-145.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-145.svg"
+    "image_source_url": "/media/foods/food-145.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "珠江路南站;赛百味"
   },
   {
     "source_id": "food-osm-146",
@@ -2917,7 +3215,13 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-146.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-146.svg"
+    "image_source_url": "/media/foods/food-146.svg",
+    "venue_type": "canteen",
+    "canteen_name": "南京工业大学丁家桥校区二食堂",
+    "tags": [
+      "校园餐饮",
+      "食堂"
+    ]
   },
   {
     "source_id": "food-osm-147",
@@ -2937,7 +3241,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-147.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-147.svg"
+    "image_source_url": "/media/foods/food-147.svg",
+    "venue_type": "cafe",
+    "restaurant_name": "蓝湾咖啡"
   },
   {
     "source_id": "food-osm-148",
@@ -2957,7 +3263,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-148.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-148.svg"
+    "image_source_url": "/media/foods/food-148.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "胡家花园"
   },
   {
     "source_id": "food-osm-149",
@@ -2977,7 +3285,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-149.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-149.svg"
+    "image_source_url": "/media/foods/food-149.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "奶酪时光"
   },
   {
     "source_id": "food-osm-150",
@@ -2997,7 +3307,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-150.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-150.svg"
+    "image_source_url": "/media/foods/food-150.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "春娇与志明"
   },
   {
     "source_id": "food-osm-151",
@@ -3017,7 +3329,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-151.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-151.svg"
+    "image_source_url": "/media/foods/food-151.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "DairyQueen"
   },
   {
     "source_id": "food-osm-152",
@@ -3037,7 +3351,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-152.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-152.svg"
+    "image_source_url": "/media/foods/food-152.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "粤鸿和"
   },
   {
     "source_id": "food-osm-153",
@@ -3057,7 +3373,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-153.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-153.svg"
+    "image_source_url": "/media/foods/food-153.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Costa"
   },
   {
     "source_id": "food-osm-154",
@@ -3077,7 +3395,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-154.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-154.svg"
+    "image_source_url": "/media/foods/food-154.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "蓝枪鱼(blue marlin)西餐"
   },
   {
     "source_id": "food-osm-155",
@@ -3097,7 +3417,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-155.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-155.svg"
+    "image_source_url": "/media/foods/food-155.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "西子苑酒店"
   },
   {
     "source_id": "food-osm-156",
@@ -3117,7 +3439,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-156.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-156.svg"
+    "image_source_url": "/media/foods/food-156.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "水到渠成饭店"
   },
   {
     "source_id": "food-osm-157",
@@ -3137,7 +3461,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-157.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-157.svg"
+    "image_source_url": "/media/foods/food-157.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "雕刻时光"
   },
   {
     "source_id": "food-osm-158",
@@ -3157,7 +3483,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-158.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-158.svg"
+    "image_source_url": "/media/foods/food-158.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "马伍旺川菜"
   },
   {
     "source_id": "food-osm-159",
@@ -3177,7 +3505,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-159.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-159.svg"
+    "image_source_url": "/media/foods/food-159.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Blue Marlin 2"
   },
   {
     "source_id": "food-osm-160",
@@ -3197,7 +3527,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-160.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-160.svg"
+    "image_source_url": "/media/foods/food-160.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "星巴克"
   },
   {
     "source_id": "food-osm-161",
@@ -3217,7 +3549,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-161.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-161.svg"
+    "image_source_url": "/media/foods/food-161.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "必胜客"
   },
   {
     "source_id": "food-osm-162",
@@ -3237,7 +3571,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-162.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-162.svg"
+    "image_source_url": "/media/foods/food-162.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "肯德基"
   },
   {
     "source_id": "food-osm-163",
@@ -3257,7 +3593,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-163.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-163.svg"
+    "image_source_url": "/media/foods/food-163.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Blue Marlin Restaurant"
   },
   {
     "source_id": "food-osm-164",
@@ -3277,7 +3615,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-164.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-164.svg"
+    "image_source_url": "/media/foods/food-164.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Blue Marlin Bar"
   },
   {
     "source_id": "food-osm-165",
@@ -3297,7 +3637,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-165.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-165.svg"
+    "image_source_url": "/media/foods/food-165.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Nana's easy spoken bar"
   },
   {
     "source_id": "food-osm-166",
@@ -3317,7 +3659,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-166.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-166.svg"
+    "image_source_url": "/media/foods/food-166.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Olli's Bar"
   },
   {
     "source_id": "food-osm-167",
@@ -3337,7 +3681,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-167.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-167.svg"
+    "image_source_url": "/media/foods/food-167.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Indian at the cross"
   },
   {
     "source_id": "food-osm-168",
@@ -3357,7 +3703,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-168.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-168.svg"
+    "image_source_url": "/media/foods/food-168.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Tunnel Bar"
   },
   {
     "source_id": "food-osm-169",
@@ -3377,7 +3725,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-169.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-169.svg"
+    "image_source_url": "/media/foods/food-169.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "La Vie Café"
   },
   {
     "source_id": "food-osm-170",
@@ -3397,7 +3747,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-170.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-170.svg"
+    "image_source_url": "/media/foods/food-170.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "美美"
   },
   {
     "source_id": "food-osm-171",
@@ -3417,7 +3769,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-171.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-171.svg"
+    "image_source_url": "/media/foods/food-171.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "Papa John's"
   },
   {
     "source_id": "food-osm-172",
@@ -3437,7 +3791,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-172.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-172.svg"
+    "image_source_url": "/media/foods/food-172.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "王兴记"
   },
   {
     "source_id": "food-osm-173",
@@ -3457,7 +3813,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-173.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-173.svg"
+    "image_source_url": "/media/foods/food-173.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "麦当劳"
   },
   {
     "source_id": "food-osm-174",
@@ -3477,7 +3835,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-174.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-174.svg"
+    "image_source_url": "/media/foods/food-174.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "豪客来"
   },
   {
     "source_id": "food-osm-175",
@@ -3497,7 +3857,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-175.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-175.svg"
+    "image_source_url": "/media/foods/food-175.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "穆桂英美食"
   },
   {
     "source_id": "food-osm-176",
@@ -3517,7 +3879,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-176.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-176.svg"
+    "image_source_url": "/media/foods/food-176.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "芦庄超王记"
   },
   {
     "source_id": "food-osm-177",
@@ -3537,7 +3901,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-177.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-177.svg"
+    "image_source_url": "/media/foods/food-177.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "聚丰园酒店"
   },
   {
     "source_id": "food-osm-178",
@@ -3557,7 +3923,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-178.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-178.svg"
+    "image_source_url": "/media/foods/food-178.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "毛华美食"
   },
   {
     "source_id": "food-osm-179",
@@ -3577,7 +3945,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-179.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-179.svg"
+    "image_source_url": "/media/foods/food-179.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "一鹭发海鲜酒店"
   },
   {
     "source_id": "food-osm-180",
@@ -3597,7 +3967,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-180.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-180.svg"
+    "image_source_url": "/media/foods/food-180.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "阿福楼"
   },
   {
     "source_id": "food-osm-181",
@@ -3617,7 +3989,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-181.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-181.svg"
+    "image_source_url": "/media/foods/food-181.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "德克士"
   },
   {
     "source_id": "food-osm-182",
@@ -3637,7 +4011,9 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-182.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-182.svg"
+    "image_source_url": "/media/foods/food-182.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "弘历皇朝酒店"
   },
   {
     "source_id": "food-osm-183",
@@ -3657,6 +4033,716 @@
     "fetched_date": "2026-04-18",
     "image_url": "/media/foods/food-183.svg",
     "image_source_name": "项目内置本地封面图",
-    "image_source_url": "/media/foods/food-183.svg"
+    "image_source_url": "/media/foods/food-183.svg",
+    "venue_type": "restaurant",
+    "restaurant_name": "龙凤大酒店"
+  },
+  {
+    "source_id": "food-bupt-node-973340625",
+    "name": "麦当劳",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "burger",
+    "venue_name": "麦当劳",
+    "latitude": 39.9600741,
+    "longitude": 116.3640842,
+    "rating": 3.9,
+    "heat": 209,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "麦当劳位于北京邮电大学周边，主打burger，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "snack",
+    "restaurant_name": "麦当劳",
+    "aliases": [
+      "McDonald's"
+    ],
+    "image_url": "/media/foods/food-184.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-184.svg"
+  },
+  {
+    "source_id": "food-bupt-node-1924725186",
+    "name": "御马墩",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "chinese",
+    "venue_name": "御马墩",
+    "latitude": 39.9598048,
+    "longitude": 116.3641192,
+    "rating": 3.8,
+    "heat": 804,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "御马墩位于北京邮电大学周边，主打chinese，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "御马墩",
+    "image_url": "/media/foods/food-185.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-185.svg"
+  },
+  {
+    "source_id": "food-bupt-node-1924729425",
+    "name": "12橡树咖啡",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "coffee_shop",
+    "venue_name": "12橡树咖啡",
+    "latitude": 39.9603023,
+    "longitude": 116.3640468,
+    "rating": 4.5,
+    "heat": 430,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "12橡树咖啡位于北京邮电大学周边，主打coffee_shop，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "cafe",
+    "restaurant_name": "12橡树咖啡",
+    "image_url": "/media/foods/food-186.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-186.svg"
+  },
+  {
+    "source_id": "food-bupt-node-3511264385",
+    "name": "零壹时光咖啡馆",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "本地餐饮",
+    "venue_name": "零壹时光咖啡馆",
+    "latitude": 39.9582958,
+    "longitude": 116.3505065,
+    "rating": 4.6,
+    "heat": 663,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "零壹时光咖啡馆位于北京邮电大学周边，主打本地餐饮，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "cafe",
+    "restaurant_name": "零壹时光咖啡馆",
+    "aliases": [
+      "Zero-One Times Cafe"
+    ],
+    "image_url": "/media/foods/food-187.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-187.svg"
+  },
+  {
+    "source_id": "food-bupt-node-3815571543",
+    "name": "金狮麟酒店",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "本地餐饮",
+    "venue_name": "金狮麟酒店",
+    "latitude": 39.9659344,
+    "longitude": 116.3567103,
+    "rating": 4.8,
+    "heat": 622,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "金狮麟酒店位于北京邮电大学周边，主打本地餐饮，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "金狮麟酒店",
+    "image_url": "/media/foods/food-188.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-188.svg"
+  },
+  {
+    "source_id": "food-bupt-node-4238855103",
+    "name": "鱼味小馆",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "本地餐饮",
+    "venue_name": "鱼味小馆",
+    "latitude": 39.9637034,
+    "longitude": 116.3504776,
+    "rating": 4.2,
+    "heat": 494,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "鱼味小馆位于北京邮电大学周边，主打本地餐饮，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "鱼味小馆",
+    "image_url": "/media/foods/food-189.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-189.svg"
+  },
+  {
+    "source_id": "food-bupt-node-5794747098",
+    "name": "白鹿江西餐厅",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "chinese",
+    "venue_name": "白鹿江西餐厅",
+    "latitude": 39.9636972,
+    "longitude": 116.359826,
+    "rating": 4.3,
+    "heat": 752,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "白鹿江西餐厅位于北京邮电大学周边，主打chinese，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "白鹿江西餐厅",
+    "image_url": "/media/foods/food-190.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-190.svg"
+  },
+  {
+    "source_id": "food-bupt-node-6041082649",
+    "name": "学生第六食堂(留学生食堂)",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "校园餐饮",
+    "venue_name": "学生第六食堂(留学生食堂)",
+    "latitude": 39.9598828,
+    "longitude": 116.3632713,
+    "rating": 4.6,
+    "heat": 266,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "学生第六食堂(留学生食堂)位于北京邮电大学校园或周边，适合作为校园游览、学习路线后的就餐补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "canteen",
+    "canteen_name": "学生第六食堂(留学生食堂)",
+    "aliases": [
+      "学生第六食堂"
+    ],
+    "tags": [
+      "校园餐饮",
+      "食堂"
+    ],
+    "image_url": "/media/foods/food-191.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-191.svg"
+  },
+  {
+    "source_id": "food-bupt-node-6041082650",
+    "name": "八喜日本料理",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "japanese",
+    "venue_name": "八喜日本料理",
+    "latitude": 39.962164,
+    "longitude": 116.3639603,
+    "rating": 4.0,
+    "heat": 450,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "八喜日本料理位于北京邮电大学周边，主打japanese，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "八喜日本料理",
+    "image_url": "/media/foods/food-192.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-192.svg"
+  },
+  {
+    "source_id": "food-bupt-node-6041082651",
+    "name": "爱德堡西餐咖啡吧",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "coffee_shop",
+    "venue_name": "爱德堡西餐咖啡吧",
+    "latitude": 39.962026,
+    "longitude": 116.3639774,
+    "rating": 4.6,
+    "heat": 535,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "爱德堡西餐咖啡吧位于北京邮电大学周边，主打coffee_shop，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "cafe",
+    "restaurant_name": "爱德堡西餐咖啡吧",
+    "image_url": "/media/foods/food-193.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-193.svg"
+  },
+  {
+    "source_id": "food-bupt-node-6041100036",
+    "name": "楼上楼茶餐厅",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "chinese",
+    "venue_name": "楼上楼茶餐厅",
+    "latitude": 39.961991,
+    "longitude": 116.352893,
+    "rating": 4.0,
+    "heat": 686,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "楼上楼茶餐厅位于北京邮电大学周边，主打chinese，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "楼上楼茶餐厅",
+    "image_url": "/media/foods/food-194.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-194.svg"
+  },
+  {
+    "source_id": "food-bupt-node-6041100037",
+    "name": "正宗西安羊肉泡馍",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "chinese",
+    "venue_name": "正宗西安羊肉泡馍",
+    "latitude": 39.9659902,
+    "longitude": 116.3550325,
+    "rating": 4.3,
+    "heat": 230,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "正宗西安羊肉泡馍位于北京邮电大学周边，主打chinese，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "正宗西安羊肉泡馍",
+    "image_url": "/media/foods/food-195.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-195.svg"
+  },
+  {
+    "source_id": "food-bupt-node-6041100038",
+    "name": "潮汕渔村",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "chinese",
+    "venue_name": "潮汕渔村",
+    "latitude": 39.9660301,
+    "longitude": 116.355241,
+    "rating": 4.7,
+    "heat": 394,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "潮汕渔村位于北京邮电大学周边，主打chinese，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "潮汕渔村",
+    "image_url": "/media/foods/food-196.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-196.svg"
+  },
+  {
+    "source_id": "food-bupt-node-6041100039",
+    "name": "LAKER'S（北太平庄店）",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "本地餐饮",
+    "venue_name": "LAKER'S（北太平庄店）",
+    "latitude": 39.9656946,
+    "longitude": 116.3550117,
+    "rating": 4.4,
+    "heat": 630,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "LAKER'S（北太平庄店）位于北京邮电大学周边，主打本地餐饮，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "LAKER'S（北太平庄店）",
+    "image_url": "/media/foods/food-197.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-197.svg"
+  },
+  {
+    "source_id": "food-bupt-node-6041738525",
+    "name": "福口居京味涮肉",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "chinese",
+    "venue_name": "福口居京味涮肉",
+    "latitude": 39.9659585,
+    "longitude": 116.3572677,
+    "rating": 4.5,
+    "heat": 157,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "福口居京味涮肉位于北京邮电大学周边，主打chinese，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "福口居京味涮肉",
+    "image_url": "/media/foods/food-198.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-198.svg"
+  },
+  {
+    "source_id": "food-bupt-node-6395371262",
+    "name": "汤本味赣苑",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "本地餐饮",
+    "venue_name": "汤本味赣苑",
+    "latitude": 39.9656376,
+    "longitude": 116.3549357,
+    "rating": 3.9,
+    "heat": 147,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "汤本味赣苑位于北京邮电大学周边，主打本地餐饮，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "汤本味赣苑",
+    "image_url": "/media/foods/food-199.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-199.svg"
+  },
+  {
+    "source_id": "food-bupt-node-12735976946",
+    "name": "博士居",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "本地餐饮",
+    "venue_name": "博士居",
+    "latitude": 39.9642474,
+    "longitude": 116.3515996,
+    "rating": 4.6,
+    "heat": 858,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "博士居位于北京邮电大学周边，主打本地餐饮，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "博士居",
+    "image_url": "/media/foods/food-200.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-200.svg"
+  },
+  {
+    "source_id": "food-bupt-node-12753716524",
+    "name": "金谷园饺子馆",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "本地餐饮",
+    "venue_name": "金谷园饺子馆",
+    "latitude": 39.9650242,
+    "longitude": 116.3543937,
+    "rating": 4.5,
+    "heat": 427,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "金谷园饺子馆位于北京邮电大学周边，主打本地餐饮，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "金谷园饺子馆",
+    "image_url": "/media/foods/food-201.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-201.svg"
+  },
+  {
+    "source_id": "food-bupt-node-12753716536",
+    "name": "瑞幸咖啡",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "coffee_shop",
+    "venue_name": "瑞幸咖啡",
+    "latitude": 39.9623777,
+    "longitude": 116.3517244,
+    "rating": 4.7,
+    "heat": 606,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "瑞幸咖啡位于北京邮电大学周边，主打coffee_shop，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "cafe",
+    "restaurant_name": "瑞幸咖啡",
+    "aliases": [
+      "Luckin Coffee"
+    ],
+    "image_url": "/media/foods/food-202.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-202.svg"
+  },
+  {
+    "source_id": "food-bupt-node-12753720328",
+    "name": "虎头军煎饼",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "chinese",
+    "venue_name": "虎头军煎饼",
+    "latitude": 39.9623403,
+    "longitude": 116.3515996,
+    "rating": 4.2,
+    "heat": 104,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "虎头军煎饼位于北京邮电大学周边，主打chinese，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "snack",
+    "restaurant_name": "虎头军煎饼",
+    "image_url": "/media/foods/food-203.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-203.svg"
+  },
+  {
+    "source_id": "food-bupt-node-12841510154",
+    "name": "瑞幸咖啡",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "coffee_shop",
+    "venue_name": "瑞幸咖啡",
+    "latitude": 39.9648184,
+    "longitude": 116.3530237,
+    "rating": 4.0,
+    "heat": 336,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "瑞幸咖啡位于北京邮电大学周边，主打coffee_shop，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "cafe",
+    "restaurant_name": "瑞幸咖啡",
+    "aliases": [
+      "Luckin Coffee"
+    ],
+    "image_url": "/media/foods/food-204.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-204.svg"
+  },
+  {
+    "source_id": "food-bupt-node-12948635277",
+    "name": "Canada咖啡",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "pizza",
+    "venue_name": "Canada咖啡",
+    "latitude": 39.960286,
+    "longitude": 116.3635951,
+    "rating": 4.0,
+    "heat": 606,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "Canada咖啡位于北京邮电大学周边，主打pizza，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "cafe",
+    "restaurant_name": "Canada咖啡",
+    "image_url": "/media/foods/food-205.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-205.svg"
+  },
+  {
+    "source_id": "food-bupt-way-265030102",
+    "name": "麦当劳",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "burger",
+    "venue_name": "麦当劳",
+    "latitude": 39.9623014,
+    "longitude": 116.351346,
+    "rating": 4.2,
+    "heat": 740,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "麦当劳位于北京邮电大学周边，主打burger，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "snack",
+    "restaurant_name": "麦当劳",
+    "aliases": [
+      "McDonald's"
+    ],
+    "image_url": "/media/foods/food-206.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-206.svg"
+  },
+  {
+    "source_id": "food-bupt-way-399013934",
+    "name": "综合食堂(新食堂)",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "校园餐饮",
+    "venue_name": "综合食堂(新食堂)",
+    "latitude": 39.9625975,
+    "longitude": 116.3503929,
+    "rating": 4.2,
+    "heat": 327,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "综合食堂(新食堂)位于北京邮电大学校园或周边，适合作为校园游览、学习路线后的就餐补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "canteen",
+    "canteen_name": "综合食堂(新食堂)",
+    "aliases": [
+      "综合食堂"
+    ],
+    "tags": [
+      "校园餐饮",
+      "食堂"
+    ],
+    "image_url": "/media/foods/food-207.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-207.svg"
+  },
+  {
+    "source_id": "food-bupt-way-399018200",
+    "name": "北京邮电大学学生餐厅(老食堂)",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "校园餐饮",
+    "venue_name": "北京邮电大学学生餐厅(老食堂)",
+    "latitude": 39.9620096,
+    "longitude": 116.3529764,
+    "rating": 4.0,
+    "heat": 334,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "北京邮电大学学生餐厅(老食堂)位于北京邮电大学校园或周边，适合作为校园游览、学习路线后的就餐补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "canteen",
+    "canteen_name": "北京邮电大学学生餐厅(老食堂)",
+    "aliases": [
+      "北京邮电大学学生餐厅"
+    ],
+    "tags": [
+      "校园餐饮",
+      "食堂"
+    ],
+    "image_url": "/media/foods/food-208.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-208.svg"
+  },
+  {
+    "source_id": "food-bupt-way-499432986",
+    "name": "教工食堂",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "校园餐饮",
+    "venue_name": "教工食堂",
+    "latitude": 39.9615182,
+    "longitude": 116.3607067,
+    "rating": 4.0,
+    "heat": 233,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "教工食堂位于北京邮电大学校园或周边，适合作为校园游览、学习路线后的就餐补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "canteen",
+    "canteen_name": "教工食堂",
+    "tags": [
+      "校园餐饮",
+      "食堂"
+    ],
+    "image_url": "/media/foods/food-209.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-209.svg"
+  },
+  {
+    "source_id": "food-bupt-way-499433000",
+    "name": "实习餐厅",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "本地餐饮",
+    "venue_name": "实习餐厅",
+    "latitude": 39.9615418,
+    "longitude": 116.3612441,
+    "rating": 4.3,
+    "heat": 634,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "实习餐厅位于北京邮电大学周边，主打本地餐饮，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "实习餐厅",
+    "image_url": "/media/foods/food-210.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-210.svg"
+  },
+  {
+    "source_id": "food-bupt-way-1376682970",
+    "name": "学苑风味餐厅(矮食堂)",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "校园餐饮",
+    "venue_name": "学苑风味餐厅(矮食堂)",
+    "latitude": 39.9621879,
+    "longitude": 116.3522401,
+    "rating": 4.1,
+    "heat": 281,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "学苑风味餐厅(矮食堂)位于北京邮电大学校园或周边，适合作为校园游览、学习路线后的就餐补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "canteen",
+    "canteen_name": "学苑风味餐厅(矮食堂)",
+    "tags": [
+      "校园餐饮",
+      "食堂"
+    ],
+    "image_url": "/media/foods/food-211.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-211.svg"
+  },
+  {
+    "source_id": "food-bupt-way-1377379919",
+    "name": "教工食堂",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "校园餐饮",
+    "venue_name": "教工食堂",
+    "latitude": 39.9618456,
+    "longitude": 116.3611346,
+    "rating": 4.4,
+    "heat": 830,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "教工食堂位于北京邮电大学校园或周边，适合作为校园游览、学习路线后的就餐补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "canteen",
+    "canteen_name": "教工食堂",
+    "tags": [
+      "校园餐饮",
+      "食堂"
+    ],
+    "image_url": "/media/foods/food-212.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-212.svg"
+  },
+  {
+    "source_id": "food-bupt-way-1388502966",
+    "name": "南航空厨",
+    "city": "北京",
+    "destination_name": "北京邮电大学",
+    "cuisine": "本地餐饮",
+    "venue_name": "南航空厨",
+    "latitude": 39.961552,
+    "longitude": 116.36153,
+    "rating": 3.8,
+    "heat": 197,
+    "heat_metric": "OSM POI 热度估算",
+    "source_name": "OpenStreetMap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "description": "南航空厨位于北京邮电大学周边，主打本地餐饮，适合校园参观或学习路线后顺路补给。",
+    "fetched_date": "2026-04-18",
+    "venue_type": "restaurant",
+    "restaurant_name": "南航空厨",
+    "image_url": "/media/foods/food-213.svg",
+    "image_source_name": "项目内置本地封面图",
+    "image_source_url": "/media/foods/food-213.svg"
   }
 ]

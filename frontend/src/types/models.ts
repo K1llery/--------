@@ -35,6 +35,7 @@ export interface Food {
   description?: string;
   address?: string;
   destination_name?: string;
+  venue_name?: string;
   restaurant_name?: string;
   canteen_name?: string;
   window_name?: string;

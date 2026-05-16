@@ -60,6 +60,7 @@ export function getFoodSearchText(food: Food): string {
     item.description,
     item.address,
     item.destination_name,
+    item.venue_name,
     item.restaurant_name,
     item.canteen_name,
     item.window_name,
@@ -207,9 +208,7 @@ export function selectTopKFoods<T>(items: T[], k: number, scoreFn: (item: T) => 
     }
   }
 
-  return result
-    .reverse()
-    .map((entry) => entry.item);
+  return result.reverse().map((entry) => entry.item);
 }
 
 export function buildFoodRankReasons(food: Food): string[] {
