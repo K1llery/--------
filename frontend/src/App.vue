@@ -320,7 +320,7 @@ import ToastContainer from "./components/ToastContainer.vue";
 import { useAuthStore } from "./stores/auth";
 import { useToastStore } from "./stores/toast";
 
-const brandLogoUrl = "/brands/youtu.png";
+const brandLogoUrl = "/brands/youtu_logo.png";
 const auth = useAuthStore();
 const toast = useToastStore();
 const route = useRoute();

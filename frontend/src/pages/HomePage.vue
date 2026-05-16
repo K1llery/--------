@@ -291,7 +291,7 @@ import SkeletonCard from "../components/SkeletonCard.vue";
 import { useAuthStore } from "../stores/auth";
 import { useTravelStore } from "../stores/travel";
 
-const brandLogoUrl = "/brands/youtu.png";
+const brandLogoUrl = "/brands/youtu_logo.png";
 const store = useTravelStore();
 const auth = useAuthStore();
 const selectedCity = ref("北京");
