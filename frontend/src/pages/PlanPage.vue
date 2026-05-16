@@ -43,8 +43,13 @@
           </div>
         </div>
 
-        <div v-if="planStore.loading" class="text-sm text-slate-500 text-center py-8">加载中...</div>
-        <div v-else-if="planStore.items.length === 0" class="text-sm text-slate-400 text-center py-8">
+        <div v-if="planStore.loading" class="text-sm text-slate-500 text-center py-8">
+          加载中...
+        </div>
+        <div
+          v-else-if="planStore.items.length === 0"
+          class="text-sm text-slate-400 text-center py-8"
+        >
           暂无计划，点击右上角“新建计划”开始安排行程。
         </div>
         <div v-else class="space-y-3">
@@ -71,7 +76,10 @@
       </aside>
 
       <section class="space-y-5">
-        <div v-if="!planStore.selected && !isEditing" class="card-elevated rounded-[24px] p-8 text-center">
+        <div
+          v-if="!planStore.selected && !isEditing"
+          class="card-elevated rounded-[24px] p-8 text-center"
+        >
           <span class="route-panel-kicker">详情面板</span>
           <h3 class="text-lg font-bold text-slate-950 mt-2">先选择一个计划，或直接新建</h3>
           <p class="text-sm text-slate-500 leading-7 mt-3">
@@ -180,7 +188,10 @@
                     />
                   </div>
 
-                  <div v-if="day.time_slots[slot.key].destination_id" class="flex items-center gap-2 pl-[5rem]">
+                  <div
+                    v-if="day.time_slots[slot.key].destination_id"
+                    class="flex items-center gap-2 pl-[5rem]"
+                  >
                     <button
                       class="btn-soft-secondary text-[11px] px-3 py-1"
                       :disabled="loadingSlotFoods[`${dayIndex}-${slot.key}`]"
@@ -193,6 +204,12 @@
                             ? "收起美食"
                             : "附近美食"
                       }}
+                    </button>
+                    <button
+                      class="btn-soft-secondary text-[11px] px-3 py-1"
+                      @click="openFoodRecommendations(day.time_slots[slot.key])"
+                    >
+                      查看附近美食
                     </button>
                   </div>
 
@@ -250,13 +267,17 @@
             <div class="flex items-start justify-between gap-4 flex-wrap">
               <div>
                 <span class="route-panel-kicker">计划详情</span>
-                <h3 class="text-xl font-bold text-slate-950 mt-1">{{ planStore.selected.title }}</h3>
+                <h3 class="text-xl font-bold text-slate-950 mt-1">
+                  {{ planStore.selected.title }}
+                </h3>
                 <p class="text-sm text-slate-500 mt-2">
                   {{ planStore.selected.days.length }} 天行程 ·
                   {{ planStore.selected.days[0]?.date }} ~
                   {{ planStore.selected.days[planStore.selected.days.length - 1]?.date }}
                 </p>
-                <p class="text-xs text-slate-400 mt-1">创建于 {{ planStore.selected.created_at }}</p>
+                <p class="text-xs text-slate-400 mt-1">
+                  创建于 {{ planStore.selected.created_at }}
+                </p>
               </div>
               <div class="flex flex-wrap gap-2">
                 <button class="btn-soft-primary text-sm" @click="startEdit">编辑</button>
@@ -275,7 +296,10 @@
                 <div class="flex items-center gap-3 flex-wrap">
                   <span class="route-summary-chip">第 {{ dayIndex + 1 }} 天</span>
                   <span class="text-sm text-slate-500">{{ day.date }}</span>
-                  <span v-if="day.city" class="route-summary-chip route-summary-chip-accent ml-auto">
+                  <span
+                    v-if="day.city"
+                    class="route-summary-chip route-summary-chip-accent ml-auto"
+                  >
                     {{ day.city }}
                   </span>
                 </div>
@@ -283,13 +307,19 @@
                 <div class="space-y-3">
                   <div v-for="slot in timeSlots" :key="slot.key" class="plan-slot-view">
                     <span class="plan-slot-label" :class="slot.colorClass">{{ slot.label }}</span>
-                    <div v-if="day.time_slots[slot.key]?.destination_name" class="flex-1">
+                    <div v-if="day.time_slots[slot.key]?.destination_name" class="flex-1 min-w-0">
                       <p class="text-sm font-medium text-slate-800">
                         {{ day.time_slots[slot.key]!.destination_name }}
                       </p>
                       <p v-if="day.time_slots[slot.key]!.notes" class="text-xs text-slate-400 mt-1">
                         {{ day.time_slots[slot.key]!.notes }}
                       </p>
+                      <button
+                        class="btn-soft-secondary text-[11px] px-3 py-1 mt-2"
+                        @click="openFoodRecommendations(day.time_slots[slot.key])"
+                      >
+                        查看附近美食
+                      </button>
                     </div>
                     <span v-else class="text-xs text-slate-300 italic">暂不安排</span>
                   </div>
@@ -305,17 +335,19 @@
 
 <script setup lang="ts">
 import { computed, reactive, ref, watch, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
 import { api } from "../api/client";
 import { useAuthStore } from "../stores/auth";
 import { usePlanStore } from "../stores/plans";
 import { useTravelStore } from "../stores/travel";
 import type { NearbyFoodResponse, OptimizeOrderResponse } from "../types/api";
-import type { Food, TimeSlotEntry, TravelPlan } from "../types/models";
+import type { Destination, Food, TimeSlotEntry, TravelPlan } from "../types/models";
 
 const auth = useAuthStore();
 const planStore = usePlanStore();
 const travelStore = useTravelStore();
+const router = useRouter();
 
 const isEditing = ref(false);
 const saving = ref(false);
@@ -421,6 +453,49 @@ const onDestinationChange = (day: EditingDay, slotKey: "morning" | "afternoon" |
       notes: day.time_slots[slotKey].notes,
     };
   }
+};
+
+const findDestinationForSlot = (
+  entry: TimeSlotEntry | null | undefined,
+): Destination | undefined => {
+  if (!entry) return undefined;
+
+  return travelStore.destinations.items.find(
+    (destination) =>
+      destination.source_id === entry.destination_id ||
+      (entry.destination_name && destination.name === entry.destination_name),
+  );
+};
+
+const hasDestinationCoordinates = (
+  destination: Destination | undefined,
+): destination is Destination =>
+  typeof destination?.latitude === "number" &&
+  Number.isFinite(destination.latitude) &&
+  typeof destination.longitude === "number" &&
+  Number.isFinite(destination.longitude);
+
+const openFoodRecommendations = (entry: TimeSlotEntry | null | undefined) => {
+  if (!entry?.destination_id && !entry?.destination_name) return;
+
+  const destination = findDestinationForSlot(entry);
+  const anchorName = destination?.name || entry.destination_name;
+  if (!anchorName) return;
+
+  const query: Record<string, string> = {
+    anchorType: "destination",
+    anchorId: destination?.source_id || entry.destination_id || `destination:${anchorName}`,
+    anchorName,
+    radius: "2",
+    sort: "recommend",
+  };
+
+  if (hasDestinationCoordinates(destination)) {
+    query.lat = String(destination.latitude);
+    query.lng = String(destination.longitude);
+  }
+
+  void router.push({ path: "/foods", query });
 };
 
 const planToEditingPlan = (plan: TravelPlan) => {

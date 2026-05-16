@@ -1596,6 +1596,81 @@ def generic_food_description(city: str, cuisine: str, venue: str) -> str:
     return templates[idx]
 
 
+def _split_food_tag_values(value: str | None) -> list[str]:
+    if not value:
+        return []
+
+    normalized = value.replace("；", ";").replace("、", ";").replace(",", ";").replace("/", ";")
+    return [part.strip() for part in normalized.split(";") if part.strip()]
+
+
+def _stable_unit_interval(seed: str) -> float:
+    digest = hashlib.sha256(seed.encode("utf-8")).hexdigest()
+    return int(digest[:12], 16) / float(0xFFFFFFFFFFFF)
+
+
+def _food_aliases_from_tags(tags: dict) -> list[str]:
+    aliases: list[str] = []
+    for key in ("name:zh", "name:zh-Hans", "name:en", "brand", "brand:zh", "alt_name"):
+        value = tags.get(key)
+        if value and value != tags.get("name") and value not in aliases:
+            aliases.append(value)
+    return aliases
+
+
+def _food_dishes_from_tags(tags: dict) -> list[str]:
+    dishes: list[str] = []
+    for key in ("dishes", "dish", "menu", "menu:item", "speciality"):
+        for item in _split_food_tag_values(tags.get(key)):
+            if item not in dishes:
+                dishes.append(item)
+    return dishes
+
+
+def _food_venue_type(tags: dict, name: str) -> str:
+    amenity = str(tags.get("amenity", "")).lower()
+    fast_food = str(tags.get("fast_food", "")).lower()
+    name_text = name.lower()
+
+    if "窗口" in name or "档口" in name:
+        return "window"
+    if "食堂" in name or "学生餐厅" in name or "cafeteria" in fast_food or "cafeteria" in name_text:
+        return "canteen"
+    if amenity == "cafe" or "咖啡" in name:
+        return "cafe"
+    if amenity == "fast_food":
+        return "snack"
+    return "restaurant"
+
+
+def _apply_food_venue_fields(food: dict, tags: dict) -> None:
+    venue_name = food.get("venue_name") or food.get("name", "")
+    venue_type = _food_venue_type(tags, venue_name)
+    food["venue_type"] = venue_type
+
+    if venue_type == "canteen":
+        food["canteen_name"] = venue_name
+    elif venue_type == "window":
+        food["window_name"] = venue_name
+    else:
+        food["restaurant_name"] = venue_name
+
+    aliases = _food_aliases_from_tags(tags)
+    if aliases:
+        food["aliases"] = aliases
+
+    dishes = _food_dishes_from_tags(tags)
+    if dishes:
+        food["dishes"] = dishes
+
+    tags_for_search = []
+    if venue_type in {"canteen", "window"}:
+        tags_for_search.append("校园餐饮")
+        tags_for_search.append("食堂" if venue_type == "canteen" else "窗口")
+    if tags_for_search:
+        food["tags"] = tags_for_search
+
+
 def build_foods(featured_destinations: list[dict]) -> list[dict]:
     items = []
     # 1. 保留原有 8 条精选美食
@@ -1603,6 +1678,7 @@ def build_foods(featured_destinations: list[dict]) -> list[dict]:
         food = {**item}
         food["source_id"] = f"food-featured-{idx}"
         food["fetched_date"] = FETCHED_DATE
+        _apply_food_venue_fields(food, {})
         items.append(food)
 
     # 2. 构建城市→目的地列表映射
@@ -1699,8 +1775,51 @@ def build_foods(featured_destinations: list[dict]) -> list[dict]:
                 "description": desc,
                 "fetched_date": FETCHED_DATE,
             }
+            _apply_food_venue_fields(food, tags)
             items.append(food)
             food_idx += 1
+
+    # 4. 北邮周边餐饮保留食堂/校园餐饮结构，供学校锚点推荐使用
+    raw_bupt = load_raw("bupt_foods.json")
+    seen_bupt: set[str] = set()
+    for element in raw_bupt.get("elements", []):
+        p = normalize_raw_point(element)
+        if p is None:
+            continue
+
+        key = f"{element.get('type', 'node')}:{element.get('id', p['name'])}"
+        if key in seen_bupt:
+            continue
+        seen_bupt.add(key)
+
+        tags = element.get("tags", {})
+        venue_type = _food_venue_type(tags, p["name"])
+        cuisine = tags.get("cuisine") or ("校园餐饮" if venue_type in {"canteen", "window"} else "本地餐饮")
+        if venue_type in {"canteen", "window"}:
+            desc = f"{p['name']}位于北京邮电大学校园或周边，适合作为校园游览、学习路线后的就餐补给。"
+        else:
+            desc = f"{p['name']}位于北京邮电大学周边，主打{cuisine}，适合校园参观或学习路线后顺路补给。"
+
+        food = {
+            "source_id": f"food-bupt-{element.get('type', 'node')}-{element.get('id', food_idx)}",
+            "name": p["name"],
+            "city": "北京",
+            "destination_name": "北京邮电大学",
+            "cuisine": cuisine,
+            "venue_name": p["name"],
+            "latitude": p["latitude"],
+            "longitude": p["longitude"],
+            "rating": round(3.8 + _stable_unit_interval(f"{key}:rating") * 1.0, 1),
+            "heat": int(60 + _stable_unit_interval(f"{key}:heat") * 900),
+            "heat_metric": "OSM POI 热度估算",
+            "source_name": "OpenStreetMap",
+            "source_url": "https://overpass-api.de/api/interpreter",
+            "description": desc,
+            "fetched_date": FETCHED_DATE,
+        }
+        _apply_food_venue_fields(food, tags)
+        items.append(food)
+        food_idx += 1
 
     return items
 
